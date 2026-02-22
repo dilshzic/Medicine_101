@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels // <-- Ensure this is imported
 import com.algorithmx.medicine101.ui.theme.Medicine101Theme
 import dagger.hilt.android.AndroidEntryPoint
+import com.tom_roush.pdfbox.android.PDFBox
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -19,6 +20,7 @@ class MainActivity : ComponentActivity() {
 
         // --- CRITICAL FIX: EXPLICITLY TRIGGER IT ---
         mainViewModel.triggerSeeding()
+        PDFBox.setup(applicationContext)
 
         enableEdgeToEdge()
         setContent {
