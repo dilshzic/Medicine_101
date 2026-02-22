@@ -3,7 +3,7 @@ package com.algorithmx.medicine101.ui.screens.noteview.components
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed // <-- NEW IMPORT
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -11,20 +11,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.algorithmx.medicine101.data.ContentBlock
 
-
 @Composable
 fun UniversalRenderer(blocks: List<ContentBlock>) {
     LazyColumn(
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        items(
+        // --- FIX: Use itemsIndexed to get the list index ---
+        itemsIndexed(
             items = blocks,
-            key = { block ->
-                // Generate a unique ID based on content hash to help Compose
-                (block.text.hashCode() + block.type.hashCode() + (block.items?.size ?: 0)).toString()
+            key = { index, block ->
+                // By prefixing the list index, every key is guaranteed to be 100% unique
+                // even if two blocks contain the exact same text/type.
+                "${index}_${block.type}_${block.text?.hashCode()}"
             }
-        ) { block ->
+        ) { _, block ->
             RenderSingleBlock(block)
         }
     }
@@ -49,6 +50,11 @@ fun RenderSingleBlock(block: ContentBlock) {
                 BulletListBlock(items = it)
             }
         }
+        "accordion" -> {
+            block.items?.let {
+                AccordionBlock(items = it)
+            }
+        }
 
         "table" -> {
             if (block.tableHeaders != null && block.tableRows != null) {
@@ -60,7 +66,6 @@ fun RenderSingleBlock(block: ContentBlock) {
             ImageBlock(url = it, caption = block.text)
         }
 
-        // --- FIX IS HERE ---
         "tab_group", "tabs" -> {
             block.tabs?.let {
                 // We ONLY pass the tabs list.
@@ -78,6 +83,12 @@ fun RenderSingleBlock(block: ContentBlock) {
         "dd_table" -> {
             block.ddItems?.let {
                 DifferentialDiagnosisBlock(items = it)
+            }
+        }
+// ... inside RenderSingleBlock ...
+        "youtube" -> {
+            if (!block.videoId.isNullOrEmpty()) {
+                YouTubeBlock(videoId = block.videoId, timestamps = block.videoTimestamps)
             }
         }
 

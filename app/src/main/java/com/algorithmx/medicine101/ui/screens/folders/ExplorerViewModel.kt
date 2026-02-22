@@ -51,6 +51,8 @@ class ExplorerViewModel @Inject constructor(
         started = SharingStarted.Companion.WhileSubscribed(5000),
         initialValue = "Loading..."
     )
+    // Inside ExplorerViewModel.kt
+
     fun createNewFolder(folderName: String) {
         if (folderName.isBlank()) return
 
@@ -62,9 +64,31 @@ class ExplorerViewModel @Inject constructor(
                 isFolder = true,
                 parentId = folderId, // This puts the folder inside the current view (or root if null)
                 isSystemNote = false, // Not a pre-seeded system note
-                tags = "" // Add any other default fields your NoteEntity requires
+                tags = ""
             )
             repository.insertNote(newFolder)
+        }
+    }
+
+    // --- NEW: Create Note Function ---
+    fun createNewNote(noteTitle: String, onCreated: (String) -> Unit) {
+        if (noteTitle.isBlank()) return
+
+        viewModelScope.launch {
+            val noteId = UUID.randomUUID().toString()
+            val newNote = NoteEntity(
+                id = noteId,
+                title = noteTitle.trim(),
+                category = "User",
+                isFolder = false, // It's a note, not a folder
+                parentId = folderId,
+                isSystemNote = false,
+                tags = ""
+            )
+            repository.insertNote(newNote)
+
+            // Trigger the callback with the new ID so the UI can navigate to it
+            onCreated(noteId)
         }
     }
 }

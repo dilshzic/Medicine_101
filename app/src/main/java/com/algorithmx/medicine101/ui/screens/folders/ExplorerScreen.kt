@@ -21,19 +21,21 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.algorithmx.medicine101.ui.screens.folders.components.FolderRow
 import com.algorithmx.medicine101.ui.screens.folders.components.NoteRow
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ExplorerScreen(
     viewModel: ExplorerViewModel = hiltViewModel(),
     onFolderClick: (String) -> Unit,
     onNoteClick: (String) -> Unit,
-    onSearchClick: () -> Unit 
+    onSearchClick: () -> Unit
 ) {
     val items by viewModel.items.collectAsState()
     val title by viewModel.currentTitle.collectAsState()
+
+    // --- UPDATED DIALOG STATE ---
     var showCreateDialog by remember { mutableStateOf(false) }
-    var newFolderName by remember { mutableStateOf("") }
+    var newItemName by remember { mutableStateOf("") }
+    var isCreatingFolder by remember { mutableStateOf(false) } // False = Note, True = Folder
 
     Scaffold(
         topBar = {
@@ -43,7 +45,7 @@ fun ExplorerScreen(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
                     titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer
                 ),
-                actions = { 
+                actions = {
                     IconButton(onClick = onSearchClick) {
                         Icon(
                             imageVector = Icons.Default.Search,
@@ -63,7 +65,7 @@ fun ExplorerScreen(
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(padding), 
+                    .padding(padding),
                 contentAlignment = Alignment.Center
             ) {
                 Text("No items found", color = Color.Gray)
@@ -83,27 +85,62 @@ fun ExplorerScreen(
                 }
             }
         }
+
+        // --- UPDATED DIALOG UI ---
         if (showCreateDialog) {
             AlertDialog(
                 onDismissRequest = {
                     showCreateDialog = false
-                    newFolderName = "" // Reset input
+                    newItemName = ""
                 },
-                title = { Text("Create New Folder") },
+                title = {
+                    Text(if (isCreatingFolder) "Create New Folder" else "Create New Note")
+                },
                 text = {
-                    OutlinedTextField(
-                        value = newFolderName,
-                        onValueChange = { newFolderName = it },
-                        label = { Text("Folder Name (e.g. Pharmacology)") },
-                        singleLine = true
-                    )
+                    Column {
+                        // Radio buttons for Note vs Folder
+                        Row(
+                            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
+                            horizontalArrangement = Arrangement.SpaceAround,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                RadioButton(
+                                    selected = !isCreatingFolder,
+                                    onClick = { isCreatingFolder = false }
+                                )
+                                Text("Note")
+                            }
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                RadioButton(
+                                    selected = isCreatingFolder,
+                                    onClick = { isCreatingFolder = true }
+                                )
+                                Text("Folder")
+                            }
+                        }
+
+                        OutlinedTextField(
+                            value = newItemName,
+                            onValueChange = { newItemName = it },
+                            label = { Text("Name") },
+                            singleLine = true
+                        )
+                    }
                 },
                 confirmButton = {
                     TextButton(onClick = {
-                        if (newFolderName.isNotBlank()) {
-                            viewModel.createNewFolder(newFolderName)
+                        if (newItemName.isNotBlank()) {
+                            if (isCreatingFolder) {
+                                viewModel.createNewFolder(newItemName)
+                            } else {
+                                // Create note and immediately navigate to it!
+                                viewModel.createNewNote(newItemName) { newNoteId ->
+                                    onNoteClick(newNoteId)
+                                }
+                            }
                             showCreateDialog = false
-                            newFolderName = "" // Reset input
+                            newItemName = ""
                         }
                     }) {
                         Text("Create")
@@ -112,7 +149,7 @@ fun ExplorerScreen(
                 dismissButton = {
                     TextButton(onClick = {
                         showCreateDialog = false
-                        newFolderName = "" // Reset input
+                        newItemName = ""
                     }) {
                         Text("Cancel")
                     }

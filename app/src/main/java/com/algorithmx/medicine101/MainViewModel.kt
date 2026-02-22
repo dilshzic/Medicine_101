@@ -12,8 +12,8 @@ class MainViewModel @Inject constructor(
     private val seeder: DatabaseSeeder
 ) : ViewModel() {
 
-    init {
-        // Launch seeding immediately on app start
+    // Removed the init {} block and made it an explicit function
+    fun triggerSeeding() {
         viewModelScope.launch {
             seeder.seedDatabase()
         }

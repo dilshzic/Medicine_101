@@ -15,7 +15,7 @@ android {
 
     defaultConfig {
         applicationId = "com.algorithmx.medicine101"
-        minSdk = 24
+        minSdk = 31
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
@@ -39,6 +39,7 @@ android {
 
     buildFeatures {
         compose = true
+        viewBinding = true
     }
 }
 
@@ -72,4 +73,18 @@ dependencies {
     ksp(libs.hilt.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.material.icons.extended)
+
+
+    implementation(libs.core)
+
+    // Jetpack Native PDF Viewer (Alpha/Beta - check latest version)
+    implementation(libs.androidx.pdf.viewer)
+    implementation(libs.androidx.pdf.viewer.fragment)
+
+    // PdfBox for Android (TOC Extraction)
+    implementation(libs.pdfbox.android)
+
+    // ViewBinding for Compose
+    implementation(libs.androidx.compose.ui.viewbinding)
+
 }

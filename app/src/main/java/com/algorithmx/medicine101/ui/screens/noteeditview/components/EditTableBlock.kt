@@ -20,7 +20,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.algorithmx.medicine101.data.ContentBlock
 
-
 @Composable
 fun EditTableBlock(
     block: ContentBlock,
@@ -36,7 +35,33 @@ fun EditTableBlock(
             .border(1.dp, Color.Gray, RoundedCornerShape(4.dp))
             .padding(8.dp)
     ) {
-        Text("Table Editor", style = MaterialTheme.typography.labelSmall, color = Color.Gray)
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text("Table Editor", style = MaterialTheme.typography.labelSmall, color = Color.Gray)
+
+            // --- NEW: COLUMN CONTROLS ---
+            Row {
+                TextButton(onClick = {
+                    val newHeaders = headers + "New Col"
+                    val newRows = rows.map { it + "" }
+                    onUpdate(block.copy(tableHeaders = newHeaders, tableRows = newRows))
+                }) { Text("+ Col") }
+
+                TextButton(
+                    onClick = {
+                        if (headers.size > 1) {
+                            val newHeaders = headers.dropLast(1)
+                            val newRows = rows.map { it.dropLast(1) }
+                            onUpdate(block.copy(tableHeaders = newHeaders, tableRows = newRows))
+                        }
+                    },
+                    enabled = headers.size > 1
+                ) { Text("- Col", color = if (headers.size > 1) MaterialTheme.colorScheme.error else Color.Gray) }
+            }
+        }
 
         // --- 1. HEADERS ---
         Row(modifier = Modifier.background(MaterialTheme.colorScheme.surfaceVariant)) {
@@ -45,7 +70,6 @@ fun EditTableBlock(
                     value = title,
                     isHeader = true,
                     onValueChange = { newText ->
-                        // Logic: Copy list, update index, trigger callback
                         val newHeaders = headers.toMutableList()
                         newHeaders[index] = newText
                         onUpdate(block.copy(tableHeaders = newHeaders))
@@ -53,22 +77,19 @@ fun EditTableBlock(
                     modifier = Modifier.weight(1f)
                 )
             }
-            // Spacer to align with the delete buttons in rows
-            Spacer(modifier = Modifier.width(32.dp)) 
+            Spacer(modifier = Modifier.width(32.dp))
         }
 
-        Divider()
+        HorizontalDivider()
 
         // --- 2. ROWS ---
         rows.forEachIndexed { rowIndex, row ->
             Row(verticalAlignment = Alignment.CenterVertically) {
-                // Render Cells
                 row.forEachIndexed { colIndex, cellValue ->
                     TableCellEditor(
                         value = cellValue,
                         isHeader = false,
                         onValueChange = { newText ->
-                            // Logic: Deep copy the nested lists to update specific cell
                             val newRows = rows.map { it.toMutableList() }.toMutableList()
                             newRows[rowIndex][colIndex] = newText
                             onUpdate(block.copy(tableRows = newRows))
@@ -77,7 +98,6 @@ fun EditTableBlock(
                     )
                 }
 
-                // Delete Row Button
                 IconButton(
                     onClick = {
                         val newRows = rows.toMutableList()
@@ -86,16 +106,15 @@ fun EditTableBlock(
                     },
                     modifier = Modifier.size(32.dp)
                 ) {
-                    Icon(Icons.Default.Delete, "Delete Row", tint = Color.Red)
+                    Icon(Icons.Default.Delete, "Delete Row", tint = MaterialTheme.colorScheme.error)
                 }
             }
-            Divider()
+            HorizontalDivider()
         }
 
         // --- 3. ADD ROW BUTTON ---
         Button(
             onClick = {
-                // Create a new blank row with the same number of columns as headers
                 val blankRow = List(headers.size) { "" }
                 val newRows = rows + listOf(blankRow)
                 onUpdate(block.copy(tableRows = newRows))
@@ -109,7 +128,6 @@ fun EditTableBlock(
     }
 }
 
-// Helper Composable for a single cell text field
 @Composable
 fun TableCellEditor(
     value: String,
@@ -133,14 +151,8 @@ fun TableCellEditor(
             ),
             cursorBrush = SolidColor(MaterialTheme.colorScheme.primary)
         )
-        
-        // Hint text if empty
         if (value.isEmpty()) {
-            Text(
-                text = if(isHeader) "Header" else "...",
-                color = Color.LightGray,
-                fontSize = 12.sp
-            )
+            Text(text = if(isHeader) "Header" else "...", color = Color.LightGray, fontSize = 12.sp)
         }
     }
 }

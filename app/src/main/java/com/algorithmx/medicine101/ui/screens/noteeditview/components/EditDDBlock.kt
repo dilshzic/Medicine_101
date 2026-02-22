@@ -77,6 +77,20 @@ fun EditDDBlock(
                         placeholder = { Text("MI, GERD, PE...") },
                         modifier = Modifier.fillMaxWidth()
                     )
+                    Spacer(modifier = Modifier.height(4.dp))
+
+                    // Row 3: Likelihood Input
+                    OutlinedTextField(
+                        value = item.likelihood ?: "",
+                        onValueChange = { newLikelihood ->
+                            val newItems = items.toMutableList()
+                            newItems[index] = item.copy(likelihood = newLikelihood.ifBlank { null })
+                            onUpdate(block.copy(ddItems = newItems))
+                        },
+                        label = { Text("Likelihood (Optional)") },
+                        placeholder = { Text("e.g. High, Medium, Red Flag") },
+                        modifier = Modifier.fillMaxWidth()
+                    )
                 }
             }
         }

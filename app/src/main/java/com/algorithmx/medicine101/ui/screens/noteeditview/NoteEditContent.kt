@@ -31,6 +31,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.algorithmx.medicine101.data.ContentBlock
@@ -38,10 +39,15 @@ import com.algorithmx.medicine101.ui.screens.NoteViewModel
 
 import com.algorithmx.medicine101.ui.screens.noteeditview.components.BlockCreationSheet
 import com.algorithmx.medicine101.ui.screens.noteeditview.components.BlockWrapper
+import com.algorithmx.medicine101.ui.screens.noteeditview.components.EditAccordionBlock
+import com.algorithmx.medicine101.ui.screens.noteeditview.components.EditCalloutBlock
 import com.algorithmx.medicine101.ui.screens.noteeditview.components.EditDDBlock
+import com.algorithmx.medicine101.ui.screens.noteeditview.components.EditFlowchartBlock
 import com.algorithmx.medicine101.ui.screens.noteeditview.components.EditHeaderBlock
+import com.algorithmx.medicine101.ui.screens.noteeditview.components.EditImageBlock
 import com.algorithmx.medicine101.ui.screens.noteeditview.components.EditListBlock
 import com.algorithmx.medicine101.ui.screens.noteeditview.components.EditTextBlock
+import com.algorithmx.medicine101.ui.screens.noteeditview.components.EditYouTubeBlock
 import com.algorithmx.medmate.screens.editor.EditTableBlock
 
 // 1. STATEFUL WRAPPER: Handles the ViewModel logic
@@ -170,10 +176,22 @@ fun NoteEditContent(
                         ) {
                             when (block.type) {
                                 "header" -> EditHeaderBlock(block) { onUpdateBlock(globalIndex, it) }
-                                "callout" -> EditTextBlock(block, "Callout Text") { onUpdateBlock(globalIndex, it) }
+
+                                // --- UPDATED: Use the new dedicated callout editor ---
+                                "callout" -> EditCalloutBlock(block) { onUpdateBlock(globalIndex, it) }
+
                                 "list" -> EditListBlock(block) { onUpdateBlock(globalIndex, it) }
                                 "table" -> EditTableBlock(block) { onUpdateBlock(globalIndex, it) }
                                 "dd_table" -> EditDDBlock(block) { onUpdateBlock(globalIndex, it) }
+
+                                // --- NEW: Handle complex blocks gracefully ---
+                                // --- INTEGRATE THE NEW EDITORS ---
+                                "accordion" -> EditAccordionBlock(block) { onUpdateBlock(globalIndex, it) }
+                                "flowchart" -> EditFlowchartBlock(block) { onUpdateBlock(globalIndex, it) }
+                                "image" -> EditImageBlock(block) { onUpdateBlock(globalIndex, it) }
+                                // ... inside the LazyColumn ...
+                                "youtube" -> EditYouTubeBlock(block) { onUpdateBlock(globalIndex, it) }
+
                                 else -> EditTextBlock(block, "Text Content") { onUpdateBlock(globalIndex, it) }
                             }
                         }

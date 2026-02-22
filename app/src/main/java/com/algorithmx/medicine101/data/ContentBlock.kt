@@ -14,7 +14,8 @@ data class ContentBlock(
     val ddItems: List<DifferentialDiagnosis>? = null,
     val tabName: String = "General",
 
-    // FIX 1: Change 'List<ListItem>?' to 'List<ContentItem>?'
+    val videoId: String? = null,
+    val videoTimestamps: List<VideoTimestamp>? = null,
 
     // FIX 2: Add this field
     val variant: String? = null,
@@ -63,8 +64,27 @@ data class DifferentialDiagnosis(
 // ... existing ContentBlock class ...
 
 data class ContentItem(
-    val id: String = java.util.UUID.randomUUID().toString(), // Unique ID for Compose keys
-    val text: String? = null,        // For Bullet Points
-    val title: String? = null,       // For Accordion Headers
-    val content: List<ContentBlock>? = null // For Nested Accordion Content
+    val id: String = java.util.UUID.randomUUID().toString(),
+    val text: String? = null,
+    val title: String? = null,
+    val content: List<ContentBlock>? = null,
+    val subItems: List<ContentItem>? = null // <-- ADD THIS FOR NESTED BULLETS
 )
+data class VideoTimestamp(
+    val label: String,
+    val timestamp: String // e.g., "01:30" or "1:05:20"
+) {
+    // Helper to convert "MM:SS" into raw seconds for the YouTube API
+    fun toSeconds(): Float {
+        return try {
+            val parts = timestamp.split(":")
+            when (parts.size) {
+                2 -> parts[0].toFloat() * 60 + parts[1].toFloat()
+                3 -> parts[0].toFloat() * 3600 + parts[1].toFloat() * 60 + parts[2].toFloat()
+                else -> timestamp.toFloat()
+            }
+        } catch (e: Exception) {
+            0f
+        }
+    }
+}

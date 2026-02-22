@@ -1,5 +1,6 @@
 package com.algorithmx.medicine101.ui.screens.noteview.components
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
@@ -7,6 +8,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Error
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.*
 import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
@@ -146,27 +149,25 @@ fun TableBlock(headers: List<String>, rows: List<List<String>>) {
 
 // 4. BULLET LIST BLOCK
 @Composable
-fun BulletListBlock(items: List<ContentItem>, depth: Int = 0) { // Changed ListItem to ContentItem
+fun BulletListBlock(items: List<ContentItem>, depth: Int = 0) {
     Column(modifier = Modifier.padding(vertical = 4.dp)) {
         items.forEach { item ->
             Row(modifier = Modifier.padding(start = (depth * 16).dp, bottom = 4.dp)) {
                 Text(
-                    text = "•",
+                    // Change bullet style based on depth
+                    text = if (depth == 0) "•" else "◦",
                     modifier = Modifier.padding(end = 8.dp),
                     fontWeight = FontWeight.Bold
                 )
                 Column {
-                    // Assuming ContentItem has 'text' property.
-                    // If ContentItem uses 'text?' (nullable), use 'text ?: ""'
-                    Text(text = item.text ?: "", style = MaterialTheme.typography.bodyLarge)
+                    if (!item.text.isNullOrEmpty()) {
+                        Text(text = item.text, style = MaterialTheme.typography.bodyLarge)
+                    }
 
-                    // RECURSION
-                    // Assuming ContentItem has 'content' or 'subItems' property
-                    // Based on previous prompts, ContentItem usually has 'content' (List<ContentBlock>)
-                    // or specific sub-items. Adjust property name if needed.
-                    /* If ContentItem structure is recursive list items:
-                       item.subItems?.let { subs -> BulletListBlock(items = subs, depth = depth + 1) }
-                    */
+                    // --- NEW: RECURSION FOR SUB-ITEMS ---
+                    item.subItems?.let { subs ->
+                        BulletListBlock(items = subs, depth = depth + 1)
+                    }
                 }
             }
         }
@@ -243,6 +244,52 @@ fun TabGroupBlock(
             // We render the blocks directly here using the imported renderer
             currentBlocks.forEach { block ->
                 RenderSingleBlock(block)
+            }
+        }
+    }
+}
+
+
+// 6. ACCORDION BLOCK
+@Composable
+fun AccordionBlock(items: List<ContentItem>) {
+    Column(modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)) {
+        items.forEach { item ->
+            var expanded by remember { mutableStateOf(false) }
+
+            Card(
+                modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
+                shape = RoundedCornerShape(8.dp),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+                onClick = { expanded = !expanded }
+            ) {
+                Column(modifier = Modifier.fillMaxWidth()) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth().padding(16.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = item.title ?: "Section",
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Icon(
+                            imageVector = if (expanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
+                            contentDescription = if (expanded) "Collapse" else "Expand"
+                        )
+                    }
+
+                    AnimatedVisibility(visible = expanded) {
+                        Column(modifier = Modifier.fillMaxWidth().padding(start = 16.dp, end = 16.dp, bottom = 16.dp)) {
+                            // Render the inner blocks of the accordion
+                            item.content?.forEach { innerBlock ->
+                                // Note: Requires RenderSingleBlock to be accessible here
+                                RenderSingleBlock(innerBlock)
+                            }
+                        }
+                    }
+                }
             }
         }
     }

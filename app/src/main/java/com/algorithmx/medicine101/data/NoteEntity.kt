@@ -40,5 +40,10 @@ data class NoteEntity(
     // SYNC METADATA
     val createdAt: Long = System.currentTimeMillis(),
     val updatedAt: Long = System.currentTimeMillis(),
-    val isDeleted: Boolean = false // Soft Delete (Crucial for Sync)
+    val isDeleted: Boolean = false ,// Soft Delete (Crucial for Sync)
+
+    // --- NEW PDF FIELDS ---
+    val pdfUri: String? = null, // Path to the copied PDF in internal storage
+    val pdfPage: Int? = null    // The page this note should jump to
+
 )
