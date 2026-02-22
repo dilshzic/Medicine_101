@@ -1,0 +1,126 @@
+[
+  {
+    "type": "header",
+    "text": "Gait Examination",
+    "level": 1
+  },
+  {
+    "type": "callout",
+    "text": "Do not just look at the legs. Observe the whole patient: Posture, Arm Swing, and Turning. Ensure safety first!"
+  },
+  {
+    "type": "tab_group",
+    "tabs": [
+      {
+        "title": "The Routine",
+        "content": [
+          {
+            "type": "header",
+            "text": "1. Observation (Standing)",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Posture: Stooped (Parkinson's), Lordosis (Myopathy)" },
+              { "text": "Base: Wide-based (Cerebellar Ataxia) vs Narrow" },
+              { "text": "Romberg's Sign: Ask patient to stand with feet together and close eyes (Test for Sensory Ataxia)." }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "2. Walking (Away & Back)",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Initiation: Hesitancy / 'Freezing' (Parkinson's)" },
+              { "text": "Step Height: High stepping (Foot drop)" },
+              { "text": "Arm Swing: Reduced unilaterally (Stroke) or bilaterally (Parkinson's)" },
+              { "text": "Turning: 'En bloc' (multiple small steps) vs Smooth pivot" }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "3. Dynamic Tests",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Heel Walking: Tests Dorsiflexion (L4/L5)" },
+              { "text": "Toe Walking: Tests Plantarflexion (S1/S2)" },
+              { "text": "Tandem Walking: Heel-to-toe (Exaggerates cerebellar ataxia)" }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Abnormalities",
+        "content": [
+          {
+            "type": "header",
+            "text": "Neuro-Mechanical Gaits",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Gait", "Key Features", "Cause"],
+            "tableRows": [
+              ["Hemiplegic", "Unilateral stiff leg, Circumduction (semicircle), Flexed arm", "Stroke (UMN)"],
+              ["Parkinsonian", "Shuffling, Festinant (rushing), Stooped, Reduced arm swing", "Parkinson's Disease"],
+              ["Ataxic", "Broad-based, Staggering (like drunk), Titubation", "Cerebellar Lesion"],
+              ["High Stepping", "Foot lifted high to clear toes, 'Slap' on landing", "Foot Drop (Common Peroneal N.)"],
+              ["Sensory Ataxic", "High stepping + Stamping (worse in dark)", "Loss of Proprioception (Dorsal Columns)"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Musculoskeletal Gaits",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Gait", "Description"],
+            "tableRows": [
+              ["Waddling", "Shoulders sway side-to-side (Duck-like). Proximal Myopathy."],
+              ["Scissoring", "Legs cross over each other. Spastic Paraparesis (CP)."],
+              ["Antalgic", "Short stance phase on painful leg. Arthritis/Trauma."]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Special Tests",
+        "content": [
+          {
+            "type": "header",
+            "text": "Romberg's Test",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Method: Patient stands feet together, eyes open, then eyes closed." },
+              { "text": "Positive: Falls/Sways significantly when eyes CLOSED only. (Sensory Ataxia - Dorsal Columns/Peripheral Neuropathy)" },
+              { "text": "Negative: Sways with eyes OPEN and CLOSED. (Cerebellar Ataxia)" }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Proximal Myopathy",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Squat Test: Ask patient to squat and rise." },
+              { "text": "Gower's Sign: Patient 'climbs up' their own legs to stand up." }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

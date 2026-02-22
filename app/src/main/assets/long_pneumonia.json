@@ -1,0 +1,206 @@
+[
+  {
+    "type": "header",
+    "text": "Fever, Cough of Short Duration ('Pneumonia')",
+    "level": 1
+  },
+  {
+    "type": "callout",
+    "text": "Definition: Acute inflammation of the lung tissue due to an infection. Differentiate from Upper Respiratory Infections (URI) like Pharyngitis, Laryngitis, and Sinusitis."
+  },
+  {
+    "type": "tab_group",
+    "tabs": [
+      {
+        "title": "Basics & Classification",
+        "content": [
+          {
+            "type": "header",
+            "text": "Flash Card: Classifications",
+            "level": 2
+          },
+          {
+            "type": "accordion",
+            "items": [
+              {
+                "title": "Lobar Pneumonia vs Bronchopneumonia",
+                "content": [
+                  { "type": "table", "tableHeaders": ["Feature", "Lobar Pneumonia", "Bronchopneumonia"], "tableRows": [
+                    ["Symptoms", "Fever, cough, sputum, chest pain present", "Fever, cough, sputum (Severe features)"],
+                    ["Signs", "Consolidation", "Bilateral crepitations and rhonchi"],
+                    ["CXR", "Patch of consolidation", "Multiple small patchy shadowing"]
+                  ]}
+                ]
+              },
+              {
+                "title": "Bacterial (Typical) vs Atypical",
+                "content": [
+                  { "type": "table", "tableHeaders": ["Feature", "Bacterial (Pneumococcal)", "Atypical (Mycoplasma)"], "tableRows": [
+                    ["Onset", "Very Acute", "Acute"],
+                    ["Fever", "High fever with chills", "Mild to Moderate"],
+                    ["Cough", "Productive (Rusty/Purulent)", "Dry (appears days later)"],
+                    ["Pleuritic Pain", "Common", "Uncommon"],
+                    ["Signs", "Consolidation", "Minimal (few crepitations)"],
+                    ["Extra-pulmonary", "Uncommon", "Common (Arthritis, Erythema Multiforme)"],
+                    ["WBC", "Neutrophil Leukocytosis", "Normal or Low"],
+                    ["CXR", "Lobar Consolidation", "Interstitial Shadowing"]
+                  ]}
+                ]
+              },
+              {
+                "title": "Clues to Specific Organisms",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Streptococcus: Most common CAP, associated with Herpes Labialis." },
+                    { "text": "Mycoplasma: Epidemics, young adults, prodrome (headache), extra-pulmonary signs (hemolysis, rashes)." },
+                    { "text": "Haemophilus influenzae: Post-influenza, COPD patients." },
+                    { "text": "Staphylococcus aureus: Post-influenza, IV drug users, severe." },
+                    { "text": "Legionella: Institutional outbreaks (AC systems), hyponatremia, confusion, diarrhoea." },
+                    { "text": "Pneumocystis carinii (PCP): AIDS, Transplant, Chemotherapy." },
+                    { "text": "Klebsiella: Alcoholics, red currant jelly sputum." }
+                  ]}
+                ]
+              }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Assessing Severity (CURB-65)",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "C: Confusion" },
+              { "text": "U: Urea > 7 mmol/L" },
+              { "text": "R: Respiratory Rate > 30/min" },
+              { "text": "B: Blood Pressure (Sys <90 or Dia <60)" },
+              { "text": "65: Age > 65 years" },
+              { "text": "Score >= 3 indicates Severe Pneumonia." }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "History",
+        "content": [
+          {
+            "type": "header",
+            "text": "History 8: Points to Elicit",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Point to Elicit", "Significance"],
+            "tableRows": [
+              ["Acute onset with high fever", "Bacterial pneumonia"],
+              ["Low grade fever, dry cough later", "Atypical pneumonia"],
+              ["Pleuritic chest pain", "Bacterial pneumonia / Pulmonary Embolism"],
+              ["Hemoptysis", "TB, Bronchial CA, Bronchiectasis (Rare in uncomplicated pneumonia)"],
+              ["Confusion, Diarrhoea, Right Hypochondrial Pain", "Legionella (Extra-pulmonary)"],
+              ["Arthralgia, Skin rashes", "Mycoplasma pneumonia"],
+              ["History of Stroke/Epilepsy/Alcohol", "Aspiration Pneumonia"],
+              ["Recent Hospitalization", "Nosocomial (Hospital Acquired) - Gram negatives/Pseudomonas"],
+              ["Diabetes / Steroid use", "Immunocompromised state"],
+              ["Exposure to birds", "Psittacosis (Chlamydia psittaci)"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Examination",
+        "content": [
+          {
+            "type": "header",
+            "text": "Examination 8: Signs",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Sign to Elicit", "Significance"],
+            "tableRows": [
+              ["Confusion / Drowsiness", "Severe Pneumonia / Hypoxia / Meningitis"],
+              ["Cyanosis", "Severe respiratory failure"],
+              ["Clubbing", "Underlying Bronchial CA / Bronchiectasis / Lung Abscess"],
+              ["Pallor / Jaundice", "Autoimmune Haemolytic Anaemia (Mycoplasma)"],
+              ["Oral Thrush", "Immunocompromised (HIV)"],
+              ["Herpes Labialis", "Pneumococcal Pneumonia"],
+              ["Skin Rashes (Erythema Multiforme)", "Mycoplasma"],
+              ["Consolidation (Bronchial breathing, Dullness)", "Lobar Pneumonia"],
+              ["Bilateral Crepitations + Rhonchi", "Bronchopneumonia"],
+              ["Pleural Rub", "Pleurisy (Extension to pleura)"],
+              ["Tender Hepatomegaly", "Congested liver (Heart Failure) or Hepatitis (Atypical)"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Algorithm",
+        "content": [
+          {
+            "type": "header",
+            "text": "Algorithm 9: Investigating Pneumonia",
+            "level": 2
+          },
+          {
+            "type": "flowchart",
+            "flowchart": {
+              "direction": "vertical",
+              "nodes": [
+                { "id": "start", "label": "Clinical Pneumonia", "type": "start", "level": 0, "order": 1 },
+
+                { "id": "basics", "label": "CXR, FBC, CRP\nU&E, LFT, Sputum Culture", "type": "process", "level": 1, "order": 1 },
+
+                { "id": "severity_check", "label": "Severe (CURB-65 >3)?", "type": "decision", "level": 2, "order": 1 },
+
+                { "id": "severe", "label": "ABG, Blood Cultures\nStart IV Antibiotics", "type": "process", "level": 3, "order": 0 },
+                { "id": "not_severe", "label": "Oral Antibiotics", "type": "process", "level": 3, "order": 2 },
+
+                { "id": "atypical_check", "label": "Suspect Atypical?", "type": "decision", "level": 4, "order": 1 },
+
+                { "id": "atypical_labs", "label": "Mycoplasma Serology\nUrine Legionella Ag", "type": "process", "level": 5, "order": 0 },
+
+                { "id": "resolving", "label": "Poorly Resolving?", "type": "decision", "level": 5, "order": 2 },
+
+                { "id": "complications", "label": "Check Complications:\nEmpyema (USS/Tap)\nAbscess (CT)", "type": "process", "level": 6, "order": 1 },
+                { "id": "underlying", "label": "Exclude Underlying:\nTB (Sputum AFB)\nCancer (Bronchoscopy)", "type": "end", "level": 6, "order": 3 }
+              ],
+              "connections": [
+                { "from": "start", "to": "basics" },
+                { "from": "basics", "to": "severity_check" },
+                { "from": "severity_check", "to": "severe", "label": "Yes" },
+                { "from": "severity_check", "to": "not_severe", "label": "No" },
+                { "from": "severe", "to": "atypical_check" },
+                { "from": "not_severe", "to": "atypical_check" },
+                { "from": "atypical_check", "to": "atypical_labs", "label": "Yes" },
+                { "from": "atypical_check", "to": "resolving", "label": "No" },
+                { "from": "resolving", "to": "complications", "label": "Yes" },
+                { "from": "resolving", "to": "underlying", "label": "Chronic" }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "title": "Key Points",
+        "content": [
+          {
+            "type": "header",
+            "text": "Key Points",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Always assess severity (CURB-65) to decide on admission and IV antibiotics." },
+              { "text": "Response to treatment is usually seen within 2-3 days. If poor response, consider: Wrong diagnosis (TB/Cancer), Complications (Empyema), or Resistant organism." },
+              { "text": "Viral and Mycoplasma pneumonia can cause significant breathlessness with minimal physical signs on auscultation." },
+              { "text": "Severe pneumonia requires broad coverage: Gram positive, Gram negative, Anaerobes, and Atypicals." },
+              { "text": "Complications to watch for: Pleural Effusion, Empyema, Lung Abscess, ARDS, Sepsis, Meningitis." }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

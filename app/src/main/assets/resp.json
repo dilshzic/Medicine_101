@@ -1,0 +1,61 @@
+[
+  {
+    "type": "header",
+    "text": "Respiratory System",
+    "level": 1
+  },
+  {
+    "type": "table",
+    "tableHeaders": ["Pathology", "Percussion Note", "Breath Sounds", "Trachea"],
+    "tableRows": [
+      ["Pleural Effusion", "Stony Dull", "Reduced/Absent", "Push Away (if massive)"],
+      ["Consolidation", "Dull", "Bronchial Breathing", "Central"],
+      ["Collapse", "Dull", "Reduced/Absent", "Pull Towards"],
+      ["Pneumothorax", "Hyper-resonant", "Reduced/Absent", "Push Away"],
+      ["Fibrosis", "Normal", "Fine Crepitations", "Pull Towards"]
+    ]
+  },
+  {
+    "type": "header",
+    "text": "Short Cases",
+    "level": 2
+  },
+  {
+    "type": "tab_group",
+    "tabs": [
+      {
+        "title": "Pl. Effusion",
+        "content": [
+          { "type": "header", "text": "Pleural Effusion", "level": 2 },
+          { "type": "list", "items": [
+            { "text": "Look for: Therapeutic tap marks on back" },
+            { "text": "Key Sign: Stony Dullness" },
+            { "text": "Causes: TB, Malignancy, Cardiac Failure, Nephrotic Syn" }
+          ]}
+        ]
+      },
+      {
+        "title": "Fibrosis",
+        "content": [
+          { "type": "header", "text": "Interstitial Lung Disease", "level": 2 },
+          { "type": "list", "items": [
+            { "text": "Inspection: Reduced expansion" },
+            { "text": "Auscultation: Fine end-inspiratory crepitations (Velcro)" },
+            { "text": "Hands: Clubbing often present" }
+          ]}
+        ]
+      },
+      {
+        "title": "COPD",
+        "content": [
+          { "type": "header", "text": "COPD", "level": 2 },
+          { "type": "list", "items": [
+            { "text": "Inspection: Barrel Chest, Pursed lip breathing" },
+            { "text": "Percussion: Hyper-resonant, loss of cardiac dullness" },
+            { "text": "Auscultation: Prolonged expiration, Rhonchi" }
+          ]}
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,225 @@
+[
+  {
+    "type": "header",
+    "text": "Unintentional Weight Loss",
+    "level": 1
+  },
+  {
+    "type": "callout",
+    "text": "Definition: Unintentional loss of more than 5% of body weight over a period of 6 to 12 months."
+  },
+  {
+    "type": "tab_group",
+    "tabs": [
+      {
+        "title": "Causes & Mechanisms",
+        "content": [
+          {
+            "type": "header",
+            "text": "Physiological Mechanisms",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Decreased Intake: Anorexia, Dysphagia, Vomiting, Psychiatric (Depression)." },
+              { "text": "Increased Metabolism (Hypermetabolism): Hyperthyroidism, Malignancy, Chronic Infection (TB, HIV), Pheochromocytoma." },
+              { "text": "Loss of Nutrients: Malabsorption (Coeliac, Chronic Pancreatitis), Diabetes Mellitus (Glycosuria)." }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Flash Card 33: Causes of Weight Loss",
+            "level": 2
+          },
+          {
+            "type": "accordion",
+            "items": [
+              {
+                "title": "Malignancy",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Gastrointestinal: Oesophageal, Gastric, Pancreatic, Colonic CA." },
+                    { "text": "Respiratory: Bronchial Carcinoma." },
+                    { "text": "Haematological: Lymphoma, Leukaemia." }
+                  ]}
+                ]
+              },
+              {
+                "title": "Chronic Infection",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Tuberculosis (TB)." },
+                    { "text": "HIV / AIDS." },
+                    { "text": "Infective Endocarditis (SABE)." },
+                    { "text": "Brucellosis." }
+                  ]}
+                ]
+              },
+              {
+                "title": "Endocrine & Metabolic",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Hyperthyroidism (Thyrotoxicosis)." },
+                    { "text": "Diabetes Mellitus (Type 1)." },
+                    { "text": "Adrenal Insufficiency (Addison's)." },
+                    { "text": "Pheochromocytoma." }
+                  ]}
+                ]
+              },
+              {
+                "title": "Gastrointestinal (Non-Malignant)",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Malabsorption: Coeliac Disease, Chronic Pancreatitis." },
+                    { "text": "Inflammatory Bowel Disease (Crohn's, UC)." },
+                    { "text": "Peptic Ulcer Disease (Pyloric Stenosis)." }
+                  ]}
+                ]
+              },
+              {
+                "title": "Psychiatric & Drugs",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Psych: Depression, Anorexia Nervosa." },
+                    { "text": "Drugs: Chemotherapy, Laxative abuse, Thyroid hormones, Metformin." }
+                  ]}
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "History",
+        "content": [
+          {
+            "type": "header",
+            "text": "History 18: Points to Elicit",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Symptom / Feature", "Significance"],
+            "tableRows": [
+              ["Polyuria, Polydipsia", "Diabetes Mellitus"],
+              ["Heat intolerance, palpitations, tremor", "Hyperthyroidism"],
+              ["Chronic cough, haemoptysis, night sweats", "Pulmonary TB / Bronchial CA"],
+              ["Dysphagia (Progressive)", "Oesophageal CA"],
+              ["Early satiety, epigastric pain", "Gastric CA / Peptic Ulcer"],
+              ["Change in bowel habits, rectal bleeding", "Colorectal CA / IBD"],
+              ["Steatorrhoea (Pale, bulky, offensive stool)", "Malabsorption (Coeliac / Pancreatitis)"],
+              ["Fever, joint pain, risk behavior", "HIV / TB / Endocarditis"],
+              ["Low mood, insomnia, anhedonia", "Depression"],
+              ["Amenorrhoea, body image distortion", "Anorexia Nervosa"],
+              ["Pigmentation, postural dizziness", "Addison's Disease"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Social & Drug History",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Social: Alcohol (Chronic Pancreatitis/Liver disease), Smoking (Cancer risk), Sexual Hx (HIV)." },
+              { "text": "Dietary Hx: Assess caloric intake vs output." }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Examination",
+        "content": [
+          {
+            "type": "header",
+            "text": "Examination 18: Signs",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Sign to Elicit", "Significance"],
+            "tableRows": [
+              ["Cachexia (Muscle wasting)", "Severe Malnutrition / Malignancy"],
+              ["Pallor", "Anaemia (Malabsorption / GI Bleed / Chronic Disease)"],
+              ["Lymphadenopathy", "Lymphoma, Metastasis, TB, HIV"],
+              ["Goitre, Tremor, Eye signs", "Hyperthyroidism"],
+              ["Clubbing", "Bronchial CA, IBD, TB, Endocarditis"],
+              ["Oral Thrush / Hairy Leukoplakia", "HIV / AIDS"],
+              ["Pigmentation (Buccal/Palmar)", "Addison's Disease"],
+              ["Abdominal Mass", "Intra-abdominal Malignancy"],
+              ["Hepatomegaly", "Metastasis, Alcoholic Liver Disease"],
+              ["Glossitis, Stomatitis", "Vitamin Deficiency (Malabsorption)"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Algorithm",
+        "content": [
+          {
+            "type": "header",
+            "text": "Algorithm 18: Investigating Weight Loss",
+            "level": 2
+          },
+          { "type": "paragraph", "text": "" },
+          {
+            "type": "flowchart",
+            "flowchart": {
+              "direction": "vertical",
+              "nodes": [
+                { "id": "start", "label": "Documented Weight Loss", "type": "start", "level": 0, "order": 1 },
+
+                { "id": "basics", "label": "History & Examination\nScreening: FBC, ESR, Glucose,\nLFT, RFT, TSH, CXR, HIV", "type": "process", "level": 1, "order": 1 },
+
+                { "id": "abnormal", "label": "Abnormality Found?", "type": "decision", "level": 2, "order": 1 },
+
+                { "id": "treat", "label": "Targeted Investigation\n& Treatment", "type": "end", "level": 3, "order": 0 },
+                { "id": "normal", "label": "Normal Screening", "type": "process", "level": 3, "order": 2 },
+
+                { "id": "intake_check", "label": "Review Dietary Intake", "type": "decision", "level": 4, "order": 2 },
+
+                { "id": "low_intake", "label": "Low Intake", "type": "process", "level": 5, "order": 1 },
+                { "id": "normal_intake", "label": "Normal/High Intake", "type": "process", "level": 5, "order": 3 },
+
+                { "id": "psych", "label": "Psychiatric / Social / Dental", "type": "end", "level": 6, "order": 1 },
+                { "id": "malabsorb", "label": "GI Invest: Endoscopy / CT\n(Malabsorption/Occult CA)", "type": "end", "level": 6, "order": 3 }
+              ],
+              "connections": [
+                { "from": "start", "to": "basics" },
+                { "from": "basics", "to": "abnormal" },
+                { "from": "abnormal", "to": "treat", "label": "Yes" },
+                { "from": "abnormal", "to": "normal", "label": "No" },
+                { "from": "normal", "to": "intake_check" },
+                { "from": "intake_check", "to": "low_intake", "label": "Decreased" },
+                { "from": "intake_check", "to": "normal_intake", "label": "Adequate" },
+                { "from": "low_intake", "to": "psych" },
+                { "from": "normal_intake", "to": "malabsorb" }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "title": "Key Points",
+        "content": [
+          {
+            "type": "header",
+            "text": "Key Points",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Depression is a common cause of weight loss in the elderly." },
+              { "text": "Hyperthyroidism in the elderly ('Apathetic Hyperthyroidism') may present solely with weight loss and atrial fibrillation, without the classic goitre or eye signs." },
+              { "text": "Occult malignancy (e.g., Pancreatic, Renal, Lymphoma) can present with weight loss before localizing signs appear." },
+              { "text": "If initial screening is negative, 'watchful waiting' with nutritional support is often appropriate unless symptoms evolve." }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

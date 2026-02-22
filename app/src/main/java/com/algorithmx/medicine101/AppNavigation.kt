@@ -10,7 +10,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.algorithmx.medicine101.ui.screens.NoteScreen
 import com.algorithmx.medicine101.ui.screens.folders.ExplorerScreen
-import com.algorithmx.medicine101.ui.screens.search.SearchScreen
+//import com.algorithmx.medicine101.ui.screens.search.SearchScreen
 
 
 @Composable
@@ -33,13 +33,13 @@ fun AppNavigation() {
             slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Right, animationSpec = tween(300))
         }
     ) {
-        composable("search") {
-            SearchScreen(
-                onBack = { navController.popBackStack() },
-                onNavigateToNote = { noteId -> navController.navigate("editor/$noteId") },
-                onNavigateToFolder = { folderId -> navController.navigate("explorer/$folderId") }
-            )
-        }
+//        composable("search") {
+//            SearchScreen(
+//                onBack = { navController.popBackStack() },
+//                onNavigateToNote = { noteId -> navController.navigate("editor/$noteId") },
+//                onNavigateToFolder = { folderId -> navController.navigate("explorer/$folderId") }
+//            )
+//        }
         // 1. Root Explorer (Home)
         composable("explorer_root") {
             ExplorerScreen(

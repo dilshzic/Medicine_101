@@ -1,0 +1,56 @@
+[
+  {
+    "id": "general",
+    "title": "General Examination",
+    "icon": "info",
+    "file": "general_exam.json"
+  },
+  {
+    "id": "cardio",
+    "title": "Cardiovascular System",
+    "icon": "heart",
+    "file": "cardio.json"
+  },
+  {
+    "id": "resp",
+    "title": "Respiratory System",
+    "icon": "lungs",
+    "file": "resp.json"
+  },
+  {
+    "id": "abdomen",
+    "title": "Abdominal System",
+    "icon": "stomach",
+    "file": "abdomen.json"
+  },
+  {
+    "id": "neuro_cn",
+    "title": "Cranial Nerves (I-XII)",
+    "icon": "brain",
+    "file": "neuro_cranial.json"
+  },
+  {
+    "id": "neuro_upper",
+    "title": "Upper Limb (Motor/Sensory)",
+    "icon": "arm",
+    "file": "neuro_upper.json"
+  },
+  {
+    "id": "neuro_lower",
+    "title": "Lower Limb (Motor/Sensory)",
+    "icon": "leg",
+    "file": "neuro_lower.json"
+  },
+  {
+    "id": "gait",
+    "title": "Gait Examination",
+    "icon": "run",
+    "file": "gait.json"
+  },
+  {
+    "id": "special",
+    "title": "Thyroid, Rheum & Vascular",
+    "icon": "star",
+    "file": "special.json"
+  }
+]

@@ -1,0 +1,128 @@
+[
+  {
+    "id": "jaundice",
+    "title": "Jaundice",
+    "icon": "liver",
+    "file": "long_jaundice.json"
+  },
+  {
+    "id": "gi_bleed",
+    "title": "Haematemesis & Melaena",
+    "icon": "stomach",
+    "file": "long_gi_bleed.json"
+  },
+  {
+    "id": "arthritis",
+    "title": "Arthritis",
+    "icon": "bone",
+    "file": "long_arthritis.json"
+  },
+  {
+    "id": "abd_dist",
+    "title": "Abdominal Distension",
+    "icon": "stomach",
+    "file": "long_abd_distension.json"
+  },
+  {
+    "id": "oedema",
+    "title": "Oedema",
+    "icon": "water",
+    "file": "long_oedema.json"
+  },
+  {
+    "id": "bleeding",
+    "title": "Bleeding Tendency",
+    "icon": "blood",
+    "file": "long_bleeding.json"
+  },
+  {
+    "id": "young_ht",
+    "title": "Young Hypertension",
+    "icon": "heart",
+    "file": "long_young_ht.json"
+  },
+  {
+    "id": "pneumonia",
+    "title": "Pneumonia",
+    "icon": "lungs",
+    "file": "long_pneumonia.json"
+  },
+  {
+    "id": "dyspnoea",
+    "title": "Dyspnoea",
+    "icon": "lungs",
+    "file": "long_dyspnoea.json"
+  },
+  {
+    "id": "anaemia",
+    "title": "Anaemia",
+    "icon": "blood",
+    "file": "long_anaemia.json"
+  },
+  {
+    "id": "back_pain",
+    "title": "Back Pain",
+    "icon": "spine",
+    "file": "long_back_pain.json"
+  },
+  {
+    "id": "chest_pain",
+    "title": "Chest Pain",
+    "icon": "heart",
+    "file": "long_chest_pain.json"
+  },
+  {
+    "id": "cough",
+    "title": "Cough",
+    "icon": "lungs",
+    "file": "long_cough.json"
+  },
+  {
+    "id": "diabetes",
+    "title": "Diabetes Mellitus",
+    "icon": "sugar",
+    "file": "long_diabetes.json"
+  },
+  {
+    "id": "lymph",
+    "title": "Lymphadenopathy",
+    "icon": "lymph",
+    "file": "long_lymph.json"
+  },
+  {
+    "id": "oliguria",
+    "title": "Oliguria (AKI)",
+    "icon": "kidney",
+    "file": "long_oliguria.json"
+  },
+  {
+    "id": "puo",
+    "title": "Pyrexia of Unknown Origin",
+    "icon": "thermometer",
+    "file": "long_puo.json"
+  },
+  {
+    "id": "weight_loss",
+    "title": "Unexplained Weight Loss",
+    "icon": "scale",
+    "file": "long_weight_loss.json"
+  },
+  {
+    "id": "diarrhoea",
+    "title": "Diarrhoea",
+    "icon": "stomach",
+    "file": "long_diarrhoea.json"
+  },
+  {
+    "id": "paraparesis",
+    "title": "Lower Limb Weakness",
+    "icon": "leg",
+    "file": "long_paraparesis.json"
+  },
+  {
+    "id": "stroke",
+    "title": "Stroke",
+    "icon": "brain",
+    "file": "long_stroke.json"
+  }
+]

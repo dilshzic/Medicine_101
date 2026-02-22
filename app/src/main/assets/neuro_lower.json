@@ -1,0 +1,200 @@
+[
+  {
+    "type": "header",
+    "text": "Lower Limb Examination",
+    "level": 1
+  },
+  {
+    "type": "callout",
+    "text": "Strategy: Ensure adequate exposure (waist down). Always watch the patient walk first if possible (Gait is 50% of the diagnosis). Compare sides constantly."
+  },
+  {
+    "type": "tab_group",
+    "tabs": [
+      {
+        "title": "Inspection",
+        "content": [
+          {
+            "type": "header",
+            "text": "General Inspection",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Walking Aids: Stick, Frame, Wheelchair (Look for wear on shoes)." },
+              { "text": "Catheter/Stoma: Signs of spinal cord involvement (autonomic)." }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Muscle Wasting & Fasciculation",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Quadriceps: L3/L4 lesion (Femoral nerve)." },
+              { "text": "Tibialis Anterior (Shin): L4/L5 lesion (Common Peroneal nerve)." },
+              { "text": "Small Muscles of Foot: 'Guttering' between metatarsals." },
+              { "text": "Fasciculations: Flickering in thigh/calf (Tap the muscle to provoke). LMN sign." }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Deformities & Skin",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Pes Cavus (High Arch): Friedreich's Ataxia, Charcot-Marie-Tooth, Spina Bifida." },
+              { "text": "Pes Planus (Flat Foot): Normal variant or weakness." },
+              { "text": "Charcot Joint: Swollen, deformed, painless joint (Diabetes, Syphilis)." },
+              { "text": "Skin: Ulcers (neuropathic), Cafe-au-lait spots (Neurofibromatosis)." }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Motor System",
+        "content": [
+          {
+            "type": "header",
+            "text": "Tone",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Leg Roll: Roll leg side-to-side (Spastic legs move as one unit)." },
+              { "text": "Leg Lift: Lift knee suddenly (Heel should drag if tone is normal/low)." },
+              { "text": "Clonus (Must Check):", "subItems": [
+                { "text": "Ankle Clonus: Rapid dorsiflexion. >3 beats is abnormal (UMN)." },
+                { "text": "Patellar Clonus: Sharp downward push on patella." }
+              ]}
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Power (Myotomes)",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Movement", "Root", "Nerve"],
+            "tableRows": [
+              ["Hip Flexion", "L1, L2", "Femoral"],
+              ["Hip Extension", "L5, S1", "Gluteal"],
+              ["Knee Extension", "L3, L4", "Femoral"],
+              ["Knee Flexion", "L5, S1", "Sciatic"],
+              ["Ankle Dorsiflexion", "L4, L5", "Deep Peroneal"],
+              ["Big Toe Ext (EHL)", "L5", "Deep Peroneal"],
+              ["Ankle Plantarflexion", "S1, S2", "Tibial"],
+              ["Foot Eversion", "L5, S1", "Sup. Peroneal"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Reflexes",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Knee Jerk (L3, L4)" },
+              { "text": "Ankle Jerk (S1) - If difficult, ask patient to clench teeth (Jendrassik maneuver)." },
+              { "text": "Plantar Response (Babinski):", "subItems": [
+                { "text": "Normal: Flexor (Down)." },
+                { "text": "Abnormal (Positive): Extensor (Up) + Fanning of toes. (UMN lesion)." }
+              ]}
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Coordination",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Heel-Shin Test: Run heel down the shin. Lift and repeat." },
+              { "text": "Look for: Ataxia (side-to-side wobble). Signs of Cerebellar disease or Sensory loss." }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Sensation",
+        "content": [
+          {
+            "type": "header",
+            "text": "Dermatomes (Landmarks)",
+            "level": 2
+          },
+
+          {
+            "type": "list",
+            "items": [
+              { "text": "L1: Inguinal Ligament (Pocket area)." },
+              { "text": "L2: Upper Anterior Thigh." },
+              { "text": "L3: Lower Thigh / Knee." },
+              { "text": "L4: Medial Malleolus (Inner ankle)." },
+              { "text": "L5: Dorsum of Foot / Big Toe extension." },
+              { "text": "S1: Lateral Malleolus / Little Toe." },
+              { "text": "S2: Posterior Thigh / Popliteal fossa." }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Modalities",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Vibration (128Hz): Start at Big Toe IPJ -> Medial Malleolus -> Tibial Tuberosity -> ASIS." },
+              { "text": "Proprioception: Hold Big Toe by sides. 'Up or Down?' (Dorsal Column)." },
+              { "text": "Pinprick/Temperature: Lateral Spinothalamic Tract." }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Nerves & Gait",
+        "content": [
+          {
+            "type": "header",
+            "text": "Common Nerve Lesions",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Nerve", "Motor Deficit", "Sensory Deficit"],
+            "tableRows": [
+              ["Common Peroneal", "Foot Drop (No Dorsiflexion/Eversion)", "Dorsum of foot"],
+              ["Tibial", "No Plantarflexion (Can't tiptoe)", "Sole of foot"],
+              ["Femoral", "Weak Knee Extension (Quadriceps)", "Anterior thigh / Medial leg"],
+              ["Sciatic", "All muscles below knee + Hamstrings", "Entire foot + Lateral leg"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Gait Assessment",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Hemiplegic: Unilateral stiff leg, circumduction." },
+              { "text": "High Stepping: Foot drop (Peroneal nerve)." },
+              { "text": "Ataxic: Broad-based, unsteady (Cerebellar)." },
+              { "text": "Sensory Ataxic: Stamping gait (Positive Romberg's)." },
+              { "text": "Waddling: Proximal myopathy (Trendelenburg sign positive)." }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

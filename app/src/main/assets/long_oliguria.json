@@ -1,0 +1,230 @@
+[
+  {
+    "type": "header",
+    "text": "Oliguria (Acute Kidney Injury)",
+    "level": 1
+  },
+  {
+    "type": "callout",
+    "text": "Definitions:\n• Oliguria: Urine output < 400 ml/day (or < 0.5 ml/kg/hr).\n• Anuria: Urine output < 100 ml/day (Suggests complete obstruction or vascular catastrophe).\n• AKI (KDIGO): Increase in SCr ≥ 0.3 mg/dl in 48h OR Increase to ≥ 1.5x baseline in 7 days OR Urine < 0.5 ml/kg/h for 6 hours."
+  },
+  {
+    "type": "tab_group",
+    "tabs": [
+      {
+        "title": "Causes & Basics",
+        "content": [
+          {
+            "type": "header",
+            "text": "Flash Card 31: Causes of Acute Renal Failure",
+            "level": 2
+          },
+          {
+            "type": "accordion",
+            "items": [
+              {
+                "title": "Pre-Renal (Hypoperfusion)",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Hypovolaemia: Diarrhoea, Vomiting, Haemorrhage, Burns." },
+                    { "text": "Hypotension: Septic shock, Cardiogenic Shock (Pump failure - MI, Heart Failure)." },
+                    { "text": "Renal Hypoperfusion: NSAIDs, ACE Inhibitors, Renal Artery Stenosis, Hepato-Renal Syndrome." }
+                  ]}
+                ]
+              },
+              {
+                "title": "Renal (Intrinsic)",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Acute Tubular Necrosis (ATN): Ischaemic (Prolonged shock), Toxic (Gentamicin, Contrast, Snake bite, Rhabdomyolysis)." },
+                    { "text": "Glomerulonephritis (GN): Post-streptococcal, SLE, Vasculitis." },
+                    { "text": "Acute Interstitial Nephritis: Drugs (NSAIDs, Antibiotics), Infection (Leptospirosis, Hantavirus)." },
+                    { "text": "Vascular: HUS, TTP, Malignant Hypertension, Renal Vein Thrombosis." }
+                  ]}
+                ]
+              },
+              {
+                "title": "Post-Renal (Obstruction)",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Bladder Outflow: BPH, Prostatic CA, Urethral Stricture, Blocked Catheter." },
+                    { "text": "Ureteric: Bilateral Stones, Retroperitoneal Fibrosis, Pelvic Tumours (Cervical CA)." }
+                  ]}
+                ]
+              }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Differentiation: Pre-Renal vs Renal (ATN)",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Feature", "Pre-Renal", "Renal (ATN)"],
+            "tableRows": [
+              ["Urine Osmolality", "> 500 (Concentrated)", "< 350 (Dilute)"],
+              ["Urine Sodium", "< 20 mmol/L", "> 40 mmol/L"],
+              ["Urine/Plasma Urea", "> 8", "< 3"],
+              ["Fractional Excretion of Na", "< 1%", "> 1%"],
+              ["Sediment", "Hyaline casts", "Muddy brown casts"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "History",
+        "content": [
+          {
+            "type": "header",
+            "text": "History 16: Points to Elicit",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Point to Elicit", "Significance"],
+            "tableRows": [
+              ["Diarrhoea, vomiting, haemorrhage, burns", "Hypovolaemia (Pre-renal)"],
+              ["Thirst, dizziness", "Dehydration"],
+              ["Polyuria (prior), Polydipsia", "Diabetes Mellitus / Hyperglycaemia"],
+              ["Loin pain, colicky abdominal pain", "Renal Stones (Post-renal) / Papillary Necrosis"],
+              ["Hesitancy, poor stream, dribbling", "Prostatic Obstruction (BPH/Ca)"],
+              ["Sore throat / skin infection (2 weeks ago)", "Post-Infectious Glomerulonephritis (AGN)"],
+              ["Haematuria + Oedema (Short duration)", "Acute Glomerulonephritis"],
+              ["Black colour urine", "Intravascular Haemolysis / Rhabdomyolysis"],
+              ["Fever, myalgia, jaundice", "Leptospirosis / Sepsis"],
+              ["Arthralgia, skin rashes, Raynaud's", "Vasculitis / SLE / Interstitial Nephritis"],
+              ["Haemoptysis + Renal failure", "Goodpasture's Syndrome / Vasculitis"],
+              ["Altered consciousness, hiccups, vomiting", "Uraemic Encephalopathy (Complications)"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Drug & Past History",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Nephrotoxins: NSAIDs, Aminoglycosides (Gentamicin), ACE Inhibitors, Contrast media, Paraquat." },
+              { "text": "Past Hx: Diabetes, Hypertension, CKD, Stones, Recent Gyn/Uro surgery." }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Examination",
+        "content": [
+          {
+            "type": "header",
+            "text": "Examination 16: Signs",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Sign to Elicit", "Significance"],
+            "tableRows": [
+              ["Dry mucous membranes, Low JVP", "Dehydration (Pre-renal failure)"],
+              ["High JVP, Oedema, Crackles", "Fluid Overload (Renal/Post-renal)"],
+              ["Fever", "Pyelonephritis, Leptospirosis"],
+              ["Rash (Purpura)", "Vasculitis / Henoch-Schonlein Purpura (HSP)"],
+              ["Palpable Bladder", "Outflow Obstruction (Retention)"],
+              ["Bilateral Palpable Kidneys", "Polycystic Kidney Disease / Hydronephrosis"],
+              ["Rectal Exam (PR)", "Benign Prostatic Hyperplasia / Ca Prostate"],
+              ["Pelvic Exam (PV)", "Cervical CA (Obstructing ureters)"],
+              ["Hypertension", "AGN / CKD / Malignant HT"],
+              ["Rapid respiratory rate (Kussmaul)", "Metabolic Acidosis"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Algorithm",
+        "content": [
+          {
+            "type": "header",
+            "text": "Algorithm 16: Investigating Oliguria",
+            "level": 2
+          },
+          {
+            "type": "flowchart",
+            "flowchart": {
+              "direction": "vertical",
+              "nodes": [
+                { "id": "start", "label": "Oliguria / High Creatinine", "type": "start", "level": 0, "order": 1 },
+
+                { "id": "exclude_obs", "label": "Exclude Obstruction\n(Bladder Scan / USS)", "type": "process", "level": 1, "order": 1 },
+
+                { "id": "obs_found", "label": "Obstruction Found?", "type": "decision", "level": 2, "order": 1 },
+
+                { "id": "relieve", "label": "Relieve Obstruction\n(Catheter / Nephrostomy)", "type": "end", "level": 3, "order": 0 },
+
+                { "id": "assess_vol", "label": "Assess Volume Status", "type": "process", "level": 3, "order": 2 },
+
+                { "id": "hypovolemia", "label": "Hypovolaemia (Dry)", "type": "process", "level": 4, "order": 1 },
+                { "id": "euvolemia", "label": "Euvolaemia / Overload", "type": "process", "level": 4, "order": 3 },
+
+                { "id": "fluids", "label": "Fluid Challenge", "type": "process", "level": 5, "order": 1 },
+
+                { "id": "response", "label": "Response?", "type": "decision", "level": 6, "order": 1 },
+
+                { "id": "prerenal", "label": "Pre-Renal AKI", "type": "end", "level": 7, "order": 0 },
+                { "id": "urinalysis", "label": "Urinalysis & Biopsy", "type": "process", "level": 7, "order": 2 },
+
+                { "id": "atn", "label": "ATN / Glomerulonephritis", "type": "end", "level": 8, "order": 2 }
+              ],
+              "connections": [
+                { "from": "start", "to": "exclude_obs" },
+                { "from": "exclude_obs", "to": "obs_found" },
+                { "from": "obs_found", "to": "relieve", "label": "Yes" },
+                { "from": "obs_found", "to": "assess_vol", "label": "No" },
+                { "from": "assess_vol", "to": "hypovolemia", "label": "Dry" },
+                { "from": "assess_vol", "to": "euvolemia", "label": "Wet/Normal" },
+                { "from": "hypovolemia", "to": "fluids" },
+                { "from": "fluids", "to": "response" },
+                { "from": "response", "to": "prerenal", "label": "Output Improves" },
+                { "from": "response", "to": "urinalysis", "label": "No Response" },
+                { "from": "euvolemia", "to": "urinalysis" },
+                { "from": "urinalysis", "to": "atn" }
+              ]
+            }
+          },
+          {
+            "type": "header",
+            "text": "Urinalysis Interpretation",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Bacteria / Pus cells: Pyelonephritis" },
+              { "text": "Eosinophils: Acute Interstitial Nephritis" },
+              { "text": "RBC Casts: Acute Glomerulonephritis / Leptospirosis" },
+              { "text": "RBC (No casts): Renal artery/vein occlusion or Stones" },
+              { "text": "Free Hb / No RBC: Intravascular Haemolysis (G6PD, Malaria, Transfusion)" }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Key Points",
+        "content": [
+          {
+            "type": "header",
+            "text": "Key Points",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Always exclude urinary tract obstruction first (palpate bladder, USS)." },
+              { "text": "Distinguishing Pre-renal from Renal failure is vital; Pre-renal responds to fluids, Renal (ATN) does not (and fluids may cause overload)." },
+              { "text": "In established Renal Failure (ATN), manage complications: Hyperkalaemia, Acidosis, and Fluid Overload." },
+              { "text": "Indications for Dialysis: Refractory Hyperkalaemia (>6.5), Severe Metabolic Acidosis, Pulmonary Oedema, Uraemic Encephalopathy/Pericarditis." }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

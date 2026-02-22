@@ -1,0 +1,218 @@
+[
+  {
+    "type": "header",
+    "text": "Acute Lower Limb Weakness",
+    "level": 1
+  },
+  {
+    "type": "callout",
+    "text": "Definition: Rapid onset of weakness in the lower limbs (< 4 weeks). \nAcute weakness is often 'Flaccid' initially, even if the cause is Upper Motor Neuron (Spinal Shock)."
+  },
+  {
+    "type": "tab_group",
+    "tabs": [
+      {
+        "title": "Causes",
+        "content": [
+          {
+            "type": "header",
+            "text": "Flash Card 35: Causes of Acute Flaccid Paralysis",
+            "level": 2
+          },
+          {
+            "type": "accordion",
+            "items": [
+              {
+                "title": "Spinal Cord (Compressive)",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Trauma: Fracture / Dislocation." },
+                    { "text": "Prolapsed Intervertebral Disc (Cauda Equina)." },
+                    { "text": "Tumour: Metastasis (Prostate, Breast, Bronchus), Myeloma." },
+                    { "text": "Infection: Epidural Abscess (TB/Pyogenic), Potts Spine." },
+                    { "text": "Haematoma: Anticoagulants, Trauma." }
+                  ]}
+                ]
+              },
+              {
+                "title": "Spinal Cord (Non-Compressive)",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Transverse Myelitis: Viral, Post-vaccinal, SLE, MS." },
+                    { "text": "Infarction: Anterior Spinal Artery thrombosis." }
+                  ]}
+                ]
+              },
+              {
+                "title": "Peripheral Nerve (LMN)",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Guillain-Barre Syndrome (GBS): Acute Inflammatory Demyelinating Polyneuropathy." },
+                    { "text": "Poliomyelitis / Enterovirus." },
+                    { "text": "Tick Paralysis." },
+                    { "text": "Toxins: Diphtheria, Porphyria." }
+                  ]}
+                ]
+              },
+              {
+                "title": "Neuromuscular Junction & Muscle",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Myasthenia Gravis (Crisis)." },
+                    { "text": "Botulism." },
+                    { "text": "Hypokalaemic Periodic Paralysis." },
+                    { "text": "Snake Bite (Neurotoxic)." }
+                  ]}
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "History",
+        "content": [
+          {
+            "type": "header",
+            "text": "History 20: Points to Elicit",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Symptom / Feature", "Significance"],
+            "tableRows": [
+              ["Back Pain (Severe, Localized)", "Compressive Myelopathy (Abscess/Tumour/Disc)"],
+              ["Radicular Pain (Girdle pain)", "Root compression (Early compressive sign)"],
+              ["History of Trauma / Fall", "Fracture / Haematoma"],
+              ["Fever + Back Pain", "Epidural Abscess / Transverse Myelitis"],
+              ["Preceding Diarrhoea / URI (1-3 weeks)", "Guillain-Barre Syndrome (Campylobacter/Viral)"],
+              ["Sudden onset (Minutes)", "Vascular (Spinal Artery Infarct) / Trauma"],
+              ["Rapid progression (Hours/Days)", "GBS / Transverse Myelitis"],
+              ["Urinary Retention / Constipation", "Spinal Cord pathology (Sphincter involvement)"],
+              ["Sensory Level (Numbness below line)", "Spinal Cord pathology (Transverse Myelitis/Compression)"],
+              ["Ascending Weakness (Toes -> Up)", "Guillain-Barre Syndrome / Tick Paralysis"],
+              ["Descending Weakness (Eyes -> Down)", "Botulism / Miller Fisher"],
+              ["Fluctuating Weakness", "Myasthenia Gravis / Periodic Paralysis"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Examination",
+        "content": [
+          {
+            "type": "header",
+            "text": "Examination 20: Signs",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Sign to Elicit", "Significance"],
+            "tableRows": [
+              ["Spine: Tenderness / Gibbus", "Vertebral pathology (TB/Malignancy/Abscess)"],
+              ["Tone: Flaccid", "LMN or Acute UMN (Spinal Shock)"],
+              ["Power: Paraparesis / Tetraparesis", "Level of lesion"],
+              ["Reflexes: Absent (Areflexia)", "LMN (GBS / Polio) or Spinal Shock"],
+              ["Reflexes: Brisk + Clonus", "Established UMN lesion"],
+              ["Plantar: Extensor (Babinski)", "UMN (Cord lesion)"],
+              ["Plantar: Flexor / Mute", "LMN / Normal"],
+              ["Sensory Level (Pinprick)", "Defines level of Cord Lesion (e.g., T10 = Umbilicus)"],
+              ["Saddle Anaesthesia", "Cauda Equina Syndrome"],
+              ["Anal Tone (PR)", "Lax in Cauda Equina / Shock"],
+              ["Bladder: Palpable", "Retention (Cord lesion)"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Comparison: GBS vs Transverse Myelitis",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Feature", "Guillain-Barre (GBS)", "Transverse Myelitis"],
+            "tableRows": [
+              ["Site", "Peripheral Nerve (Root)", "Spinal Cord"],
+              ["Reflexes", "Absent (Areflexia)", "Absent initially (Shock) -> Brisk"],
+              ["Sensory", "Mild (Glove & Stocking)", "Definite Sensory Level"],
+              ["Bladder", "Usually Spared (Late)", "Early Retention"],
+              ["Plantar", "Flexor", "Extensor (Babinski)"],
+              ["Back Pain", "Ache (Roots)", "Severe / Girdle pain"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Algorithm",
+        "content": [
+          {
+            "type": "header",
+            "text": "Algorithm 20: Investigating Acute Paraplegia",
+            "level": 2
+          },
+          { "type": "paragraph", "text": "" },
+          {
+            "type": "flowchart",
+            "flowchart": {
+              "direction": "vertical",
+              "nodes": [
+                { "id": "start", "label": "Acute Leg Weakness", "type": "start", "level": 0, "order": 1 },
+
+                { "id": "clin_assess", "label": "Clinical Assessment:\nSensory Level? Bladder? Back Pain?", "type": "process", "level": 1, "order": 1 },
+
+                { "id": "cord_vs_nerve", "label": "Site of Lesion", "type": "decision", "level": 2, "order": 1 },
+
+                { "id": "cord", "label": "Spinal Cord\n(Sensory Level + Retention)", "type": "process", "level": 3, "order": 0 },
+                { "id": "nerve", "label": "Peripheral Nerve / NMJ\n(No Level, Bladder Spared)", "type": "process", "level": 3, "order": 2 },
+
+                { "id": "mri", "label": "Urgent MRI Spine", "type": "process", "level": 4, "order": 0 },
+
+                { "id": "mri_result", "label": "Compression?", "type": "decision", "level": 5, "order": 0 },
+
+                { "id": "surgical", "label": "Surgical Decompression\n(Tumour/Abscess)", "type": "end", "level": 6, "order": -1 },
+                { "id": "medical_cord", "label": "Medical: Transverse Myelitis\n(Steroids / Plasma Exch)", "type": "end", "level": 6, "order": 1 },
+
+                { "id": "ncs", "label": "Nerve Conduction Study\nLumbar Puncture (CSF)", "type": "process", "level": 4, "order": 2 },
+
+                { "id": "gbs", "label": "GBS\n(High Protein, Normal Cell)", "type": "end", "level": 5, "order": 2 },
+                { "id": "hypo", "label": "Check Serum K+\n(Hypokalaemia)", "type": "end", "level": 5, "order": 3 }
+              ],
+              "connections": [
+                { "from": "start", "to": "clin_assess" },
+                { "from": "clin_assess", "to": "cord_vs_nerve" },
+                { "from": "cord_vs_nerve", "to": "cord", "label": "Cord Signs" },
+                { "from": "cord_vs_nerve", "to": "nerve", "label": "LMN Signs" },
+                { "from": "cord", "to": "mri" },
+                { "from": "mri", "to": "mri_result" },
+                { "from": "mri_result", "to": "surgical", "label": "Yes" },
+                { "from": "mri_result", "to": "medical_cord", "label": "No" },
+                { "from": "nerve", "to": "ncs" },
+                { "from": "ncs", "to": "gbs" },
+                { "from": "nerve", "to": "hypo" }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "title": "Key Points",
+        "content": [
+          {
+            "type": "header",
+            "text": "Key Points",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Cord compression is a neurosurgical emergency. Urgent MRI is mandatory if sensory level or bladder involvement is found." },
+              { "text": "Do NOT perform Lumbar Puncture if there is a suspicion of cord compression (risk of coning below the block)." },
+              { "text": "GBS typically presents with ascending paralysis and areflexia. Respiratory muscle monitoring (FVC) is crucial." },
+              { "text": "Hypokalaemic periodic paralysis should always be excluded in a young male with sudden flaccid paralysis (check ECG/Serum K)." },
+              { "text": "Spinal Shock: Acute UMN lesions may be flaccid and areflexic for days to weeks before spasticity develops." }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

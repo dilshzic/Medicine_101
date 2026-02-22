@@ -1,0 +1,201 @@
+[
+  {
+    "type": "header",
+    "text": "Oedema",
+    "level": 1
+  },
+  {
+    "type": "callout",
+    "text": "Definition: Accumulation of excessive fluid in the interstitial space.\n• Pitting Oedema: Indentation persists after pressure is applied (Low protein fluid).\n• Non-Pitting Oedema: No indentation (High protein fluid / Lymphatic obstruction / Myxoedema)."
+  },
+  {
+    "type": "tab_group",
+    "tabs": [
+      {
+        "title": "Causes & Classification",
+        "content": [
+          {
+            "type": "header",
+            "text": "Flash Card 14: Causes of Oedema",
+            "level": 2
+          },
+          {
+            "type": "accordion",
+            "items": [
+              {
+                "title": "Unilateral Leg Oedema (Local)",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Deep Vein Thrombosis (DVT)." },
+                    { "text": "Cellulitis / Inflammation / Insect bite." },
+                    { "text": "Venous Insufficiency (Varicose Veins)." },
+                    { "text": "Lymphatic Obstruction: Filariasis, Malignancy (LN excision), Congenital (Milroy's)." },
+                    { "text": "Compartment Syndrome / Trauma." },
+                    { "text": "Baker's Cyst rupture." }
+                  ]}
+                ]
+              },
+              {
+                "title": "Bilateral Leg Oedema (Systemic)",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Cardiac: Congestive Cardiac Failure (CCF), Cor Pulmonale, Pericardial Effusion." },
+                    { "text": "Renal: Nephrotic Syndrome, Nephritic Syndrome, CKD." },
+                    { "text": "Hepatic: Cirrhosis (Hypoalbuminaemia)." },
+                    { "text": "Nutritional: Malnutrition (Kwashiorkor), Malabsorption." },
+                    { "text": "Endocrine: Hypothyroidism (Myxoedema), Cushing's." },
+                    { "text": "Drugs: Calcium Channel Blockers (Nifedipine), Steroids, NSAIDs, Pioglitazone." },
+                    { "text": "Idiopathic (Cyclical in females)." }
+                  ]}
+                ]
+              },
+              {
+                "title": "Facial Oedema",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Nephrotic Syndrome (Periorbital puffiness)." },
+                    { "text": "Angioedema (Allergy)." },
+                    { "text": "Superior Vena Cava (SVC) Obstruction." },
+                    { "text": "Hypothyroidism (Myxoedema)." }
+                  ]}
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "History",
+        "content": [
+          {
+            "type": "header",
+            "text": "History 5: Points to Elicit",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Symptom / Feature", "Significance"],
+            "tableRows": [
+              ["Swelling of Face (Early morning)", "Renal Disease (Nephrotic Syndrome)"],
+              ["Swelling of Legs (Evening)", "Cardiac Failure / Venous Insufficiency"],
+              ["Breathlessness (Orthopnoea / PND)", "Heart Failure (LVF)"],
+              ["Abdominal Distension (Ascites)", "Liver Cirrhosis / Nephrotic Syndrome"],
+              ["Frothy Urine", "Proteinuria (Nephrotic Syndrome)"],
+              ["Haematuria (Cola coloured urine)", "Nephritic Syndrome (Glomerulonephritis)"],
+              ["Jaundice / Alcohol History", "Chronic Liver Disease"],
+              ["Pain / Redness / Fever (Leg)", "Cellulitis / DVT"],
+              ["Cold intolerance / Hoarseness", "Hypothyroidism"],
+              ["Drug History", "Ca-Channel Blockers, NSAIDs, Steroids"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Examination",
+        "content": [
+          {
+            "type": "header",
+            "text": "Examination 5: Signs",
+            "level": 2
+          },
+          {
+            "type": "paragraph",
+            "text": ""
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Sign to Elicit", "Significance"],
+            "tableRows": [
+              ["Pitting vs Non-Pitting", "Pitting: Cardiac/Renal/Liver. Non-Pitting: Lymphatic/Thyroid."],
+              ["Elevated JVP", "Cardiac Failure / Fluid Overload"],
+              ["Low / Normal JVP", "Hypoalbuminaemia (Renal/Liver)"],
+              ["Pallor", "CKD / Nephrotic Syndrome"],
+              ["Cyanosis", "Cor Pulmonale / Heart Failure"],
+              ["Spider Naevi / Palmar Erythema", "Chronic Liver Disease"],
+              ["Facial Puffiness", "Nephrotic Syndrome"],
+              ["Goitre / Dry Skin / Slow Pulse", "Hypothyroidism"],
+              ["Sacral Oedema", "Bed-bound patients (Gravity dependent)"],
+              ["Heart Murmurs / Gallop Rhythm", "Heart Failure"],
+              ["Chest: Basal Crepitations", "Pulmonary Oedema (LVF)"],
+              ["Abdomen: Ascites", "Cirrhosis / Nephrotic Syndrome / CCF"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Algorithm",
+        "content": [
+          {
+            "type": "header",
+            "text": "Algorithm 6: Investigating Oedema",
+            "level": 2
+          },
+          { "type": "paragraph", "text": "" },
+          {
+            "type": "flowchart",
+            "flowchart": {
+              "direction": "vertical",
+              "nodes": [
+                { "id": "start", "label": "Patient with Oedema", "type": "start", "level": 0, "order": 1 },
+
+                { "id": "dist", "label": "Distribution?", "type": "decision", "level": 1, "order": 1 },
+
+                { "id": "uni", "label": "Unilateral (Local)", "type": "process", "level": 2, "order": 0 },
+                { "id": "bi", "label": "Bilateral (Systemic)", "type": "process", "level": 2, "order": 2 },
+
+                { "id": "dvt_scan", "label": "Doppler USS\n(Exclude DVT)", "type": "end", "level": 3, "order": 0 },
+
+                { "id": "urine_dip", "label": "Urinalysis (Protein)", "type": "process", "level": 3, "order": 2 },
+
+                { "id": "proteinuria", "label": "Proteinuria?", "type": "decision", "level": 4, "order": 2 },
+
+                { "id": "nephrotic", "label": "Renal Cause\n(Check 24h Protein / Albumin)", "type": "end", "level": 5, "order": 1 },
+
+                { "id": "no_protein", "label": "No Protein", "type": "process", "level": 5, "order": 3 },
+
+                { "id": "jvp_check", "label": "Check JVP", "type": "decision", "level": 6, "order": 3 },
+
+                { "id": "high_jvp", "label": "Elevated JVP\n(Cardiac Failure)", "type": "end", "level": 7, "order": 2 },
+                { "id": "norm_jvp", "label": "Normal JVP\n(Liver / Low Albumin)", "type": "end", "level": 7, "order": 4 }
+              ],
+              "connections": [
+                { "from": "start", "to": "dist" },
+                { "from": "dist", "to": "uni", "label": "One Leg" },
+                { "from": "dist", "to": "bi", "label": "Both Legs" },
+                { "from": "uni", "to": "dvt_scan" },
+                { "from": "bi", "to": "urine_dip" },
+                { "from": "urine_dip", "to": "proteinuria" },
+                { "from": "proteinuria", "to": "nephrotic", "label": "+++/++++" },
+                { "from": "proteinuria", "to": "no_protein", "label": "Nil/Trace" },
+                { "from": "no_protein", "to": "jvp_check" },
+                { "from": "jvp_check", "to": "high_jvp", "label": "High" },
+                { "from": "jvp_check", "to": "norm_jvp", "label": "Normal" }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "title": "Key Points",
+        "content": [
+          {
+            "type": "header",
+            "text": "Key Points",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Unilateral swelling usually implies local pathology (DVT, Cellulitis, Lymphatic)." },
+              { "text": "Bilateral swelling implies systemic disease (Heart, Kidney, Liver, Hypoproteinemia)." },
+              { "text": "Facial swelling is a hallmark of Nephrotic Syndrome (due to low tissue tension in periorbital area)." },
+              { "text": "Ascites out of proportion to leg oedema suggests Chronic Liver Disease." },
+              { "text": "In Heart Failure, oedema is gravity dependent (Sacral oedema in bed-bound patients)." },
+              { "text": "Always check serum Albumin. If albumin is normal, cardiac or renal causes are less likely (unless acute)." }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

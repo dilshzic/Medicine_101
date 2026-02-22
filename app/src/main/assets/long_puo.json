@@ -1,0 +1,224 @@
+[
+  {
+    "type": "header",
+    "text": "Pyrexia of Unknown Origin (PUO)",
+    "level": 1
+  },
+  {
+    "type": "callout",
+    "text": "Definition: An unexplained fever (>38.3°C) recorded on several occasions over a 3 week period or longer for which an adequate cause has not been found despite basic investigations (FBC, Urinalysis, CXR, etc.)."
+  },
+  {
+    "type": "tab_group",
+    "tabs": [
+      {
+        "title": "Causes",
+        "content": [
+          {
+            "type": "header",
+            "text": "Flash Card 32: Causes of PUO",
+            "level": 2
+          },
+          {
+            "type": "accordion",
+            "items": [
+              {
+                "title": "Infections (~40%)",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Granulomatous: TB (Pulmonary, Meninges, Renal, Miliary)." },
+                    { "text": "Pyogenic: Cholangitis, Liver Abscess, Perinephric Abscess, Intra-abdominal pus (Pelvic/Subphrenic), SABE." },
+                    { "text": "Other: Malaria, Typhus, Typhoid, Toxoplasmosis, HIV, Fungal (Cryptococcus), Amoebic Liver Abscess." }
+                  ]}
+                ]
+              },
+              {
+                "title": "Connective Tissue Diseases (20%)",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "SLE (Young females)" },
+                    { "text": "Rheumatoid Arthritis (Still's Disease)" },
+                    { "text": "Vasculitides: Polyarteritis Nodosa, Giant Cell Arteritis, Takayasu." }
+                  ]}
+                ]
+              },
+              {
+                "title": "Neoplastic",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Haematological: Lymphoma, Malignant Histiocytosis." },
+                    { "text": "Solid Organ: Hepatocellular, Renal, Pancreatic, Lung CA, Metastatic Liver Tumours." }
+                  ]}
+                ]
+              },
+              {
+                "title": "Other Causes",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Drugs: Anti-epileptics, Anti-psychotics (Neuroleptic Malignant Syndrome)." },
+                    { "text": "Inflammatory: Sarcoidosis, Granulomatous Hepatitis, Crohn's Disease." },
+                    { "text": "Endocrine: Thyrotoxicosis, Thyroiditis." },
+                    { "text": "Factitious Fever." }
+                  ]}
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "History",
+        "content": [
+          {
+            "type": "header",
+            "text": "History 17: Points to Elicit",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["System / Symptom", "Significance"],
+            "tableRows": [
+              ["General: LOW, LOA", "Malignancy"],
+              ["Resp: Cough, haemoptysis, pleuritic pain", "Pulmonary TB"],
+              ["Rheum: Joint pain, rashes", "Connective Tissue Disease (CTD)"],
+              ["Neuro: Headache, fits", "Toxoplasmosis / TB Meningitis"],
+              ["GU: Haematuria, recurrent UTI, loin pain", "Chronic Pyelonephritis"],
+              ["Haem: Anaemia, bruising, bone pain", "Haematological Malignancy"],
+              ["GI: Diarrhoea, abdominal pain, bleeding PR", "Inflammatory Bowel Disease"],
+              ["GI: Jaundice, pruritus", "Cholangitis, Cholangiocarcinoma"],
+              ["GI: Right hypochondrial pain", "Subphrenic Abscess"],
+              ["CVS: Chest pain", "Pericarditis"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Past & Social History",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Past Medical: Immunosuppression (Transplant), Congenital Heart Disease (SABE), Past TB." },
+              { "text": "Past Surgical: Abdominal/Gyn surgery (Intra-abdominal pus)." },
+              { "text": "Occupational: Animals (Toxoplasmosis, Q Fever), Jungle (Typhus, Malaria)." },
+              { "text": "Social: Sexual history (HIV, Hepatitis), IV Drug Abuse." }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Examination",
+        "content": [
+          {
+            "type": "header",
+            "text": "Examination 17: Signs",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Sign to Elicit", "Significance"],
+            "tableRows": [
+              ["Tender temporal artery", "Giant Cell Arteritis"],
+              ["Pallor, Petechiae, Purpura", "Marrow involvement / Haematological Malignancy"],
+              ["Malar Rash / Alopecia", "SLE"],
+              ["Oral Thrush", "Immunocompromised (HIV)"],
+              ["Lymphadenopathy", "Lymphoma, Leukaemia, Toxoplasmosis, TB"],
+              ["Clubbing, Splinter Haemorrhages, Osler's", "Subacute Bacterial Endocarditis (SABE)"],
+              ["Carotid Bruit", "Takayasu Arteritis"],
+              ["Bone Tenderness", "Haematological Malignancies"],
+              ["Tender Hepatomegaly", "Liver Abscess, Cholangitis"],
+              ["Right Iliac Fossa Mass", "TB / Appendicular Abscess, Crohn's"],
+              ["Renal Angle Tenderness", "Pyelonephritis"],
+              ["Leg kept in flexed position", "Psoas Abscess"],
+              ["Heart Murmurs", "Infective Endocarditis"],
+              ["Neck Stiffness", "Meningitis (TB, Cryptococcal)"],
+              ["Fundus: Roth Spots", "Infective Endocarditis"],
+              ["Fundus: Choroiditis", "Toxoplasmosis"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Algorithm",
+        "content": [
+          {
+            "type": "header",
+            "text": "Algorithm 17: Investigating PUO",
+            "level": 2
+          },
+          {
+            "type": "flowchart",
+            "flowchart": {
+              "direction": "vertical",
+              "nodes": [
+                { "id": "start", "label": "PUO (History & Exam)", "type": "start", "level": 0, "order": 1 },
+
+                { "id": "basics", "label": "FBC, ESR, CRP, UFR, LFT\nCXR, USS Abdomen, Echo\nBlood Film, SAT", "type": "process", "level": 1, "order": 1 },
+
+                { "id": "diagnosis_basic", "label": "Diagnosis Made?", "type": "decision", "level": 2, "order": 1 },
+                { "id": "treat_basic", "label": "Treat Cause", "type": "end", "level": 2, "order": 0 },
+
+                { "id": "second_level", "label": "Second Level Tests", "type": "process", "level": 3, "order": 1 },
+
+                { "id": "haem_tests", "label": "Marrow Biopsy\nBlood Culture", "type": "process", "level": 4, "order": 0 },
+                { "id": "immuno_tests", "label": "Serology: HIV, ANA,\nRF, Mantoux", "type": "process", "level": 4, "order": 2 },
+
+                { "id": "diagnosis_sec", "label": "Diagnosis Made?", "type": "decision", "level": 5, "order": 1 },
+
+                { "id": "trials", "label": "Therapeutic Trials", "type": "process", "level": 6, "order": 1 },
+
+                { "id": "tb_trial", "label": "Anti-TB", "type": "process", "level": 7, "order": 0 },
+                { "id": "abx_trial", "label": "Antibiotics", "type": "process", "level": 7, "order": 1 },
+                { "id": "steroid_trial", "label": "Steroids (Arteritis)", "type": "process", "level": 7, "order": 2 },
+
+                { "id": "unexplained", "label": "Still Unexplained", "type": "decision", "level": 8, "order": 1 },
+
+                { "id": "invasive", "label": "Laparotomy / Biopsy\n(Liver/LN/Artery)", "type": "process", "level": 9, "order": 1 },
+                { "id": "followup", "label": "Discharge & Follow Up\n(Spontaneous Resolution)", "type": "end", "level": 9, "order": 3 }
+              ],
+              "connections": [
+                { "from": "start", "to": "basics" },
+                { "from": "basics", "to": "diagnosis_basic" },
+                { "from": "diagnosis_basic", "to": "treat_basic", "label": "Yes" },
+                { "from": "diagnosis_basic", "to": "second_level", "label": "No" },
+                { "from": "second_level", "to": "haem_tests" },
+                { "from": "second_level", "to": "immuno_tests" },
+                { "from": "haem_tests", "to": "diagnosis_sec" },
+                { "from": "immuno_tests", "to": "diagnosis_sec" },
+                { "from": "diagnosis_sec", "to": "trials", "label": "No" },
+                { "from": "trials", "to": "tb_trial" },
+                { "from": "trials", "to": "abx_trial" },
+                { "from": "trials", "to": "steroid_trial" },
+                { "from": "tb_trial", "to": "unexplained" },
+                { "from": "abx_trial", "to": "unexplained" },
+                { "from": "steroid_trial", "to": "unexplained" },
+                { "from": "unexplained", "to": "invasive", "label": "Deteriorating" },
+                { "from": "unexplained", "to": "followup", "label": "Stable" }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "title": "Key Points",
+        "content": [
+          {
+            "type": "header",
+            "text": "Key Points",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Obscure fever is more often an unusual presentation of a common disorder than a rare disease." },
+              { "text": "Drugs are an important cause of PUO." },
+              { "text": "Negative or rising antibody titers can be a helpful hint." },
+              { "text": "Beware of contaminated blood cultures giving false positive reports." },
+              { "text": "Frequent re-examination and questioning of the patient is essential." }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

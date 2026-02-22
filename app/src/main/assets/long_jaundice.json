@@ -1,0 +1,217 @@
+[
+  {
+    "type": "header",
+    "text": "Jaundice",
+    "level": 1
+  },
+  {
+    "type": "callout",
+    "text": "Definition: Yellow discoloration of the sclera and skin due to hyperbilirubinaemia.\n• Clinical Jaundice: Bilirubin > 3 mg/dL (50 µmol/L).\n• Latent Jaundice: Bilirubin > 1 mg/dL but < 3 mg/dL."
+  },
+  {
+    "type": "tab_group",
+    "tabs": [
+      {
+        "title": "Classification & Causes",
+        "content": [
+          {
+            "type": "header",
+            "text": "Flash Card 37: Causes of Jaundice",
+            "level": 2
+          },
+          { "type": "paragraph", "text": "
+
+          [Image of jaundice causes diagram]
+          " },
+          {
+            "type": "accordion",
+            "items": [
+              {
+                "title": "Pre-Hepatic (Haemolytic)",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Intracorpuscular: Spherocytosis, G6PD Deficiency, Sickle Cell, Thalassaemia." },
+                    { "text": "Extracorpuscular: Autoimmune Haemolytic Anaemia, Malaria, Mismatched Transfusion." },
+                    { "text": "Ineffective Erythropoiesis: B12/Folate deficiency." }
+                  ]}
+                ]
+              },
+              {
+                "title": "Hepatic (Hepatocellular)",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Viral Hepatitis: A, B, C, E, EBV, CMV." },
+                    { "text": "Drugs: Paracetamol (Acute), Anti-TB (Isoniazid/Rifampicin), Statins, Methotrexate." },
+                    { "text": "Alcohol: Alcoholic Hepatitis / Cirrhosis." },
+                    { "text": "Autoimmune: Autoimmune Hepatitis, PBC." },
+                    { "text": "Metabolic: Wilson's Disease, Haemochromatosis." },
+                    { "text": "Genetic: Gilbert's Syndrome (Unconjugated)." }
+                  ]}
+                ]
+              },
+              {
+                "title": "Post-Hepatic (Obstructive)",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Luminal: Gallstones (Choledocholithiasis), Parasites (Ascaris)." },
+                    { "text": "Mural: Strictures (Post-surgical/PSC), Cholangiocarcinoma." },
+                    { "text": "Extramural: Carcinoma Head of Pancreas, Porta Hepatis Lymph Nodes." }
+                  ]}
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "History",
+        "content": [
+          {
+            "type": "header",
+            "text": "History 22: Points to Elicit",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Feature", "Significance"],
+            "tableRows": [
+              ["Painful Jaundice", "Gallstones (Biliary Colic) / Acute Hepatitis"],
+              ["Painless Progressive Jaundice", "Carcinoma Head of Pancreas / Cholangiocarcinoma"],
+              ["Prodrome (Fever, LOA, Nausea)", "Viral Hepatitis (Acute)"],
+              ["Pruritus (Itching)", "Obstructive Jaundice (Bile salts) / PBC"],
+              ["Dark Urine + Pale Stool", "Obstructive Jaundice"],
+              ["Dark Urine + Normal Stool", "Hepatic / Haemolytic (Urobilinogen)"],
+              ["Weight Loss + Anorexia", "Malignancy (Pancreas/Liver)"],
+              ["Fever + Rigors (Charcot's Triad)", "Ascending Cholangitis"],
+              ["Alcohol History", "Alcoholic Liver Disease"],
+              ["IV Drug Use / Tattoos / Sex", "Hepatitis B / C"],
+              ["Travel History", "Hepatitis A / E / Malaria"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Drug History",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Hepatotoxic: Paracetamol (Overdose), Anti-TB (Rifampicin, Pyrazinamide), Methotrexate, Amiodarone." },
+              { "text": "Cholestatic: OCP, Chlorpromazine, Antibiotics (Flucloxacillin)." }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Examination",
+        "content": [
+          {
+            "type": "header",
+            "text": "Examination 22: Signs",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Sign to Elicit", "Significance"],
+            "tableRows": [
+              ["Scratch Marks", "Chronic Cholestasis (Pruritus)"],
+              ["Xanthelasma", "Primary Biliary Cirrhosis (PBC)"],
+              ["Pallor", "Haemolytic Anaemia / GI Bleed / Malignancy"],
+              ["Parotid Enlargement / Dupuytren's", "Alcoholic Liver Disease"],
+              ["Spider Naevi / Palmar Erythema", "Chronic Liver Disease (CLD)"],
+              ["Gynaecomastia / Testicular Atrophy", "CLD (Oestrogen excess)"],
+              ["Hepatomegaly (Tender)", "Viral Hepatitis / Congestive Cardiac Failure"],
+              ["Hepatomegaly (Hard/Irregular)", "Primary HCC / Metastasis"],
+              ["Splenomegaly", "Portal Hypertension / Haemolysis / Malaria"],
+              ["Ascites", "Decompensated Cirrhosis / Malignancy"],
+              ["Palpable Gallbladder", "Carcinoma Head of Pancreas (Courvoisier's Law)"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Courvoisier's Law",
+            "level": 2
+          },
+          {
+            "type": "callout",
+            "text": "In a jaundiced patient, a palpable non-tender gallbladder is unlikely to be due to gallstones (usually Ca Head of Pancreas). Rationale: Chronic stones cause fibrosis (shrunken GB)."
+          }
+        ]
+      },
+      {
+        "title": "Algorithm",
+        "content": [
+          {
+            "type": "header",
+            "text": "Algorithm 22: Investigating Jaundice",
+            "level": 2
+          },
+          { "type": "paragraph", "text": "" },
+          {
+            "type": "flowchart",
+            "flowchart": {
+              "direction": "vertical",
+              "nodes": [
+                { "id": "start", "label": "Patient with Jaundice", "type": "start", "level": 0, "order": 1 },
+
+                { "id": "lft_urinalysis", "label": "Urine (Bilirubin/Urobilinogen)\nLFT (AST, ALT, ALP, GGT)", "type": "process", "level": 1, "order": 1 },
+
+                { "id": "type_check", "label": "Determine Type", "type": "decision", "level": 2, "order": 1 },
+
+                { "id": "pre_hepatic", "label": "Pre-Hepatic\n(Isolated High Bilirubin\nHigh Retics, Coombs)", "type": "process", "level": 3, "order": 0 },
+
+                { "id": "hepatic", "label": "Hepatic\n(High AST/ALT > ALP)", "type": "process", "level": 3, "order": 1 },
+
+                { "id": "post_hepatic", "label": "Post-Hepatic\n(High ALP/GGT > AST)", "type": "process", "level": 3, "order": 3 },
+
+                { "id": "viral_screen", "label": "Viral Screen (Hep A/B/C)\nAutoimmune Screen", "type": "process", "level": 4, "order": 1 },
+
+                { "id": "uss", "label": "USS Abdomen\n(Dilated Ducts?)", "type": "process", "level": 4, "order": 3 },
+
+                { "id": "ducts_dilated", "label": "Ducts Dilated?", "type": "decision", "level": 5, "order": 3 },
+
+                { "id": "ercp", "label": "ERCP / MRCP\n(Stones/Stricture)", "type": "end", "level": 6, "order": 2 },
+                { "id": "ct_scan", "label": "CT Abdomen\n(Pancreatic Mass)", "type": "end", "level": 6, "order": 4 },
+
+                { "id": "biopsy", "label": "Liver Biopsy\n(Cirrhosis/Diagnosis)", "type": "end", "level": 5, "order": 1 }
+              ],
+              "connections": [
+                { "from": "start", "to": "lft_urinalysis" },
+                { "from": "lft_urinalysis", "to": "type_check" },
+                { "from": "type_check", "to": "pre_hepatic", "label": "Haemolysis" },
+                { "from": "type_check", "to": "hepatic", "label": "Hepatocellular" },
+                { "from": "type_check", "to": "post_hepatic", "label": "Cholestatic" },
+                { "from": "hepatic", "to": "viral_screen" },
+                { "from": "viral_screen", "to": "biopsy", "label": "Chronic" },
+                { "from": "post_hepatic", "to": "uss" },
+                { "from": "uss", "to": "ducts_dilated" },
+                { "from": "ducts_dilated", "to": "ercp", "label": "Stones" },
+                { "from": "ducts_dilated", "to": "ct_scan", "label": "Mass" }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "title": "Key Points",
+        "content": [
+          {
+            "type": "header",
+            "text": "Key Points",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Painless progressive jaundice with palpable gallbladder is strongly suggestive of Carcinoma Head of Pancreas (Courvoisier's Law)." },
+              { "text": "Painful jaundice with fever suggests Ascending Cholangitis (Medical Emergency)." },
+              { "text": "Unconjugated hyperbilirubinaemia (Acholuric jaundice) implies Pre-hepatic causes or Gilbert's syndrome." },
+              { "text": "Deep jaundice with scratch marks (Pruritus) implies Obstructive pathology." },
+              { "text": "Always ask for recent drug history (e.g. anti-tuberculous drugs, herbal remedies) in unexplained hepatitis." }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

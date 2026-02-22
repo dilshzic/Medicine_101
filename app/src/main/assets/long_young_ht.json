@@ -1,0 +1,213 @@
+[
+  {
+    "type": "header",
+    "text": "Young Hypertension",
+    "level": 1
+  },
+  {
+    "type": "callout",
+    "text": "Defined as hypertension in a young patient (<35 years). Essential hypertension is a diagnosis of exclusion; Secondary causes must be actively ruled out."
+  },
+  {
+    "type": "tab_group",
+    "tabs": [
+      {
+        "title": "Basics & Causes",
+        "content": [
+          {
+            "type": "header",
+            "text": "BP Classification",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Category", "Systolic", "Diastolic"],
+            "tableRows": [
+              ["Normal", "<120", "<80"],
+              ["Pre-hypertension", "120-139", "80-89"],
+              ["Grade 1 (Mild)", "140-159", "90-99"],
+              ["Grade 2 (Moderate)", "160-179", "100-109"],
+              ["Grade 3 (Severe)", "≥ 180", "≥ 110"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Definitions",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Hypertensive Emergency: Severe HT with new/progressive target organ damage (e.g., Encephalopathy, MI, Acute Pulmonary Oedema)." },
+              { "text": "Hypertensive Urgency: Severe HT without target organ damage." },
+              { "text": "Malignant HT: BP >200/130 + Bilateral retinal haemorrhages/exudates (± Papilloedema)." }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Flash Card 16: Secondary Causes",
+            "level": 2
+          },
+          {
+            "type": "accordion",
+            "items": [
+              {
+                "title": "Renal (Commonest)",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Glomerulonephritis" },
+                    { "text": "Chronic Pyelonephritis" },
+                    { "text": "Polycystic Kidney Disease" },
+                    { "text": "Renal Artery Stenosis" },
+                    { "text": "Obstructive Uropathy" }
+                  ]}
+                ]
+              },
+              {
+                "title": "Endocrine",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Cushing's Syndrome" },
+                    { "text": "Conn's Syndrome (Primary Hyperaldosteronism)" },
+                    { "text": "Phaeochromocytoma" },
+                    { "text": "Acromegaly" },
+                    { "text": "Thyroid Disease (Hyper/Hypo)" }
+                  ]}
+                ]
+              },
+              {
+                "title": "Vascular & Drugs",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Vascular: Coarctation of Aorta, Arteritis (Takayasu)" },
+                    { "text": "Drugs: Steroids, NSAIDs, OCP, Cyclosporine, Erythropoietin" }
+                  ]}
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "History",
+        "content": [
+          {
+            "type": "header",
+            "text": "History 7: Points to Elicit",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Symptom / History", "Significance"],
+            "tableRows": [
+              ["Haematuria (Childhood), Recurrent UTI", "Chronic Glomerulonephritis / Pyelonephritis"],
+              ["Loin Pain, Renal Calculi", "Polycystic Kidney Disease / Obstructive Uropathy"],
+              ["Episodic headache, sweating, palpitations", "Phaeochromocytoma"],
+              ["Proximal muscle weakness (Hypokalaemia)", "Conn's Syndrome (Hyperaldosteronism)"],
+              ["Weight gain, acne, hirsutism", "Cushing's Syndrome"],
+              ["Weight loss, heat intolerance, palpitations", "Hyperthyroidism"],
+              ["Weight gain, cold intolerance, constipation", "Hypothyroidism"],
+              ["Snoring, daytime somnolence", "Obstructive Sleep Apnoea"],
+              ["Acral enlargement, shoe size increase", "Acromegaly"],
+              ["Claudication, arm fatigue", "Takayasu Arteritis / Coarctation"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Drug & Family History",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Drugs: NSAIDs, Steroids, OCP, Nasal drops (Sympathomimetics)." },
+              { "text": "Family Hx: Polycystic Kidney Disease, Essential HT, MEN syndromes." }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Examination",
+        "content": [
+          {
+            "type": "header",
+            "text": "Examination 7: Signs",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Sign to Elicit", "Significance"],
+            "tableRows": [
+              ["Radio-femoral delay", "Coarctation of Aorta"],
+              ["Renal Bruit (Epigastrium/Flanks)", "Renal Artery Stenosis"],
+              ["Ballotable Kidneys", "Polycystic Kidney Disease"],
+              ["Abdominal Bruit (Aorta)", "Aneurysm / Arteritis"],
+              ["Cushingoid Facies, Buffalo Hump, Striae", "Cushing's Syndrome"],
+              ["Acral Enlargement, Prognathism", "Acromegaly"],
+              ["Neurofibromas, Café au lait spots", "Phaeochromocytoma (MEN / Neurofibromatosis)"],
+              ["Thyroid Goitre / Eye signs", "Thyrotoxicosis"],
+              ["Weak asymmetric pulses", "Takayasu Arteritis"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Target Organ Damage",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Fundoscopy: Silver wiring, AV nipping, Haemorrhages, Exudates, Papilloedema (Malignant HT)." },
+              { "text": "CVS: Heaving apex (LVH), S4 (Stiff ventricle), Pulmonary Oedema (LVF)." },
+              { "text": "Neuro: Focal signs (Stroke/TIA)." }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Algorithm",
+        "content": [
+          {
+            "type": "header",
+            "text": "Algorithm 8: Investigating Young Hypertension",
+            "level": 2
+          },
+          {
+            "type": "flowchart",
+            "flowchart": {
+              "direction": "vertical",
+              "nodes": [
+                { "id": "start", "label": "Young Hypertensive", "type": "start", "level": 0, "order": 1 },
+
+                { "id": "basic_labs", "label": "Urine (Protein/Blood)\nU&E, Creatinine\nFBC, Lipid Profile\nECG, CXR", "type": "process", "level": 1, "order": 1 },
+
+                { "id": "renal_screen", "label": "Renal US / Echo", "type": "process", "level": 2, "order": 1 },
+
+                { "id": "pathway", "label": "Specific Suspicion?", "type": "decision", "level": 3, "order": 1 },
+
+                { "id": "renal_path", "label": "Renal / Vascular", "type": "process", "level": 4, "order": 0 },
+                { "id": "endo_path", "label": "Endocrine", "type": "process", "level": 4, "order": 2 },
+
+                { "id": "ras", "label": "Duplex / CT Angio\n(Renal Artery Stenosis)", "type": "end", "level": 5, "order": 0 },
+                { "id": "conns", "label": "Renin:Aldosterone\n(Conn's)", "type": "end", "level": 5, "order": 1 },
+                { "id": "cushing", "label": "Dexamethasone Test\n(Cushing's)", "type": "end", "level": 5, "order": 2 },
+                { "id": "phaeo", "label": "Urine VMA / Metanephrines\n(Phaeochromocytoma)", "type": "end", "level": 5, "order": 3 }
+              ],
+              "connections": [
+                { "from": "start", "to": "basic_labs" },
+                { "from": "basic_labs", "to": "renal_screen" },
+                { "from": "renal_screen", "to": "pathway" },
+                { "from": "pathway", "to": "renal_path", "label": "Bruit/Abnormal US" },
+                { "from": "pathway", "to": "endo_path", "label": "Hypokalaemia/Symptoms" },
+                { "from": "renal_path", "to": "ras" },
+                { "from": "endo_path", "to": "conns" },
+                { "from": "endo_path", "to": "cushing" },
+                { "from": "endo_path", "to": "phaeo" }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

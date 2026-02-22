@@ -2,6 +2,7 @@ package com.algorithmx.medicine101.data
 
 import android.content.Context
 import com.algorithmx.medicine101.utils.JsonLoader
+import com.google.gson.Gson
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -13,11 +14,10 @@ class DatabaseSeeder @Inject constructor(
     private val repository: NoteRepository
 ) {
     suspend fun seedDatabase() = withContext(Dispatchers.IO) {
-        // 1. Check if already seeded
+        // 1. Check if already seeded to prevent duplicate data on app restart
         if (!repository.isDatabaseEmpty()) return@withContext
 
         // 2. Define your Hierarchy here
-        // Structure: "Folder Name" -> List of "json_filename.json"
         val seedMap = mapOf(
             "Examinations" to listOf(
                 "abdomen.json", "cardio.json", "resp.json",
@@ -33,72 +33,97 @@ class DatabaseSeeder @Inject constructor(
                 "long_chest_pain.json", "long_cough.json", "long_dyspnoea.json",
                 "long_bleeding.json"
             )
-            // Add other groupings as needed
         )
 
         // 3. Process the map
         seedMap.forEach { (categoryName, files) ->
-            // A. Create the Folder
+            // A. Create the Folder for this category
             val folderId = UUID.randomUUID().toString()
             val folder = NoteEntity(
                 id = folderId,
                 title = categoryName,
                 category = "System",
                 isFolder = true,
-                parentId = null, // Root level
+                parentId = null, // Root level folder
                 isSystemNote = true
             )
             repository.insertNote(folder)
 
-            // B. Create Notes inside this Folder
+            // B. Process and map the JSON files inside this Folder
             files.forEach { fileName ->
                 try {
-                    // Read JSON raw string
-                    val jsonString = context.assets.open(fileName).bufferedReader().use { it.readText() }
+                    // 1. Load the raw, nested blocks from JSON
+                    val rawJsonBlocks = JsonLoader.loadChapter(context, fileName)
 
-                    // Parse title using your existing utility (or filename fallback)
-                    // We parse purely to extract the title, but store the raw string
-                    val title = extractTitleFromJson(context, fileName)
+                    // 2. *** FLATTEN THE DATA *** (Extracts tabs into a flat list)
+                    val processedBlocks = flattenJsonBlocks(rawJsonBlocks)
 
+                    // 3. Extract title (from the raw blocks, just in case the header was first)
+                    val title = rawJsonBlocks.find { it.type == "header" }?.text
+                        ?: fileName.removeSuffix(".json").replace("_", " ").capitalize()
+
+                    val noteId = UUID.randomUUID().toString()
+
+                    // 4. Create and insert the parent NoteEntity
                     val note = NoteEntity(
-                        id = UUID.randomUUID().toString(),
+                        id = noteId,
                         title = title,
                         category = categoryName,
-                        //contentJson = jsonString, // Store the raw JSON content directly
                         isFolder = false,
-                        parentId = folderId, // Put inside the folder
+                        parentId = folderId, // Assign to the folder we just created
                         isSystemNote = true
                     )
                     repository.insertNote(note)
 
+                    // 5. Map the FLATTENED blocks to the Database Entities
+                    val gson = Gson()
+                    val blockEntities = processedBlocks.mapIndexed { index, block ->
+                        ContentBlockEntity(
+                            noteId = noteId,
+                            type = block.type,
+                            content = gson.toJson(block), // Serialize the individual flattened block
+                            orderIndex = index,
+                            tabName = block.tabName // This now correctly holds "General" or the Tab title!
+                        )
+                    }
+
+                    // 6. Insert all mapped blocks into Room
+                    repository.insertBlocks(blockEntities)
+
                 } catch (e: Exception) {
                     e.printStackTrace()
-                    // Continue to next file if one fails
                 }
             }
         }
     }
 
-    // Helper to extract a pretty title from the JSON content
-    // This assumes your JSONs have a "header" block or similar.
-    // If not, it falls back to the filename.
-    private fun extractTitleFromJson(context: Context, fileName: String): String {
-        return try {
-            // Change loadJsonFromAssets to loadChapter (which is what you have in JsonLoader)
-            val blocks = JsonLoader.loadChapter(context, fileName)
+    /**
+     * Helper function to take nested tab JSON and turn it into a flat list
+     * where every block knows which tab it belongs to.
+     */
+    private fun flattenJsonBlocks(rawBlocks: List<ContentBlock>): List<ContentBlock> {
+        val flatList = mutableListOf<ContentBlock>()
 
-            // Find the first header block
-            val headerBlock = blocks.find { it.type == "header" }
-
-            // Return header text or a formatted version of the filename
-            headerBlock?.text ?: fileName.removeSuffix(".json")
-                .replace("_", " ")
-                .replaceFirstChar { it.uppercase() }
-        } catch (e: Exception) {
-            fileName.removeSuffix(".json")
+        for (block in rawBlocks) {
+            // Check if this block is actually a container for tabs
+            if (block.tabs != null && block.tabs.isNotEmpty()) {
+                // Loop through each tab (e.g., "Clinical Features", "Management")
+                for (tab in block.tabs) {
+                    // Loop through the content inside that specific tab
+                    for (innerBlock in tab.content) {
+                        // Extract the inner block and tag it with the tab's title
+                        flatList.add(innerBlock.copy(tabName = tab.title))
+                    }
+                }
+            } else {
+                // It is a normal block. Just tag it with "General"
+                flatList.add(block.copy(tabName = "General"))
+            }
         }
+
+        return flatList
     }
 
-    // Simple extension to capitalize words
+    // Simple extension to capitalize words nicely
     private fun String.capitalize() = replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }
 }

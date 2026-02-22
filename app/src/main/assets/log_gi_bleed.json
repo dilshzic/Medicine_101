@@ -1,0 +1,228 @@
+[
+  {
+    "type": "header",
+    "text": "Haematemesis & Melaena",
+    "level": 1
+  },
+  {
+    "type": "callout",
+    "text": "Haematemesis: Vomiting of fresh (bright red) or altered (coffee ground) blood.\nMelaena: Passage of loose, black, tarry sticky stools with deep offensive smell."
+  },
+  {
+    "type": "paragraph",
+    "text": "Both are typical manifestations of upper GI bleeding (bleeding from a site up to the transverse colon). Symptoms of blood loss such as fainting or postural dizziness may precede the appearance of haematemesis or melaena."
+  },
+  {
+    "type": "tab_group",
+    "tabs": [
+      {
+        "title": "Causes",
+        "content": [
+          {
+            "type": "header",
+            "text": "Flash Card 12: Causes of Haematemesis & Melaena",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Site", "Pathology"],
+            "tableRows": [
+              ["Oesophagus", "• Oesophageal Varices (Ruptured)\n• Oesophagitis\n• Mallory-Weiss tear\n• Oesophageal Neoplasm"],
+              ["Stomach", "• Peptic Ulcer Disease\n• Erosive Gastritis\n• Gastric Neoplasm"],
+              ["Duodenum", "• Peptic Ulcer Disease\n• Diverticula\n• Vascular anomalies (Angiodysplasia)"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "General / Systemic Causes",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Bleeding Disorders: Haemophilia, Thrombocytopenia, Von Willebrand disease." },
+              { "text": "Drugs: NSAIDs, Aspirin, Steroids, Anticoagulant therapy." },
+              { "text": "Uraemia" },
+              { "text": "Hereditary Haemorrhagic Telangiectasia" }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "History",
+        "content": [
+          {
+            "type": "header",
+            "text": "Diagnostic Objectives",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Determine the severity of blood loss." },
+              { "text": "Determine the underlying cause." },
+              { "text": "Determine the severity and complications of underlying illness." }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "History Taking Points",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Point to Elicit", "Significance"],
+            "tableRows": [
+              ["Faintishness, weakness, dizziness, sweating, palpitations, dyspnoea", "Hypovolaemia (Shock)"],
+              ["Heart burn, Intermittent epigastric pain", "Peptic ulceration"],
+              ["Retching and vomiting initially free from blood", "Mallory-Weiss tear"],
+              ["Weight loss, anorexia, epigastric pain", "Gastric neoplasm"],
+              ["Jaundice, leg oedema, abdominal distension, altered sleep pattern", "Chronic Liver Disease (Gastro-oesophageal varices due to Cirrhosis)"],
+              ["Dysphagia or discomfort on swallowing", "Oesophagitis, Oesophageal neoplasm"],
+              ["NSAID / Heavy alcohol consumption", "Erosive gastritis"],
+              ["Bleeding from other sites", "Coagulation disorders"],
+              ["Anti-coagulation therapy", "Iatrogenic bleeding"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Risk Factors for Cirrhosis",
+            "level": 2
+          },
+          {
+            "type": "paragraph",
+            "text": "If Cirrhosis is considered, ask about:"
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Chronic alcohol consumption (Alcoholic cirrhosis)" },
+              { "text": "Blood transfusion, IV drug abuse, unprotected sexual encounters, Tattoos (Hepatitis B, C)" },
+              { "text": "Hyper-pigmentation, diabetes, positive family history (Haemochromatosis)" },
+              { "text": "Family history of liver disease, abnormal movements (Wilson's disease)" }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Examination",
+        "content": [
+          {
+            "type": "header",
+            "text": "Examination Signs",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Sign to Elicit", "Significance"],
+            "tableRows": [
+              ["Cold and clammy extremities, pallor", "Hypovolaemia"],
+              ["Confusion, flapping tremors", "Hepatic encephalopathy"],
+              ["Petechiae, ecchymosis", "Increased bleeding tendency"],
+              ["Lymphadenopathy (Virchow's node)", "Gastric neoplasm"],
+              ["Spider naevi, loss of body hair, gynaecomastia, palmar erythema", "Chronic Liver Disease"],
+              ["Dupuytren's contracture, Parotid enlargement", "Chronic alcohol consumption"],
+              ["Pigmentation", "Haemochromatosis"],
+              ["KF Rings (Eyes)", "Wilson's disease"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Systemic Examination",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["System / Sign", "Significance"],
+            "tableRows": [
+              ["CVS: Tachycardia, Hypotension", "Reflex response to hypovolaemia (precedes BP drop)"],
+              ["Abdomen: Epigastric tenderness", "Peptic ulcer disease, Oesophagitis"],
+              ["Abdomen: Mass", "Gastric / Oesophageal neoplasm"],
+              ["Abdomen: Splenomegaly, Ascites", "Portal Hypertension"],
+              ["Rectal Exam: Melaena vs Fresh Blood", "Confirms Melaena / Excludes lower GI bleed"],
+              ["Respiratory: Pleural effusion", "Gross ascites in Cirrhosis"],
+              ["Nervous: Altered consciousness, exaggerated reflexes", "Hepatic / Uraemic encephalopathy"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Algorithm",
+        "content": [
+          {
+            "type": "header",
+            "text": "Algorithm 2: Assessing Haematemesis & Melaena",
+            "level": 2
+          },
+          {
+            "type": "flowchart",
+            "flowchart": {
+              "direction": "vertical",
+              "nodes": [
+                { "id": "start", "label": "Patient with Haematemesis/Melaena", "type": "start", "level": 0, "order": 1 },
+                { "id": "exclude", "label": "Exclude Non-GI Bleeding\n(Epistaxis, Haemoptysis)", "type": "process", "level": 0, "order": 2 },
+
+                { "id": "clin_assess", "label": "History & Examination", "type": "process", "level": 1, "order": 1 },
+
+                { "id": "investigations", "label": "Labs: FBC, Cross Match,\nClotting Profile, LFT, Urea/Lytes,\nECG, CXR", "type": "process", "level": 2, "order": 1 },
+
+                { "id": "triage", "label": "Assessment of Bleeding", "type": "decision", "level": 3, "order": 1 },
+
+                { "id": "minor", "label": "Minor Bleeding", "type": "process", "level": 4, "order": 0 },
+                { "id": "major", "label": "Major Bleeding", "type": "process", "level": 4, "order": 2 },
+
+                { "id": "elective", "label": "Elective Endoscopy", "type": "process", "level": 5, "order": 0 },
+                { "id": "urgent", "label": "Resuscitation &\nUrgent Endoscopy", "type": "process", "level": 5, "order": 2 },
+
+                { "id": "outcome", "label": "Cause Found?", "type": "decision", "level": 6, "order": 2 },
+
+                { "id": "treat", "label": "Treat Cause", "type": "end", "level": 7, "order": 1 },
+                { "id": "unknown", "label": "No Cause Found\n(esp. Older patients)", "type": "process", "level": 7, "order": 3 },
+
+                { "id": "further", "label": "Angiography / Enteroscopy / Laparotomy", "type": "end", "level": 8, "order": 3 }
+              ],
+              "connections": [
+                { "from": "start", "to": "exclude" },
+                { "from": "exclude", "to": "clin_assess" },
+                { "from": "clin_assess", "to": "investigations" },
+                { "from": "investigations", "to": "triage" },
+                { "from": "triage", "to": "minor", "label": "Stable" },
+                { "from": "triage", "to": "major", "label": "Unstable/Shock" },
+                { "from": "minor", "to": "elective" },
+                { "from": "major", "to": "urgent" },
+                { "from": "urgent", "to": "outcome" },
+                { "from": "outcome", "to": "treat", "label": "Yes" },
+                { "from": "outcome", "to": "unknown", "label": "No" },
+                { "from": "unknown", "to": "further" }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "title": "Key Points",
+        "content": [
+          {
+            "type": "header",
+            "text": "Key Points",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "This is a MEDICAL EMERGENCY. Immediate steps: Resuscitation and Cross-matching." },
+              { "text": "Differentiate vomiting blood (Haematemesis) from coughing blood (Haemoptysis)." },
+              { "text": "Haematemesis features: Food mixed with blood, Acidic pH." },
+              { "text": "Beware of 'swallowed blood' from nasopharyngeal bleeding mimicking haematemesis." },
+              { "text": "Following a single GI bleed, stools may remain tarry for up to 3 days and occult blood positive for 1 month." },
+              { "text": "Signs of blood loss (tachycardia, hypotension) may precede the visible manifestations of bleeding." },
+              { "text": "Fresh blood in rectum usually suggests large bowel pathology, but massive upper GI bleeds can also present with fresh PR bleeding." },
+              { "text": "Patients with oesophageal varices can bleed from other co-existing pathologies (e.g., Peptic Ulcer)." },
+              { "text": "Microcytic hypochromic anaemia suggests previous/chronic bleeding." }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

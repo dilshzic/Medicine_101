@@ -45,4 +45,6 @@ class NoteRepository @Inject constructor(
     suspend fun syncBlocks(noteId: String, blockEntities: List<ContentBlockEntity>) {
         noteDao.syncBlocks(noteId, blockEntities)
     }
+    // Add this line so the seeder can insert the mapped blocks
+    suspend fun insertBlocks(blocks: List<ContentBlockEntity>) = noteDao.insertBlocks(blocks)
 }

@@ -1,0 +1,306 @@
+[
+  {
+    "type": "header",
+    "text": "General Examination",
+    "level": 1
+  },
+  {
+    "type": "callout",
+    "text": "General examination should be very brief and highly relevant. Usually, it helps the students to think about the cause for the underlying diagnosis."
+  },
+  {
+    "type": "header",
+    "text": "Linking Signs to Systems",
+    "level": 2
+  },
+  {
+    "type": "table",
+    "tableHeaders": [
+      "Systemic Finding",
+      "Clue on General Exam"
+    ],
+    "tableRows": [
+      [
+        "Mitral Regurgitation",
+        "Marfanoid features"
+      ],
+      [
+        "Pleural Effusion",
+        "Clubbing, Yellow Nail Syndrome"
+      ],
+      [
+        "Tender Hepatomegaly",
+        "Icterus (Hepatitis)"
+      ],
+      [
+        "Cord Compression",
+        "Neurofibromatosis"
+      ],
+      [
+        "Infective Endocarditis",
+        "Fever, Splinter Hemorrhages, Osler Nodes"
+      ]
+    ]
+  },
+  {
+    "type": "header",
+    "text": "Detailed Examination",
+    "level": 2
+  },
+  {
+    "type": "tab_group",
+    "tabs": [
+      {
+        "title": "General",
+        "content": [
+          {
+            "type": "header",
+            "text": "General Features",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              {
+                "text": "Weight / Build",
+                "subItems": [
+                  { "text": "Cachexia: TB, Malignancy, Thyrotoxicosis, Addison's" },
+                  { "text": "Obesity: Cushing's Syndrome (Truncal)" }
+                ]
+              },
+              {
+                "text": "Hydration",
+                "subItems": [
+                  { "text": "Check skin turgor and tongue." },
+                  { "text": "Dry tongue does not always mean dehydration (Mouth breathing)." }
+                ]
+              },
+              {
+                "text": "Smell of Breath",
+                "subItems": [
+                  { "text": "Foetor Hepaticus: Sweet/Musty (Liver Failure)" },
+                  { "text": "Uraemic: Fishy/Ammonia (Chronic Kidney Disease)" },
+                  { "text": "Ketotic: Fruity (DKA)" },
+                  { "text": "Foul: Lung Abscess / Bronchiectasis" }
+                ]
+              },
+              {
+                "text": "Mental State",
+                "subItems": [
+                  { "text": "Drowsiness (Encephalopathy)" },
+                  { "text": "Anxiety (Thyrotoxicosis)" }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Hands",
+        "content": [
+          {
+            "type": "header",
+            "text": "Hands & Nails",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              {
+                "text": "Clubbing (Loss of Lovibond Angle)",
+                "subItems": [
+                  { "text": "Respiratory: Bronchial Ca, Bronchiectasis, Lung Fibrosis, Lung Abscess" },
+                  { "text": "Cardiovascular: Infective Endocarditis, Cyanotic Congenital Heart Disease" },
+                  { "text": "Gastrointestinal: Cirrhosis, IBD" }
+                ]
+              },
+              {
+                "text": "Leukonychia (White Nails)",
+                "subItems": [
+                  { "text": "Hypoalbuminemia: Cirrhosis, Nephrotic Syndrome" }
+                ]
+              },
+              {
+                "text": "Koilonychia (Spoon Nails)",
+                "subItems": [
+                  { "text": "Iron Deficiency Anemia" }
+                ]
+              },
+              {
+                "text": "Splinter Hemorrhages",
+                "subItems": [
+                  { "text": "Infective Endocarditis" },
+                  { "text": "Trauma (Manual labor)" },
+                  { "text": "Vasculitis" }
+                ]
+              },
+              {
+                "text": "Palms",
+                "subItems": [
+                  { "text": "Palmar Erythema: CLD, Thyrotoxicosis, RA, Pregnancy" },
+                  { "text": "Dupuytren's Contracture: Alcoholic Liver Disease" },
+                  { "text": "Pallor: Anemia (Palmar creases)" }
+                ]
+              },
+              {
+                "text": "Tremor",
+                "subItems": [
+                  { "text": "Fine Tremor: Thyrotoxicosis (Check with paper)" },
+                  { "text": "Flapping Tremor (Asterixis): Hepatic Encephalopathy, CO2 Retention, Uremia" }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Face",
+        "content": [
+          {
+            "type": "header",
+            "text": "Diagnostic Facies",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": [
+              "Facies",
+              "Features"
+            ],
+            "tableRows": [
+              [
+                "Acromegaly",
+                "Prominent supraorbital ridges, Prognathism, Large tongue"
+              ],
+              [
+                "Thyrotoxic",
+                "Staring look, Lid retraction, Exophthalmos"
+              ],
+              [
+                "Myxoedema",
+                "Puffy face, Periorbital puffiness, Loss of outer 1/3 eyebrow"
+              ],
+              [
+                "Cushingoid",
+                "Moon face, Plethora, Hirsutism, Acne"
+              ],
+              [
+                "Systemic Sclerosis",
+                "Tight skin, Beaked nose, Microstomia (Small mouth)"
+              ],
+              [
+                "Mitral Facies",
+                "Rosy cheeks with bluish tinge (Mitral Stenosis)"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Eyes",
+        "content": [
+          {
+            "type": "header",
+            "text": "Eye Signs",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": [
+              "Sign",
+              "Significance"
+            ],
+            "tableRows": [
+              [
+                "Pallor",
+                "Anemia (Conjunctiva)"
+              ],
+              [
+                "Icterus",
+                "Jaundice (Sclera - Upper part)"
+              ],
+              [
+                "Xanthelasma",
+                "Hyperlipidemia"
+              ],
+              [
+                "Corneal Arcus",
+                "Hyperlipidemia (if <50 yrs), Normal in elderly"
+              ],
+              [
+                "Kayser-Fleischer Ring",
+                "Wilson's Disease (Copper)"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Neck",
+        "content": [
+          {
+            "type": "header",
+            "text": "Neck Examination",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              {
+                "text": "Jugular Venous Pressure (JVP)",
+                "subItems": [
+                  { "text": "Elevated in Heart Failure, Fluid Overload" },
+                  { "text": "Kussmaul's Sign: Rise on inspiration (Constrictive Pericarditis)" }
+                ]
+              },
+              {
+                "text": "Thyroid Gland",
+                "subItems": [
+                  { "text": "Goitre: Graves' Disease, Hashimoto's, Multinodular Goitre" },
+                  { "text": "Check movement with swallowing" }
+                ]
+              },
+              {
+                "text": "Lymph Nodes",
+                "subItems": [
+                  { "text": "Cervical: Infection, Lymphoma" },
+                  { "text": "Virchow's Node (Left Supraclavicular): Gastric Malignancy" }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Legs",
+        "content": [
+          {
+            "type": "header",
+            "text": "Leg Examination",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              {
+                "text": "Edema",
+                "subItems": [
+                  { "text": "Pitting: Heart Failure, Hypoalbuminemia (Liver/Kidney)" },
+                  { "text": "Non-Pitting: Hypothyroidism, Lymphoedema" }
+                ]
+              },
+              {
+                "text": "Skin Changes",
+                "subItems": [
+                  { "text": "Ulcers: Venous (Gaiter area) vs Arterial (Toes/Heels)" },
+                  { "text": "Erythema Nodosum: TB, Sarcoidosis, IBD" },
+                  { "text": "Pyoderma Gangrenosum: IBD" }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

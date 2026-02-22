@@ -1,0 +1,237 @@
+[
+  {
+    "type": "header",
+    "text": "Back Pain",
+    "level": 1
+  },
+  {
+    "type": "callout",
+    "text": "Back pain is an extremely common phenomenon; a price mankind has to pay for their upright posture."
+  },
+  {
+    "type": "tab_group",
+    "tabs": [
+      {
+        "title": "Causes",
+        "content": [
+          {
+            "type": "header",
+            "text": "Flash Card 23: Causes of Back Pain",
+            "level": 2
+          },
+          {
+            "type": "accordion",
+            "items": [
+              {
+                "title": "Mechanical Causes",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Trauma" },
+                    { "text": "Back Strain / Sprain" },
+                    { "text": "Prolapsed Intervertebral Disc" },
+                    { "text": "Compressed Fracture" },
+                    { "text": "Postural" }
+                  ]}
+                ]
+              },
+              {
+                "title": "Non-Mechanical Causes",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Congenital: Spina Bifida Occulta, Spondylolisthesis" },
+                    { "text": "Infective: TB Spine, Osteomyelitis" },
+                    { "text": "Inflammatory: Seronegative arthritis (Ankylosing Spondylitis, Psoriatic, IBD)" },
+                    { "text": "Neoplastic: Multiple Myeloma, Metastasis (Primary/Secondary), Root/Cord compression" },
+                    { "text": "Degenerative: Lumbar Spondylosis" },
+                    { "text": "Metabolic: Osteoporosis (Steroids), Osteomalacia, Paget's disease" },
+                    { "text": "Referred Pain: Pancreatitis, Aortic Aneurysm, Renal pathology, Pelvic organs" },
+                    { "text": "Psychogenic: Anxiety, Depression, Malingering" }
+                  ]}
+                ]
+              }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Specific Clinical Features",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Condition", "Features"],
+            "tableRows": [
+              ["Back Strain", "Acute, follows lifting/pushing. Muscle spasm, tenderness, impaired movement."],
+              ["Disc Prolapse", "L4/L5 or L5/S1. Pain radiating to leg (Sciatica). Leaning to opposite side. SLRT positive."],
+              ["Spondylolisthesis", "Lower lumbar pain worse on standing. Late childhood/Early adult."],
+              ["TB Spine", "Common in young. Thoraco-lumbar region. Kyphosis (Gibbus)."],
+              ["Ankylosing Spondylitis", "Morning stiffness. Pain starts in low back, involves whole spine + Sacroiliitis."],
+              ["Lumbar Spondylosis", "Older patients. Pain worse on movement, coughing/sneezing. Relieved by rest."],
+              ["Neoplastic", "Bone pain, Pathological fractures. Metastasis from Bronchus, Thyroid, Kidney, Breast, Prostate."]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "History",
+        "content": [
+          {
+            "type": "header",
+            "text": "History 11: Points to Elicit",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Point to Elicit", "Significance"],
+            "tableRows": [
+              ["Age: Adolescent", "Postural / Traumatic"],
+              ["Age: Adult", "Disc prolapse / Ankylosing Spondylitis"],
+              ["Age: Elderly", "Degenerative / Osteoporosis / Metastasis / Myeloma"],
+              ["Pain Intensity: Constant", "Trauma"],
+              ["Pain Intensity: Progressive", "Inflammatory / Tumour"],
+              ["Radiation: Down the leg", "Sciatica / Nerve root compression"],
+              ["Worse with Activity / Relieved by Rest", "Mechanical / Degenerative (Osteoarthritis)"],
+              ["Worse in Morning / Stiffness", "Inflammatory (Ankylosing Spondylitis, Psoriasis)"],
+              ["Worse with Coughing / Sneezing", "Root compression / Disc prolapse"],
+              ["Worse with Menstruation", "Gynaecological causes (Endometriosis)"],
+              ["Worse with Walking / Relieved by Rest", "Spinal Stenosis (Claudication)"],
+              ["Worse at Night", "Malignancy (Metastasis / Myeloma)"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Systemic Review",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["System / Symptom", "Significance"],
+            "tableRows": [
+              ["Haematological: Anaemia, Bruising", "Multiple Myeloma"],
+              ["GU: Haematuria, Loin pain", "Renal pathology (Calculi, Tumour)"],
+              ["GU: Prostatism (Retention/Poor stream)", "Prostatic CA (Metastasis to spine)"],
+              ["GIT: Epigastric pain, Jaundice", "Pancreatic CA (Radiates to back)"],
+              ["RS: Cough, Haemoptysis", "Bronchial CA (Metastasis) / TB Spine"],
+              ["Skin: Psoriatic lesions", "Psoriatic Arthritis"],
+              ["General: Fever, Weight Loss", "Infection (TB), Malignancy"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Examination",
+        "content": [
+          {
+            "type": "header",
+            "text": "Examination 11: Signs",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Sign to Elicit", "Significance"],
+            "tableRows": [
+              ["Kyphoscoliosis / Lordosis", "Spinal deformity"],
+              ["Localized Kyphosis (Gibbus)", "TB Spine / Fracture"],
+              ["Step in spinous process", "Spondylolisthesis"],
+              ["Muscle Spasm / Swelling", "Inflammation / Trauma"],
+              ["Localized Tenderness", "Infection (Abscess) / Disc pathology"],
+              ["Limited Lumbar Movement", "Lumbar spine disease"],
+              ["Straight Leg Raising Test (SLRT)", "Nerve root compression (Sciatica)"],
+              ["Reduced Chest Expansion", "Ankylosing Spondylitis (Costovertebral involvement)"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Systemic Signs",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["System", "Significance"],
+            "tableRows": [
+              ["Breast / Thyroid Lumps", "Primary malignancy (Metastasis to spine)"],
+              ["Prostate (Hard/Enlarged)", "Prostatic CA (Metastasis)"],
+              ["Abdomen: Pulsatile mass", "Aortic Aneurysm"],
+              ["Abdomen: Renal mass", "Renal Cell Carcinoma"],
+              ["Neuro: Spastic Paraparesis", "Cord Compression"],
+              ["Neuro: Saddle Anaesthesia", "Cauda Equina Syndrome"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Algorithm",
+        "content": [
+          {
+            "type": "header",
+            "text": "Algorithm 12: Investigating Back Pain",
+            "level": 2
+          },
+          {
+            "type": "flowchart",
+            "flowchart": {
+              "direction": "vertical",
+              "nodes": [
+                { "id": "start", "label": "Back Pain", "type": "start", "level": 0, "order": 1 },
+
+                { "id": "basics", "label": "FBC, ESR, CRP\nCa, PO4, ALP\nUFR, S.Creatinine", "type": "process", "level": 1, "order": 1 },
+                { "id": "imaging_basic", "label": "X-Ray Spine/Pelvis\nCXR, USS Abdomen", "type": "process", "level": 1, "order": 2 },
+
+                { "id": "esr_check", "label": "ESR / CRP?", "type": "decision", "level": 2, "order": 1 },
+
+                { "id": "high_esr", "label": "Elevated (Inflammatory)", "type": "process", "level": 3, "order": 0 },
+                { "id": "norm_esr", "label": "Normal (Mechanical)", "type": "process", "level": 3, "order": 2 },
+
+                { "id": "infective", "label": "Infective (TB)\n(Collapsed Vertebra)", "type": "end", "level": 4, "order": 0 },
+                { "id": "malignant", "label": "Malignancy\n(Myeloma / Mets)", "type": "process", "level": 4, "order": 1 },
+                { "id": "spondylo", "label": "Inflammatory\n(Sacroiliitis / Bamboo Spine)", "type": "end", "level": 4, "order": -1 },
+
+                { "id": "bone_scan", "label": "Bone Scan / Biopsy", "type": "process", "level": 5, "order": 1 },
+
+                { "id": "metabolic", "label": "Metabolic\n(Osteoporosis / Osteomalacia)", "type": "end", "level": 4, "order": 2 },
+                { "id": "degenerative", "label": "Degenerative\n(Spondylosis / Narrow Disc)", "type": "end", "level": 4, "order": 3 },
+
+                { "id": "normal_xray", "label": "Normal X-Ray", "type": "decision", "level": 5, "order": 3 },
+                { "id": "ct_mri", "label": "CT Abdomen / MRI Spine\n(Tumours / Cord Path)", "type": "end", "level": 6, "order": 3 }
+              ],
+              "connections": [
+                { "from": "start", "to": "basics" },
+                { "from": "start", "to": "imaging_basic" },
+                { "from": "basics", "to": "esr_check" },
+                { "from": "esr_check", "to": "high_esr", "label": "High" },
+                { "from": "esr_check", "to": "norm_esr", "label": "Normal" },
+                { "from": "high_esr", "to": "infective", "label": "X-Ray Collapse" },
+                { "from": "high_esr", "to": "malignant", "label": "Lytic Lesions" },
+                { "from": "high_esr", "to": "spondylo", "label": "Fused Spine" },
+                { "from": "malignant", "to": "bone_scan" },
+                { "from": "norm_esr", "to": "metabolic", "label": "Osteopenia" },
+                { "from": "norm_esr", "to": "degenerative", "label": "Osteophytes" },
+                { "from": "norm_esr", "to": "normal_xray" },
+                { "from": "normal_xray", "to": "ct_mri", "label": "Pain Persists" }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "title": "Key Points",
+        "content": [
+          {
+            "type": "header",
+            "text": "Key Points",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Mechanical backache is usually worse during activity (day time). Inflammatory backache is worse in the early morning." },
+              { "text": "Persistent severe backache at rest that disturbs sleep is very often due to malignant infiltration of vertebrae." },
+              { "text": "Backache with girdle pain (band-like pain around the waist) helps to identify the site of pathology at the vertebral level." },
+              { "text": "Backache associated with pain radiating down the leg (Sciatica) is often due to compression or irritation of a nerve root." },
+              { "text": "Backache associated with arthritis involving other joints may suggest inflammatory or degenerative disease." }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

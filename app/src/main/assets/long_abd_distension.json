@@ -1,0 +1,205 @@
+[
+  {
+    "type": "header",
+    "text": "Progressive Abdominal Distension",
+    "level": 1
+  },
+  {
+    "type": "callout",
+    "text": "Definition: Gradual increase in the size of the abdomen. It can be persistent or intermittent."
+  },
+  {
+    "type": "tab_group",
+    "tabs": [
+      {
+        "title": "Causes & Basics",
+        "content": [
+          {
+            "type": "header",
+            "text": "Causes (The 5 Fs)",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Fat (Obesity)" },
+              { "text": "Fluid (Ascites)" },
+              { "text": "Flatus (Gaseous distension in Intestinal Obstruction)" },
+              { "text": "Faeces (Extreme constipation with impaction)" },
+              { "text": "Fetus (Physiological)" },
+              { "text": "Note: Abdominal Lumps (Massive organomegaly e.g., Splenomegaly) can also cause distension." }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Ascites Classification (SAAG)",
+            "level": 2
+          },
+          {
+            "type": "paragraph",
+            "text": "Ascites is classified based on the Serum-Ascites Albumin Gradient (SAAG)."
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Type", "SAAG Value", "Causes"],
+            "tableRows": [
+              ["Transudate", "> 11 g/L (>1.1 g/dL)", "• Cirrhosis (Portal HTN)\n• Heart Failure (CCF, Right Heart Failure)\n• Budd-Chiari Syndrome\n• Constrictive Pericarditis"],
+              ["Exudate", "< 11 g/L (<1.1 g/dL)", "• Malignancy (Peritoneal Metastasis)\n• TB Peritonitis\n• Pancreatitis\n• Severe Hypoalbuminaemia (Nephrotic Syndrome)"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "History",
+        "content": [
+          {
+            "type": "header",
+            "text": "History Taking Points",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Point to Elicit", "Significance"],
+            "tableRows": [
+              ["Weight gain, abdominal discomfort", "Symptoms co-existing with ascites"],
+              ["Constipation, vomiting, abdominal pain", "Intestinal obstruction"],
+              ["Jaundice, change in sleep pattern, haematemesis", "Chronic Liver Disease (CLD)"],
+              ["Facial/Leg oedema, frothy urine", "Nephrotic Syndrome"],
+              ["Exertional dyspnoea, PND, chest pain", "Cardiac Failure"],
+              ["Chronic diarrhoea, Weight loss", "Malabsorption, TB, Intestinal Malignancy"],
+              ["Oliguria", "Hepato-renal syndrome"],
+              ["Evening pyrexia, night sweats", "Tuberculosis (TB)"],
+              ["Menstrual irregularities, pelvic pain", "Underlying pelvic malignancy (Ovarian)"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Past & Social History",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Past Malignancy: Breast, ovarian, or GI cancers (Metastasis)." },
+              { "text": "Hepatitis: History of Jaundice, Hep B/C." },
+              { "text": "Alcohol: Quantity and duration (Alcoholic Liver Disease)." },
+              { "text": "Drugs: Methotrexate (Fibrosis), Ayurvedic medicine." }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Examination",
+        "content": [
+          {
+            "type": "header",
+            "text": "General Signs",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Sign to Elicit", "Significance"],
+            "tableRows": [
+              ["Cachexia, Fever, Lymphadenopathy (Virchow's)", "Malignancy, TB"],
+              ["Jaundice, Spider naevi, Palmar erythema", "Chronic Liver Disease (CLD)"],
+              ["Facial oedema, Frothy urine", "Nephrotic Syndrome"],
+              ["Elevated JVP, Bilateral leg oedema", "Heart Failure (CCF)"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Abdominal Examination",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Sign to Elicit", "Significance"],
+            "tableRows": [
+              ["Distended veins (Caput Medusae)", "Portal Hypertension"],
+              ["Distended veins (Flanks, draining up)", "IVC Obstruction"],
+              ["Shifting Dullness / Fluid Thrill", "Ascites (Fluid thrill = Tense ascites)"],
+              ["Tender Hepatomegaly", "CCF, Budd-Chiari"],
+              ["Hard Irregular Liver", "Metastasis, Hepatoma"],
+              ["Splenomegaly", "Portal HTN, Haematological malignancy"],
+              ["Palpable RIF mass", "Ileocecal TB, Ca Cecum"],
+              ["Rectal / Vaginal Mass", "Pelvic Malignancy (Shelf sign)"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Algorithm",
+        "content": [
+          {
+            "type": "header",
+            "text": "Algorithm 5: Investigating Abdominal Distension",
+            "level": 2
+          },
+          {
+            "type": "flowchart",
+            "flowchart": {
+              "direction": "vertical",
+              "nodes": [
+                { "id": "start", "label": "Abdominal Distension", "type": "start", "level": 0, "order": 1 },
+
+                { "id": "uss", "label": "USS Abdomen", "type": "process", "level": 1, "order": 1 },
+
+                { "id": "type_check", "label": "Fluid vs Mass vs Gas", "type": "decision", "level": 2, "order": 1 },
+
+                { "id": "gas", "label": "Gaseous Distension", "type": "process", "level": 3, "order": 0 },
+                { "id": "mass", "label": "Mass Found", "type": "process", "level": 3, "order": 2 },
+                { "id": "fluid", "label": "Ascites (Fluid)", "type": "process", "level": 3, "order": 1 },
+
+                { "id": "obstruction", "label": "Exclude Obstruction / Ileus", "type": "end", "level": 4, "order": 0 },
+                { "id": "biopsy_mass", "label": "Biopsy / CT Scan", "type": "end", "level": 4, "order": 2 },
+
+                { "id": "paracentesis", "label": "Paracentesis &\nAnalysis (SAAG)", "type": "process", "level": 4, "order": 1 },
+
+                { "id": "high_saag", "label": "High SAAG (>1.1)\nTransudate", "type": "process", "level": 5, "order": 0 },
+                { "id": "low_saag", "label": "Low SAAG (<1.1)\nExudate", "type": "process", "level": 5, "order": 2 },
+
+                { "id": "cardiac_workup", "label": "Echo (Cardiac)\nDoppler (Portal/IVC)", "type": "end", "level": 6, "order": 0 },
+                { "id": "exudate_workup", "label": "Cytology (Malignancy)\nCulture/AFB (TB)\nCT Abdomen", "type": "end", "level": 6, "order": 2 }
+              ],
+              "connections": [
+                { "from": "start", "to": "uss" },
+                { "from": "uss", "to": "type_check" },
+                { "from": "type_check", "to": "gas", "label": "Gas" },
+                { "from": "type_check", "to": "mass", "label": "Solid" },
+                { "from": "type_check", "to": "fluid", "label": "Fluid" },
+                { "from": "gas", "to": "obstruction" },
+                { "from": "mass", "to": "biopsy_mass" },
+                { "from": "fluid", "to": "paracentesis" },
+                { "from": "paracentesis", "to": "high_saag", "label": ">11 g/L" },
+                { "from": "paracentesis", "to": "low_saag", "label": "<11 g/L" },
+                { "from": "high_saag", "to": "cardiac_workup" },
+                { "from": "low_saag", "to": "exudate_workup" }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "title": "Key Points",
+        "content": [
+          {
+            "type": "header",
+            "text": "Key Points",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Sudden onset ascites is usually seen in ruptured viscus, pancreatitis, or veno-occlusive states (Budd-Chiari)." },
+              { "text": "Transudative ascites (Cardiac/Renal/Hepatic) is often associated with generalized oedema (prominent leg oedema)." },
+              { "text": "In Exudative ascites and Veno-occlusive states, leg oedema is often NOT a prominent feature." },
+              { "text": "Common Differential Diagnosis: Cirrhosis vs Carcinomatosis." },
+              { "text": "Diffuse abdominal pain in a patient with ascites indicates Spontaneous Bacterial Peritonitis (SBP)." },
+              { "text": "If distension is not associated with increased girth and no objective findings, consider functional GI disorders." }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

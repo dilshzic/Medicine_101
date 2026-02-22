@@ -1,0 +1,138 @@
+[
+  {
+    "type": "header",
+    "text": "Special & Other Cases",
+    "level": 1
+  },
+  {
+    "type": "callout",
+    "text": "These are high-yield short cases. Common requests: 'Examine this patient's hands' or 'Check the neck'."
+  },
+  {
+    "type": "tab_group",
+    "tabs": [
+      {
+        "title": "Thyroid",
+        "content": [
+          {
+            "type": "header",
+            "text": "Thyroid Status",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Sign", "Hyperthyroid", "Hypothyroid"],
+            "tableRows": [
+              ["Pulse", "Tachycardia / AF", "Bradycardia"],
+              ["Hands", "Warm, Sweaty, Tremor", "Cold, Dry, Coarse skin"],
+              ["Reflexes", "Hyper-reflexia", "Slow relaxing"],
+              ["Eyes", "Lid retraction / Exophthalmos", "Periorbital puffiness"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "The Gland (Goitre)",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Inspection: Swallowing (moves up), Tongue protrusion (Thyroglossal cyst moves up)." },
+              { "text": "Palpation: Consistency (Diffuse vs Nodular), Tenderness." },
+              { "text": "Auscultation: Bruit (Graves' disease)." },
+              { "text": "Pemberton's Sign: Raise arms -> Facial congestion (Retrosternal goitre)." }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Rheumatology",
+        "content": [
+          {
+            "type": "header",
+            "text": "The Rheumatoid Hand",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Look:", "subItems": [
+                { "text": "Ulnar deviation at MCP joints" },
+                { "text": "Swan Neck Deformity (DIP flex, PIP ext)" },
+                { "text": "Boutonniere Deformity (DIP ext, PIP flex)" },
+                { "text": "Z-deformity of thumb" },
+                { "text": "Rheumatoid Nodules (Elbows)" }
+              ]},
+              { "text": "Feel:", "subItems": [
+                { "text": "Boggy swelling (Synovitis) at MCP/PIP" },
+                { "text": "Temperature (Active inflammation)" }
+              ]},
+              { "text": "Move: Grip strength, Pincer grip, Prayer sign." }
+            ]
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Feature", "Rheumatoid", "Osteoarthritis"],
+            "tableRows": [
+              ["Joints", "MCP, PIP, Wrist", "DIP (Heberden's), PIP (Bouchard's), CMC"],
+              ["Symmetry", "Symmetrical", "Asymmetrical"],
+              ["Stiffness", "Morning > 30mins", "Evening / Activity related"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Diabetic Foot",
+        "content": [
+          {
+            "type": "header",
+            "text": "Diabetic Foot Exam",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Inspection:", "subItems": [
+                { "text": "Ulcers (Pressure areas: Heel, Metatarsal heads)" },
+                { "text": "Charcot Joints (Rocker-bottom foot)" },
+                { "text": "Fungal infections (between toes)" }
+              ]},
+              { "text": "Neuropathy:", "subItems": [
+                { "text": "Glove & Stocking sensory loss" },
+                { "text": "Loss of Vibration sense (First sign)" },
+                { "text": "Loss of Ankle jerk" }
+              ]},
+              { "text": "Vascular: Check Dorsalis Pedis & Posterior Tibial pulses." }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Vascular",
+        "content": [
+          {
+            "type": "header",
+            "text": "Peripheral Vascular Disease",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Arterial Insufficiency:", "subItems": [
+                { "text": "Pallor on elevation (Buerger's Angle < 20 deg)" },
+                { "text": "Reactive Hyperemia (Rubor) on dependency" },
+                { "text": "Pulses: Weak or Absent" },
+                { "text": "Temp: Cold extremities" }
+              ]},
+              { "text": "Venous Insufficiency:", "subItems": [
+                { "text": "Varicose Veins (Trendelenburg test)" },
+                { "text": "Venous Ulcers (Gaiter area, medial malleolus)" },
+                { "text": "Lipodermatosclerosis (Champagne bottle legs)" }
+              ]}
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

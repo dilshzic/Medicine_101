@@ -1,0 +1,158 @@
+[
+  {
+    "type": "header",
+    "text": "Abdominal System",
+    "level": 1
+  },
+  {
+    "type": "callout",
+    "text": "Time limit: 5 minutes. Focus on identifying organomegaly and signs of Chronic Liver Disease (CLD)."
+  },
+  {
+    "type": "tab_group",
+    "tabs": [
+      {
+        "title": "General (CLD)",
+        "content": [
+          {
+            "type": "header",
+            "text": "Stigmata of Chronic Liver Disease",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Hands:", "subItems": [
+                { "text": "Leukonychia (Hypoalbuminemia)" },
+                { "text": "Clubbing (Hepatopulmonary Syndrome)" },
+                { "text": "Palmar Erythema" },
+                { "text": "Dupuytren's Contracture (Alcoholic)" },
+                { "text": "Flapping Tremor (Encephalopathy)" }
+              ]},
+              { "text": "Face:", "subItems": [
+                { "text": "Icterus (Sclera)" },
+                { "text": "Parotid Enlargement (Alcohol)" }
+              ]},
+              { "text": "Chest/Upper Body:", "subItems": [
+                { "text": "Spider Naevi (SVC distribution)" },
+                { "text": "Gynaecomastia (in males)" },
+                { "text": "Loss of axillary hair" },
+                { "text": "Scratch marks (Pruritus)" }
+              ]}
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Inspection",
+        "content": [
+          {
+            "type": "header",
+            "text": "Abdominal Inspection",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Distension: 5 F's (Fat, Fluid, Flatus, Feces, Fetus)" },
+              { "text": "Umbilicus: Everted (Ascites), Flat, Transverse slit" },
+              { "text": "Veins:", "subItems": [
+                { "text": "Caput Medusae (Portal HTN) - Flow away from umbilicus" },
+                { "text": "IVC Obstruction - Flow upwards" }
+              ]},
+              { "text": "Scars:", "subItems": [
+                { "text": "Mercedes Benz (Liver Transplant)" },
+                { "text": "Kocher's (Cholecystectomy)" },
+                { "text": "Rutherford Morrison (Kidney Transplant)" }
+              ]}
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Palpation",
+        "content": [
+          {
+            "type": "header",
+            "text": "Organomegaly",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Liver:", "subItems": [
+                { "text": "Span: Normal < 13cm" },
+                { "text": "Surface: Nodular (Cirrhosis/Mets) vs Smooth" },
+                { "text": "Edge: Irregular vs Regular" },
+                { "text": "Consistency: Hard (Malignancy) vs Firm (Cirrhosis)" }
+              ]},
+              { "text": "Spleen:", "subItems": [
+                { "text": "Hackett's Grading (0-5)" },
+                { "text": "Palpate starting from RIF towards Left Hypochondrium" }
+              ]},
+              { "text": "Kidneys:", "subItems": [
+                { "text": "Bimanual palpation (Ballotable)" },
+                { "text": "Polycystic Kidneys (Bilateral palpable knobbly kidneys)" }
+              ]}
+            ]
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Feature", "Spleen", "Kidney"],
+            "tableRows": [
+              ["Movement", "Towards RIF", "Downwards"],
+              ["Notch", "Present", "Absent"],
+              ["Percussion", "Dull", "Resonant (Colonic band)"],
+              ["Friction Rub", "Possible", "Absent"],
+              ["Upper border", "Cannot get above", "Can get above"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Short Cases",
+        "content": [
+          {
+            "type": "header",
+            "text": "Hepatosplenomegaly (HSM)",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Chronic Liver Disease with Portal Hypertension" },
+              { "text": "Hematological: Thalassemia, Lymphoma, Leukemia" },
+              { "text": "Infective: Malaria, Visceral Leishmaniasis" }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Ascites",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Signs: Shifting Dullness, Fluid Thrill (if tense)" },
+              { "text": "Causes (SAAG High >1.1): Cirrhosis, Heart Failure" },
+              { "text": "Causes (SAAG Low <1.1): TB, Malignancy, Nephrotic Syn" }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Renal Enlargement",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Unilateral: Hydronephrosis, Renal Cell Carcinoma" },
+              { "text": "Bilateral: Polycystic Kidney Disease (PCKD)" },
+              { "text": "Transplant Kidney: Look for scar in Iliac Fossa + Mass" }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

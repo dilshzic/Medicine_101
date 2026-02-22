@@ -1,0 +1,180 @@
+[
+  {
+    "type": "header",
+    "text": "General Examination Overview",
+    "level": 1
+  },
+  {
+    "type": "callout",
+    "text": "General examination should be very brief and highly relevant. Usually, it helps the students to think about the cause for the underlying diagnosis."
+  },
+  {
+    "type": "header",
+    "text": "Systemic Clues",
+    "level": 2
+  },
+  {
+    "type": "table",
+    "tableHeaders": [
+      "Systemic Finding",
+      "Clue on General Exam"
+    ],
+    "tableRows": [
+      [
+        "Mitral Regurgitation",
+        "Marfanoid features"
+      ],
+      [
+        "Pleural Effusion",
+        "Clubbing, Yellow Nail Syndrome"
+      ],
+      [
+        "Tender Hepatomegaly",
+        "Icterus (Hepatitis)"
+      ],
+      [
+        "Cord Compression",
+        "Neurofibromatosis"
+      ]
+    ]
+  },
+  {
+    "type": "header",
+    "text": "1. General Features",
+    "level": 2
+  },
+  {
+    "type": "list",
+    "items": [
+      {
+        "text": "Weight: Cachexia (TB, Malignancy) vs Obesity (Cushing's)."
+      },
+      {
+        "text": "Hydration: Check skin turgor and tongue."
+      },
+      {
+        "text": "Smell of Breath:",
+        "subItems": [
+          { "text": "Foetor Hepaticus (Sweet/Musty) - Liver Failure" },
+          { "text": "Uraemic (Fishy/Ammonia) - CKD" },
+          { "text": "Foul Smell - Bronchiectasis / Lung Abscess" }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "header",
+    "text": "2. Facial Appearance",
+    "level": 2
+  },
+  {
+    "type": "table",
+    "tableHeaders": [
+      "Facies",
+      "Diagnostic Features"
+    ],
+    "tableRows": [
+      [
+        "Acromegalic",
+        "Prominent supraorbital ridges, large jaw (prognathism), large tongue."
+      ],
+      [
+        "Thyrotoxic",
+        "Staring eyes, lid retraction, exophthalmos."
+      ],
+      [
+        "Myxoedematous",
+        "Puffy face, loss of lateral 1/3 eyebrows, coarse skin."
+      ],
+      [
+        "Cushingoid",
+        "Moon face, plethora, hirsutism."
+      ],
+      [
+        "Systemic Sclerosis",
+        "Tout face (tight skin), beaked nose, microstomia."
+      ]
+    ]
+  },
+  {
+    "type": "header",
+    "text": "3. Hands & Nails",
+    "level": 2
+  },
+  {
+    "type": "list",
+    "items": [
+      {
+        "text": "Clubbing (Loss of Lovibond angle):",
+        "subItems": [
+          { "text": "Resp: Bronchiectasis, Ca Bronchus, Fibrosis" },
+          { "text": "Cardio: Infective Endocarditis, Cyanotic CHD" },
+          { "text": "GI: Cirrhosis, IBD" }
+        ]
+      },
+      {
+        "text": "Koilonychia (Spoon nails): Iron deficiency anemia."
+      },
+      {
+        "text": "Leukonychia (White nails): Hypoalbuminemia (Cirrhosis, Nephrotic syndrome)."
+      },
+      {
+        "text": "Splinter Hemorrhages: Infective Endocarditis, Trauma, Vasculitis."
+      }
+    ]
+  },
+  {
+    "type": "header",
+    "text": "4. Eyes",
+    "level": 2
+  },
+  {
+    "type": "table",
+    "tableHeaders": [
+      "Finding",
+      "Significance"
+    ],
+    "tableRows": [
+      [
+        "Pallor",
+        "Anemia"
+      ],
+      [
+        "Icterus",
+        "Deep (Obstructive), Lemon tinge (Hemolytic)"
+      ],
+      [
+        "Xanthelasma",
+        "Hyperlipidemia"
+      ],
+      [
+        "Corneal Arcus",
+        "Hyperlipidemia (if young), Old age"
+      ],
+      [
+        "Kayser-Fleischer Ring",
+        "Wilson's Disease (Copper deposition)"
+      ]
+    ]
+  },
+  {
+    "type": "header",
+    "text": "5. Legs",
+    "level": 2
+  },
+  {
+    "type": "list",
+    "items": [
+      {
+        "text": "Edema:",
+        "subItems": [
+          { "text": "Bilateral: Heart failure, CKD, Liver failure" },
+          { "text": "Unilateral: DVT, Cellulitis, Lymphatic obstruction" }
+        ]
+      },
+      {
+        "text": "Ulcers: Venous (Medial malleolus) vs Arterial (Punched out, toes)."
+      }
+    ]
+  }
+]

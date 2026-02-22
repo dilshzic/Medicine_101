@@ -1,0 +1,279 @@
+[
+  {
+    "type": "header",
+    "text": "Cardiovascular System",
+    "level": 1
+  },
+  {
+    "type": "callout",
+    "text": "Time limit: 5 minutes. Spend 1 minute on General/Peripheral and 4 minutes on the Precordium."
+  },
+  {
+    "type": "tab_group",
+    "tabs": [
+      {
+        "title": "Gen & Periph",
+        "content": [
+          {
+            "type": "header",
+            "text": "General Inspection",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              {
+                "text": "Patient Comfort",
+                "subItems": [
+                  { "text": "Dyspnoea (Left Heart Failure)" },
+                  { "text": "Cyanosis (Central - Cardiac/Resp, Peripheral - Cold/Shock)" }
+                ]
+              },
+              {
+                "text": "Syndromic Features",
+                "subItems": [
+                  { "text": "Marfan Syndrome (Tall, High arched palate) → AR, MR, Aortic Dissection" },
+                  { "text": "Down Syndrome → ASD, VSD" },
+                  { "text": "Turner Syndrome → Coarctation of Aorta" }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Hands & Pulse",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Clubbing: Infective Endocarditis (IE), Cyanotic CHD" },
+              { "text": "Splinter Hemorrhages: IE, Trauma, Vasculitis" },
+              { "text": "Osler's Nodes: Painful, raised red lesions (IE)" },
+              { "text": "Janeway Lesions: Painless red macules (IE)" }
+            ]
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Pulse Character", "Diagnosis"],
+            "tableRows": [
+              ["Collapsing (Waterhammer)", "Aortic Regurgitation, PDA, AV Fistula"],
+              ["Slow Rising (Anacrotic)", "Aortic Stenosis"],
+              ["Bisferiens", "Mixed Aortic Valve Disease (AS + AR)"],
+              ["Jerky", "HOCM"],
+              ["Pulsus Paradoxus", "Cardiac Tamponade, Severe Asthma"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Face & Neck",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Malar Flush: Mitral Stenosis" },
+              { "text": "High Arched Palate: Marfan's" },
+              { "text": "JVP: Elevated in Right Heart Failure, TR. Giant v-waves in TR." }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Precordium",
+        "content": [
+          {
+            "type": "header",
+            "text": "Inspection",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Scar Location", "Possible Surgery"],
+            "tableRows": [
+              ["Midline Sternotomy", "CABG, Valve Replacement"],
+              ["Left Lateral Thoracotomy", "Mitral Valvotomy (Closed)"],
+              ["Left Sub-mammary", "Mitral Valvotomy"],
+              ["Infraclavicular", "Pacemaker / ICD"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Palpation",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Apex Beat Character", "Diagnosis"],
+            "tableRows": [
+              ["Tapping", "Mitral Stenosis (Palpable S1)"],
+              ["Heaving (Pressure)", "Aortic Stenosis, Hypertension (LVH)"],
+              ["Thrusting (Volume)", "Mitral/Aortic Regurgitation (LV Volume Overload)"],
+              ["Double Impulse", "HOCM"]
+            ]
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Thrills: Palpable murmurs (Grade 4+)" },
+              { "text": "Parasternal Heave: Right Ventricular Hypertrophy (RVH)" }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Auscultation",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Listen to 4 areas: Mitral, Tricuspid, Pulmonary, Aortic" },
+              { "text": "Dynamic Maneuvers:", "subItems": [
+                { "text": "Roll to Left: Mitral murmurs (MS/MR)" },
+                { "text": "Sit up, lean forward, exhale: Aortic Regurgitation" },
+                { "text": "Inspiration: Increases Right sided murmurs" },
+                { "text": "Expiration: Increases Left sided murmurs" }
+              ]}
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mitral Valve",
+        "content": [
+          {
+            "type": "header",
+            "text": "Mitral Stenosis (MS)",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Pulse: Low volume, Irregularly irregular (AF common)" },
+              { "text": "Apex: Tapping quality, Not displaced" },
+              { "text": "Auscultation:", "subItems": [
+                { "text": "Loud S1" },
+                { "text": "Opening Snap (OS) in diastole" },
+                { "text": "Mid-diastolic murmur (Rumblng) at apex" },
+                { "text": "Presystolic accentuation (if in Sinus Rhythm)" }
+              ]},
+              { "text": "Severity Signs: Length of murmur, closeness of OS to S2." }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Mitral Regurgitation (MR)",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Pulse: Normal or AF" },
+              { "text": "Apex: Thrusting, Displaced laterally" },
+              { "text": "Auscultation:", "subItems": [
+                { "text": "Soft S1" },
+                { "text": "Pansystolic murmur at apex" },
+                { "text": "Radiates to Axilla" }
+              ]}
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Aortic Valve",
+        "content": [
+          {
+            "type": "header",
+            "text": "Aortic Stenosis (AS)",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Pulse: Slow rising (Anacrotic), Low pulse pressure" },
+              { "text": "Apex: Heaving (Pressure overload)" },
+              { "text": "Auscultation:", "subItems": [
+                { "text": "Ejection Systolic Murmur (Crescendo-Decrescendo)" },
+                { "text": "Radiates to Carotids" },
+                { "text": "Soft A2 (in severe AS)" }
+              ]}
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Aortic Regurgitation (AR)",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Pulse: Collapsing (Waterhammer)" },
+              { "text": "BP: Wide pulse pressure (e.g., 140/40)" },
+              { "text": "Apex: Thrusting, Displaced laterally and inferiorly" },
+              { "text": "Auscultation:", "subItems": [
+                { "text": "Early Diastolic Murmur at left sternal edge" },
+                { "text": "Best heard: Sitting forward, expiration" },
+                { "text": "Austin Flint Murmur: Mid-diastolic rumble at apex (due to regurgitant jet hitting MV leaflet)" }
+              ]}
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Congenital/Misc",
+        "content": [
+          {
+            "type": "header",
+            "text": "Ventricular Septal Defect (VSD)",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Pansystolic murmur at Left Sternal Edge" },
+              { "text": "Often associated with a Thrill" },
+              { "text": "Maladie de Roger: Small VSD, loud murmur, asymptomatic" }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Atrial Septal Defect (ASD)",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Fixed Splitting of S2" },
+              { "text": "Ejection Systolic Murmur (Pulmonary flow, not the defect itself)" }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Patent Ductus Arteriosus (PDA)",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Continuous 'Machinery' Murmur below left clavicle" },
+              { "text": "Collapsing pulse" }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Prosthetic Valves",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Metallic Click: Mechanical valve" },
+              { "text": "Closing sound: Palpable and Audible" },
+              { "text": "Ask: 'Do you take Warfarin?' (Anticoagulation needed)" }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

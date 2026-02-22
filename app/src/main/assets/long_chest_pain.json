@@ -1,0 +1,229 @@
+[
+  {
+    "type": "header",
+    "text": "Chest Pain",
+    "level": 1
+  },
+  {
+    "type": "callout",
+    "text": "Acute chest pain is a common emergency. Identification of the cause is challenging as many structures in the thorax (and abdomen) can give rise to pain."
+  },
+  {
+    "type": "tab_group",
+    "tabs": [
+      {
+        "title": "Causes & Basics",
+        "content": [
+          {
+            "type": "header",
+            "text": "Flash Card 24: Anatomical Classification",
+            "level": 2
+          },
+          {
+            "type": "accordion",
+            "items": [
+              {
+                "title": "Cardiac & Vascular",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Myocardium: Ischaemia, Infarction" },
+                    { "text": "Pericardium: Pericarditis" },
+                    { "text": "Aorta: Aneurysm, Dissection" },
+                    { "text": "Pulmonary Vessels: Embolism, Hypertension" }
+                  ]}
+                ]
+              },
+              {
+                "title": "Respiratory & Mediastinum",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Lung/Pleura: Pneumonia, Pleurisy, Pneumothorax, Tumours" },
+                    { "text": "Mediastinum: Tumours, Mediastinitis, Surgical Emphysema" }
+                  ]}
+                ]
+              },
+              {
+                "title": "Gastrointestinal",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Oesophagus: Reflux, Hiatus hernia, Tumours, Spasm, Rupture" },
+                    { "text": "Abdominal: Peptic Ulcer, Cholecystitis, Pancreatitis, Liver Abscess, Splenic enlargement" }
+                  ]}
+                ]
+              },
+              {
+                "title": "Chest Wall",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Bony: Fractures, Neoplastic deposits" },
+                    { "text": "Neurological: Herpes Zoster, Nerve root compression" },
+                    { "text": "Soft Tissue: Mastitis" }
+                  ]}
+                ]
+              }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Angina vs. Myocardial Infarction",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Feature", "Angina", "Myocardial Infarction (MI)"],
+            "tableRows": [
+              ["Site", "Retrosternal", "Retrosternal"],
+              ["Radiation", "Throat / Left arm", "Throat / Left arm"],
+              ["Nature", "Tight gripping", "Similar but more severe"],
+              ["Duration", "Short (few minutes)", "> 30 minutes"],
+              ["Precipitation", "Exertion / Stress / Cold / Meals", "Usually none"],
+              ["Relief", "Rest, GTN", "None"],
+              ["Associated Features", "Usually none", "Sweating, Vomiting, Dizziness"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "History",
+        "content": [
+          {
+            "type": "header",
+            "text": "History 12: Points to Elicit",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Symptom / Feature", "Significance"],
+            "tableRows": [
+              ["Retrosternal pain", "Cardiac / Pulmonary Embolism / Oesophageal"],
+              ["Lateral pain", "Pleuritic"],
+              ["Well localized / Superficial", "Musculoskeletal"],
+              ["Radiation: Inter-scapular", "Aortic Dissection"],
+              ["Nature: Crushing / Gripping", "Cardiac (Ischaemic)"],
+              ["Nature: Burning", "Gastrointestinal (Reflux)"],
+              ["Precipitant: Exertion / Stress", "Cardiac (Stable Angina)"],
+              ["Precipitant: Cough / Deep breath", "Pleurisy"],
+              ["Precipitant: Movement", "Musculoskeletal"],
+              ["Relieved by: Rest / GTN", "Cardiac"],
+              ["Assoc: Sweating / Vomiting", "Myocardial Infarction"],
+              ["Assoc: Haemoptysis / SOB", "Pulmonary Embolism"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Risk Factors",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Medical Hx: Hypertension, DM, Hyperlipidaemia, PVD, Stroke." },
+              { "text": "Family Hx: Ischaemic Heart Disease (IHD)." },
+              { "text": "Social Hx: Smoking, Alcohol, Stress, Diet." },
+              { "text": "Drug Hx: Compliance with anti-anginals, OCP (Embolism risk)." }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Examination",
+        "content": [
+          {
+            "type": "header",
+            "text": "Examination 12: Signs",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Sign to Elicit", "Significance"],
+            "tableRows": [
+              ["Cold, clammy extremities", "Cardiogenic Shock (MI)"],
+              ["Breathlessness / Cyanosis", "Pulmonary Embolism / LVF"],
+              ["Pulse Discrepancy (Arms)", "Aortic Dissection"],
+              ["Irregular Pulse", "Arrhythmias"],
+              ["Hypotension", "Cardiogenic Shock / Massive PE"],
+              ["Elevated JVP", "RV Infarct / PE / Pericardial Effusion"],
+              ["Murmur: MR / VSD", "Complication of MI"],
+              ["Murmur: AR", "Aortic Dissection (Retrograde)"],
+              ["Pericardial Rub", "Pericarditis"],
+              ["Chest Wall Tenderness", "Musculoskeletal / Costochondritis"],
+              ["Vesicular Rash", "Herpes Zoster"],
+              ["Unilateral Hyper-resonance", "Pneumothorax"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Algorithm",
+        "content": [
+          {
+            "type": "header",
+            "text": "Algorithm 13: Investigating Chest Pain",
+            "level": 2
+          },
+          {
+            "type": "flowchart",
+            "flowchart": {
+              "direction": "vertical",
+              "nodes": [
+                { "id": "start", "label": "Acute Chest Pain", "type": "start", "level": 0, "order": 1 },
+
+                { "id": "basics", "label": "ECG, Cardiac Enzymes\nCXR, FBC, U&E", "type": "process", "level": 1, "order": 1 },
+
+                { "id": "cardiac_path", "label": "Cardiac Suspected", "type": "decision", "level": 2, "order": 0 },
+                { "id": "non_cardiac", "label": "Non-Cardiac", "type": "decision", "level": 2, "order": 2 },
+
+                { "id": "ihd", "label": "IHD / MI", "type": "process", "level": 3, "order": -1 },
+                { "id": "other_cardiac", "label": "Other Cardiac", "type": "process", "level": 3, "order": 1 },
+
+                { "id": "angio", "label": "Coronary Angiogram\nExercise ECG", "type": "end", "level": 4, "order": -1 },
+                { "id": "ct_chest", "label": "CT Chest / Echo\n(Dissection / PE)", "type": "end", "level": 4, "order": 1 },
+
+                { "id": "resp", "label": "Respiratory\n(Pleural / Lung)", "type": "process", "level": 3, "order": 2 },
+                { "id": "git", "label": "Gastrointestinal", "type": "process", "level": 3, "order": 3 },
+
+                { "id": "bronch", "label": "CT Chest\nBronchoscopy", "type": "end", "level": 4, "order": 2 },
+                { "id": "endo", "label": "Endoscopy / USS\nAmylase", "type": "end", "level": 4, "order": 3 },
+
+                { "id": "msk", "label": "Musculoskeletal\n(X-Ray Spine)", "type": "end", "level": 4, "order": 4 }
+              ],
+              "connections": [
+                { "from": "start", "to": "basics" },
+                { "from": "basics", "to": "cardiac_path" },
+                { "from": "basics", "to": "non_cardiac" },
+                { "from": "cardiac_path", "to": "ihd", "label": "Ischaemic" },
+                { "from": "cardiac_path", "to": "other_cardiac", "label": "Aorta/Pericardium" },
+                { "from": "ihd", "to": "angio" },
+                { "from": "other_cardiac", "to": "ct_chest" },
+                { "from": "non_cardiac", "to": "resp", "label": "Pulmonary" },
+                { "from": "non_cardiac", "to": "git", "label": "Abdominal" },
+                { "from": "non_cardiac", "to": "msk", "label": "Bone/Muscle" },
+                { "from": "resp", "to": "bronch" },
+                { "from": "git", "to": "endo" }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "title": "Key Points",
+        "content": [
+          {
+            "type": "header",
+            "text": "Key Points",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "History taking is crucial in IHD as physical signs are often minimal." },
+              { "text": "To rule out Aortic Dissection, look for: Shock, Absent peripheral pulses, BP difference in arms." },
+              { "text": "Life-threatening intra-abdominal conditions (e.g., Pancreatitis, Perforated Ulcer) can present mainly with chest pain." },
+              { "text": "Always exclude Pulmonary Embolism in patients with chest pain and breathlessness, especially if risk factors (DVT) are present." }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

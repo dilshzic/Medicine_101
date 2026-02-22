@@ -1,0 +1,206 @@
+[
+  {
+    "type": "header",
+    "text": "Cranial Nerve Examination (I-XII)",
+    "level": 1
+  },
+  {
+    "type": "callout",
+    "text": "General Inspection: Look for Ptosis, Facial Asymmetry, Hearing Aids, Spectacles, or Hoarseness before you even touch the patient."
+  },
+  {
+    "type": "tab_group",
+    "tabs": [
+      {
+        "title": "Vision (II-VI)",
+        "content": [
+          {
+            "type": "header",
+            "text": "CN II: Optic Nerve",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Visual Acuity: Snellen Chart (with glasses). count fingers if very poor." },
+              { "text": "Visual Fields (Confrontation):", "subItems": [
+                { "text": "Monocular Blindness: Optic Nerve lesion." },
+                { "text": "Bitemporal Hemianopia: Optic Chiasm (Pituitary Tumor)." },
+                { "text": "Homonymous Hemianopia: Optic Tract / Radiation (Stroke)." }
+              ]},
+              { "text": "Pupillary Reflexes:", "subItems": [
+                { "text": "Direct: Constriction in illuminated eye." },
+                { "text": "Consensual: Constriction in opposite eye." },
+                { "text": "RAPD (Marcus Gunn): Pupil dilates when light swings to affected eye (Optic Neuritis)." }
+              ]},
+              { "text": "Fundoscopy: Papilledema (blurred disc margins), Optic Atrophy (pale disc)." }
+            ]
+          },
+
+
+
+          {
+            "type": "header",
+            "text": "CN III, IV, VI: Ocular Motor",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Inspection:", "subItems": [
+                { "text": "Ptosis (Drooping eyelid): Complete (CN III) vs Partial (Horner's)." },
+                { "text": "Proptosis: Graves' Disease." },
+                { "text": "Strabismus (Squint)." }
+              ]},
+              { "text": "Eye Movements (H-Test):", "subItems": [
+                { "text": "Ask about Diplopia (Double vision)." },
+                { "text": "Nystagmus: Jerky oscillatory movement (Cerebellar/Vestibular)." }
+              ]}
+            ]
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Nerve", "Palsy Signs"],
+            "tableRows": [
+              ["CN III (Oculomotor)", "Eye 'Down & Out', Ptosis, Dilated Pupil"],
+              ["CN IV (Trochlear)", "Vertical Diplopia (worse looking down/in), Head tilt"],
+              ["CN VI (Abducens)", "Horizontal Diplopia, Failure to Abduct (Lateral Rectus)"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Face (V, VII, VIII)",
+        "content": [
+          {
+            "type": "header",
+            "text": "CN V: Trigeminal",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Sensory (Cotton/Pin):", "subItems": [
+                { "text": "Ophthalmic (V1): Forehead." },
+                { "text": "Maxillary (V2): Cheek." },
+                { "text": "Mandibular (V3): Jaw." }
+              ]},
+              { "text": "Motor:", "subItems": [
+                { "text": "Clench teeth (Feel Masseter/Temporalis)." },
+                { "text": "Open mouth: Jaw deviates to paralyzed side (Pterygoids)." }
+              ]},
+              { "text": "Reflexes:", "subItems": [
+                { "text": "Corneal Reflex: Touch cornea with cotton wisp (Afferent V1, Efferent VII)." },
+                { "text": "Jaw Jerk: Brisk in Pseudobulbar palsy (UMN)." }
+              ]}
+            ]
+          },
+          {
+            "type": "header",
+            "text": "CN VII: Facial",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Inspection: Loss of nasolabial fold, drooping mouth." },
+              { "text": "Motor Commands:", "subItems": [
+                { "text": "Raise eyebrows (Frontalis)." },
+                { "text": "Close eyes tightly (Orbicularis Oculi)." },
+                { "text": "Blow out cheeks (Buccinator)." },
+                { "text": "Show teeth (Grimace)." }
+              ]}
+            ]
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Feature", "LMN (Bell's)", "UMN (Stroke)"],
+            "tableRows": [
+              ["Forehead Wrinkling", "Lost (All muscles affected)", "Spared (Bilateral innervation)"],
+              ["Eye Closure", "Incomplete (Bell's Phenomenon)", "Normal"],
+              ["Mouth Deviation", "To healthy side", "To healthy side"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "CN VIII: Vestibulocochlear",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Bedside Hearing: Whisper numbers in one ear while masking the other." },
+              { "text": "Rinne's Test (512Hz Tuning Fork):", "subItems": [
+                { "text": "Positive (Normal): Air > Bone conduction." },
+                { "text": "Negative (Conductive Loss): Bone > Air conduction." }
+              ]},
+              { "text": "Weber's Test (Fork on forehead):", "subItems": [
+                { "text": "Central: Normal." },
+                { "text": "Lateralizes to BAD ear: Conductive Loss." },
+                { "text": "Lateralizes to GOOD ear: Sensorineural Loss." }
+              ]}
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Bulbar (IX-XII)",
+        "content": [
+          {
+            "type": "header",
+            "text": "CN IX, X: Glossopharyngeal & Vagus",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Voice: Hoarseness (Recurrent laryngeal nerve palsy), Bovine cough (weak)." },
+              { "text": "Palate Movement: Say 'Ahhh'. Uvula deviates AWAY from the lesion." },
+              { "text": "Gag Reflex: Afferent IX, Efferent X. (Unpleasant, only do if essential)." },
+              { "text": "Swallowing: Ask patient to swallow water (watch for cough/choking)." }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "CN XI: Accessory",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Trapezius: Shrug shoulders against resistance." },
+              { "text": "Sternocleidomastoid: Turn head against resistance (Right SCM turns head to Left)." }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "CN XII: Hypoglossal",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Inspection (Rest): Wasting, Fasciculations (LMN)." },
+              { "text": "Protrusion: Tongue deviates TOWARDS the lesion (weak side pushes less)." }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Summary Syndromes",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Syndrome", "Nerves Involved"],
+            "tableRows": [
+              ["Cerebellopontine Angle", "V, VII, VIII (Corneal reflex loss, Facial weakness, Deafness)"],
+              ["Bulbar Palsy (LMN)", "IX, X, XII (Wasted tongue, Nasal speech, Dysphagia)"],
+              ["Pseudobulbar (UMN)", "IX, X, XII (Spastic tongue, Hot potato speech, Emotional lability)"],
+              ["Jugular Foramen", "IX, X, XI"]
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

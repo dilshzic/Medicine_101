@@ -1,0 +1,235 @@
+[
+  {
+    "type": "header",
+    "text": "Stroke (Cerebrovascular Accident)",
+    "level": 1
+  },
+  {
+    "type": "callout",
+    "text": "Definition (WHO): Rapidly developing clinical signs of focal (or global) disturbance of cerebral function, with symptoms lasting 24 hours or longer or leading to death, with no apparent cause other than of vascular origin.\nTIA (Transient Ischaemic Attack): Symptoms resolve completely within 24 hours."
+  },
+  {
+    "type": "tab_group",
+    "tabs": [
+      {
+        "title": "Classification",
+        "content": [
+          {
+            "type": "header",
+            "text": "Pathological Classification",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Ischaemic (85%): Thrombosis (Large vessel), Embolism (Cardiac/Carotid), Lacunar (Small vessel)." },
+              { "text": "Haemorrhagic (15%): Intracerebral Haemorrhage (Hypertension), Subarachnoid Haemorrhage (Aneurysm)." }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Bamford / Oxford Classification (Clinical)",
+            "level": 2
+          },
+          { "type": "paragraph", "text": "" },
+          {
+            "type": "table",
+            "tableHeaders": ["Type", "Criteria (Signs)"],
+            "tableRows": [
+              ["TACS (Total Anterior Circulation)", "All 3 of:\n1. Unilateral weakness (Hemiparesis)\n2. Homonymous Hemianopia\n3. Higher Cerebral Dysfunction (Dysphasia / Neglect)"],
+              ["PACS (Partial Anterior Circulation)", "Two of the above components OR Higher cerebral dysfunction alone."],
+              ["LACS (Lacunar Syndrome)", "Pure Motor Stroke OR Pure Sensory Stroke OR Ataxic Hemiparesis. (No cortical signs like dysphasia/neglect)."],
+              ["POCS (Posterior Circulation)", "One of:\n1. Cerebellar signs\n2. Cranial Nerve Palsy + Contralateral weakness (Crossed signs)\n3. Bilateral motor/sensory deficit\n4. Conjugate eye movement disorder"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Causes & Risk Factors",
+        "content": [
+          {
+            "type": "header",
+            "text": "Flash Card 36: Risk Factors",
+            "level": 2
+          },
+          {
+            "type": "accordion",
+            "items": [
+              {
+                "title": "Modifiable",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Hypertension (Most important)." },
+                    { "text": "Atrial Fibrillation (Embolic risk)." },
+                    { "text": "Smoking." },
+                    { "text": "Diabetes Mellitus." },
+                    { "text": "Hyperlipidaemia." },
+                    { "text": "Carotid Stenosis." },
+                    { "text": "Obesity / Alcohol." }
+                  ]}
+                ]
+              },
+              {
+                "title": "Non-Modifiable",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Age (>65)." },
+                    { "text": "Gender (Male > Female)." },
+                    { "text": "Family History." },
+                    { "text": "Previous Stroke/TIA." }
+                  ]}
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "History",
+        "content": [
+          {
+            "type": "header",
+            "text": "History 21: Points to Elicit",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Feature", "Significance"],
+            "tableRows": [
+              ["Onset: Sudden (Seconds)", "Embolic (Cardio-embolic) or Haemorrhagic"],
+              ["Onset: Stuttering / Progressive", "Thrombotic (Atherosclerosis)"],
+              ["Headache + Vomiting", "Haemorrhagic Stroke / Subarachnoid Haemorrhage"],
+              ["Neck Stiffness", "Subarachnoid Haemorrhage (Meningeal irritation)"],
+              ["Seizures at onset", "Lobar Haemorrhage / Venous Sinus Thrombosis"],
+              ["Palpitations", "Atrial Fibrillation (Embolic source)"],
+              ["Chest Pain", "Myocardial Infarction (Mural thrombus -> Embolism)"],
+              ["Recent Neck Trauma", "Carotid Dissection (Young stroke)"],
+              ["Drug History", "Warfarin (Bleeding risk), Cocaine (Vasospasm)"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Stroke Mimics",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Hypoglycaemia (Always check BM!)." },
+              { "text": "Migraine (Hemiplegic migraine)." },
+              { "text": "Seizure (Todd's Paresis)." },
+              { "text": "Brain Tumour (Space Occupying Lesion)." },
+              { "text": "Subdural Haematoma." },
+              { "text": "Functional (Hysterical)." }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Examination",
+        "content": [
+          {
+            "type": "header",
+            "text": "Examination 21: Signs",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Sign to Elicit", "Significance"],
+            "tableRows": [
+              ["BP (Hypertension)", "Risk factor / Reactive rise (Cushing's reflex)"],
+              ["Pulse: Irregularly Irregular", "Atrial Fibrillation"],
+              ["Heart Murmurs", "Valvular Disease / Endocarditis (Embolic source)"],
+              ["Carotid Bruit", "Carotid Stenosis"],
+              ["Fundoscopy", "Hypertensive Retinopathy / Papilloedema"],
+              ["Neck Stiffness / Kernig's", "Subarachnoid Haemorrhage"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Neurological Signs (Localization)",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "MCA Territory: Contralateral Hemiparesis (Face/Arm > Leg) + Dysphasia (Dominant) or Neglect (Non-dominant)." },
+              { "text": "ACA Territory: Contralateral Hemiparesis (Leg > Arm)." },
+              { "text": "PCA Territory: Homonymous Hemianopia." },
+              { "text": "Brainstem: Crossed signs (Ipsilateral Cranial Nerve + Contralateral Limb weakness)." },
+              { "text": "Lacunar: Pure Motor or Pure Sensory." }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Algorithm",
+        "content": [
+          {
+            "type": "header",
+            "text": "Algorithm 21: Investigating Stroke",
+            "level": 2
+          },
+          { "type": "paragraph", "text": "" },
+          {
+            "type": "flowchart",
+            "flowchart": {
+              "direction": "vertical",
+              "nodes": [
+                { "id": "start", "label": "Acute Focal Deficit\n(FAST Positive)", "type": "start", "level": 0, "order": 1 },
+
+                { "id": "exclude_mimics", "label": "Exclude Mimics\n(Check Glucose!)", "type": "process", "level": 1, "order": 1 },
+
+                { "id": "ct_brain", "label": "Urgent CT Brain\n(Non-contrast)", "type": "process", "level": 2, "order": 1 },
+
+                { "id": "bleed_check", "label": "Haemorrhage?", "type": "decision", "level": 3, "order": 1 },
+
+                { "id": "bleed_mx", "label": "Neurosurgery / Supportive\n(Stop Anticoagulants)", "type": "end", "level": 4, "order": 0 },
+
+                { "id": "ischaemic", "label": "Ischaemic Stroke", "type": "process", "level": 4, "order": 2 },
+
+                { "id": "time_window", "label": "Onset < 4.5 Hours?", "type": "decision", "level": 5, "order": 2 },
+
+                { "id": "thrombolysis", "label": "Thrombolysis (rTPA)\n(Stroke Unit)", "type": "end", "level": 6, "order": 1 },
+                { "id": "aspirin", "label": "Aspirin 300mg\n(Admit Stroke Unit)", "type": "process", "level": 6, "order": 3 },
+
+                { "id": "workup", "label": "Secondary Prevention Workup:\nCarotid Doppler, Echo, ECG, Lipids", "type": "end", "level": 7, "order": 3 }
+              ],
+              "connections": [
+                { "from": "start", "to": "exclude_mimics" },
+                { "from": "exclude_mimics", "to": "ct_brain" },
+                { "from": "ct_brain", "to": "bleed_check" },
+                { "from": "bleed_check", "to": "bleed_mx", "label": "Yes (Hyperdense)" },
+                { "from": "bleed_check", "to": "ischaemic", "label": "No (Normal/Hypodense)" },
+                { "from": "ischaemic", "to": "time_window" },
+                { "from": "time_window", "to": "thrombolysis", "label": "Yes" },
+                { "from": "time_window", "to": "aspirin", "label": "No" },
+                { "from": "aspirin", "to": "workup" }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "title": "Key Points",
+        "content": [
+          {
+            "type": "header",
+            "text": "Key Points",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "'Time is Brain': Immediate assessment and CT are vital for thrombolysis eligibility (<4.5 hours)." },
+              { "text": "Hypoglycaemia is the most common and easily reversible stroke mimic." },
+              { "text": "Do NOT give Aspirin until haemorrhage is excluded by CT." },
+              { "text": "Swallowing assessment (Dysphagia screen) is mandatory before giving oral fluids/medication to prevent aspiration pneumonia." },
+              { "text": "AF is a major cause of embolic stroke; anticoagulation (Warfarin/DOAC) is needed for secondary prevention (start 2 weeks after event)." }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,273 @@
+[
+  {
+    "type": "header",
+    "text": "Arthritis",
+    "level": 1
+  },
+  {
+    "type": "callout",
+    "text": "Key Terms:\n• Monoarticular: Single joint involvement.\n• Oligoarticular: 2-4 joints involved.\n• Polyarticular: 5 or more joints.\n• Periarticular: Involves structures outside the joint (e.g. Enthesitis)."
+  },
+  {
+    "type": "tab_group",
+    "tabs": [
+      {
+        "title": "Basics & Types",
+        "content": [
+          {
+            "type": "header",
+            "text": "Flash Card 13: Types of Arthritis",
+            "level": 2
+          },
+          {
+            "type": "accordion",
+            "items": [
+              {
+                "title": "Acute Monoarthritis",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Septic Arthritis (e.g., Gonococcal)" },
+                    { "text": "Crystal Arthritis (Gout, Pseudogout)" },
+                    { "text": "Haemarthrosis (Haemophilia, Trauma)" }
+                  ]}
+                ]
+              },
+              {
+                "title": "Acute Polyarthritis",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Post infectious: Rheumatic fever" },
+                    { "text": "Viral: EBV, CMV, Mumps, Chikungunya, Hepatitis B" },
+                    { "text": "Bacterial: Mycoplasma, SABE" },
+                    { "text": "Henoch-Schonlein Purpura (HSP)" },
+                    { "text": "Juvenile Idiopathic Arthritis (JIA)" }
+                  ]}
+                ]
+              },
+              {
+                "title": "Chronic Polyarthritis",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Rheumatoid Arthritis (Symmetrical)" },
+                    { "text": "SLE" },
+                    { "text": "Osteoarthritis (Generalized)" }
+                  ]}
+                ]
+              },
+              {
+                "title": "Oligoarthritis",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Reactive Arthritis (Reiter's)" },
+                    { "text": "Psoriatic Arthritis" },
+                    { "text": "Ankylosing Spondylitis" },
+                    { "text": "Enteropathic Arthritis" }
+                  ]}
+                ]
+              },
+              {
+                "title": "Chronic Monoarthritis",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Tuberculosis (TB Spine/Joint)" },
+                    { "text": "Osteoarthritis" }
+                  ]}
+                ]
+              }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Algorithm 3: DD of a Painful Joint",
+            "level": 2
+          },
+          {
+            "type": "flowchart",
+            "flowchart": {
+              "direction": "vertical",
+              "nodes": [
+                { "id": "pain", "label": "Painful Joint", "type": "start", "level": 0, "order": 1 },
+                { "id": "arthralgia", "label": "Arthralgia\n(Pain only)", "type": "end", "level": 1, "order": 0 },
+                { "id": "arthritis", "label": "Arthritis\n(Pain + Function Loss)", "type": "decision", "level": 1, "order": 2 },
+
+                { "id": "non_inflam", "label": "Non-Inflammatory\n(Osteoarthritis)", "type": "process", "level": 2, "order": 1 },
+                { "id": "inflam", "label": "Inflammatory\n(RA, Septic, Gout)", "type": "process", "level": 2, "order": 3 }
+              ],
+              "connections": [
+                { "from": "pain", "to": "arthralgia" },
+                { "from": "pain", "to": "arthritis" },
+                { "from": "arthritis", "to": "non_inflam", "label": "Pain on move,\nNo warmth" },
+                { "from": "arthritis", "to": "inflam", "label": "Rest pain,\nWarmth/Red" }
+              ]
+            }
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Feature", "Inflammatory", "Non-Inflammatory (Mechanical)"],
+            "tableRows": [
+              ["Pain", "At rest & movement", "On movement, relieved by rest"],
+              ["Stiffness", "Morning stiffness (>30 mins)", "Brief morning stiffness (<10 mins)"],
+              ["Signs", "Swelling, Redness, Warmth", "Bony swelling, Crepitus, No warmth"],
+              ["Example", "Rheumatoid, Gout, Septic", "Osteoarthritis"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "History",
+        "content": [
+          {
+            "type": "header",
+            "text": "History Taking Points",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Point to Elicit", "Significance"],
+            "tableRows": [
+              ["Onset, progression, symmetry", "Differentiates Inflammatory vs Mechanical, RA vs OA"],
+              ["Severity of pain & impact on activities", "Assess disability"],
+              ["Pain worse with activity, relieved by rest", "Degenerative (Osteoarthritis)"],
+              ["Pain at rest, Morning stiffness", "Inflammatory Arthritis"],
+              ["Flitting/Fleeting arthritis (Large joints)", "Rheumatic Fever"],
+              ["Bleeding on minor trauma", "Haemophilia"],
+              ["Fever", "Septic Arthritis / Rheumatic Fever"],
+              ["Backache", "Sacroiliitis / Spondylitis"],
+              ["Pain in sole (Plantar fasciitis)", "Reiter's Syndrome (Seronegative)"],
+              ["Fever, malaise, LOW, fatigue", "Systemic Inflammation (RA, Sepsis)"],
+              ["Diarrhoea, urethritis, conjunctivitis", "Reactive Arthritis (Reiter's)"],
+              ["Long standing bloody diarrhoea", "Enteropathic Arthritis (IBD)"],
+              ["Mouth ulcer, alopecia, malar rash", "SLE"],
+              ["Scaly rash (extensor surfaces, scalp)", "Psoriatic Arthritis"],
+              ["Deformed hand joints, scleritis, neck pain", "Rheumatoid Arthritis"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Other History",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Medical Hx: Similar episodes (Gout), Trauma, Psoriasis, SLE." },
+              { "text": "Drug Hx: Thiazides (Gout), Steroids (Side effects), Methotrexate." },
+              { "text": "Family Hx: Gout, RA, OA, Spondyloarthropathy." },
+              { "text": "Social Hx: Unprotected sexual encounters (Gonococcal/Reiter's), Functional state." }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Examination",
+        "content": [
+          {
+            "type": "header",
+            "text": "General Signs",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Sign to Elicit", "Significance"],
+            "tableRows": [
+              ["Fever", "Infection, Still's disease, Rheumatic fever, SLE"],
+              ["Alopecia, Oral ulcers, Malar rash", "SLE"],
+              ["Scaly lesions (scalp, elbows, umbilicus)", "Psoriasis"],
+              ["Vasculitic lesions", "RA, SLE, HSP"],
+              ["Scleritis, Episcleritis", "Rheumatoid Arthritis"],
+              ["Onycholysis, Thimble pitting (Nails)", "Psoriatic Arthritis"],
+              ["Pallor", "Anaemia of Chronic Disease / NSAID gastritis bleed"],
+              ["Clubbing", "Fibrosing alveolitis (RA), Endocarditis"],
+              ["Tophi (Ears/Joints)", "Gout"],
+              ["Cushingoid appearance", "Steroid therapy"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Systemic Examination",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["System", "Sign & Significance"],
+            "tableRows": [
+              ["CVS", "• Pericarditis (RA, SLE)\n• Murmurs (Rheumatic heart disease, Libman-Sacks in SLE)\n• Aortic Regurgitation (Ankylosing Spondylitis)"],
+              ["Respiratory", "• Pleural Effusion (RA, SLE)\n• Basal crepitations (Fibrosing alveolitis in RA/Methotrexate lung)"],
+              ["Abdomen", "• Hepatosplenomegaly (Felty's syndrome, Amyloidosis)"],
+              ["Nervous", "• Proximal myopathy (Steroids, Myositis)\n• Peripheral neuropathy (RA Vasculitis)\n• Cord compression (Atlanto-axial subluxation in RA)"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Algorithm",
+        "content": [
+          {
+            "type": "header",
+            "text": "Algorithm 4: Investigating Joint Disease",
+            "level": 2
+          },
+          {
+            "type": "flowchart",
+            "flowchart": {
+              "direction": "vertical",
+              "nodes": [
+                { "id": "start", "label": "History & Examination", "type": "start", "level": 0, "order": 1 },
+                { "id": "basic_labs", "label": "FBC, ESR, CRP", "type": "process", "level": 1, "order": 1 },
+
+                { "id": "esr_check", "label": "ESR/CRP Status", "type": "decision", "level": 2, "order": 1 },
+
+                { "id": "high_esr", "label": "Inflammatory\n(High ESR)", "type": "process", "level": 3, "order": 0 },
+                { "id": "norm_esr", "label": "Non-Inflammatory\n(Normal ESR)", "type": "process", "level": 3, "order": 2 },
+
+                { "id": "septic_workup", "label": "Blood Cultures (Septic)\nUFR (Reactive)", "type": "process", "level": 4, "order": 0 },
+                { "id": "immune_workup", "label": "RF, Anti-CCP (RA)\nANA, dsDNA (SLE)", "type": "process", "level": 4, "order": 1 },
+
+                { "id": "mech_workup", "label": "X-Ray / Arthroscopy\n(Osteoarthritis)", "type": "end", "level": 4, "order": 2 },
+
+                { "id": "aspiration", "label": "Joint Aspiration", "type": "process", "level": 5, "order": 1 },
+
+                { "id": "pus", "label": "Pus -> Septic", "type": "end", "level": 6, "order": 0 },
+                { "id": "blood", "label": "Blood -> Trauma/Haemophilia", "type": "end", "level": 6, "order": 1 },
+                { "id": "crystals", "label": "Crystals -> Gout", "type": "end", "level": 6, "order": 2 }
+              ],
+              "connections": [
+                { "from": "start", "to": "basic_labs" },
+                { "from": "basic_labs", "to": "esr_check" },
+                { "from": "esr_check", "to": "high_esr", "label": "Elevated" },
+                { "from": "esr_check", "to": "norm_esr", "label": "Normal" },
+                { "from": "high_esr", "to": "septic_workup" },
+                { "from": "high_esr", "to": "immune_workup" },
+                { "from": "high_esr", "to": "aspiration" },
+                { "from": "norm_esr", "to": "mech_workup" },
+                { "from": "aspiration", "to": "pus" },
+                { "from": "aspiration", "to": "blood" },
+                { "from": "aspiration", "to": "crystals" }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "title": "Key Points",
+        "content": [
+          {
+            "type": "header",
+            "text": "Key Points",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Loss of function and pain are key features. Assess severity of disability." },
+              { "text": "Distinguish between Joint Pain (Arthritis) and Bone Pain (Leukaemia, Myeloma, Metastases)." },
+              { "text": "Identify the pattern: Onset, Progression, Symmetry, Number of joints." },
+              { "text": "Decide if Inflammatory (Morning stiffness, warmth, swelling) or Mechanical (Pain on activity)." },
+              { "text": "Look for extra-articular manifestations (Skin, Eyes, Lungs) which suggest systemic disease." }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

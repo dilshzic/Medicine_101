@@ -1,0 +1,200 @@
+[
+  {
+    "type": "header",
+    "text": "Diarrhoea",
+    "level": 1
+  },
+  {
+    "type": "callout",
+    "text": "Definition: Passage of 3 or more loose or liquid stools per day. \n• Acute: < 2 weeks (Usually infectious).\n• Chronic: > 4 weeks."
+  },
+  {
+    "type": "tab_group",
+    "tabs": [
+      {
+        "title": "Mechanisms & Causes",
+        "content": [
+          {
+            "type": "header",
+            "text": "Pathophysiological Mechanisms",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Osmotic: Solutes in lumen retain water (e.g. Lactose Intolerance, Magnesium laxatives). Stops with fasting." },
+              { "text": "Secretory: Active secretion of water/electrolytes (e.g. Cholera, Carcinoid). Persists with fasting." },
+              { "text": "Inflammatory (Exudative): Damage to mucosa (e.g. Dysentery, IBD). Blood/pus present." },
+              { "text": "Motility: Rapid transit (e.g. Thyrotoxicosis, IBS)." }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Flash Card 34: Causes of Diarrhoea",
+            "level": 2
+          },
+          {
+            "type": "accordion",
+            "items": [
+              {
+                "title": "Acute Diarrhoea",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Viral: Rotavirus, Norovirus." },
+                    { "text": "Bacterial: Salmonella, Shigella, Campylobacter, E. coli, Cholera (Vibrio)." },
+                    { "text": "Parasitic: Giardia, Amoebiasis." },
+                    { "text": "Toxins: Staph aureus (Food poisoning)." },
+                    { "text": "Drugs: Antibiotics (C. diff), Laxatives." }
+                  ]}
+                ]
+              },
+              {
+                "title": "Chronic Diarrhoea",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Colonic: IBD (Ulcerative Colitis, Crohn's), Colorectal CA, Irritable Bowel Syndrome (IBS)." },
+                    { "text": "Small Bowel: Malabsorption (Coeliac, Tropical Sprue), Giardiasis." },
+                    { "text": "Pancreatic: Chronic Pancreatitis (Steatorrhoea), Cystic Fibrosis." },
+                    { "text": "Endocrine: Thyrotoxicosis, Diabetes (Autonomic), Carcinoid Syndrome, Zollinger-Ellison." },
+                    { "text": "Drugs: Metformin, PPIs, NSAIDs." }
+                  ]}
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "History",
+        "content": [
+          {
+            "type": "header",
+            "text": "History 19: Points to Elicit",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Feature", "Significance"],
+            "tableRows": [
+              ["Duration: Acute (<2 weeks)", "Infection / Food Poisoning"],
+              ["Duration: Chronic (>4 weeks)", "IBD / Malabsorption / Functional (IBS)"],
+              ["Blood & Mucus (Dysentery)", "Inflammatory Bowel Disease / Invasive Infection (Shigella/Amoeba)"],
+              ["Steatorrhoea (Pale, bulky, offensive, diff to flush)", "Fat Malabsorption (Chronic Pancreatitis / Coeliac)"],
+              ["Large Volume (Watery)", "Secretory Diarrhoea (Small bowel) / Cholera"],
+              ["Small Volume + Urgency/Tenesmus", "Rectal/Colonic pathology (IBD / Rectal CA)"],
+              ["Nocturnal Diarrhoea", "Organic disease (Rare in IBS)"],
+              ["Weight Loss", "Malignancy / Malabsorption / Thyrotoxicosis"],
+              ["Alternating Constipation & Diarrhoea", "Irritable Bowel Syndrome (IBS) / Colon CA"],
+              ["Abdominal Pain (Relieved by defecation)", "IBS"],
+              ["Recent Antibiotics", "Clostridium difficile (Pseudomembranous Colitis)"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Systemic Symptoms",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Joint Pain / Rashes / Eye Pain: Suggests IBD (Extra-intestinal)." },
+              { "text": "Flushing / Wheezing: Carcinoid Syndrome." },
+              { "text": "Heat Intolerance / Tremor: Thyrotoxicosis." }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Examination",
+        "content": [
+          {
+            "type": "header",
+            "text": "Examination 19: Signs",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Sign to Elicit", "Significance"],
+            "tableRows": [
+              ["Dehydration (Dry tongue, loss of turgor)", "Severity of fluid loss"],
+              ["Pallor / Oral Ulcers", "Anaemia (Malabsorption/IBD) / Crohn's"],
+              ["Clubbing", "IBD / Coeliac / Lymphoma"],
+              ["Abdominal Mass (RIF)", "Crohn's / TB / CA Caecum"],
+              ["Abdominal Mass (LIF)", "Diverticular Abscess / CA Sigmoid"],
+              ["Perianal Disease (Tags/Fistula)", "Crohn's Disease"],
+              ["Rectal Mass (PR)", "Rectal Carcinoma"],
+              ["Goitre / Tremor", "Thyrotoxicosis"],
+              ["Lymphadenopathy", "Lymphoma / Whipple's Disease"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Algorithm",
+        "content": [
+          {
+            "type": "header",
+            "text": "Algorithm 19: Investigating Chronic Diarrhoea",
+            "level": 2
+          },
+          { "type": "paragraph", "text": "" },
+          {
+            "type": "flowchart",
+            "flowchart": {
+              "direction": "vertical",
+              "nodes": [
+                { "id": "start", "label": "Chronic Diarrhoea (>4w)", "type": "start", "level": 0, "order": 1 },
+
+                { "id": "basics", "label": "Stool Analysis (Micro/Culture)\nFBC, ESR, CRP, TFT\nCoeliac Serology (TTG)", "type": "process", "level": 1, "order": 1 },
+
+                { "id": "blood_stool", "label": "Bloody Diarrhoea?", "type": "decision", "level": 2, "order": 1 },
+
+                { "id": "coloscopy", "label": "Colonoscopy + Biopsy\n(IBD / Cancer)", "type": "end", "level": 3, "order": 0 },
+
+                { "id": "steatorrhoea", "label": "Steatorrhoea?", "type": "decision", "level": 3, "order": 2 },
+
+                { "id": "malabsorb_inv", "label": "Faecal Elastase (Pancreas)\nDuodenal Biopsy (Coeliac)", "type": "end", "level": 4, "order": 1 },
+
+                { "id": "watery", "label": "Watery Diarrhoea", "type": "process", "level": 4, "order": 3 },
+
+                { "id": "excludes", "label": "Exclude Drugs / Diet", "type": "process", "level": 5, "order": 3 },
+
+                { "id": "functional", "label": "IBS Diagnosis\n(Rome Criteria)", "type": "end", "level": 6, "order": 3 }
+              ],
+              "connections": [
+                { "from": "start", "to": "basics" },
+                { "from": "basics", "to": "blood_stool" },
+                { "from": "blood_stool", "to": "coloscopy", "label": "Yes" },
+                { "from": "blood_stool", "to": "steatorrhoea", "label": "No" },
+                { "from": "steatorrhoea", "to": "malabsorb_inv", "label": "Yes" },
+                { "from": "steatorrhoea", "to": "watery", "label": "No" },
+                { "from": "watery", "to": "excludes" },
+                { "from": "excludes", "to": "functional" }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "title": "Key Points",
+        "content": [
+          {
+            "type": "header",
+            "text": "Key Points",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Any patient >40 years with a change in bowel habit needs investigation to exclude Colorectal Cancer." },
+              { "text": "Nocturnal diarrhoea is always pathological; IBS does not disturb sleep." },
+              { "text": "Overflow diarrhoea (spurious diarrhoea) can occur in severe constipation/impaction, especially in the elderly." },
+              { "text": "Bloody diarrhoea usually warrants a colonoscopy." },
+              { "text": "IBS is a diagnosis of exclusion (Rome Criteria: Abdominal pain relieved by defecation + Change in stool frequency/form)." }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

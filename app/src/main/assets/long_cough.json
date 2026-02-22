@@ -1,0 +1,198 @@
+[
+  {
+    "type": "header",
+    "text": "Cough",
+    "level": 1
+  },
+  {
+    "type": "callout",
+    "text": "Definition: A reflex forced expiration against an initially closed glottis. It is a protective mechanism for clearing the lung of harmful substances."
+  },
+  {
+    "type": "tab_group",
+    "tabs": [
+      {
+        "title": "Causes",
+        "content": [
+          {
+            "type": "header",
+            "text": "Flash Card 27: Causes of Cough",
+            "level": 2
+          },
+          {
+            "type": "accordion",
+            "items": [
+              {
+                "title": "Pulmonary: Acute (<3 weeks)",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Localised: Pneumonia, Pulmonary Embolism" },
+                    { "text": "Generalised: Acute Bronchitis, Bronchopneumonia, Pulmonary Oedema (LVF/Mitral Stenosis)" }
+                  ]}
+                ]
+              },
+              {
+                "title": "Pulmonary: Chronic (>6 weeks)",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Localised: TB, Lung Abscess, Bronchial Carcinoma" },
+                    { "text": "Generalised: Bronchial Asthma, COPD, Bronchiectasis, Tropical Pulmonary Eosinophilia (TPE), Interstitial Lung Disease (ILD)" }
+                  ]}
+                ]
+              },
+              {
+                "title": "Extra-Pulmonary Causes",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Upper Airway: Rhinosinusitis (Post-nasal drip), Laryngitis, Laryngeal CA" },
+                    { "text": "Gastrointestinal: GORD, Achalasia Cardia" },
+                    { "text": "Drugs: ACE Inhibitors, Beta Blockers" },
+                    { "text": "Psychogenic" }
+                  ]}
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "History",
+        "content": [
+          {
+            "type": "header",
+            "text": "History 13: Points to Elicit",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Symptom / Feature", "Significance"],
+            "tableRows": [
+              ["Long duration (>8 weeks)", "Less likely to be infection (Consider Asthma, COPD, CA, ILD)"],
+              ["Dry Cough", "Asthma, Interstitial Lung Disease, ACE Inhibitors"],
+              ["Productive (Purulent)", "Bronchiectasis (Large volume), Lung Abscess, Pneumonia"],
+              ["Worse in early morning", "COPD, Bronchiectasis"],
+              ["Worse at night", "Bronchial Asthma, Left Heart Failure (PND)"],
+              ["Positional cough", "Bronchiectasis, Lung Abscess"],
+              ["Weight Loss + Anorexia", "TB, Bronchial Carcinoma, Lung Abscess"],
+              ["Haemoptysis", "Bronchial CA, TB, Pulmonary Embolism, Bronchiectasis"],
+              ["Hoarseness (Bovine cough)", "Recurrent Laryngeal Nerve palsy (Lung CA / Aortic Aneurysm)"],
+              ["Wheeze", "COPD, Asthma"],
+              ["Heart burn / Regurgitation", "GORD"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Risk Factors",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Smoking: COPD, Bronchial Carcinoma." },
+              { "text": "Occupational: Pneumoconiosis (Silica, Asbestos), Farmers (Extrinsic Allergic Alveolitis)." },
+              { "text": "Drugs: ACE Inhibitors, Amiodarone/Methotrexate (Fibrosis)." },
+              { "text": "Past Hx: Childhood pneumonia/TB (Bronchiectasis risk)." }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Examination",
+        "content": [
+          {
+            "type": "header",
+            "text": "Examination 13: Signs",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Sign to Elicit", "Significance"],
+            "tableRows": [
+              ["Clubbing", "Bronchial CA, Suppurative Lung Disease (Abscess/Bronchiectasis), Fibrosing Alveolitis"],
+              ["Cyanosis", "Respiratory Failure (Severe COPD/Pneumonia)"],
+              ["Nicotine Staining", "Smoker (COPD/Cancer risk)"],
+              ["Lymphadenopathy", "Bronchial CA, TB, Lymphoma"],
+              ["SVC Obstruction (Distended neck veins)", "Bronchial CA (Mediastinal spread)"],
+              ["Tracheal Deviation", "Collapse/Fibrosis (Towards), Effusion/Pneumothorax (Away)"],
+              ["Stridor", "Upper Airway Obstruction (Laryngeal/Tracheal tumour)"],
+              ["Hyper-inflated Chest (Barrel Chest)", "COPD (Emphysema)"],
+              ["Bilateral Wheeze", "Asthma, COPD"],
+              ["Unilateral Wheeze", "Fixed bronchial obstruction (Tumour/Foreign body)"],
+              ["Fine End-Inspiratory Crepitations", "Pulmonary Fibrosis (ILD) or LVF"],
+              ["Coarse Crepitations", "Bronchiectasis"],
+              ["Pleural Rub", "Pneumonia, Pulmonary Embolism"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Algorithm",
+        "content": [
+          {
+            "type": "header",
+            "text": "Algorithm 14: Investigating Cough",
+            "level": 2
+          },
+          {
+            "type": "flowchart",
+            "flowchart": {
+              "direction": "vertical",
+              "nodes": [
+                { "id": "start", "label": "Chronic Cough", "type": "start", "level": 0, "order": 1 },
+
+                { "id": "basics", "label": "CXR, FBC, CRP\nSputum (AFB/Culture)", "type": "process", "level": 1, "order": 1 },
+
+                { "id": "cxr_abnormal", "label": "CXR Abnormal?", "type": "decision", "level": 2, "order": 1 },
+
+                { "id": "localized", "label": "Localized Shadow", "type": "process", "level": 3, "order": 0 },
+                { "id": "diffuse", "label": "Diffuse Shadowing", "type": "process", "level": 3, "order": 2 },
+
+                { "id": "bronch", "label": "Bronchoscopy\nCT Chest", "type": "end", "level": 4, "order": 0 },
+                { "id": "hrct", "label": "HRCT Chest\nLung Function Tests", "type": "end", "level": 4, "order": 2 },
+
+                { "id": "normal_cxr", "label": "Normal CXR", "type": "process", "level": 2, "order": 3 },
+
+                { "id": "lft", "label": "Spirometry\n(Asthma/COPD)", "type": "process", "level": 3, "order": 3 },
+                { "id": "ent", "label": "ENT Exam\n(Post-nasal drip)", "type": "process", "level": 3, "order": 4 },
+                { "id": "git", "label": "Gastro Review\n(GORD)", "type": "process", "level": 3, "order": 5 }
+              ],
+              "connections": [
+                { "from": "start", "to": "basics" },
+                { "from": "basics", "to": "cxr_abnormal" },
+                { "from": "cxr_abnormal", "to": "localized", "label": "Yes" },
+                { "from": "cxr_abnormal", "to": "diffuse", "label": "Yes" },
+                { "from": "cxr_abnormal", "to": "normal_cxr", "label": "No" },
+                { "from": "localized", "to": "bronch" },
+                { "from": "diffuse", "to": "hrct" },
+                { "from": "normal_cxr", "to": "lft" },
+                { "from": "normal_cxr", "to": "ent" },
+                { "from": "normal_cxr", "to": "git" }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "title": "Key Points",
+        "content": [
+          {
+            "type": "header",
+            "text": "Key Points",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Upper respiratory infection is the most common cause of acute cough." },
+              { "text": "Cough with a normal CXR suggests Bronchitis, Asthma, GORD, or Post-nasal drip." },
+              { "text": "Chronic cough with haemoptysis requires exclusion of Bronchial Carcinoma, TB, and Bronchiectasis." },
+              { "text": "Putrid sputum suggests Lung Abscess (Anaerobes)." },
+              { "text": "Large volumes of purulent sputum daily is the hallmark of Bronchiectasis." },
+              { "text": "Always check drug history for ACE Inhibitors in patients with dry cough." }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

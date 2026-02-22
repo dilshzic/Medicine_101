@@ -1,0 +1,231 @@
+[
+  {
+    "type": "header",
+    "text": "Dyspnoea",
+    "level": 1
+  },
+  {
+    "type": "callout",
+    "text": "Definition: Subjective awareness of shortness of breath (difficult, laboured, or uncomfortable breathing)."
+  },
+  {
+    "type": "tab_group",
+    "tabs": [
+      {
+        "title": "Classifications",
+        "content": [
+          {
+            "type": "header",
+            "text": "Classification by Onset",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Acute: Minutes, hours, or few days." },
+              { "text": "Chronic: Few weeks, months, or years." }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Severity (NYHA Grading)",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Grade", "Description"],
+            "tableRows": [
+              ["Grade I", "Unlimited capacity (No breathlessness on ordinary exertion)"],
+              ["Grade II", "Breathlessness with severe exertion"],
+              ["Grade III", "Breathlessness with mild exertion"],
+              ["Grade IV", "Breathlessness at rest"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Causes",
+        "content": [
+          {
+            "type": "header",
+            "text": "Flash Card 18: Causes of Breathlessness",
+            "level": 2
+          },
+          {
+            "type": "accordion",
+            "items": [
+              {
+                "title": "Acute Breathlessness",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Respiratory: Acute Asthma, Acute Exacerbation of COPD, Pneumonia, Pneumothorax, Pulmonary Embolism, ARDS, Anaphylaxis, Upper Airway Obstruction." },
+                    { "text": "Cardiac: Acute Left Ventricular Failure (LVF), Cardiac Tamponade." },
+                    { "text": "Other: Psychogenic Hyperventilation, Metabolic Acidosis, Neurological (GBS, Organophosphate poisoning)." }
+                  ]}
+                ]
+              },
+              {
+                "title": "Chronic Breathlessness",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Respiratory: COPD, Asthma, Bronchiectasis, Interstitial Lung Disease (ILD), Bronchial CA, TB, Pleural Effusion." },
+                    { "text": "Cardiac: Chronic Heart Failure, Pericardial Effusion." },
+                    { "text": "Other: Severe Anaemia, CKD (Acidosis), Thyrotoxicosis, Obesity, Kyphoscoliosis, Neuromuscular disorders." }
+                  ]}
+                ]
+              }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Flash Card 19: Acute Dyspnoea Clinical Patterns",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Signs", "Causes"],
+            "tableRows": [
+              ["Bilateral Rhonchi", "• Acute Asthma\n• Acute exacerbation of COPD\n• Anaphylaxis"],
+              ["Bilateral Crepitations", "• Pulmonary Oedema (LVF)\n• Bronchopneumonia\n• ARDS\n• Noxious gas inhalation"],
+              ["Clear Chest / Normal Signs", "• Pulmonary Embolism\n• Metabolic Acidosis (DKA/Uraemia)\n• Anaemia\n• Psychogenic Hyperventilation\n• Neuromuscular (GBS)"],
+              ["Unilateral Signs", "• Pneumothorax\n• Pleural Effusion\n• Lobar Pneumonia\n• Collapse"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "History",
+        "content": [
+          {
+            "type": "header",
+            "text": "History 9: Points to Elicit",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Symptom", "Significance"],
+            "tableRows": [
+              ["Orthopnoea, PND", "Left Heart Failure (Pulmonary Oedema)"],
+              ["Retrosternal Chest Pain", "Acute Coronary Syndrome (MI)"],
+              ["Pleuritic Chest Pain", "Pneumonia, Pulmonary Embolism, Pneumothorax"],
+              ["Cough + Purulent Sputum + Fever", "Respiratory Infection (Pneumonia/Bronchitis)"],
+              ["Sudden onset + Pleuritic pain", "Pulmonary Embolism / Pneumothorax"],
+              ["Wheeze (Recurrent)", "Bronchial Asthma / COPD"],
+              ["Haemoptysis + Weight Loss", "Bronchial Carcinoma / TB"],
+              ["Palpitations, Sweating, Tremor", "Thyrotoxicosis"],
+              ["Faintishness, Lethargy", "Severe Anaemia"],
+              ["Painful Swollen Calf", "DVT (Risk of Pulmonary Embolism)"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Past & Drug History",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Medical Hx: IHD, HTN, Valvular disease, Rheumatoid Arthritis (ILD)." },
+              { "text": "Drugs: Beta-blockers (Bronchospasm), Methotrexate/Amiodarone (Fibrosis), OCP (Embolism)." },
+              { "text": "Social: Smoking (COPD/Cancer), Occupation (Dust/Asbestos)." }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Examination",
+        "content": [
+          {
+            "type": "header",
+            "text": "Examination 9: Signs",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Sign to Elicit", "Significance"],
+            "tableRows": [
+              ["Tachypnoea (High RR)", "Objective evidence of severity"],
+              ["Cyanosis", "Severe respiratory failure (Central)"],
+              ["Pallor", "Severe Anaemia"],
+              ["Clubbing", "Bronchial CA, Bronchiectasis, ILD (Fibrosis)"],
+              ["Stridor", "Upper Airway Obstruction"],
+              ["Facial Plethora + Dilated Veins", "SVC Obstruction (Lung CA)"],
+              ["Elevated JVP", "CCF, Cor Pulmonale, Massive PE"],
+              ["Tracheal Deviation", "Pneumothorax (Away), Collapse/Fibrosis (Towards)"],
+              ["Unilateral Hyper-resonance", "Pneumothorax"],
+              ["Stony Dullness", "Pleural Effusion"],
+              ["Bilateral Fine Crepitations", "Pulmonary Fibrosis (ILD) or Pulmonary Oedema"],
+              ["Bilateral Rhonchi", "Asthma / COPD"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Algorithm",
+        "content": [
+          {
+            "type": "header",
+            "text": "Algorithm 10: Investigating Dyspnoea",
+            "level": 2
+          },
+          {
+            "type": "flowchart",
+            "flowchart": {
+              "direction": "vertical",
+              "nodes": [
+                { "id": "start", "label": "Dyspnoeic Patient", "type": "start", "level": 0, "order": 1 },
+
+                { "id": "basics", "label": "CXR, ECG, ABG\nFBC, U&E, Glucose", "type": "process", "level": 1, "order": 1 },
+
+                { "id": "exclude_non_resp", "label": "Exclude Anaemia,\nMetabolic Acidosis", "type": "process", "level": 1, "order": 3 },
+
+                { "id": "cardiac_check", "label": "Suspect Cardiac?", "type": "decision", "level": 2, "order": 0 },
+                { "id": "pulm_check", "label": "Suspect Pulmonary?", "type": "decision", "level": 2, "order": 2 },
+
+                { "id": "cardiac_inv", "label": "Echo, BNP,\nExercise ECG", "type": "process", "level": 3, "order": 0 },
+
+                { "id": "pulm_path", "label": "Pulmonary Pathology", "type": "decision", "level": 3, "order": 2 },
+
+                { "id": "airway", "label": "Airway/Parenchyma\n(Lung Function Tests,\nCT Chest)", "type": "end", "level": 4, "order": 1 },
+                { "id": "vascular", "label": "Vascular (PE)\n(CTPA / V/Q Scan)", "type": "end", "level": 4, "order": 3 },
+                { "id": "pleural", "label": "Pleural\n(US, Aspiration)", "type": "end", "level": 4, "order": 2 }
+              ],
+              "connections": [
+                { "from": "start", "to": "basics" },
+                { "from": "basics", "to": "exclude_non_resp" },
+                { "from": "basics", "to": "cardiac_check" },
+                { "from": "basics", "to": "pulm_check" },
+                { "from": "cardiac_check", "to": "cardiac_inv", "label": "Yes" },
+                { "from": "pulm_check", "to": "pulm_path", "label": "Yes" },
+                { "from": "pulm_path", "to": "airway", "label": "COPD/ILD" },
+                { "from": "pulm_path", "to": "vascular", "label": "Normal CXR" },
+                { "from": "pulm_path", "to": "pleural", "label": "Effusion" }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "title": "Key Points",
+        "content": [
+          {
+            "type": "header",
+            "text": "Key Points",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Orthopnoea is characteristic of Left Heart Failure but can occur in severe COPD/Asthma." },
+              { "text": "Paroxysmal Nocturnal Dyspnoea (PND) is specific for Cardiac Failure." },
+              { "text": "Pneumocystis and Viral Pneumonia can cause severe breathlessness with minimal auscultatory signs." },
+              { "text": "Always check legs for DVT in unexplained dyspnoea (Pulmonary Embolism)." },
+              { "text": "Metabolic Acidosis (Kussmaul breathing) causes deep, rapid breathing with clear lungs." },
+              { "text": "Hysterical hyperventilation often presents as irregular breathing that normalizes during sleep or distraction." }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

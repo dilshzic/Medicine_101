@@ -1,0 +1,228 @@
+[
+  {
+    "type": "header",
+    "text": "Bleeding Tendency",
+    "level": 1
+  },
+  {
+    "type": "callout",
+    "text": "Haemostasis depends on Vasospasm, Platelet plug formation, and Coagulation factors. Bleeding disorders arise when any of these mechanisms fail."
+  },
+  {
+    "type": "tab_group",
+    "tabs": [
+      {
+        "title": "Basics & Causes",
+        "content": [
+          {
+            "type": "header",
+            "text": "Clinical Patterns: Platelet vs Coagulation Defects",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Feature", "Platelet/Capillary Defect", "Coagulation Defect (e.g. Haemophilia)"],
+            "tableRows": [
+              ["Site", "Skin, Mucous membranes (Gum, Nose)", "Deep tissues (Joints, Muscles)"],
+              ["Lesions", "Petechiae, Purpura, Ecchymosis", "Haematomas, Haemarthrosis"],
+              ["Response to Trauma", "Immediate bleeding (mild)", "Delayed bleeding (severe/persistent)"],
+              ["Epistaxis / Menorrhagia", "Common", "Rare"],
+              ["Sex", "Female > Male", "Male > Female (Hereditary)"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Flash Card 15: Causes of Bleeding Disorders",
+            "level": 2
+          },
+          {
+            "type": "accordion",
+            "items": [
+              {
+                "title": "Vascular Disorders",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Hereditary: Hereditary Haemorrhagic Telangiectasia (HHT)" },
+                    { "text": "Acquired: Henoch-Schonlein Purpura (HSP), Senile Purpura, Scurvy (Vit C deficiency), Steroid induced" }
+                  ]}
+                ]
+              },
+              {
+                "title": "Platelet Disorders",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Low Number (Thrombocytopenia): Aplastic Anaemia, Leukaemia, ITP, Hypersplenism, Drugs" },
+                    { "text": "Dysfunction: Aspirin, Uraemia, Von Willebrand Disease (VWD)" }
+                  ]}
+                ]
+              },
+              {
+                "title": "Coagulation Disorders",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Hereditary: Haemophilia A, Haemophilia B, VWD" },
+                    { "text": "Acquired: Liver Disease, Vitamin K Deficiency, DIC, Anticoagulants (Warfarin/Heparin)" }
+                  ]}
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "History",
+        "content": [
+          {
+            "type": "header",
+            "text": "History 6: Bleeding Tendency",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Point to Elicit", "Significance"],
+            "tableRows": [
+              ["Duration (From childhood?)", "Hereditary disorder (e.g., Haemophilia)"],
+              ["Spontaneous vs Trauma-induced", "Severity of defect"],
+              ["Bleeding into skin (Petechiae)", "Platelet/Vascular defect"],
+              ["Haemarthrosis (Joint swelling)", "Coagulation defect"],
+              ["Mucosal bleeding (Epistaxis, Gums)", "Platelet defect / VWD"],
+              ["Delayed bleeding after surgery/extraction", "Coagulation defect"],
+              ["Recurrent infection + Bleeding", "Bone marrow failure (Leukaemia/Aplastic Anaemia)"],
+              ["Jaundice + Bleeding", "Chronic Liver Disease / Vitamin K deficiency"],
+              ["Alopecia, Oral ulcers, Arthralgia", "SLE (Secondary ITP)"],
+              ["Drug Hx: Aspirin, Warfarin, NSAIDs", "Drug-induced bleeding"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Other History",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Family History: Haemophilia (X-linked), HHT (Autosomal Dominant)." },
+              { "text": "Social History: Alcohol (Liver disease)." },
+              { "text": "Obstetric: Menorrhagia, Post-partum haemorrhage." }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Examination",
+        "content": [
+          {
+            "type": "header",
+            "text": "Examination 6: Signs",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Sign to Elicit", "Significance"],
+            "tableRows": [
+              ["Fever", "Sepsis (DIC) / Leukaemia"],
+              ["Petechiae / Purpura", "Thrombocytopenia / Vasculitis"],
+              ["Ecchymosis (Large bruises)", "Coagulation defects / Trauma"],
+              ["Haemarthrosis (Joint deformity)", "Haemophilia"],
+              ["Gum Hypertrophy", "Acute Leukaemia (AML M5)"],
+              ["Telangiectasia (Lips/Tongue)", "Hereditary Haemorrhagic Telangiectasia"],
+              ["Lymphadenopathy", "Lymphoma / Leukaemia"],
+              ["Hepatosplenomegaly", "CLD / Leukaemia / Hypersplenism"],
+              ["Fundoscopy (Haemorrhages)", "Severe Thrombocytopenia / Intracranial bleed risk"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Algorithm & Labs",
+        "content": [
+          {
+            "type": "header",
+            "text": "Algorithm 7: Investigating Bleeding",
+            "level": 2
+          },
+          {
+            "type": "flowchart",
+            "flowchart": {
+              "direction": "vertical",
+              "nodes": [
+                { "id": "start", "label": "Bleeding Patient", "type": "start", "level": 0, "order": 1 },
+
+                { "id": "screen", "label": "Screening: Platelet Count,\nPT, APTT", "type": "process", "level": 1, "order": 1 },
+
+                { "id": "low_plt", "label": "Low Platelets\n(Thrombocytopenia)", "type": "decision", "level": 2, "order": 0 },
+                { "id": "norm_plt", "label": "Normal Platelets", "type": "decision", "level": 2, "order": 2 },
+
+                { "id": "marrow", "label": "Bone Marrow Exam", "type": "process", "level": 3, "order": 0 },
+
+                { "id": "coag_check", "label": "Check Coagulation", "type": "decision", "level": 3, "order": 2 },
+
+                { "id": "pt_high", "label": "High PT\n(Extrinsic Pathway)", "type": "end", "level": 4, "order": 1 },
+                { "id": "aptt_high", "label": "High APTT\n(Intrinsic Pathway)", "type": "end", "level": 4, "order": 3 },
+                { "id": "both_high", "label": "High PT & APTT", "type": "end", "level": 4, "order": 2 },
+                { "id": "normal_coag", "label": "Normal PT & APTT", "type": "process", "level": 4, "order": 4 },
+
+                { "id": "bleeding_time", "label": "Check Bleeding Time", "type": "process", "level": 5, "order": 4 },
+
+                { "id": "vwd", "label": "High BT: VWD / Function Defect", "type": "end", "level": 6, "order": 4 }
+              ],
+              "connections": [
+                { "from": "start", "to": "screen" },
+                { "from": "screen", "to": "low_plt", "label": "Low PLT" },
+                { "from": "screen", "to": "norm_plt", "label": "Normal PLT" },
+                { "from": "low_plt", "to": "marrow" },
+                { "from": "norm_plt", "to": "coag_check" },
+                { "from": "coag_check", "to": "pt_high", "label": "PT High" },
+                { "from": "coag_check", "to": "aptt_high", "label": "APTT High" },
+                { "from": "coag_check", "to": "both_high", "label": "Both High" },
+                { "from": "coag_check", "to": "normal_coag", "label": "Both Normal" },
+                { "from": "normal_coag", "to": "bleeding_time" },
+                { "from": "bleeding_time", "to": "vwd" }
+              ]
+            }
+          },
+          {
+            "type": "header",
+            "text": "Summary of Lab Patterns",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Condition", "Platelets", "PT (INR)", "APTT", "Bleeding Time"],
+            "tableRows": [
+              ["Thrombocytopenia", "Low", "Normal", "Normal", "Prolonged"],
+              ["Vascular Disorders", "Normal", "Normal", "Normal", "Normal"],
+              ["Platelet Function Defect", "Normal", "Normal", "Normal", "Prolonged"],
+              ["Haemophilia A / B", "Normal", "Normal", "Prolonged", "Normal"],
+              ["Von Willebrand Disease", "Normal", "Normal", "Normal / Prolonged", "Prolonged"],
+              ["Vitamin K Def / Warfarin", "Normal", "Prolonged", "Normal / Prolonged", "Normal"],
+              ["Liver Disease", "Normal / Low", "Prolonged", "Prolonged", "Normal / Prolonged"],
+              ["DIC", "Low", "Prolonged", "Prolonged", "Prolonged"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Key Points",
+        "content": [
+          {
+            "type": "header",
+            "text": "Key Points",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Purpura reflects thrombocytopenia; Haematomas reflect clotting defects." },
+              { "text": "Spider Naevi blanch on pressure; Petechiae do NOT blanch." },
+              { "text": "Avoid joint aspiration if a bleeding diathesis is suspected (Haemarthrosis may mimic septic arthritis)." },
+              { "text": "Haemorrhagic bullae in the mouth indicate severe thrombocytopenia." },
+              { "text": "Fundal haemorrhages suggest severe thrombocytopenia and risk of intracranial bleed." },
+              { "text": "VWD presents differently from Haemophilia: VWD has mucosal bleeds (epistaxis/menorrhagia), Haemophilia has deep bleeds (joints)." }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

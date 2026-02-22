@@ -1,0 +1,250 @@
+[
+  {
+    "type": "header",
+    "text": "Anaemia",
+    "level": 1
+  },
+  {
+    "type": "callout",
+    "text": "Definition: Reduction in oxygen carrying capacity of blood secondary to decreased level of circulating red blood cells and haemoglobin."
+  },
+  {
+    "type": "tab_group",
+    "tabs": [
+      {
+        "title": "Basics & Causes",
+        "content": [
+          {
+            "type": "header",
+            "text": "Pathophysiological Mechanisms",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Material Deficiency (Iron, B12, Folate)" },
+              { "text": "Marrow Failure / Ineffective Erythropoiesis" },
+              { "text": "RBC Loss (Bleeding) or Destruction (Haemolysis)" }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Flash Card 20: Causes of Anaemia",
+            "level": 2
+          },
+          {
+            "type": "accordion",
+            "items": [
+              {
+                "title": "Reduced RBC Production",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Marrow Failure: Aplastic Anaemia, Myelodysplasia" },
+                    { "text": "Dysfunction: Anaemia of Chronic Disease (CKD, CLD, Chronic Infection/Inflammation)" },
+                    { "text": "Infiltrative: Leukaemia, Myeloma, Metastasis, Myelofibrosis" },
+                    { "text": "Endocrine: Hypothyroidism, Addison's disease" }
+                  ]}
+                ]
+              },
+              {
+                "title": "Essential Nutrient Deficiency",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Iron Deficiency: Poor diet, Pregnancy, Blood loss (GI/Uterine), Malabsorption" },
+                    { "text": "B12 Deficiency: Pernicious Anaemia, Ileal disease/resection, Vegans" },
+                    { "text": "Folate Deficiency: Drugs (Methotrexate), Pregnancy, Malabsorption" }
+                  ]}
+                ]
+              },
+              {
+                "title": "Increased Destruction / Loss",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Corpuscular (Intrinsic): Membrane (Spherocytosis), Enzyme (G6PD), Hb (Thalassaemia)" },
+                    { "text": "Extra-Corpuscular (Extrinsic): Autoimmune (Warm/Cold), Drugs, Malaria, Microangiopathy (DIC/TTP)" },
+                    { "text": "Blood Loss: Acute (Trauma) or Chronic (Hookworm, Peptic Ulcer)" }
+                  ]}
+                ]
+              }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Flash Card 21: Morphological Classification",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Type", "Causes"],
+            "tableRows": [
+              ["Hypochromic Microcytic", "• Iron Deficiency\n• Thalassaemia\n• Sideroblastic Anaemia\n• Anaemia of Chronic Disease (some cases)"],
+              ["Normochromic Normocytic", "• Aplastic Anaemia\n• Acute Blood Loss\n• Anaemia of Chronic Disease\n• Renal Failure\n• Marrow Infiltration"],
+              ["Macrocytic", "• Megaloblastic: B12/Folate Deficiency\n• Normoblastic: Liver Disease, Hypothyroidism, Alcoholism, Myelodysplasia"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "History",
+        "content": [
+          {
+            "type": "header",
+            "text": "History 10: Points to Elicit",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Point to Elicit", "Significance"],
+            "tableRows": [
+              ["Faintishness, lethargy, palpitations, SOB", "Symptoms of Anaemia / Tissue Hypoxia"],
+              ["Pica (Abnormal food fads)", "Iron deficiency anaemia"],
+              ["Dysphagia (Plummer-Vinson)", "Iron deficiency anaemia"],
+              ["Peripheral numbness, ataxia", "B12 deficiency (Neuropathy / SACD)"],
+              ["Jaundice + Dark urine", "Haemolytic Anaemia"],
+              ["Bleeding manifestations / Recurrent infections", "Bone marrow failure (Pancytopenia)"],
+              ["Bone pain / Fractures", "Multiple Myeloma"],
+              ["Chronic diarrhoea / Weight loss", "Malabsorption (Coeliac, Crohn's)"],
+              ["Melaena / Haematemesis / Altered bowel habits", "GI Malignancy / Blood Loss"],
+              ["Menorrhagia", "Common cause in young females"],
+              ["Alcohol consumption", "B12/Folate deficiency, Liver disease, GI bleed"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Dietary & Drug History",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Diet: Vegetarian (B12), Tea after meals (Iron absorption inhibition)." },
+              { "text": "Drugs: NSAIDs/Steroids (GI Bleed), Methotrexate/Phenytoin (Folate def), Chloramphenicol (Aplastic)." }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Examination",
+        "content": [
+          {
+            "type": "header",
+            "text": "Examination 10: Signs",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Sign to Elicit", "Significance"],
+            "tableRows": [
+              ["Koilonychia (Spoon nails), Glossitis, Angular stomatitis", "Iron deficiency anaemia"],
+              ["Jaundice (Lemon yellow)", "Haemolytic anaemia (Mild) / B12 deficiency"],
+              ["Petechiae, Ecchymosis", "Thrombocytopenia (Marrow failure)"],
+              ["Sternal Tenderness", "Leukaemia"],
+              ["Lymphadenopathy", "Lymphoma / Leukaemia"],
+              ["Hepatomegaly / Splenomegaly", "Haemolysis, Myeloproliferative disorders, CLD"],
+              ["Abdominal Mass", "GI Malignancy"],
+              ["Neuropathy (Loss of vibration/JPS), Ataxia", "B12 Deficiency (SACD)"],
+              ["Fundoscopy: Haemorrhages", "Severe Anaemia / Leukaemia"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Flash Card 22: Anaemia with Other Blood Pictures",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Blood Picture", "Condition"],
+            "tableRows": [
+              ["Pancytopenia", "Aplastic Anaemia, Hypersplenism, Myelofibrosis"],
+              ["Blast Cells", "Acute Leukaemia"],
+              ["Myelocytes/Metamyelocytes", "CML, Leukoerythroblastic picture"],
+              ["Rouleaux Formation", "Multiple Myeloma"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Algorithm",
+        "content": [
+          {
+            "type": "header",
+            "text": "Algorithm 11: Investigating Anaemia",
+            "level": 2
+          },
+          {
+            "type": "flowchart",
+            "flowchart": {
+              "direction": "vertical",
+              "nodes": [
+                { "id": "start", "label": "Anaemia (Low Hb)", "type": "start", "level": 0, "order": 1 },
+
+                { "id": "initial_labs", "label": "FBC, Blood Picture,\nReticulocyte Count", "type": "process", "level": 1, "order": 1 },
+
+                { "id": "mcv_check", "label": "Check MCV", "type": "decision", "level": 2, "order": 1 },
+
+                { "id": "micro", "label": "Microcytic", "type": "process", "level": 3, "order": 0 },
+                { "id": "normo", "label": "Normocytic", "type": "process", "level": 3, "order": 2 },
+                { "id": "macro", "label": "Macrocytic", "type": "process", "level": 3, "order": 4 },
+
+                { "id": "iron_studies", "label": "Iron Studies", "type": "process", "level": 4, "order": 0 },
+                { "id": "retic_check", "label": "Reticulocyte Count", "type": "decision", "level": 4, "order": 2 },
+                { "id": "b12_folate", "label": "B12 / Folate Levels", "type": "process", "level": 4, "order": 4 },
+
+                { "id": "iron_def", "label": "Iron Deficiency\n(Low Ferritin)", "type": "end", "level": 5, "order": -1 },
+                { "id": "thal", "label": "Thalassaemia\n(Hb Electrophoresis)", "type": "end", "level": 5, "order": 0 },
+
+                { "id": "haemolysis", "label": "High Retic -> Haemolysis\n(Coombs Test)", "type": "process", "level": 5, "order": 1 },
+                { "id": "marrow", "label": "Low Retic -> Marrow\n(Biopsy)", "type": "end", "level": 5, "order": 3 },
+
+                { "id": "megalo", "label": "Megaloblastic\n(Pernicious Anaemia)", "type": "end", "level": 5, "order": 4 },
+                { "id": "non_megalo", "label": "Non-Megaloblastic\n(Liver/Hypothyroid)", "type": "end", "level": 5, "order": 5 },
+
+                { "id": "coombs_pos", "label": "Coombs (+)\nAutoimmune", "type": "end", "level": 6, "order": 0 },
+                { "id": "coombs_neg", "label": "Coombs (-)\nMembrane/Enzyme", "type": "end", "level": 6, "order": 2 }
+              ],
+              "connections": [
+                { "from": "start", "to": "initial_labs" },
+                { "from": "initial_labs", "to": "mcv_check" },
+                { "from": "mcv_check", "to": "micro", "label": "Low" },
+                { "from": "mcv_check", "to": "normo", "label": "Normal" },
+                { "from": "mcv_check", "to": "macro", "label": "High" },
+                { "from": "micro", "to": "iron_studies" },
+                { "from": "normo", "to": "retic_check" },
+                { "from": "macro", "to": "b12_folate" },
+                { "from": "iron_studies", "to": "iron_def", "label": "Low Fe" },
+                { "from": "iron_studies", "to": "thal", "label": "Normal Fe" },
+                { "from": "retic_check", "to": "haemolysis", "label": "High" },
+                { "from": "retic_check", "to": "marrow", "label": "Low" },
+                { "from": "b12_folate", "to": "megalo", "label": "Low Levels" },
+                { "from": "b12_folate", "to": "non_megalo", "label": "Normal Levels" },
+                { "from": "haemolysis", "to": "coombs_pos" },
+                { "from": "haemolysis", "to": "coombs_neg" }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "title": "Key Points",
+        "content": [
+          {
+            "type": "header",
+            "text": "Key Points",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Commonest cause of anaemia is Iron Deficiency. Symptoms may not appear until Hb < 5g/dL if onset is slow." },
+              { "text": "Interpreting Hb/PCV: Dehydration falsely elevates Hb; Acute blood loss may not show dropped Hb immediately until plasma volume adjusts." },
+              { "text": "Mild haemolysis may not cause clinical jaundice." },
+              { "text": "Increased Reticulocyte count suggests Haemolysis; Reduced count suggests Marrow Failure." },
+              { "text": "Important: Draw blood samples for investigations (Blood picture, Retic count, Iron/B12/Folate) BEFORE initiating therapy (transfusion/supplements)." },
+              { "text": "Thalassaemia can have mixed mechanisms: Haemolysis + Ineffective Erythropoiesis." }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

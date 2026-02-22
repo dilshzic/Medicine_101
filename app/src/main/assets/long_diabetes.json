@@ -1,0 +1,192 @@
+[
+  {
+    "type": "header",
+    "text": "Diabetes Mellitus",
+    "level": 1
+  },
+  {
+    "type": "callout",
+    "text": "Classical Symptoms: Polyuria, Polydipsia, Weight Loss. (Note: These are often absent in mild-moderate hyperglycaemia)."
+  },
+  {
+    "type": "tab_group",
+    "tabs": [
+      {
+        "title": "Diagnosis & Types",
+        "content": [
+          {
+            "type": "header",
+            "text": "Diagnostic Criteria (WHO)",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Fasting Plasma Glucose: ≥ 7.0 mmol/L (126 mg/dL)" },
+              { "text": "2-hour Plasma Glucose (OGTT): ≥ 11.1 mmol/L (200 mg/dL)" },
+              { "text": "Random Plasma Glucose (with symptoms): ≥ 11.1 mmol/L" },
+              { "text": "HbA1c: ≥ 6.5% (48 mmol/mol)" }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Classification: Type 1 vs Type 2",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Feature", "Type 1", "Type 2"],
+            "tableRows": [
+              ["Age of Onset", "Young (<30 years)", "Middle aged / Elderly (>40)"],
+              ["Body Habitus", "Lean (Weight loss)", "Obese / Overweight"],
+              ["Onset", "Acute / Rapid", "Insidious (Often asymptomatic)"],
+              ["Ketosis prone", "Yes (DKA common)", "No (Resistant to ketosis)"],
+              ["Endogenous Insulin", "Absent / Negligible", "Present (Insulin Resistance)"],
+              ["Autoimmunity", "Yes (Islet Abs, GAD)", "No"],
+              ["Family History", "Uncommon (<20%)", "Common (>80%)"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Complications",
+        "content": [
+          {
+            "type": "header",
+            "text": "Flash Card 28: Complications of Diabetes",
+            "level": 2
+          },
+          { "type": "paragraph", "text": ""},
+          {
+            "type": "accordion",
+            "items": [
+              {
+                "title": "Acute Metabolic",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Hypoglycaemia (Iatrogenic)" },
+                    { "text": "Diabetic Ketoacidosis (DKA)" },
+                    { "text": "Hyperosmolar Hyperglycaemic State (HHS)" },
+                    { "text": "Lactic Acidosis" }
+                  ]}
+                ]
+              },
+              {
+                "title": "Chronic: Microvascular",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Retinopathy: Background, Pre-proliferative, Proliferative, Maculopathy." },
+                    { "text": "Nephropathy: Microalbuminuria -> Proteinuria -> CKD." },
+                    { "text": "Neuropathy: Peripheral (Glove & Stocking), Autonomic, Mononeuritis." }
+                  ]}
+                ]
+              },
+              {
+                "title": "Chronic: Macrovascular",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Coronary Artery Disease (Angina / MI)." },
+                    { "text": "Cerebrovascular Disease (Stroke / TIA)." },
+                    { "text": "Peripheral Vascular Disease (Claudication / Gangrene)." }
+                  ]}
+                ]
+              },
+              {
+                "title": "Infections",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Skin: Boils, Carbuncles, Cellulitis, Candidiasis (Genital/Oral)." },
+                    { "text": "Systemic: UTI, Pyelonephritis, Pneumonia, Tuberculosis (TB)." }
+                  ]}
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "History",
+        "content": [
+          {
+            "type": "header",
+            "text": "History 14: Points to Elicit",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Symptom / History", "Significance"],
+            "tableRows": [
+              ["Chest Pain (Exertional)", "Ischaemic Heart Disease (Angina)"],
+              ["SOB / Orthopnoea / PND", "Heart Failure (Diabetic Cardiomyopathy)"],
+              ["Calf Pain (Claudication)", "Peripheral Vascular Disease"],
+              ["Visual Disturbance / Floaters", "Retinopathy / Cataract / Vitreous Haemorrhage"],
+              ["Frothy Urine / Swelling", "Nephropathy (Proteinuria)"],
+              ["Numbness / Paraesthesia (Feet)", "Peripheral Neuropathy"],
+              ["Dizziness on standing", "Autonomic Neuropathy (Postural hypotension)"],
+              ["Diarrhoea (Nocturnal)", "Autonomic Neuropathy"],
+              ["Erectile Dysfunction", "Autonomic Neuropathy / Vascular"],
+              ["Dysuria / Loin Pain", "UTI / Pyelonephritis"],
+              ["Cough / Fever / Weight Loss", "TB / Respiratory Infection"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Management History",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Duration of disease." },
+              { "text": "Current Treatment: Diet, OHA (Metformin/Sulphonylurea), Insulin (Type/Dose)." },
+              { "text": "Monitoring: Frequency of HbA1c, Home glucose monitoring." },
+              { "text": "Hypoglycaemia: Frequency, Awareness, Severity." }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Examination",
+        "content": [
+          {
+            "type": "header",
+            "text": "Examination 14: Signs",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Sign to Elicit", "Significance"],
+            "tableRows": [
+              ["BMI / Waist Circumference", "Obesity (Metabolic Syndrome)"],
+              ["Acanthosis Nigricans", "Insulin Resistance"],
+              ["Xanthelasma", "Dyslipidaemia"],
+              ["Necrobiosis Lipoidica", "Dermopathy (Pre-tibial)"],
+              ["Injection Sites", "Lipohypertrophy / Atrophy"],
+              ["Carotid Bruit", "Macrovascular Disease"],
+              ["BP (Lie/Stand)", "Hypertension / Autonomic Neuropathy"],
+              ["Hepatomegaly", "Fatty Liver (NAFLD)"],
+              ["Foot Ulcers / Deformity", "Charcot's Joint / Neuropathic Ulcer"],
+              ["Absent Foot Pulses", "Peripheral Vascular Disease"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Retinopathy Grading",
+            "level": 2
+          },
+          { "type": "paragraph", "text": "" },
+          {
+            "type": "table",
+            "tableHeaders": ["Grade", "Features"],
+            "tableRows": [
+              ["Background", "Microaneurysms, Dot & Blot Haemorrhages, Hard Exudates"],
+              ["Pre-Proliferative", "Cotton Wool Spots (Soft Exudates), Venous Beading"],
+              ["Proliferative", "New Vessels (Neovascularization) on Disc/Retina"],
+              ["Maculopathy", "Exudates/Oedema near Macula (Vision threatening)"]
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

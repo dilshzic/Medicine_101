@@ -60,4 +60,5 @@ interface NoteDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertBlocks(blocks: List<ContentBlockEntity>)
+
 }

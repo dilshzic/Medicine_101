@@ -15,13 +15,13 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.algorithmx.medicine101.ui.screens.EditorViewModel
+import com.algorithmx.medicine101.ui.screens.NoteViewModel
 import com.algorithmx.medicine101.ui.screens.noteview.components.UniversalRenderer
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NoteViewContent(
-    viewModel: EditorViewModel,
+    viewModel: NoteViewModel,
     onBack: () -> Unit
 ) {
     val blocks by viewModel.blocks.collectAsState()

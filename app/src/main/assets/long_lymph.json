@@ -1,0 +1,228 @@
+[
+  {
+    "type": "header",
+    "text": "Lymphadenopathy",
+    "level": 1
+  },
+  {
+    "type": "callout",
+    "text": "Definition: Abnormal increase in size of lymph nodes. Nodes > 1 cm in diameter are usually abnormal."
+  },
+  {
+    "type": "tab_group",
+    "tabs": [
+      {
+        "title": "Basics & Causes",
+        "content": [
+          {
+            "type": "header",
+            "text": "Describing Lymph Nodes",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Location: Main sites include Cervical, Supraclavicular, Axillary, Inguinal." },
+              { "text": "Size: >1 cm is usually abnormal." },
+              { "text": "Tenderness: Suggests infection (Septic) or acute inflammation." },
+              { "text": "Consistency: Soft, Rubbery (Lymphoma), Hard (Malignancy)." },
+              { "text": "Fixity: Fixity to skin/underlying structures suggests malignant infiltration." },
+              { "text": "Matted: Suggests Tuberculosis (TB)." }
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Flash Card 29: Causes of Localized Lymphadenopathy",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Site", "Causes"],
+            "tableRows": [
+              ["Cervical", "Local Infection (Oral, Scalp, ENT), TB, Lymphoma, Oral/Thyroid Malignancy"],
+              ["Supraclavicular", "Always Pathological. Left (Virchow's): Stomach/Oesophageal/Lung CA. Right: Lung/Breast CA."],
+              ["Axillary", "Local Infection, Breast CA, Lung CA, Lymphoma"],
+              ["Inguinal", "Leg Cellulitis, STDs (Syphilis, LGV), Pelvic/Penile Malignancy"],
+              ["Hilar (CXR)", "Unilateral: TB, Bronchial CA. Bilateral: Sarcoidosis, Lymphoma."],
+              ["Abdominal", "Intestinal TB, Lymphoma, Intra-abdominal malignancy."]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Flash Card 30: Causes of Generalized Lymphadenopathy",
+            "level": 2
+          },
+          {
+            "type": "accordion",
+            "items": [
+              {
+                "title": "Infection",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Acute: Infectious Mononucleosis (EBV), CMV, Toxoplasmosis, HIV." },
+                    { "text": "Chronic: Tuberculosis (TB), Brucellosis, Syphilis." }
+                  ]}
+                ]
+              },
+              {
+                "title": "Malignancy",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Acute Leukaemia." },
+                    { "text": "Chronic Lymphocytic Leukaemia (CLL)." },
+                    { "text": "Lymphoma (Hodgkin's, Non-Hodgkin's)." },
+                    { "text": "Disseminated Malignancy (e.g. Ovarian CA)." }
+                  ]}
+                ]
+              },
+              {
+                "title": "Inflammatory & Drugs",
+                "content": [
+                  { "type": "list", "items": [
+                    { "text": "Autoimmune: SLE, Rheumatoid Arthritis." },
+                    { "text": "Sarcoidosis." },
+                    { "text": "Drugs: Anti-epileptics (e.g. Phenytoin)." }
+                  ]}
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "History",
+        "content": [
+          {
+            "type": "header",
+            "text": "History 15: Points to Elicit",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["History Point", "Significance"],
+            "tableRows": [
+              ["Painful nodes", "Infection, inflammation"],
+              ["Short duration + Prodrome (Rash/Pharyngitis)", "Viral (EBV, CMV, Infectious Mononucleosis)"],
+              ["Long standing", "Lymphoma, SLE, HIV, TB"],
+              ["Long standing low grade fever, night sweats", "TB, Lymphoma"],
+              ["Weight Loss, Loss of Appetite", "Malignancy, TB, HIV"],
+              ["Faintishness, tiredness, lethargy", "Anaemia (Haematological malignancy)"],
+              ["Skin rash, arthralgia, arthritis", "SLE, Rheumatoid Arthritis, IMN"],
+              ["Uveitis, parotid enlargement, erythema nodosum", "Sarcoidosis"]
+            ]
+          },
+          {
+            "type": "header",
+            "text": "Systemic Inquiry & Social History",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "GIT: Dysphagia, abdominal pain, altered bowel habits, melaena (GI Malignancy)." },
+              { "text": "Respiratory: Chronic cough, haemoptysis, pleuritic pain (TB, Bronchial CA)." },
+              { "text": "ENT: Nasal block, hoarseness, epistaxis (Nasopharyngeal/Laryngeal CA)." },
+              { "text": "Drug History: Phenytoin." },
+              { "text": "Social: Unprotected sexual encounters (HIV, Syphilis), Travel history." }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Examination",
+        "content": [
+          {
+            "type": "header",
+            "text": "Examination 15: Signs",
+            "level": 2
+          },
+          {
+            "type": "table",
+            "tableHeaders": ["Sign to Elicit", "Significance"],
+            "tableRows": [
+              ["Fever", "Infection, Lymphoma, SLE, TB"],
+              ["Pallor / Bleeding / Sternal Tenderness", "Marrow involvement (Leukaemia, Lymphoma)"],
+              ["Oral Thrush", "Immunocompromised (HIV, Malignancy)"],
+              ["Gum Hypertrophy", "Acute Leukaemia"],
+              ["SVC Obstruction (Neck veins, Pemberton's sign)", "Mediastinal Lymphoma / Lung CA"],
+              ["Malar Rash / Alopecia / Oral Ulcers", "SLE"],
+              ["Macular Erythematous Rash", "Infectious Mononucleosis (IMN)"],
+              ["Uveitis", "Sarcoidosis"],
+              ["Breast Mass", "Breast CA (Axillary nodes)"],
+              ["Thyroid Nodules", "Thyroid CA"],
+              ["Hepatomegaly", "Lymphoma, Leukaemia, Chronic Infection"],
+              ["Splenomegaly", "Lymphoma, Leukaemia, IMN, Malaria"],
+              ["Abdominal Mass", "Intra-abdominal malignancy"],
+              ["Testicular Enlargement", "Testicular Tumour (Para-aortic nodes)"]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Algorithm",
+        "content": [
+          {
+            "type": "header",
+            "text": "Algorithm 15: Investigating Lymphadenopathy",
+            "level": 2
+          },
+          {
+            "type": "flowchart",
+            "flowchart": {
+              "direction": "vertical",
+              "nodes": [
+                { "id": "start", "label": "Lymphadenopathy", "type": "start", "level": 0, "order": 1 },
+
+                { "id": "basics", "label": "FBC, CRP, ESR\nCXR, USS Abdomen", "type": "process", "level": 1, "order": 1 },
+
+                { "id": "blood_check", "label": "Blood Picture?", "type": "decision", "level": 2, "order": 1 },
+
+                { "id": "abnormal_blood", "label": "Abnormal Cells\n(Blasts/Lymphocytes)", "type": "process", "level": 3, "order": 0 },
+                { "id": "inconclusive", "label": "Inconclusive", "type": "process", "level": 3, "order": 2 },
+
+                { "id": "marrow", "label": "Bone Marrow Biopsy\n(Leukaemia/Lymphoma)", "type": "end", "level": 4, "order": 0 },
+
+                { "id": "serology", "label": "Serology:\nHIV, EBV, CMV, Toxoplasma\nANA, Mantoux", "type": "process", "level": 4, "order": 2 },
+
+                { "id": "diagnosis_made", "label": "Diagnosis Made?", "type": "decision", "level": 5, "order": 2 },
+
+                { "id": "treat", "label": "Treat Cause", "type": "end", "level": 6, "order": 1 },
+                { "id": "biopsy", "label": "Lymph Node Biopsy\n(Excision)", "type": "end", "level": 6, "order": 3 }
+              ],
+              "connections": [
+                { "from": "start", "to": "basics" },
+                { "from": "basics", "to": "blood_check" },
+                { "from": "blood_check", "to": "abnormal_blood", "label": "Abnormal" },
+                { "from": "blood_check", "to": "inconclusive", "label": "Normal/Non-specific" },
+                { "from": "abnormal_blood", "to": "marrow" },
+                { "from": "inconclusive", "to": "serology" },
+                { "from": "serology", "to": "diagnosis_made" },
+                { "from": "diagnosis_made", "to": "treat", "label": "Yes" },
+                { "from": "diagnosis_made", "to": "biopsy", "label": "No" }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "title": "Key Points",
+        "content": [
+          {
+            "type": "header",
+            "text": "Key Points",
+            "level": 2
+          },
+          {
+            "type": "list",
+            "items": [
+              { "text": "Sinister causes such as Lymphoma and Malignancy must be actively ruled out in persistent lymphadenopathy." },
+              { "text": "Generalized lymphadenopathy usually suggests a systemic infection (Viral/TB) or haematological malignancy." },
+              { "text": "For localized lymphadenopathy, carefully examine the drainage area for infection or tumour." },
+              { "text": "Don't miss a localized infection in the draining area in regional lymphadenopathy." }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
