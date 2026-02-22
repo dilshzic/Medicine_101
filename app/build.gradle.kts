@@ -79,12 +79,18 @@ dependencies {
 
     // Jetpack Native PDF Viewer (Alpha/Beta - check latest version)
     implementation(libs.androidx.pdf.viewer)
+    implementation(libs.androidx.pdf.compose)
     implementation(libs.androidx.pdf.viewer.fragment)
+    implementation("androidx.pdf:pdf-document-service:1.0.0-alpha13")
 
     // PdfBox for Android (TOC Extraction)
     implementation(libs.pdfbox.android)
 
     // ViewBinding for Compose
     implementation(libs.androidx.compose.ui.viewbinding)
+    implementation("androidx.pdf:pdf-ink:1.0.0-alpha13")
+
+    implementation(libs.android.pdf.viewer)
+
 
 }

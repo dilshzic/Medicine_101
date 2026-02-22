@@ -7,12 +7,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -24,9 +19,9 @@ import androidx.navigation.navArgument
 import com.algorithmx.medicine101.data.NoteEntity
 import com.algorithmx.medicine101.ui.screens.NoteScreen
 import com.algorithmx.medicine101.ui.screens.pdfviewer.PdfViewerScreen
+import com.algorithmx.medicine101.ui.screens.pdfviewer.TocPdfViewerScreen // NEW IMPORT
 import com.algorithmx.medicine101.ui.screens.folders.ExplorerScreen
 import com.algorithmx.medicine101.ui.screens.folders.ExplorerViewModel
-// import com.algorithmx.medicine101.ui.screens.search.SearchScreen
 
 @RequiresExtension(extension = Build.VERSION_CODES.S, version = 13)
 @Composable
@@ -35,46 +30,31 @@ fun AppNavigation() {
 
     NavHost(
         navController = navController,
-        startDestination = "explorer_root", // Start at the root Explorer
-        enterTransition = {
-            slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Left, animationSpec = tween(300))
-        },
-        exitTransition = {
-            slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Left, animationSpec = tween(300))
-        },
-        popEnterTransition = {
-            slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Right, animationSpec = tween(300))
-        },
-        popExitTransition = {
-            slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Right, animationSpec = tween(300))
-        }
+        startDestination = "explorer_root",
+        enterTransition = { slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Left, animationSpec = tween(300)) },
+        exitTransition = { slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Left, animationSpec = tween(300)) },
+        popEnterTransition = { slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Right, animationSpec = tween(300)) },
+        popExitTransition = { slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Right, animationSpec = tween(300)) }
     ) {
-        // 1. Root Explorer (Home)
         composable("explorer_root") {
             ExplorerScreen(
                 onFolderClick = { navController.navigate("explorer/$it") },
-                onNoteClick = { noteId ->
-                    navController.navigate("note_screen/$noteId") // Route to the Smart Handler
-                },
+                onNoteClick = { noteId -> navController.navigate("note_screen/$noteId") },
                 onSearchClick = { navController.navigate("search") }
             )
         }
 
-        // 2. Folder Explorer (Deep Navigation)
         composable(
             route = "explorer/{folderId}",
             arguments = listOf(navArgument("folderId") { type = NavType.StringType })
         ) {
             ExplorerScreen(
                 onFolderClick = { navController.navigate("explorer/$it") },
-                onNoteClick = { noteId ->
-                    navController.navigate("note_screen/$noteId") // Route to the Smart Handler
-                },
+                onNoteClick = { noteId -> navController.navigate("note_screen/$noteId") },
                 onSearchClick = { navController.navigate("search") }
             )
         }
 
-        // 3. Smart Note Handler (Decides between JSON Note or PDF Viewer)
         composable(
             route = "note_screen/{noteId}",
             arguments = listOf(navArgument("noteId") { type = NavType.StringType })
@@ -84,35 +64,43 @@ fun AppNavigation() {
             var noteMetadata by remember { mutableStateOf<NoteEntity?>(null) }
             var isLoading by remember { mutableStateOf(true) }
 
-            // Fetch note details asynchronously so it doesn't freeze the UI
             LaunchedEffect(noteId) {
                 noteMetadata = explorerViewModel.getNoteById(noteId)
                 isLoading = false
             }
 
-            // Wait until the note is loaded from DB, then render the correct screen
             if (isLoading) {
-                // FIX: Show loading instead of a white screen
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator()
                 }
             } else {
                 noteMetadata?.let { note ->
                     if (note.pdfUri != null) {
-                        PdfViewerScreen(
-                            pdfPath = note.pdfUri,
-                            initialPage = note.pdfPage ?: 0,
-                            onBack = { navController.popBackStack() }
-                        )
+                        val page = note.pdfPage ?: 0
+
+                        // SMART ROUTER: Choose viewer based on page target
+                        if (page > 0) {
+                            // Target > 0: Use Barteksc viewer for jumping to the TOC chapter
+                            TocPdfViewerScreen(
+                                pdfPath = note.pdfUri,
+                                initialPage = page,
+                                onBack = { navController.popBackStack() }
+                            )
+                        } else {
+                            // Target 0: Use Jetpack viewer for general reading & drawing
+                            PdfViewerScreen(
+                                pdfPath = note.pdfUri,
+                                initialPage = 0,
+                                onBack = { navController.popBackStack() }
+                            )
+                        }
                     } else {
                         NoteScreen(onBack = { navController.popBackStack() })
                     }
                 }
-
             }
         }
 
-        // 4. Direct Editor Route (Used if explicitly calling the editor)
         composable(
             route = "editor/{noteId}",
             arguments = listOf(navArgument("noteId") { type = NavType.StringType })

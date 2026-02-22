@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.algorithmx.medicine101.data.ContentBlock
 import com.algorithmx.medicine101.data.VideoTimestamp
+import com.algorithmx.medicine101.utils.extractYoutubeId
 
 @Composable
 fun EditYouTubeBlock(
@@ -29,21 +30,27 @@ fun EditYouTubeBlock(
             .padding(12.dp)
     ) {
         Text("YouTube Video Editor", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.error)
-        
+
         Spacer(modifier = Modifier.height(8.dp))
-        
+
         // 1. Video ID Input
         OutlinedTextField(
             value = block.videoId ?: "",
-            onValueChange = { onUpdate(block.copy(videoId = it)) },
-            label = { Text("YouTube Video ID") },
-            placeholder = { Text("e.g. dQw4w9WgXcQ") },
+            onValueChange = { rawInput ->
+                // Clean the input immediately using your utility function
+                val cleanVideoId = extractYoutubeId(rawInput)
+
+                // FIX: Changed 'onBlockChange' to 'onUpdate' to match the parameter name
+                onUpdate(block.copy(videoId = cleanVideoId))
+            },
+            label = { Text("YouTube Video ID or Link") },
+            placeholder = { Text("Paste youtube.com/... or youtu.be/... link") },
             modifier = Modifier.fillMaxWidth(),
             singleLine = true
         )
         Text(
-            "Note: Use the ID from the URL (watch?v=THIS_PART)", 
-            style = MaterialTheme.typography.bodySmall, 
+            "Note: Use the ID from the URL (watch?v=THIS_PART)",
+            style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.padding(top = 4.dp, bottom = 12.dp)
         )
@@ -52,7 +59,7 @@ fun EditYouTubeBlock(
 
         // 2. Timestamps Editor
         Text("Timestamps Mapping", style = MaterialTheme.typography.labelMedium, modifier = Modifier.padding(top = 8.dp, bottom = 8.dp))
-        
+
         timestamps.forEachIndexed { index, ts ->
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -60,10 +67,10 @@ fun EditYouTubeBlock(
             ) {
                 OutlinedTextField(
                     value = ts.timestamp,
-                    onValueChange = { 
+                    onValueChange = {
                         val newList = timestamps.toMutableList()
                         newList[index] = ts.copy(timestamp = it)
-                        onUpdate(block.copy(videoTimestamps = newList)) 
+                        onUpdate(block.copy(videoTimestamps = newList))
                     },
                     label = { Text("Time (MM:SS)") },
                     modifier = Modifier.weight(0.35f),
@@ -72,10 +79,10 @@ fun EditYouTubeBlock(
                 Spacer(modifier = Modifier.width(4.dp))
                 OutlinedTextField(
                     value = ts.label,
-                    onValueChange = { 
+                    onValueChange = {
                         val newList = timestamps.toMutableList()
                         newList[index] = ts.copy(label = it)
-                        onUpdate(block.copy(videoTimestamps = newList)) 
+                        onUpdate(block.copy(videoTimestamps = newList))
                     },
                     label = { Text("Description") },
                     modifier = Modifier.weight(0.65f),

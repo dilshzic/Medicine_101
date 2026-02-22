@@ -2,6 +2,8 @@ package com.algorithmx.medicine101.ui.screens.noteeditview.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
@@ -13,7 +15,8 @@ import androidx.compose.ui.unit.dp
 import com.algorithmx.medicine101.data.ContentBlock
 import com.algorithmx.medicine101.data.ContentItem
 import com.algorithmx.medicine101.data.DifferentialDiagnosis
-
+import com.algorithmx.medicine101.data.FlowchartData
+import com.algorithmx.medicine101.data.TabItem
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -22,7 +25,13 @@ fun BlockCreationSheet(
     onBlockSelected: (ContentBlock) -> Unit
 ) {
     ModalBottomSheet(onDismissRequest = onDismiss) {
-        Column(modifier = Modifier.padding(16.dp).padding(bottom = 32.dp)) {
+        Column(
+            modifier = Modifier
+                .padding(16.dp)
+                .padding(bottom = 32.dp)
+                // Added vertical scroll in case the screen is small
+                .verticalScroll(rememberScrollState())
+        ) {
             Text(
                 "Insert Block",
                 style = MaterialTheme.typography.titleLarge,
@@ -44,7 +53,15 @@ fun BlockCreationSheet(
                 onBlockSelected(ContentBlock(type = "list", items = listOf(ContentItem(text = "Item 1"))))
             }
 
-            // 4. Table
+            // 4. Key-Value List (NEW)
+            BlockOption(Icons.Default.ListAlt, "Key-Value List") {
+                onBlockSelected(ContentBlock(
+                    type = "kv_list",
+                    items = listOf(ContentItem(title = "Key", text = "Value"))
+                ))
+            }
+
+            // 5. Table
             BlockOption(Icons.Default.TableChart, "Table") {
                 onBlockSelected(ContentBlock(
                     type = "table",
@@ -52,19 +69,48 @@ fun BlockCreationSheet(
                     tableRows = listOf(listOf("Data 1", "Data 2"))
                 ))
             }
-            
-            // 5. Flowchart (Placeholder)
-            BlockOption(Icons.Default.AccountTree, "Flowchart (Basic)") {
-                 // For now, we insert a placeholder or basic flowchart structure
-                 // You can expand this once we build the Flowchart Editor
-                 onBlockSelected(ContentBlock(type = "callout", text = "[Flowchart Placeholder]"))
+
+            // 6. Flowchart (UPDATED to use actual FlowchartData instead of a text placeholder)
+            BlockOption(Icons.Default.AccountTree, "Flowchart") {
+                onBlockSelected(ContentBlock(
+                    type = "flowchart",
+                    flowchart = FlowchartData(nodes = emptyList(), connections = emptyList())
+                ))
             }
-            // 6. Differential Diagnosis
+
+            // 7. Differential Diagnosis
             BlockOption(Icons.Default.MedicalServices, "Differential Diagnosis") {
                 onBlockSelected(ContentBlock(
-                    type = "dd_table", // New Type ID
+                    type = "dd_table",
                     ddItems = listOf(
                         DifferentialDiagnosis("Symptom", listOf("Disease A", "Disease B"))
+                    )
+                ))
+            }
+
+            // 8. Image (NEW)
+            BlockOption(Icons.Default.Image, "Image") {
+                onBlockSelected(ContentBlock(
+                    type = "image",
+                    imageUrl = "" // Start empty, user will edit it
+                ))
+            }
+
+            // 9. YouTube Video (NEW)
+            BlockOption(Icons.Default.PlayArrow, "YouTube Video") {
+                onBlockSelected(ContentBlock(
+                    type = "youtube",
+                    videoId = "", // Start empty
+                    videoTimestamps = emptyList()
+                ))
+            }
+
+            // 10. Accordion / Tabs (NEW)
+            BlockOption(Icons.Default.ViewDay, "Accordion (Tabs)") {
+                onBlockSelected(ContentBlock(
+                    type = "accordion",
+                    tabs = listOf(
+                        TabItem(title = "Tab 1", content = emptyList())
                     )
                 ))
             }
