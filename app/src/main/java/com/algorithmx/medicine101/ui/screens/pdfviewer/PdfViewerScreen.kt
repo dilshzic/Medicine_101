@@ -1,7 +1,8 @@
-package com.algorithmx.medicine101.ui.screens
+package com.algorithmx.medicine101.ui.screens.pdfviewer
 
 import android.net.Uri
 import android.os.Build
+import android.view.View
 import androidx.annotation.RequiresExtension
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -10,9 +11,10 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.viewinterop.AndroidViewBinding
+import androidx.compose.ui.viewinterop.AndroidView
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentContainerView
 import androidx.pdf.viewer.fragment.PdfViewerFragment
-import com.algorithmx.medicine101.databinding.FragmentPdfViewerBinding
 import java.io.File
 
 @RequiresExtension(extension = Build.VERSION_CODES.S, version = 13)
@@ -23,22 +25,15 @@ fun PdfViewerScreen(
     initialPage: Int,
     onBack: () -> Unit
 ) {
-    // Extract a readable title from the file path to show in the TopBar
     val displayTitle = File(pdfPath).nameWithoutExtension
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = {
-                    Text(
-                        text = displayTitle,
-                        maxLines = 1,
-                        style = MaterialTheme.typography.titleMedium
-                    )
-                },
+                title = { Text(displayTitle, maxLines = 1, style = MaterialTheme.typography.titleMedium) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.Default.ArrowBack, contentDescription = "Back")
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -48,33 +43,27 @@ fun PdfViewerScreen(
             )
         }
     ) { padding ->
-        AndroidViewBinding(
-            factory = FragmentPdfViewerBinding::inflate,
-            modifier = Modifier
-                .padding(padding)
-                .fillMaxSize()
-        ) {
-            // Safely get the fragment manager from the context
-            val fragmentManager = (root.context as androidx.fragment.app.FragmentActivity).supportFragmentManager
-
-            // Find the fragment by the ID of the FragmentContainerView in your XML
-            val fragment = fragmentManager.findFragmentById(this.pdfContainer.id) as? PdfViewerFragment
-
-            fragment?.documentUri = Uri.fromFile(File(pdfPath))
-            // 2. Handle Jump to initialPage
-            // NOTE: Because androidx.pdf is still in Alpha, the API for scrolling
-            // is actively evolving. In some alpha builds, you might have to wait
-            // for the view to lay out before attempting to scroll.
-            this.root.post {
-                try {
-                    // Check if your specific alpha version exposes a scroll/jump method.
-                    // If it does not yet expose 'scrollToPage', this acts as a placeholder
-                    // where that logic will go once the library reaches stable Beta.
-                    // fragment.scrollToPage(initialPage)
-                } catch (e: Exception) {
-                    e.printStackTrace()
+        AndroidView(
+            modifier = Modifier.padding(padding).fillMaxSize(),
+            factory = { context ->
+                // Create the container dynamically
+                FragmentContainerView(context).apply {
+                    id = View.generateViewId()
                 }
+            },
+            update = { view ->
+                val fm = (view.context as FragmentActivity).supportFragmentManager
+                var fragment = fm.findFragmentById(view.id) as? PdfViewerFragment
+
+                // Attach the native viewer if it isn't attached yet
+                if (fragment == null) {
+                    fragment = PdfViewerFragment()
+                    fm.beginTransaction().replace(view.id, fragment).commitNowAllowingStateLoss()
+                }
+
+                // Load the URI
+                fragment.documentUri = Uri.fromFile(File(pdfPath))
             }
-        }
+        )
     }
 }

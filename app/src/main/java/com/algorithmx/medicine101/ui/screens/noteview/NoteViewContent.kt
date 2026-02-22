@@ -33,11 +33,11 @@ fun NoteViewContent(
     // 1. Collect the selected tab state from the ViewModel
     val selectedTab by viewModel.selectedTab.collectAsState()
 
-    // 2. Generate the list of available tabs from the blocks
-    val availableTabs = blocks.map { it.tabName }.distinct().ifEmpty { listOf("General") }
+    // 2. Generate the list of available tabs, defaulting nulls to "General"
+    val availableTabs = blocks.map { it.tabName ?: "General" }.distinct().ifEmpty { listOf("General") }
 
-    // 3. Filter blocks so we ONLY render the ones belonging to the active tab
-    val currentTabBlocks = blocks.filter { it.tabName == selectedTab }
+    // 3. Filter blocks safely
+    val currentTabBlocks = blocks.filter { (it.tabName ?: "General") == selectedTab }
 
     Scaffold(
         topBar = {

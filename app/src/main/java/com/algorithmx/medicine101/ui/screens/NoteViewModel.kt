@@ -51,13 +51,15 @@ class NoteViewModel @Inject constructor(
                 _title.value = noteWithBlocks.note.title
 
                 // 2. Map the separate database rows back into UI blocks
+                // Inside loadNote()
                 val uiBlocks = noteWithBlocks.blocks
                     .sortedBy { it.orderIndex }
                     .map { entity ->
                         val type = object : TypeToken<ContentBlock>() {}.type
                         val parsedBlock = gson.fromJson<ContentBlock>(entity.content, type)
-                        // Ensure the parsed block gets the tabName from the database row
-                        parsedBlock.copy(tabName = entity.tabName)
+
+                        // FIX: Ensure tabName is NEVER null so it matches the "General" filter
+                        parsedBlock.copy(tabName = entity.tabName ?: "General")
                     }
 
                 _blocks.value = uiBlocks

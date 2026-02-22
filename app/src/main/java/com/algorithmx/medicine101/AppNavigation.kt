@@ -4,12 +4,17 @@ import android.os.Build
 import androidx.annotation.RequiresExtension
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -18,7 +23,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.algorithmx.medicine101.data.NoteEntity
 import com.algorithmx.medicine101.ui.screens.NoteScreen
-import com.algorithmx.medicine101.ui.screens.PdfViewerScreen
+import com.algorithmx.medicine101.ui.screens.pdfviewer.PdfViewerScreen
 import com.algorithmx.medicine101.ui.screens.folders.ExplorerScreen
 import com.algorithmx.medicine101.ui.screens.folders.ExplorerViewModel
 // import com.algorithmx.medicine101.ui.screens.search.SearchScreen
@@ -75,29 +80,35 @@ fun AppNavigation() {
             arguments = listOf(navArgument("noteId") { type = NavType.StringType })
         ) { backStackEntry ->
             val noteId = backStackEntry.arguments?.getString("noteId") ?: return@composable
-
-            // Get ViewModel to fetch note data safely within Compose
             val explorerViewModel: ExplorerViewModel = hiltViewModel()
             var noteMetadata by remember { mutableStateOf<NoteEntity?>(null) }
+            var isLoading by remember { mutableStateOf(true) }
 
             // Fetch note details asynchronously so it doesn't freeze the UI
             LaunchedEffect(noteId) {
                 noteMetadata = explorerViewModel.getNoteById(noteId)
+                isLoading = false
             }
 
             // Wait until the note is loaded from DB, then render the correct screen
-            noteMetadata?.let { note ->
-                if (note.pdfUri != null) {
-                    PdfViewerScreen(
-                        pdfPath = note.pdfUri,
-                        initialPage = note.pdfPage ?: 0,
-                        onBack = { navController.popBackStack() }
-                    )
-                } else {
-                    NoteScreen(
-                        onBack = { navController.popBackStack() }
-                    )
+            if (isLoading) {
+                // FIX: Show loading instead of a white screen
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    CircularProgressIndicator()
                 }
+            } else {
+                noteMetadata?.let { note ->
+                    if (note.pdfUri != null) {
+                        PdfViewerScreen(
+                            pdfPath = note.pdfUri,
+                            initialPage = note.pdfPage ?: 0,
+                            onBack = { navController.popBackStack() }
+                        )
+                    } else {
+                        NoteScreen(onBack = { navController.popBackStack() })
+                    }
+                }
+
             }
         }
 

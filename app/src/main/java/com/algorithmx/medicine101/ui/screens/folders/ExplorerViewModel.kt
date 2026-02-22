@@ -102,7 +102,8 @@ class ExplorerViewModel @Inject constructor(
         }
     }
 
-    fun getNoteById(noteId: String): NoteEntity? {
-        return items.value.find { it.id == noteId }
+    // In ExplorerViewModel.kt
+    suspend fun getNoteById(id: String): NoteEntity? {
+        return repository.getNoteById(id)
     }
 }
