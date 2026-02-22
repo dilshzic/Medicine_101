@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class EditorViewModel @Inject constructor(
+class NoteViewModel @Inject constructor(
     private val repository: NoteRepository,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
@@ -35,28 +35,36 @@ class EditorViewModel @Inject constructor(
     private val _isEditing = MutableStateFlow(false)
     val isEditing: StateFlow<Boolean> = _isEditing.asStateFlow()
 
+    private val _selectedTab = MutableStateFlow("General")
+    val selectedTab: StateFlow<String> = _selectedTab.asStateFlow()
+
     init {
         loadNote()
     }
 
     private fun loadNote() {
         viewModelScope.launch {
-            // 1. Fetch the Note and its related blocks from the repository
+            // 1. Fetch the Note and its related blocks using the new Relation
             val noteWithBlocks = repository.getNoteWithBlocks(noteId)
 
             if (noteWithBlocks != null) {
-                // 2. Set the title from the Note entity
                 _title.value = noteWithBlocks.note.title
 
-                // 3. Convert the list of entities into List<ContentBlock> for the UI
+                // 2. Map the separate database rows back into UI blocks
                 val uiBlocks = noteWithBlocks.blocks
-                    .sortedBy { it.orderIndex } // Ensure medical notes stay in the correct sequence
+                    .sortedBy { it.orderIndex }
                     .map { entity ->
                         val type = object : TypeToken<ContentBlock>() {}.type
-                        gson.fromJson<ContentBlock>(entity.content, type)
+                        val parsedBlock = gson.fromJson<ContentBlock>(entity.content, type)
+                        // Ensure the parsed block gets the tabName from the database row
+                        parsedBlock.copy(tabName = entity.tabName)
                     }
 
                 _blocks.value = uiBlocks
+
+                // Automatically set the selected tab to the first available tab in this note
+                val firstTab = uiBlocks.firstOrNull()?.tabName ?: "General"
+                _selectedTab.value = firstTab
             }
         }
     }
@@ -69,7 +77,30 @@ class EditorViewModel @Inject constructor(
         _title.value = newTitle
     }
 
-    // --- BLOCK OPERATIONS (Optimized with .update) ---
+    // --- TAB OPERATIONS ---
+
+    fun selectTab(tabName: String) {
+        _selectedTab.value = tabName
+    }
+
+    // THE GHOST BLOCK CREATOR
+    fun addNewTab(newTabName: String) {
+        // Create an empty, invisible or basic text block assigned to this new tab
+        val ghostBlock = ContentBlock(
+            type = "text", // Use a basic text paragraph
+            text = "",     // Keep it empty so it looks like a blank canvas
+            tabName = newTabName
+        )
+
+        _blocks.update { currentList ->
+            currentList + ghostBlock
+        }
+        // Automatically switch to the newly created tab
+        selectTab(newTabName)
+    }
+
+
+    // --- BLOCK OPERATIONS ---
 
     fun updateBlock(index: Int, newBlock: ContentBlock) {
         _blocks.update { currentList ->
@@ -106,7 +137,9 @@ class EditorViewModel @Inject constructor(
 
     fun addBlock(block: ContentBlock) {
         _blocks.update { currentList ->
-            currentList + block // Simple and efficient list appending
+            // Ensure the block gets assigned to the currently selected tab
+            val blockWithTab = block.copy(tabName = _selectedTab.value)
+            currentList + blockWithTab
         }
     }
 
@@ -114,29 +147,29 @@ class EditorViewModel @Inject constructor(
 
     fun saveNote() {
         viewModelScope.launch {
-            // 1. Get the current note to retain its other fields (category, etc.)
             val noteWithBlocks = repository.getNoteWithBlocks(noteId)
 
             if (noteWithBlocks != null) {
-                // 2. Update the parent note entity
+                // 1. Update the parent note entity
                 val updatedNote = noteWithBlocks.note.copy(
-                    title = _title.value
-                    // Remove contentJson here since we don't store it in the NoteEntity anymore
+                    title = _title.value,
+                    updatedAt = System.currentTimeMillis()
+                    // contentJson is no longer stored in the parent note
                 )
                 repository.updateNote(updatedNote)
 
-                // 3. Convert UI blocks back to Database Entities
+                // 2. Convert UI blocks back to Database Entities
                 val blockEntities = _blocks.value.mapIndexed { index, uiBlock ->
                     ContentBlockEntity(
                         noteId = noteId,
                         type = uiBlock.type,
-                        content = gson.toJson(uiBlock), // Serialize the individual block
-                        orderIndex = index
+                        content = gson.toJson(uiBlock), // Serialize individual block
+                        orderIndex = index,
+                        tabName = uiBlock.tabName // Save the tab name
                     )
                 }
 
-                // 4. Sync blocks to the database
-                // (This function should delete old blocks for this noteId and insert the new ones)
+                // 3. Sync blocks to the database
                 repository.syncBlocks(noteId, blockEntities)
 
                 _isEditing.value = false // Exit edit mode after save

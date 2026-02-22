@@ -22,5 +22,6 @@ data class ContentBlockEntity(
     val noteId: String,
     val type: String, // "header", "callout", "table", etc.
     val content: String, // The actual text or serialized sub-data
-    val orderIndex: Int // Crucial for maintaining the sequence of paragraphs
+    val orderIndex: Int,
+    val tabName: String = "General"// Crucial for maintaining the sequence of paragraphs
 )

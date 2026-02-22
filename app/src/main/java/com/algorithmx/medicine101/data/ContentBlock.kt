@@ -12,6 +12,7 @@ data class ContentBlock(
     val tabs: List<TabItem>? = null,
     val flowchart: FlowchartData? = null,
     val ddItems: List<DifferentialDiagnosis>? = null,
+    val tabName: String = "General",
 
     // FIX 1: Change 'List<ListItem>?' to 'List<ContentItem>?'
 
