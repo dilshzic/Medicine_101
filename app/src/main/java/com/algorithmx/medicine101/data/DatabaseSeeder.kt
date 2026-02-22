@@ -1,8 +1,6 @@
-package com.algorithmx.medmate.data
+package com.algorithmx.medicine101.data
 
 import android.content.Context
-import com.algorithmx.medicine101.data.NoteEntity
-import com.algorithmx.medicine101.data.NoteRepository
 import com.algorithmx.medicine101.utils.JsonLoader
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
@@ -66,7 +64,7 @@ class DatabaseSeeder @Inject constructor(
                         id = UUID.randomUUID().toString(),
                         title = title,
                         category = categoryName,
-                        contentJson = jsonString, // Store the raw JSON content directly
+                        //contentJson = jsonString, // Store the raw JSON content directly
                         isFolder = false,
                         parentId = folderId, // Put inside the folder
                         isSystemNote = true

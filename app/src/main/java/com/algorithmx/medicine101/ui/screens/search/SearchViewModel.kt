@@ -16,25 +16,25 @@ class SearchViewModel @Inject constructor(
 
     private val _query = MutableStateFlow("")
     val query: StateFlow<String> = _query.asStateFlow()
-
-    @OptIn(FlowPreview::class)
-    val results: StateFlow<List<NoteEntity>> = _query
-        .debounce(300) // Wait 300ms after typing stops
-        .distinctUntilChanged()
-        .flatMapLatest { text ->
-            if (text.isBlank()) {
-                flowOf(emptyList())
-            } else {
-                repository.searchNotes(text)
-            }
-        }
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5000),
-            initialValue = emptyList()
-        )
-
-    fun onQueryChange(newQuery: String) {
-        _query.value = newQuery
-    }
+//
+//    @OptIn(FlowPreview::class)
+//    val results: StateFlow<List<NoteEntity>> = _query
+//        .debounce(300) // Wait 300ms after typing stops
+//        .distinctUntilChanged()
+//        .flatMapLatest { text ->
+//            if (text.isBlank()) {
+//                flowOf(emptyList())
+//            } else {
+//                repository.searchNotes(text)
+//            }
+//        }
+//        .stateIn(
+//            scope = viewModelScope,
+//            started = SharingStarted.WhileSubscribed(5000),
+//            initialValue = emptyList()
+//        )
+//
+//    fun onQueryChange(newQuery: String) {
+//        _query.value = newQuery
+//    }
 }

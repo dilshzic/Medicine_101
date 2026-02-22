@@ -8,6 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.algorithmx.medicine101.ui.screens.NoteScreen
 import com.algorithmx.medicine101.ui.screens.folders.ExplorerScreen
 import com.algorithmx.medicine101.ui.screens.search.SearchScreen
 
@@ -65,7 +66,7 @@ fun AppNavigation() {
             route = "editor/{noteId}",
             arguments = listOf(navArgument("noteId") { type = NavType.StringType })
         ) {
-            NoteEditorScreen(
+            NoteScreen(
                 onBack = { navController.popBackStack() }
             )
         }

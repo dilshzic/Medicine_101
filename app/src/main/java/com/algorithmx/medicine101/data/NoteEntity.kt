@@ -23,17 +23,13 @@ data class NoteEntity(
     @PrimaryKey val id: String = UUID.randomUUID().toString(),
 
     val title: String,
-    val category: String, // "Folder Name" or Category
+    val category: String,
     val tags: String = "",
+    val type: String = "note",
 
-    // CONTENT
-    // We store the block list as a JSON string.
-    // Firestore can store this string, or we can map it to a sub-collection later.
-    val contentJson: String? = null,
 
     // HIERARCHY
     val isFolder: Boolean = false,
-    val isNote: Boolean = false,
     val parentId: String? = null,
     val sortOrder: Int = 0, // Points to the UUID of the parent
 

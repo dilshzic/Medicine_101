@@ -38,13 +38,6 @@ import com.algorithmx.medicine101.ui.screens.noteeditview.components.EditListBlo
 import com.algorithmx.medicine101.ui.screens.noteeditview.components.EditTextBlock
 import com.algorithmx.medmate.screens.editor.EditTableBlock
 
-// import com.algorithmx.medicine101.basic.ContentBlock
-// import com.algorithmx.medicine101.ui.screens.noteeditview.components.BlockWrapper
-// import com.algorithmx.medicine101.ui.screens.noteeditview.components.EditHeaderBlock
-// import com.algorithmx.medicine101.ui.screens.noteeditview.components.EditTextBlock
-// import com.algorithmx.medicine101.ui.screens.noteeditview.components.EditListBlock
-// import com.algorithmx.medicine101.ui.screens.noteeditview.components.EditTableBlock
-// import com.algorithmx.medicine101.ui.screens.noteeditview.components.EditDDBlock
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

@@ -42,12 +42,22 @@ interface NoteDao {
     @Query("UPDATE notes SET isDeleted = 1, updatedAt = :timestamp WHERE id = :id")
     suspend fun softDelete(id: String, timestamp: Long = System.currentTimeMillis())
 
-    @Query("""
-    SELECT * FROM notes 
-    WHERE (title LIKE '%' || :query || '%' 
-    OR tags LIKE '%' || :query || '%' 
-    OR contentJson LIKE '%' || :query || '%') 
-    AND isDeleted = 0
-""")
-    fun searchNotes(query: String): Flow<List<NoteEntity>>
+
+    @Transaction
+    @Query("SELECT * FROM notes WHERE id = :noteId")
+    suspend fun getNoteWithBlocks(noteId: String): NoteWithBlocks?
+
+    @Transaction
+    suspend fun syncBlocks(noteId: String, newBlocks: List<ContentBlockEntity>) {
+        // 1. Delete all existing blocks for this note
+        deleteBlocksByNoteId(noteId)
+        // 2. Insert the fresh, correctly ordered list
+        insertBlocks(newBlocks)
+    }
+
+    @Query("DELETE FROM content_blocks WHERE noteId = :noteId")
+    suspend fun deleteBlocksByNoteId(noteId: String)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertBlocks(blocks: List<ContentBlockEntity>)
 }

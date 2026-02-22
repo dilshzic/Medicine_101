@@ -20,7 +20,7 @@ class NoteRepository @Inject constructor(
     suspend fun getNoteById(id: String): NoteEntity? = noteDao.getNoteById(id)
 
     // Search
-    fun searchNotes(query: String): Flow<List<NoteEntity>> = noteDao.searchNotes(query)
+    //fun searchNotes(query: String): Flow<List<NoteEntity>> = noteDao.searchNotes(query)
 
     // --- WRITE OPERATIONS ---
 
@@ -35,5 +35,10 @@ class NoteRepository @Inject constructor(
     // Check if DB is empty to trigger first-run logic
     suspend fun isDatabaseEmpty(): Boolean {
         return noteDao.getNoteCount() == 0
+    }
+
+    suspend fun getNoteWithBlocks(noteId: String): NoteWithBlocks? {
+        return noteDao.getNoteWithBlocks(noteId)
+
     }
 }
