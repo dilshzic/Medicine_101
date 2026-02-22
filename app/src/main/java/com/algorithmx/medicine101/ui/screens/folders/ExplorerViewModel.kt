@@ -1,10 +1,12 @@
 package com.algorithmx.medicine101.ui.screens.folders
 
+import android.net.Uri
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.algorithmx.medicine101.data.NoteEntity
 import com.algorithmx.medicine101.data.NoteRepository
+import com.algorithmx.medicine101.utils.PdfImportManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -18,6 +20,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ExplorerViewModel @Inject constructor(
     private val repository: NoteRepository,
+    private val pdfImportManager: PdfImportManager, // <-- INJECTED HERE
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
@@ -33,7 +36,7 @@ class ExplorerViewModel @Inject constructor(
         }
     }.stateIn(
         scope = viewModelScope,
-        started = SharingStarted.Companion.WhileSubscribed(5000),
+        started = SharingStarted.WhileSubscribed(5000),
         initialValue = emptyList()
     )
 
@@ -48,10 +51,9 @@ class ExplorerViewModel @Inject constructor(
         }
     }.stateIn(
         scope = viewModelScope,
-        started = SharingStarted.Companion.WhileSubscribed(5000),
+        started = SharingStarted.WhileSubscribed(5000),
         initialValue = "Loading..."
     )
-    // Inside ExplorerViewModel.kt
 
     fun createNewFolder(folderName: String) {
         if (folderName.isBlank()) return
@@ -70,7 +72,6 @@ class ExplorerViewModel @Inject constructor(
         }
     }
 
-    // --- NEW: Create Note Function ---
     fun createNewNote(noteTitle: String, onCreated: (String) -> Unit) {
         if (noteTitle.isBlank()) return
 
@@ -90,5 +91,18 @@ class ExplorerViewModel @Inject constructor(
             // Trigger the callback with the new ID so the UI can navigate to it
             onCreated(noteId)
         }
+    }
+
+    // --- NEW: PDF Import Function ---
+    fun importPdf(uri: Uri) {
+        viewModelScope.launch {
+            // Hardcoding "Imported Textbook" for now. Later you can extract the real
+            // file name using Android's ContentResolver if you prefer.
+            pdfImportManager.importPdf(uri, "Imported Textbook")
+        }
+    }
+
+    fun getNoteById(noteId: String): NoteEntity? {
+        return items.value.find { it.id == noteId }
     }
 }

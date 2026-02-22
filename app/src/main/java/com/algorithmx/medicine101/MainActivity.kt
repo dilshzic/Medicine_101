@@ -4,23 +4,24 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels // <-- Ensure this is imported
+import androidx.activity.viewModels
 import com.algorithmx.medicine101.ui.theme.Medicine101Theme
 import dagger.hilt.android.AndroidEntryPoint
-import com.tom_roush.pdfbox.android.PDFBox
+// CRITICAL IMPORT:
+import com.tom_roush.pdfbox.android.PDFBoxResourceLoader
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    // Declare the ViewModel
     private val mainViewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // --- CRITICAL FIX: EXPLICITLY TRIGGER IT ---
+        // --- THE CORRECT INITIALIZATION ---
+        PDFBoxResourceLoader.init(applicationContext)
+
         mainViewModel.triggerSeeding()
-        PDFBox.setup(applicationContext)
 
         enableEdgeToEdge()
         setContent {

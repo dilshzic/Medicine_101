@@ -54,13 +54,13 @@ fun PdfViewerScreen(
                 .padding(padding)
                 .fillMaxSize()
         ) {
-            // ViewBinding automatically converts snake_case XML IDs to camelCase properties.
-            // If your XML ID is "@+id/pdf_container", use `this.pdfContainer`
-            val fragment = this.pdfContainer.getFragment<PdfViewerFragment>()
+            // Safely get the fragment manager from the context
+            val fragmentManager = (root.context as androidx.fragment.app.FragmentActivity).supportFragmentManager
 
-            // 1. Assign the PDF file URI to the viewer
-            fragment.documentUri = Uri.fromFile(File(pdfPath))
+            // Find the fragment by the ID of the FragmentContainerView in your XML
+            val fragment = fragmentManager.findFragmentById(this.pdfContainer.id) as? PdfViewerFragment
 
+            fragment?.documentUri = Uri.fromFile(File(pdfPath))
             // 2. Handle Jump to initialPage
             // NOTE: Because androidx.pdf is still in Alpha, the API for scrolling
             // is actively evolving. In some alpha builds, you might have to wait

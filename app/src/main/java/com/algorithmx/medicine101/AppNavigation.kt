@@ -1,5 +1,7 @@
 package com.algorithmx.medicine101
 
+import android.os.Build
+import androidx.annotation.RequiresExtension
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.tween
 import androidx.compose.runtime.Composable
@@ -21,6 +23,7 @@ import com.algorithmx.medicine101.ui.screens.folders.ExplorerScreen
 import com.algorithmx.medicine101.ui.screens.folders.ExplorerViewModel
 // import com.algorithmx.medicine101.ui.screens.search.SearchScreen
 
+@RequiresExtension(extension = Build.VERSION_CODES.S, version = 13)
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()

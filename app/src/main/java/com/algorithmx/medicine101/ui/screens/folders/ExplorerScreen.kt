@@ -1,10 +1,14 @@
 package com.algorithmx.medicine101.ui.screens.folders
 
+import android.net.Uri
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.PictureAsPdf
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -32,10 +36,19 @@ fun ExplorerScreen(
     val items by viewModel.items.collectAsState()
     val title by viewModel.currentTitle.collectAsState()
 
-    // --- UPDATED DIALOG STATE ---
     var showCreateDialog by remember { mutableStateOf(false) }
     var newItemName by remember { mutableStateOf("") }
     var isCreatingFolder by remember { mutableStateOf(false) } // False = Note, True = Folder
+
+    // --- NEW: PDF Picker Launcher ---
+    val pdfPickerLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.OpenDocument(),
+        onResult = { uri: Uri? ->
+            uri?.let {
+                viewModel.importPdf(it)
+            }
+        }
+    )
 
     Scaffold(
         topBar = {
@@ -46,6 +59,13 @@ fun ExplorerScreen(
                     titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer
                 ),
                 actions = {
+                    // --- NEW: Import PDF Button ---
+                    IconButton(onClick = { pdfPickerLauncher.launch(arrayOf("application/pdf")) }) {
+                        Icon(
+                            imageVector = Icons.Default.PictureAsPdf,
+                            contentDescription = "Import PDF"
+                        )
+                    }
                     IconButton(onClick = onSearchClick) {
                         Icon(
                             imageVector = Icons.Default.Search,
@@ -86,7 +106,6 @@ fun ExplorerScreen(
             }
         }
 
-        // --- UPDATED DIALOG UI ---
         if (showCreateDialog) {
             AlertDialog(
                 onDismissRequest = {
@@ -98,7 +117,6 @@ fun ExplorerScreen(
                 },
                 text = {
                     Column {
-                        // Radio buttons for Note vs Folder
                         Row(
                             modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
                             horizontalArrangement = Arrangement.SpaceAround,
@@ -134,7 +152,6 @@ fun ExplorerScreen(
                             if (isCreatingFolder) {
                                 viewModel.createNewFolder(newItemName)
                             } else {
-                                // Create note and immediately navigate to it!
                                 viewModel.createNewNote(newItemName) { newNoteId ->
                                     onNoteClick(newNoteId)
                                 }
