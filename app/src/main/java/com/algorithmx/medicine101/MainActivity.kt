@@ -1,24 +1,28 @@
 package com.algorithmx.medicine101
 
+import android.os.Build
 import android.os.Bundle
-import androidx.activity.ComponentActivity
+// 1. Change this import
+import androidx.fragment.app.FragmentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.annotation.RequiresExtension
 import com.algorithmx.medicine101.ui.theme.Medicine101Theme
 import dagger.hilt.android.AndroidEntryPoint
-// CRITICAL IMPORT:
 import com.tom_roush.pdfbox.android.PDFBoxResourceLoader
 
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+// 2. Change the class declaration to extend FragmentActivity
+class MainActivity : FragmentActivity() {
 
     private val mainViewModel: MainViewModel by viewModels()
 
+    @RequiresExtension(extension = Build.VERSION_CODES.S, version = 13)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // --- THE CORRECT INITIALIZATION ---
+        // Initialize PDFBox
         PDFBoxResourceLoader.init(applicationContext)
 
         mainViewModel.triggerSeeding()
