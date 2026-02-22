@@ -10,6 +10,9 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,6 +32,8 @@ fun ExplorerScreen(
 ) {
     val items by viewModel.items.collectAsState()
     val title by viewModel.currentTitle.collectAsState()
+    var showCreateDialog by remember { mutableStateOf(false) }
+    var newFolderName by remember { mutableStateOf("") }
 
     Scaffold(
         topBar = {
@@ -49,7 +54,7 @@ fun ExplorerScreen(
             )
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = { /* TODO: Add "Create New" Logic later */ }) {
+            FloatingActionButton(onClick = { showCreateDialog = true }) {
                 Icon(Icons.Default.Add, contentDescription = "Add")
             }
         }
@@ -77,6 +82,42 @@ fun ExplorerScreen(
                     HorizontalDivider(modifier = Modifier.padding(start = 56.dp))
                 }
             }
+        }
+        if (showCreateDialog) {
+            AlertDialog(
+                onDismissRequest = {
+                    showCreateDialog = false
+                    newFolderName = "" // Reset input
+                },
+                title = { Text("Create New Folder") },
+                text = {
+                    OutlinedTextField(
+                        value = newFolderName,
+                        onValueChange = { newFolderName = it },
+                        label = { Text("Folder Name (e.g. Pharmacology)") },
+                        singleLine = true
+                    )
+                },
+                confirmButton = {
+                    TextButton(onClick = {
+                        if (newFolderName.isNotBlank()) {
+                            viewModel.createNewFolder(newFolderName)
+                            showCreateDialog = false
+                            newFolderName = "" // Reset input
+                        }
+                    }) {
+                        Text("Create")
+                    }
+                },
+                dismissButton = {
+                    TextButton(onClick = {
+                        showCreateDialog = false
+                        newFolderName = "" // Reset input
+                    }) {
+                        Text("Cancel")
+                    }
+                }
+            )
         }
     }
 }

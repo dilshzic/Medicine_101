@@ -11,6 +11,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
+import java.util.UUID
 import javax.inject.Inject
 
 @HiltViewModel
@@ -49,4 +51,20 @@ class ExplorerViewModel @Inject constructor(
         started = SharingStarted.Companion.WhileSubscribed(5000),
         initialValue = "Loading..."
     )
+    fun createNewFolder(folderName: String) {
+        if (folderName.isBlank()) return
+
+        viewModelScope.launch {
+            val newFolder = NoteEntity(
+                id = UUID.randomUUID().toString(),
+                title = folderName.trim(),
+                category = "User", // Tag it as a user-created item
+                isFolder = true,
+                parentId = folderId, // This puts the folder inside the current view (or root if null)
+                isSystemNote = false, // Not a pre-seeded system note
+                tags = "" // Add any other default fields your NoteEntity requires
+            )
+            repository.insertNote(newFolder)
+        }
+    }
 }
