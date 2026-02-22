@@ -1,4 +1,4 @@
-package com.algorithmx.medmate.screens.editor
+package com.algorithmx.medicine101.ui.screens.editor
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel

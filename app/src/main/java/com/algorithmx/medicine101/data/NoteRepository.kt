@@ -41,4 +41,8 @@ class NoteRepository @Inject constructor(
         return noteDao.getNoteWithBlocks(noteId)
 
     }
+
+    suspend fun syncBlocks(noteId: String, blockEntities: List<ContentBlockEntity>) {
+        noteDao.syncBlocks(noteId, blockEntities)
+    }
 }

@@ -53,7 +53,7 @@ class EditorViewModel @Inject constructor(
                     .sortedBy { it.orderIndex } // Ensure medical notes stay in the correct sequence
                     .map { entity ->
                         val type = object : TypeToken<ContentBlock>() {}.type
-                        gson.fromJson<ContentBlock>(entity.jsonContent, type)
+                        gson.fromJson<ContentBlock>(entity.content, type)
                     }
 
                 _blocks.value = uiBlocks
@@ -130,7 +130,7 @@ class EditorViewModel @Inject constructor(
                     ContentBlockEntity(
                         noteId = noteId,
                         type = uiBlock.type,
-                        jsonContent = gson.toJson(uiBlock), // Serialize the individual block
+                        content = gson.toJson(uiBlock), // Serialize the individual block
                         orderIndex = index
                     )
                 }
