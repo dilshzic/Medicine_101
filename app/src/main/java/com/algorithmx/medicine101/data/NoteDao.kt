@@ -5,30 +5,21 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface NoteDao {
-    // 1. Explorer: Get items in Root (parentId is null AND not deleted)
     @Query("SELECT * FROM notes WHERE parentId IS NULL AND isDeleted = 0 ORDER BY isFolder DESC, title ASC")
     fun getRootItems(): Flow<List<NoteEntity>>
 
-    // 2. Explorer: Get items in Folder
     @Query("SELECT * FROM notes WHERE parentId = :parentId AND isDeleted = 0 ORDER BY isFolder DESC, title ASC")
     fun getItemsInFolder(parentId: String): Flow<List<NoteEntity>>
 
-    // 3. Editor: Get specific note
     @Query("SELECT * FROM notes WHERE id = :id")
     suspend fun getNoteById(id: String): NoteEntity?
 
-    // 4. Search
-
-    
-    // 5. Seeding Check
     @Query("SELECT COUNT(*) FROM notes")
     suspend fun getNoteCount(): Int
     
-    // 6. Find Folder by Name (For Seeding)
     @Query("SELECT * FROM notes WHERE title = :title AND isFolder = 1 LIMIT 1")
     suspend fun getFolderByName(title: String): NoteEntity?
 
-    // CRUD
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(note: NoteEntity)
 
@@ -38,10 +29,11 @@ interface NoteDao {
     @Update
     suspend fun update(note: NoteEntity)
 
-    // Soft Delete Implementation
     @Query("UPDATE notes SET isDeleted = 1, updatedAt = :timestamp WHERE id = :id")
     suspend fun softDelete(id: String, timestamp: Long = System.currentTimeMillis())
 
+    @Query("DELETE FROM notes WHERE id = :id")
+    suspend fun delete(id: String)
 
     @Transaction
     @Query("SELECT * FROM notes WHERE id = :noteId")
@@ -49,9 +41,7 @@ interface NoteDao {
 
     @Transaction
     suspend fun syncBlocks(noteId: String, newBlocks: List<ContentBlockEntity>) {
-        // 1. Delete all existing blocks for this note
         deleteBlocksByNoteId(noteId)
-        // 2. Insert the fresh, correctly ordered list
         insertBlocks(newBlocks)
     }
 
@@ -61,4 +51,26 @@ interface NoteDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertBlocks(blocks: List<ContentBlockEntity>)
 
+    @Query("UPDATE notes SET parentId = :newParentId, updatedAt = :timestamp WHERE id = :id")
+    suspend fun updateParent(id: String, newParentId: String?, timestamp: Long = System.currentTimeMillis())
+
+    @Query("SELECT * FROM notes WHERE isFolder = 1 AND isDeleted = 0 AND id != :excludeId")
+    suspend fun getAllFoldersExcept(excludeId: String): List<NoteEntity>
+
+    @Query("SELECT * FROM notes WHERE isFolder = 1 AND isDeleted = 0")
+    suspend fun getAllFolders(): List<NoteEntity>
+
+    // DASHBOARD QUERIES
+    @Query("SELECT * FROM notes WHERE isPinned = 1 AND isDeleted = 0 ORDER BY updatedAt DESC")
+    fun getPinnedNotes(): Flow<List<NoteEntity>>
+
+    @Query("SELECT * FROM notes WHERE isDeleted = 0 ORDER BY lastModified DESC LIMIT 10")
+    fun getRecentNotes(): Flow<List<NoteEntity>>
+
+    @Query("UPDATE notes SET isPinned = :pinned, updatedAt = :timestamp WHERE id = :id")
+    suspend fun updatePinStatus(id: String, pinned: Boolean, timestamp: Long = System.currentTimeMillis())
+
+    // SEARCH
+    @Query("SELECT * FROM notes WHERE (title LIKE '%' || :query || '%' OR tags LIKE '%' || :query || '%') AND isDeleted = 0")
+    fun searchNotes(query: String): Flow<List<NoteEntity>>
 }

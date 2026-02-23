@@ -23,7 +23,8 @@ object DatabaseModule {
             AppDatabase::class.java,
             "medmate_db"
         )
-        .fallbackToDestructiveMigration() // Useful for dev if schema changes
+        .addMigrations(AppDatabase.MIGRATION_1_2)
+        .fallbackToDestructiveMigration() // Keep as a safety net during dev
         .build()
     }
 

@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.google.services)
 }
 
 android {
@@ -74,16 +75,15 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.material.icons.extended)
 
-
     implementation(libs.core)
 
-    // Jetpack Native PDF Viewer (Alpha/Beta - check latest version)
+    // Jetpack Native PDF Viewer
     implementation(libs.androidx.pdf.viewer)
     implementation(libs.androidx.pdf.compose)
     implementation(libs.androidx.pdf.viewer.fragment)
     implementation("androidx.pdf:pdf-document-service:1.0.0-alpha13")
 
-    // PdfBox for Android (TOC Extraction)
+    // PdfBox for Android
     implementation(libs.pdfbox.android)
 
     // ViewBinding for Compose
@@ -92,5 +92,13 @@ dependencies {
 
     implementation(libs.android.pdf.viewer)
 
+    // Gemini AI
+    implementation("com.google.ai.client.generativeai:generativeai:0.9.0")
 
+    // Firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
+    implementation("com.google.firebase:firebase-analytics")
+    implementation(libs.play.services.auth)
 }

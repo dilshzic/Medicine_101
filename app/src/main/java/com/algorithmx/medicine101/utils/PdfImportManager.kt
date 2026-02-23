@@ -2,6 +2,7 @@ package com.algorithmx.medicine101.utils
 
 import android.content.Context
 import android.net.Uri
+import android.provider.OpenableColumns
 import com.algorithmx.medicine101.data.NoteEntity
 import com.algorithmx.medicine101.data.NoteRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -9,7 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
 import java.util.UUID
-import javax.inject.Inject // Make sure to use javax.inject for Hilt
+import javax.inject.Inject
 
 // --- NEW PDFBox Imports ---
 import com.tom_roush.pdfbox.pdmodel.PDDocument
@@ -22,7 +23,11 @@ class PdfImportManager @Inject constructor(
     private val repository: NoteRepository,
     @ApplicationContext private val context: Context
 ) {
-    suspend fun importPdf(uri: Uri, fileName: String) = withContext(Dispatchers.IO) {
+    suspend fun importPdf(uri: Uri, defaultFileName: String) = withContext(Dispatchers.IO) {
+        // Extract real filename from Uri
+        val realFileName = getFileNameFromUri(uri) ?: defaultFileName
+        val displayName = realFileName.removeSuffix(".pdf").removeSuffix(".PDF")
+
         // 1. Copy PDF to internal storage so the app doesn't lose permission to read it
         val internalFile = File(context.filesDir, "pdfs/${UUID.randomUUID()}.pdf")
         internalFile.parentFile?.mkdirs()
@@ -38,10 +43,10 @@ class PdfImportManager @Inject constructor(
             repository.insertNote(
                 NoteEntity(
                     id = rootFolderId,
-                    title = fileName,
+                    title = displayName,
                     category = "Textbook",
                     isFolder = true,
-                    parentId = null, // Or a specific 'Library' parentId
+                    parentId = null, 
                     isSystemNote = false,
                     pdfUri = internalFile.absolutePath
                 )
@@ -54,34 +59,43 @@ class PdfImportManager @Inject constructor(
         }
     }
 
+    private fun getFileNameFromUri(uri: Uri): String? {
+        var name: String? = null
+        val cursor = context.contentResolver.query(uri, null, null, null, null)
+        cursor?.use {
+            if (it.moveToFirst()) {
+                val index = it.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+                if (index != -1) {
+                    name = it.getString(index)
+                }
+            }
+        }
+        return name
+    }
+
     private suspend fun mapOutlineNode(
         node: PDOutlineNode,
         parentId: String,
         pdfPath: String,
         doc: PDDocument
     ) {
-        // node.firstChild is explicitly a PDOutlineItem
         var current: PDOutlineItem? = node.firstChild
 
         while (current != null) {
             val noteId = UUID.randomUUID().toString()
             val hasChildren = current.firstChild != null
 
-            // --- CRITICAL FIX: Extracting the Destination ---
-            // Some PDFs store the destination directly, others wrap it in a GoTo Action.
             var dest = current.destination
             if (dest == null && current.action is PDActionGoTo) {
                 dest = (current.action as PDActionGoTo).destination
             }
 
-            // Find the page number for this TOC entry (0-indexed)
             val page = dest?.let { d ->
                 if (d is PDPageDestination) {
                     doc.pages.indexOf(d.page)
                 } else null
             } ?: 0
 
-            // Save the node to the database
             repository.insertNote(NoteEntity(
                 id = noteId,
                 title = current.title ?: "Untitled Section",
@@ -93,12 +107,10 @@ class PdfImportManager @Inject constructor(
                 pdfPage = page
             ))
 
-            // Recursively map any sub-chapters
             if (hasChildren) {
                 mapOutlineNode(current, noteId, pdfPath, doc)
             }
 
-            // Move to the next chapter at this level
             current = current.nextSibling
         }
     }

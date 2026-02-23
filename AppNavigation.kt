@@ -23,7 +23,6 @@ import com.algorithmx.medicine101.ui.screens.pdfviewer.PdfViewerScreen
 import com.algorithmx.medicine101.ui.screens.pdfviewer.TocPdfViewerScreen
 import com.algorithmx.medicine101.ui.screens.folders.ExplorerScreen
 import com.algorithmx.medicine101.ui.screens.folders.ExplorerViewModel
-import com.algorithmx.medicine101.ui.screens.search.SearchScreen
 
 @RequiresExtension(extension = Build.VERSION_CODES.S, version = 13)
 @Composable
@@ -50,8 +49,7 @@ fun AppNavigation() {
             ExplorerScreen(
                 onFolderClick = { navController.navigate("explorer/$it") },
                 onNoteClick = { noteId -> navController.navigate("note_screen/$noteId") },
-                onSearchClick = { navController.navigate("search") },
-                onBack = { navController.popBackStack() }
+                onSearchClick = { navController.navigate("search") }
             )
         }
 
@@ -62,15 +60,7 @@ fun AppNavigation() {
             ExplorerScreen(
                 onFolderClick = { navController.navigate("explorer/$it") },
                 onNoteClick = { noteId -> navController.navigate("note_screen/$noteId") },
-                onSearchClick = { navController.navigate("search") },
-                onBack = { navController.popBackStack() }
-            )
-        }
-
-        composable("search") {
-            SearchScreen(
-                onNoteClick = { noteId -> navController.navigate("note_screen/$noteId") },
-                onBack = { navController.popBackStack() }
+                onSearchClick = { navController.navigate("search") }
             )
         }
 

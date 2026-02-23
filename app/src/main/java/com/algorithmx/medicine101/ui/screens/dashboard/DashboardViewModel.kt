@@ -1,0 +1,30 @@
+package com.algorithmx.medicine101.ui.screens.dashboard
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.algorithmx.medicine101.data.NoteEntity
+import com.algorithmx.medicine101.data.NoteRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+@HiltViewModel
+class DashboardViewModel @Inject constructor(
+    private val repository: NoteRepository
+) : ViewModel() {
+
+    val pinnedNotes: StateFlow<List<NoteEntity>> = repository.getPinnedNotes()
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+
+    val recentNotes: StateFlow<List<NoteEntity>> = repository.getRecentNotes()
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+
+    fun togglePin(note: NoteEntity) {
+        viewModelScope.launch {
+            repository.updatePinStatus(note.id, !note.isPinned)
+        }
+    }
+}

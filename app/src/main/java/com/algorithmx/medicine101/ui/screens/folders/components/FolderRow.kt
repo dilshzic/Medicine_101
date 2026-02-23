@@ -6,9 +6,12 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ChevronRight
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.DriveFileMove
 import androidx.compose.material.icons.filled.Folder
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -18,13 +21,20 @@ import androidx.compose.ui.unit.dp
 import com.algorithmx.medicine101.data.NoteEntity
 
 @Composable
-fun FolderRow(item: NoteEntity, onClick: () -> Unit) {
+fun FolderRow(
+    item: NoteEntity,
+    onClick: () -> Unit,
+    onDelete: () -> Unit,
+    onMove: () -> Unit
+) {
+    var showMenu by remember { mutableStateOf(false) }
+
     Card(
         onClick = onClick,
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface,
         ),
-        elevation = CardDefaults.cardElevation(0.dp), // Flat look
+        elevation = CardDefaults.cardElevation(0.dp),
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.3f)),
         modifier = Modifier
             .fillMaxWidth()
@@ -34,17 +44,16 @@ fun FolderRow(item: NoteEntity, onClick: () -> Unit) {
             modifier = Modifier.padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Folder Icon with Background
             Box(
                 modifier = Modifier
                     .size(40.dp)
-                    .background(Color(0xFFFFF8E1), CircleShape), // Soft Amber Bg
+                    .background(Color(0xFFFFF8E1), CircleShape),
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
                     imageVector = Icons.Default.Folder,
                     contentDescription = null,
-                    tint = Color(0xFFFFB300), // Amber Icon
+                    tint = Color(0xFFFFB300),
                     modifier = Modifier.size(24.dp)
                 )
             }
@@ -62,6 +71,33 @@ fun FolderRow(item: NoteEntity, onClick: () -> Unit) {
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
+            }
+
+            Box {
+                IconButton(onClick = { showMenu = true }) {
+                    Icon(Icons.Default.MoreVert, contentDescription = "Options")
+                }
+                DropdownMenu(
+                    expanded = showMenu,
+                    onDismissRequest = { showMenu = false }
+                ) {
+                    DropdownMenuItem(
+                        text = { Text("Move") },
+                        onClick = {
+                            showMenu = false
+                            onMove()
+                        },
+                        leadingIcon = { Icon(Icons.Default.DriveFileMove, contentDescription = null) }
+                    )
+                    DropdownMenuItem(
+                        text = { Text("Delete", color = MaterialTheme.colorScheme.error) },
+                        onClick = {
+                            showMenu = false
+                            onDelete()
+                        },
+                        leadingIcon = { Icon(Icons.Default.Delete, contentDescription = null, tint = MaterialTheme.colorScheme.error) }
+                    )
+                }
             }
 
             Icon(
@@ -85,7 +121,9 @@ fun FolderRowPreview() {
                 isFolder = true,
                 tags = ""
             ),
-            onClick = {}
+            onClick = {},
+            onDelete = {},
+            onMove = {}
         )
     }
 }

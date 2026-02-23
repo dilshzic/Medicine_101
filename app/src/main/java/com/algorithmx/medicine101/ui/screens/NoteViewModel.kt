@@ -3,6 +3,7 @@ package com.algorithmx.medicine101.ui.screens
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.algorithmx.medicine101.api.GeminiAiService
 import com.algorithmx.medicine101.data.ContentBlock
 import com.algorithmx.medicine101.data.ContentBlockEntity
 import com.algorithmx.medicine101.data.NoteRepository
@@ -19,13 +20,13 @@ import javax.inject.Inject
 @HiltViewModel
 class NoteViewModel @Inject constructor(
     private val repository: NoteRepository,
+    private val geminiService: GeminiAiService,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     private val noteId: String = savedStateHandle["noteId"] ?: throw IllegalArgumentException("Note ID required")
     private val gson = Gson()
 
-    // UI States
     private val _blocks = MutableStateFlow<List<ContentBlock>>(emptyList())
     val blocks: StateFlow<List<ContentBlock>> = _blocks.asStateFlow()
 
@@ -38,35 +39,45 @@ class NoteViewModel @Inject constructor(
     private val _selectedTab = MutableStateFlow("General")
     val selectedTab: StateFlow<String> = _selectedTab.asStateFlow()
 
+    private val _isAiLoading = MutableStateFlow(false)
+    val isAiLoading: StateFlow<Boolean> = _isAiLoading.asStateFlow()
+
     init {
         loadNote()
     }
 
     private fun loadNote() {
         viewModelScope.launch {
-            // 1. Fetch the Note and its related blocks using the new Relation
             val noteWithBlocks = repository.getNoteWithBlocks(noteId)
-
             if (noteWithBlocks != null) {
                 _title.value = noteWithBlocks.note.title
-
-                // 2. Map the separate database rows back into UI blocks
-                // Inside loadNote()
                 val uiBlocks = noteWithBlocks.blocks
                     .sortedBy { it.orderIndex }
                     .map { entity ->
                         val type = object : TypeToken<ContentBlock>() {}.type
                         val parsedBlock = gson.fromJson<ContentBlock>(entity.content, type)
-
-                        // FIX: Ensure tabName is NEVER null so it matches the "General" filter
                         parsedBlock.copy(tabName = entity.tabName ?: "General")
                     }
-
                 _blocks.value = uiBlocks
-
-                // Automatically set the selected tab to the first available tab in this note
                 val firstTab = uiBlocks.firstOrNull()?.tabName ?: "General"
                 _selectedTab.value = firstTab
+            }
+        }
+    }
+
+    fun generateAiContent() {
+        if (_title.value.isBlank()) return
+        
+        viewModelScope.launch {
+            _isAiLoading.value = true
+            try {
+                val aiBlocks = geminiService.generateNoteContent(_title.value)
+                if (aiBlocks.isNotEmpty()) {
+                    val blocksWithTabs = aiBlocks.map { it.copy(tabName = _selectedTab.value) }
+                    _blocks.update { current -> current + blocksWithTabs }
+                }
+            } finally {
+                _isAiLoading.value = false
             }
         }
     }
@@ -79,30 +90,19 @@ class NoteViewModel @Inject constructor(
         _title.value = newTitle
     }
 
-    // --- TAB OPERATIONS ---
-
     fun selectTab(tabName: String) {
         _selectedTab.value = tabName
     }
 
-    // THE GHOST BLOCK CREATOR
     fun addNewTab(newTabName: String) {
-        // Create an empty, invisible or basic text block assigned to this new tab
         val ghostBlock = ContentBlock(
-            type = "text", // Use a basic text paragraph
-            text = "",     // Keep it empty so it looks like a blank canvas
+            type = "text",
+            text = "",
             tabName = newTabName
         )
-
-        _blocks.update { currentList ->
-            currentList + ghostBlock
-        }
-        // Automatically switch to the newly created tab
+        _blocks.update { it + ghostBlock }
         selectTab(newTabName)
     }
-
-
-    // --- BLOCK OPERATIONS ---
 
     fun updateBlock(index: Int, newBlock: ContentBlock) {
         _blocks.update { currentList ->
@@ -129,7 +129,6 @@ class NoteViewModel @Inject constructor(
             val mutableList = currentList.toMutableList()
             if (fromIndex in mutableList.indices && toIndex in 0..mutableList.size) {
                 val item = mutableList.removeAt(fromIndex)
-                // Adjust toIndex if moving downwards to account for the removed item
                 val adjustedToIndex = if (toIndex > fromIndex) toIndex - 1 else toIndex
                 mutableList.add(adjustedToIndex, item)
             }
@@ -139,42 +138,32 @@ class NoteViewModel @Inject constructor(
 
     fun addBlock(block: ContentBlock) {
         _blocks.update { currentList ->
-            // Ensure the block gets assigned to the currently selected tab
             val blockWithTab = block.copy(tabName = _selectedTab.value)
             currentList + blockWithTab
         }
     }
 
-    // --- SAVE ---
-
     fun saveNote() {
         viewModelScope.launch {
             val noteWithBlocks = repository.getNoteWithBlocks(noteId)
-
             if (noteWithBlocks != null) {
-                // 1. Update the parent note entity
                 val updatedNote = noteWithBlocks.note.copy(
                     title = _title.value,
                     updatedAt = System.currentTimeMillis()
-                    // contentJson is no longer stored in the parent note
                 )
                 repository.updateNote(updatedNote)
 
-                // 2. Convert UI blocks back to Database Entities
                 val blockEntities = _blocks.value.mapIndexed { index, uiBlock ->
                     ContentBlockEntity(
                         noteId = noteId,
                         type = uiBlock.type,
-                        content = gson.toJson(uiBlock), // Serialize individual block
+                        content = gson.toJson(uiBlock),
                         orderIndex = index,
-                        tabName = uiBlock.tabName // Save the tab name
+                        tabName = uiBlock.tabName
                     )
                 }
-
-                // 3. Sync blocks to the database
                 repository.syncBlocks(noteId, blockEntities)
-
-                _isEditing.value = false // Exit edit mode after save
+                _isEditing.value = false
             }
         }
     }

@@ -22,10 +22,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.algorithmx.medicine101" />
+                  <option name="mobileSdkAppId" value="1:835806294945:android:5626d458348d05843c11e0" />
+                  <option name="projectId" value="spend-smart-a6835" />
+                  <option name="projectNumber" value="835806294945" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

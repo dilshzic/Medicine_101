@@ -19,7 +19,6 @@ import java.util.UUID
     indices = [Index(value = ["parentId"])]
 )
 data class NoteEntity(
-    // PRIMARY KEY IS A STRING UUID (Firebase Ready)
     @PrimaryKey val id: String = UUID.randomUUID().toString(),
 
     val title: String,
@@ -27,23 +26,19 @@ data class NoteEntity(
     val tags: String = "",
     val type: String = "note",
 
-
-    // HIERARCHY
     val isFolder: Boolean = false,
     val parentId: String? = null,
-    val sortOrder: Int = 0, // Points to the UUID of the parent
+    val sortOrder: Int = 0,
 
-    // ADD THESE TWO FIELDS
     val isSystemNote: Boolean = false,
     val lastModified: Long = System.currentTimeMillis(),
+    val isPinned: Boolean = false, // Add this field
 
     // SYNC METADATA
     val createdAt: Long = System.currentTimeMillis(),
     val updatedAt: Long = System.currentTimeMillis(),
-    val isDeleted: Boolean = false ,// Soft Delete (Crucial for Sync)
+    val isDeleted: Boolean = false,
 
-    // --- NEW PDF FIELDS ---
-    val pdfUri: String? = null, // Path to the copied PDF in internal storage
-    val pdfPage: Int? = null    // The page this note should jump to
-
+    val pdfUri: String? = null,
+    val pdfPage: Int? = null
 )
