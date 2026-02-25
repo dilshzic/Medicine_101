@@ -17,6 +17,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.algorithmx.medicine101.data.NoteEntity
+import com.algorithmx.medicine101.ui.auth.AuthViewModel
+import com.algorithmx.medicine101.ui.auth.LoginScreen
 import com.algorithmx.medicine101.ui.screens.NoteScreen
 import com.algorithmx.medicine101.ui.screens.dashboard.DashboardScreen
 import com.algorithmx.medicine101.ui.screens.pdfviewer.PdfViewerScreen
@@ -29,15 +31,28 @@ import com.algorithmx.medicine101.ui.screens.search.SearchScreen
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
+    val authViewModel: AuthViewModel = hiltViewModel()
+    val user by authViewModel.user.collectAsState()
 
     NavHost(
         navController = navController,
-        startDestination = "dashboard",
+        startDestination = if (user == null) "login" else "dashboard",
         enterTransition = { slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Left, animationSpec = tween(300)) },
         exitTransition = { slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Left, animationSpec = tween(300)) },
         popEnterTransition = { slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Right, animationSpec = tween(300)) },
         popExitTransition = { slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Right, animationSpec = tween(300)) }
     ) {
+        composable("login") {
+            LoginScreen(
+                viewModel = authViewModel,
+                onLoginSuccess = {
+                    navController.navigate("dashboard") {
+                        popUpTo("login") { inclusive = true }
+                    }
+                }
+            )
+        }
+
         composable("dashboard") {
             DashboardScreen(
                 onNoteClick = { noteId -> navController.navigate("note_screen/$noteId") },

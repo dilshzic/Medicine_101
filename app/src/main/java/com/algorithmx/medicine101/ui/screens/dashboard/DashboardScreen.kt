@@ -1,14 +1,20 @@
 package com.algorithmx.medicine101.ui.screens.dashboard
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CloudDone
 import androidx.compose.material.icons.filled.FolderOpen
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.PushPin
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Sync
 import androidx.compose.material.icons.outlined.PushPin
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -16,11 +22,13 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.algorithmx.medicine101.data.NoteEntity
 import com.algorithmx.medicine101.ui.screens.folders.components.NoteRow
+import androidx.compose.animation.core.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -28,21 +36,62 @@ fun DashboardScreen(
     viewModel: DashboardViewModel = hiltViewModel(),
     onNoteClick: (String) -> Unit,
     onSearchClick: () -> Unit,
-    onExplorerClick: () -> Unit
+    onExplorerClick: () -> Unit,
+    onProfileClick: () -> Unit = {}
 ) {
     val pinnedNotes by viewModel.pinnedNotes.collectAsState()
     val recentNotes by viewModel.recentNotes.collectAsState()
+    val isSyncing by viewModel.isSyncing.collectAsState()
+
+    val infiniteTransition = rememberInfiniteTransition(label = "SyncRotation")
+    val rotation by infiniteTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 360f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(1000, easing = LinearEasing),
+            repeatMode = RepeatMode.Restart
+        ),
+        label = "Rotation"
+    )
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Dashboard") },
+                title = { 
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text("Dashboard")
+                        Spacer(modifier = Modifier.width(8.dp))
+                        AnimatedVisibility(
+                            visible = isSyncing,
+                            enter = fadeIn(),
+                            exit = fadeOut()
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Sync,
+                                contentDescription = "Syncing",
+                                modifier = Modifier.size(16.dp).rotate(rotation),
+                                tint = MaterialTheme.colorScheme.outline
+                            )
+                        }
+                        if (!isSyncing) {
+                            Icon(
+                                imageVector = Icons.Default.CloudDone,
+                                contentDescription = "Synced",
+                                modifier = Modifier.size(16.dp),
+                                tint = MaterialTheme.colorScheme.outline
+                            )
+                        }
+                    }
+                },
                 actions = {
                     IconButton(onClick = onSearchClick) {
                         Icon(Icons.Default.Search, contentDescription = "Search")
                     }
                     IconButton(onClick = onExplorerClick) {
                         Icon(Icons.Default.FolderOpen, contentDescription = "Explorer")
+                    }
+                    IconButton(onClick = onProfileClick) {
+                        Icon(Icons.Default.Person, contentDescription = "Profile")
                     }
                 }
             )
@@ -52,9 +101,6 @@ fun DashboardScreen(
             modifier = Modifier.fillMaxSize(),
             contentPadding = padding
         ) {
-            // Quick Actions / Stats could go here
-            
-            // Pinned Section
             if (pinnedNotes.isNotEmpty()) {
                 item {
                     SectionHeader(title = "Pinned")
@@ -76,7 +122,6 @@ fun DashboardScreen(
                 }
             }
 
-            // Recent Section
             item {
                 SectionHeader(title = "Recent Notes")
             }

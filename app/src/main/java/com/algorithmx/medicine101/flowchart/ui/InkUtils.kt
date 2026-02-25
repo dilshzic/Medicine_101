@@ -1,6 +1,7 @@
 // In InkUtils.kt or inside RecognitionManager
-import com.google.mlkit.vision.digitalink.Ink
+//import com.google.mlkit.vision.digitalink.Ink
 import androidx.compose.ui.geometry.Offset
+import com.google.mlkit.vision.digitalink.recognition.Ink
 
 fun buildInkFromStrokes(points: List<Offset>): Ink {
     val builder = Ink.builder()

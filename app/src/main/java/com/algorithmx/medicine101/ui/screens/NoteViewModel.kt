@@ -7,6 +7,7 @@ import com.algorithmx.medicine101.api.GeminiAiService
 import com.algorithmx.medicine101.data.ContentBlock
 import com.algorithmx.medicine101.data.ContentBlockEntity
 import com.algorithmx.medicine101.data.NoteRepository
+import com.algorithmx.medicine101.data.remote.CloudSyncRepository
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,6 +22,7 @@ import javax.inject.Inject
 class NoteViewModel @Inject constructor(
     private val repository: NoteRepository,
     private val geminiService: GeminiAiService,
+    private val cloudRepository: CloudSyncRepository,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
@@ -147,12 +149,14 @@ class NoteViewModel @Inject constructor(
         viewModelScope.launch {
             val noteWithBlocks = repository.getNoteWithBlocks(noteId)
             if (noteWithBlocks != null) {
+                // 1. Update local note
                 val updatedNote = noteWithBlocks.note.copy(
                     title = _title.value,
                     updatedAt = System.currentTimeMillis()
                 )
                 repository.updateNote(updatedNote)
 
+                // 2. Prepare local block entities
                 val blockEntities = _blocks.value.mapIndexed { index, uiBlock ->
                     ContentBlockEntity(
                         noteId = noteId,
@@ -162,7 +166,13 @@ class NoteViewModel @Inject constructor(
                         tabName = uiBlock.tabName
                     )
                 }
+                
+                // 3. Sync local blocks
                 repository.syncBlocks(noteId, blockEntities)
+                
+                // 4. Backup to Cloud
+                cloudRepository.backupNoteToCloud(updatedNote, blockEntities)
+
                 _isEditing.value = false
             }
         }

@@ -1,4 +1,4 @@
-package com.medmate.flowchart.ui
+package com.algorithmx.medicine101.flowchart.ui
 
 import androidx.compose.ui.geometry.Offset
 
