@@ -1,13 +1,13 @@
 package com.algorithmx.medicine101.flowchart.ui
 
 import androidx.compose.ui.geometry.Offset
-//import com.medmate.flowchart.model.FlowConnection
-//import com.medmate.flowchart.model.FlowNode
+import com.algorithmx.medicine101.data.FlowConnection
+import com.algorithmx.medicine101.data.FlowNode
 
 data class FlowchartState(
     // The "World" Data (The actual diagram)
-    //val nodes: List<FlowNode> = emptyList(),
-    //val connections: List<FlowConnection> = emptyList(),
+    val nodes: List<FlowNode> = emptyList(),
+    val connections: List<FlowConnection> = emptyList(),
 
     // The "Viewport" Data (The camera)
     val zoom: Float = 1f,
@@ -16,6 +16,7 @@ data class FlowchartState(
     // The "Interaction" Data
     val currentTool: Tool = Tool.PEN,
     val activeStroke: List<Offset> = emptyList(), // The line currently being drawn
+    val activeStrokes: List<List<Offset>> = emptyList(), 
     val selectedNodeId: String? = null // For editing/deleting
 )
 

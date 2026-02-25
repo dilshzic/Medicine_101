@@ -2,24 +2,32 @@ package com.algorithmx.medicine101.utils
 
 import android.content.Context
 import com.algorithmx.medicine101.data.ContentBlock
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import kotlinx.serialization.json.Json
 import java.io.IOException
 
 object JsonLoader {
+    private val json = Json { ignoreUnknownKeys = true }
 
     // Load the Menu (TOC)
     fun loadMenu(context: Context, tocFile: String): List<TocItem> {
-        val json = loadJsonFromAsset(context, tocFile) ?: return emptyList()
-        val type = object : TypeToken<List<TocItem>>() {}.type
-        return Gson().fromJson(json, type)
+        val jsonStr = loadJsonFromAsset(context, tocFile) ?: return emptyList()
+        return try {
+            json.decodeFromString<List<TocItem>>(jsonStr)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emptyList()
+        }
     }
 
     // Load a Chapter (Content Blocks)
     fun loadChapter(context: Context, fileName: String): List<ContentBlock> {
-        val json = loadJsonFromAsset(context, fileName) ?: return emptyList()
-        val type = object : TypeToken<List<ContentBlock>>() {}.type
-        return Gson().fromJson(json, type)
+        val jsonStr = loadJsonFromAsset(context, fileName) ?: return emptyList()
+        return try {
+            json.decodeFromString<List<ContentBlock>>(jsonStr)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emptyList()
+        }
     }
 
     private fun loadJsonFromAsset(context: Context, fileName: String): String? {

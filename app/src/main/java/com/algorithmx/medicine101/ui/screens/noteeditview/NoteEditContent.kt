@@ -18,6 +18,7 @@ import com.algorithmx.medicine101.data.ContentBlock
 import com.algorithmx.medicine101.ui.screens.NoteViewModel
 import com.algorithmx.medicine101.ui.screens.noteeditview.components.*
 import com.algorithmx.medicine101.ui.screens.noteview.components.RenderSingleBlock
+import com.algorithmx.medicine101.flowchart.ui.FlowchartScreen
 
 @Composable
 fun NoteEditScreen(
@@ -30,14 +31,26 @@ fun NoteEditScreen(
     val isAiLoading by viewModel.isAiLoading.collectAsState()
 
     var editingBlockIndex by remember { mutableIntStateOf(-1) }
+    var isDrawingFlowchart by remember { mutableStateOf(false) }
 
-    if (editingBlockIndex != -1) {
+    if (isDrawingFlowchart && editingBlockIndex != -1) {
+        val block = blocks[editingBlockIndex]
+        FlowchartScreen(
+            initialData = block.flowchart,
+            onDone = { 
+                viewModel.updateBlock(editingBlockIndex, block.copy(flowchart = it))
+                isDrawingFlowchart = false
+            },
+            onBack = { isDrawingFlowchart = false }
+        )
+    } else if (editingBlockIndex != -1) {
         val block = blocks[editingBlockIndex]
         BlockEditScreen(
             block = block,
             isAiLoading = isAiLoading,
             onUpdate = { viewModel.updateBlock(editingBlockIndex, it) },
             onRefineAi = { viewModel.refineBlockWithAi(editingBlockIndex) },
+            onEditChart = { isDrawingFlowchart = true },
             onBack = { editingBlockIndex = -1 }
         )
     } else {
@@ -135,7 +148,7 @@ fun NoteEditContent(
         Column(
             modifier = Modifier.padding(padding)
         ) {
-            ScrollableTabRow(
+            PrimaryScrollableTabRow(
                 selectedTabIndex = availableTabs.indexOf(selectedTab).coerceAtLeast(0),
                 edgePadding = 16.dp,
                 modifier = Modifier.fillMaxWidth()
@@ -296,6 +309,7 @@ fun BlockEditScreen(
     isAiLoading: Boolean,
     onUpdate: (ContentBlock) -> Unit,
     onRefineAi: () -> Unit,
+    onEditChart: () -> Unit,
     onBack: () -> Unit
 ) {
     Scaffold(
@@ -342,9 +356,10 @@ fun BlockEditScreen(
                 "table" -> EditTableBlock(block, onUpdate)
                 "dd_table" -> EditDDBlock(block, onUpdate)
                 "accordion" -> EditAccordionBlock(block, onUpdate)
-                "flowchart" -> EditFlowchartBlock(block, onUpdate)
+                "flowchart" -> EditFlowchartBlock(block, onEditChart, onUpdate)
                 "image" -> EditImageBlock(block, onUpdate)
                 "youtube" -> EditYouTubeBlock(block, onUpdate)
+                "note_link" -> EditNoteLinkBlock(block, onUpdate)
                 else -> EditTextBlock(block, "Text Content", onUpdate)
             }
             

@@ -9,6 +9,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.annotation.RequiresExtension
 import com.algorithmx.medicine101.ui.theme.Medicine101Theme
+import com.algorithmx.medicine101.flowchart.ml.RecognitionManager
 import dagger.hilt.android.AndroidEntryPoint
 import com.tom_roush.pdfbox.android.PDFBoxResourceLoader
 
@@ -24,6 +25,7 @@ class MainActivity : FragmentActivity() {
 
         // Initialize PDFBox
         PDFBoxResourceLoader.init(applicationContext)
+        RecognitionManager.initialize()
 
         mainViewModel.triggerSeeding()
 

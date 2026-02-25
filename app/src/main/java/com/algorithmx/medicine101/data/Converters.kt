@@ -1,22 +1,19 @@
 package com.algorithmx.medicine101.data
 
 import androidx.room.TypeConverter
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 class Converters {
-    private val gson = Gson()
+    private val json = Json { ignoreUnknownKeys = true }
 
     @TypeConverter
-    fun fromContentList(list: List<ContentBlock>?): String? {
-        if (list == null) return null
-        return gson.toJson(list)
+    fun fromStringList(value: String): List<String> {
+        return json.decodeFromString(value)
     }
 
     @TypeConverter
-    fun toContentList(json: String?): List<ContentBlock>? {
-        if (json.isNullOrEmpty()) return null
-        val type = object : TypeToken<List<ContentBlock>>() {}.type
-        return gson.fromJson(json, type)
+    fun toStringList(list: List<String>): String {
+        return json.encodeToString(list)
     }
 }

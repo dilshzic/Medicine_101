@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.NoteAdd
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -53,7 +54,7 @@ fun BlockCreationSheet(
                 onBlockSelected(ContentBlock(type = "list", items = listOf(ContentItem(text = "Item 1"))))
             }
 
-            // 4. Key-Value List (NEW)
+            // 4. Key-Value List
             BlockOption(Icons.Default.ListAlt, "Key-Value List") {
                 onBlockSelected(ContentBlock(
                     type = "kv_list",
@@ -70,7 +71,7 @@ fun BlockCreationSheet(
                 ))
             }
 
-            // 6. Flowchart (UPDATED to use actual FlowchartData instead of a text placeholder)
+            // 6. Flowchart
             BlockOption(Icons.Default.AccountTree, "Flowchart") {
                 onBlockSelected(ContentBlock(
                     type = "flowchart",
@@ -88,7 +89,7 @@ fun BlockCreationSheet(
                 ))
             }
 
-            // 8. Image (NEW)
+            // 8. Image
             BlockOption(Icons.Default.Image, "Image") {
                 onBlockSelected(ContentBlock(
                     type = "image",
@@ -96,7 +97,7 @@ fun BlockCreationSheet(
                 ))
             }
 
-            // 9. YouTube Video (NEW)
+            // 9. YouTube Video
             BlockOption(Icons.Default.PlayArrow, "YouTube Video") {
                 onBlockSelected(ContentBlock(
                     type = "youtube",
@@ -105,13 +106,22 @@ fun BlockCreationSheet(
                 ))
             }
 
-            // 10. Accordion / Tabs (NEW)
+            // 10. Accordion / Tabs
             BlockOption(Icons.Default.ViewDay, "Accordion (Tabs)") {
                 onBlockSelected(ContentBlock(
                     type = "accordion",
                     tabs = listOf(
                         TabItem(title = "Tab 1", content = emptyList())
                     )
+                ))
+            }
+
+            // 11. Note Link (NEW)
+            BlockOption(Icons.AutoMirrored.Filled.NoteAdd, "Link to Note") {
+                onBlockSelected(ContentBlock(
+                    type = "note_link",
+                    linkedNoteId = "",
+                    linkedNoteTitle = "Select a note..."
                 ))
             }
         }

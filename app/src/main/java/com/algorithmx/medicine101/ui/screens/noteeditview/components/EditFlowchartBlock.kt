@@ -3,153 +3,76 @@ package com.algorithmx.medicine101.ui.screens.noteeditview.components
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.algorithmx.medicine101.data.ContentBlock
-import com.algorithmx.medicine101.data.FlowchartConnection
 import com.algorithmx.medicine101.data.FlowchartData
-import com.algorithmx.medicine101.data.FlowchartNode
-import java.util.UUID
 
 @Composable
 fun EditFlowchartBlock(
     block: ContentBlock,
+    onEditChart: () -> Unit,
     onUpdate: (ContentBlock) -> Unit
 ) {
-    // Ensure we have a valid FlowchartData object to work with
-    val fcData = block.flowchart ?: FlowchartData("vertical", emptyList(), emptyList())
-    var selectedTab by remember { mutableStateOf(0) }
+    val fcData = block.flowchart ?: FlowchartData(emptyList(), emptyList())
 
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
             .border(1.dp, MaterialTheme.colorScheme.tertiary.copy(alpha = 0.5f), RoundedCornerShape(8.dp))
-            .padding(8.dp)
+            .padding(12.dp)
     ) {
-        Text("Flowchart Editor", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.tertiary)
-
-        TabRow(selectedTabIndex = selectedTab, modifier = Modifier.padding(vertical = 8.dp)) {
-            Tab(selected = selectedTab == 0, onClick = { selectedTab = 0 }, text = { Text("Nodes (Boxes)") })
-            Tab(selected = selectedTab == 1, onClick = { selectedTab = 1 }, text = { Text("Connections (Arrows)") })
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                "Flowchart: ${fcData.nodes.size} nodes, ${fcData.connections.size} connections",
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.tertiary
+            )
+            
+            Button(
+                onClick = onEditChart,
+                contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp),
+                modifier = Modifier.height(32.dp)
+            ) {
+                Icon(Icons.Default.Edit, contentDescription = null, modifier = Modifier.size(16.dp))
+                Spacer(Modifier.width(4.dp))
+                Text("Edit Canvas", style = MaterialTheme.typography.labelSmall)
+            }
         }
 
-        if (selectedTab == 0) {
-            // --- EDIT NODES ---
-            fcData.nodes.forEachIndexed { index, node ->
-                Card(modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp)) {
-                    Column(modifier = Modifier.padding(8.dp)) {
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            OutlinedTextField(
-                                value = node.label,
-                                onValueChange = { newLabel ->
-                                    val newNodes = fcData.nodes.toMutableList()
-                                    newNodes[index] = node.copy(label = newLabel)
-                                    onUpdate(block.copy(flowchart = fcData.copy(nodes = newNodes)))
-                                },
-                                label = { Text("Label (ID: ${node.id})") },
-                                modifier = Modifier.weight(1f)
-                            )
-                            IconButton(onClick = {
-                                val newNodes = fcData.nodes.toMutableList().apply { removeAt(index) }
-                                onUpdate(block.copy(flowchart = fcData.copy(nodes = newNodes)))
-                            }) { Icon(Icons.Default.Delete, "Delete", tint = MaterialTheme.colorScheme.error) }
-                        }
-                        
-                        // Level and Order inputs
-                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.padding(top = 4.dp)) {
-                            OutlinedTextField(
-                                value = node.level.toString(),
-                                onValueChange = { 
-                                    val newNodes = fcData.nodes.toMutableList()
-                                    newNodes[index] = node.copy(level = it.toIntOrNull() ?: 0)
-                                    onUpdate(block.copy(flowchart = fcData.copy(nodes = newNodes)))
-                                },
-                                label = { Text("Row (Level)") },
-                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                                modifier = Modifier.weight(1f)
-                            )
-                            OutlinedTextField(
-                                value = node.order.toString(),
-                                onValueChange = { 
-                                    val newNodes = fcData.nodes.toMutableList()
-                                    newNodes[index] = node.copy(order = it.toIntOrNull() ?: 0)
-                                    onUpdate(block.copy(flowchart = fcData.copy(nodes = newNodes)))
-                                },
-                                label = { Text("Col (Order)") },
-                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                                modifier = Modifier.weight(1f)
-                            )
-                        }
-                    }
-                }
-            }
-
-            Button(onClick = {
-                val newNode = FlowchartNode(
-                    id = UUID.randomUUID().toString().take(4), // Short random ID
-                    label = "New Step",
-                    level = (fcData.nodes.maxOfOrNull { it.level } ?: -1) + 1,
-                    order = 0
-                )
-                onUpdate(block.copy(flowchart = fcData.copy(nodes = fcData.nodes + newNode)))
-            }, modifier = Modifier.fillMaxWidth()) { Text("Add Node") }
-
+        if (fcData.nodes.isNotEmpty()) {
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = "Hand-drawn logic content exists. Use the canvas to modify geometry and text.",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
         } else {
-            // --- EDIT CONNECTIONS ---
-            fcData.connections.forEachIndexed { index, conn ->
-                Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(bottom = 8.dp)) {
-                    OutlinedTextField(
-                        value = conn.from,
-                        onValueChange = { 
-                            val newConns = fcData.connections.toMutableList()
-                            newConns[index] = conn.copy(from = it)
-                            onUpdate(block.copy(flowchart = fcData.copy(connections = newConns)))
-                        },
-                        label = { Text("From ID") },
-                        modifier = Modifier.weight(1f)
-                    )
-                    Spacer(Modifier.width(4.dp))
-                    OutlinedTextField(
-                        value = conn.to,
-                        onValueChange = { 
-                            val newConns = fcData.connections.toMutableList()
-                            newConns[index] = conn.copy(to = it)
-                            onUpdate(block.copy(flowchart = fcData.copy(connections = newConns)))
-                        },
-                        label = { Text("To ID") },
-                        modifier = Modifier.weight(1f)
-                    )
-                    Spacer(Modifier.width(4.dp))
-                    OutlinedTextField(
-                        value = conn.label ?: "",
-                        onValueChange = { 
-                            val newConns = fcData.connections.toMutableList()
-                            newConns[index] = conn.copy(label = it.ifBlank { null })
-                            onUpdate(block.copy(flowchart = fcData.copy(connections = newConns)))
-                        },
-                        label = { Text("Arrow Text") },
-                        modifier = Modifier.weight(1f)
-                    )
-                    IconButton(onClick = {
-                        val newConns = fcData.connections.toMutableList().apply { removeAt(index) }
-                        onUpdate(block.copy(flowchart = fcData.copy(connections = newConns)))
-                    }) { Icon(Icons.Default.Delete, "Delete", tint = MaterialTheme.colorScheme.error) }
-                }
+            Spacer(modifier = Modifier.height(8.dp))
+            OutlinedButton(
+                onClick = onEditChart,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text("Start Drawing Flowchart")
             }
-
-            Button(onClick = {
-                val newConn = FlowchartConnection(from = "", to = "", label = null)
-                onUpdate(block.copy(flowchart = fcData.copy(connections = fcData.connections + newConn)))
-            }, modifier = Modifier.fillMaxWidth()) { Text("Add Connection") }
+        }
+        
+        IconButton(
+            onClick = { onUpdate(block.copy(flowchart = null)) },
+            modifier = Modifier.align(Alignment.End)
+        ) {
+            Icon(Icons.Default.Delete, "Clear", tint = MaterialTheme.colorScheme.error)
         }
     }
 }

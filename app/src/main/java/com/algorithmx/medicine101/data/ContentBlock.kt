@@ -1,10 +1,60 @@
 package com.algorithmx.medicine101.data
 
 import kotlinx.serialization.Serializable
+import java.util.UUID
+
+@Serializable
+enum class NodeType {
+    RECTANGLE, // For generic process steps
+    DIAMOND,   // For Decisions (Yes/No)
+    OVAL,      // For Start/End points
+    UNKNOWN    // Fallback
+}
+
+@Serializable
+data class FlowNode(
+    val id: String = UUID.randomUUID().toString(),
+    val type: NodeType = NodeType.UNKNOWN,
+    val text: String = "",
+    val centerX: Float,
+    val centerY: Float,
+    val width: Float = 200f,  // Default width
+    val height: Float = 100f  // Default height
+)
+
+@Serializable
+data class FlowConnection(
+    val id: String = UUID.randomUUID().toString(),
+    val fromNodeId: String,
+    val toNodeId: String,
+    val label: String? = null // e.g., "Yes", "No"
+)
+
+@Serializable
+data class FlowchartMetadata(
+    val id: String = UUID.randomUUID().toString(),
+    val title: String,
+    val lastModified: Long = System.currentTimeMillis()
+)
+
+@Serializable
+data class FlowchartData(
+    val nodes: List<FlowNode>,
+    val connections: List<FlowConnection>
+)
+
+@Serializable
+data class FlowchartFile(
+    val id: String,
+    val title: String,
+    val nodes: List<FlowNode>,
+    val connections: List<FlowConnection>,
+    val lastModified: Long = System.currentTimeMillis()
+)
 
 @Serializable
 data class ContentBlock(
-    val type: String,               // "header", "list", "table", "callout", "kv_list", "note_link"
+    val type: String,               // "header", "list", "table", "callout", "kv_list", "note_link", "flowchart"
     val text: String? = null,       // Used for headers, warnings, or simple text
     val level: Int = 1,             // For headers (1=Big, 2=Small)
     val items: List<ContentItem>? = null, // For bullet lists
@@ -21,8 +71,10 @@ data class ContentBlock(
 
     val variant: String? = null,
     
+    // AI Integration
     val aiInstructions: String? = null,
 
+    // Link to other notes
     val linkedNoteId: String? = null,
     val linkedNoteTitle: String? = null
 )
@@ -46,29 +98,6 @@ data class TabItem(
 )
 
 @Serializable
-data class FlowchartData(
-    val direction: String = "vertical", 
-    val nodes: List<FlowchartNode>,
-    val connections: List<FlowchartConnection>
-)
-
-@Serializable
-data class FlowchartNode(
-    val id: String,
-    val label: String,
-    val type: String = "process", 
-    val level: Int,               
-    val order: Int                
-)
-
-@Serializable
-data class FlowchartConnection(
-    val from: String,
-    val to: String,
-    val label: String? = null     
-)
-
-@Serializable
 data class DifferentialDiagnosis(
     val finding: String,         
     val diagnoses: List<String>, 
@@ -77,7 +106,7 @@ data class DifferentialDiagnosis(
 
 @Serializable
 data class ContentItem(
-    val id: String = java.util.UUID.randomUUID().toString(),
+    val id: String = UUID.randomUUID().toString(),
     val text: String? = null,
     val title: String? = null,
     val content: List<ContentBlock>? = null,

@@ -8,14 +8,14 @@ import com.algorithmx.medicine101.data.ContentBlock
 import com.algorithmx.medicine101.data.ContentBlockEntity
 import com.algorithmx.medicine101.data.NoteRepository
 import com.algorithmx.medicine101.data.remote.CloudSyncRepository
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import javax.inject.Inject
 
 @HiltViewModel
@@ -27,7 +27,7 @@ class NoteViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val noteId: String = savedStateHandle["noteId"] ?: throw IllegalArgumentException("Note ID required")
-    private val gson = Gson()
+    private val json = Json { ignoreUnknownKeys = true }
 
     private val _blocks = MutableStateFlow<List<ContentBlock>>(emptyList())
     val blocks: StateFlow<List<ContentBlock>> = _blocks.asStateFlow()
@@ -56,8 +56,7 @@ class NoteViewModel @Inject constructor(
                 val uiBlocks = noteWithBlocks.blocks
                     .sortedBy { it.orderIndex }
                     .map { entity ->
-                        val type = object : TypeToken<ContentBlock>() {}.type
-                        val parsedBlock = gson.fromJson<ContentBlock>(entity.content, type)
+                        val parsedBlock = json.decodeFromString<ContentBlock>(entity.content)
                         parsedBlock.copy(tabName = entity.tabName ?: "General")
                     }
                 _blocks.value = uiBlocks
@@ -92,12 +91,11 @@ class NoteViewModel @Inject constructor(
         viewModelScope.launch {
             _isAiLoading.value = true
             try {
-                val basePrompt = "Topic: ${_title.value}. "
-                val targetPrompt = "Regenerate only one block of type '${block.type}'."
-                val instructionPrompt = if (!block.aiInstructions.isNullOrBlank()) " Instructions: ${block.aiInstructions}" else ""
-                
-                val aiBlocks = geminiService.generateNoteContent(basePrompt + targetPrompt + instructionPrompt)
-                val newBlock = aiBlocks.find { it.type == block.type } ?: aiBlocks.firstOrNull()
+                val newBlock = geminiService.refineBlock(
+                    topic = _title.value,
+                    blockType = block.type,
+                    instructions = block.aiInstructions
+                )
                 
                 if (newBlock != null) {
                     updateBlock(index, newBlock.copy(
@@ -206,7 +204,7 @@ class NoteViewModel @Inject constructor(
                     ContentBlockEntity(
                         noteId = noteId,
                         type = uiBlock.type,
-                        content = gson.toJson(uiBlock),
+                        content = json.encodeToString(uiBlock),
                         orderIndex = index,
                         tabName = uiBlock.tabName
                     )

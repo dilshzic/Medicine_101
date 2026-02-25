@@ -6,10 +6,9 @@ import com.algorithmx.medicine101.data.ContentBlock
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.content
 import com.google.ai.client.generativeai.type.generationConfig
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import kotlinx.serialization.json.Json
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -29,7 +28,10 @@ class GeminiAiService @Inject constructor() {
         }
     )
 
-    private val gson = Gson()
+    private val json = Json { 
+        ignoreUnknownKeys = true 
+        coerceInputValues = true
+    }
 
     private val baseSystemPrompt = """
         Return a JSON array of objects representing medical content blocks.
@@ -65,8 +67,7 @@ class GeminiAiService @Inject constructor() {
             val jsonString = response.text?.trim() ?: return@withContext emptyList<ContentBlock>()
             
             val cleanedJson = jsonString.removeSurrounding("```json", "```").trim()
-            val listType = object : TypeToken<List<ContentBlock>>() {}.type
-            return@withContext gson.fromJson(cleanedJson, listType)
+            return@withContext json.decodeFromString<List<ContentBlock>>(cleanedJson)
         } catch (e: Exception) {
             Log.e("GeminiAiService", "Error generating content: ${e.message}", e)
             emptyList()
@@ -90,8 +91,7 @@ class GeminiAiService @Inject constructor() {
             val jsonString = response.text?.trim() ?: return@withContext null
             
             val cleanedJson = jsonString.removeSurrounding("```json", "```").trim()
-            val listType = object : TypeToken<List<ContentBlock>>() {}.type
-            val blocks: List<ContentBlock> = gson.fromJson(cleanedJson, listType)
+            val blocks = json.decodeFromString<List<ContentBlock>>(cleanedJson)
             blocks.firstOrNull()
         } catch (e: Exception) {
             Log.e("GeminiAiService", "Error refining block: ${e.message}", e)
