@@ -1,5 +1,6 @@
 package com.algorithmx.medicine101.data.remote
 
+import android.util.Log
 import com.algorithmx.medicine101.data.ContentBlockEntity
 import com.algorithmx.medicine101.data.NoteEntity
 import com.google.firebase.auth.FirebaseAuth
@@ -20,9 +21,11 @@ class CloudSyncRepository @Inject constructor(
         val uid = auth.currentUser?.uid ?: return Result.failure(Exception("User not authenticated"))
 
         return try {
+            Log.d("CloudSync", "Starting backup for note: ${note.id} with UID: $uid")
+            
             val cloudNote = CloudNote(
                 id = note.id,
-                userId = uid,
+                userId = uid, // Ensure this field exists in CloudNote and matches Security Rules
                 title = note.title,
                 category = note.category,
                 tags = note.tags,
@@ -56,8 +59,10 @@ class CloudSyncRepository @Inject constructor(
             }
 
             batch.commit().await()
+            Log.d("CloudSync", "Backup successful for note: ${note.id}")
             Result.success(Unit)
         } catch (e: Exception) {
+            Log.e("CloudSync", "Backup failed: ${e.message}", e)
             Result.failure(e)
         }
     }

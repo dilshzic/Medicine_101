@@ -7,6 +7,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.DriveFileMove
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Description
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -21,6 +22,7 @@ import com.algorithmx.medicine101.data.NoteEntity
 fun NoteRow(
     item: NoteEntity,
     onClick: () -> Unit,
+    onRename: () -> Unit,
     onDelete: () -> Unit,
     onMove: () -> Unit
 ) {
@@ -79,6 +81,14 @@ fun NoteRow(
                     onDismissRequest = { showMenu = false }
                 ) {
                     DropdownMenuItem(
+                        text = { Text("Rename") },
+                        onClick = {
+                            showMenu = false
+                            onRename()
+                        },
+                        leadingIcon = { Icon(Icons.Default.Edit, contentDescription = null) }
+                    )
+                    DropdownMenuItem(
                         text = { Text("Move") },
                         onClick = {
                             showMenu = false
@@ -97,24 +107,5 @@ fun NoteRow(
                 }
             }
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun NoteRowPreview() {
-    MaterialTheme {
-        NoteRow(
-            item = NoteEntity(
-                id = "2",
-                title = "ECG Interpretation Guide",
-                category = "Cardiology",
-                isFolder = false,
-                tags = "ECG, Arrhythmias"
-            ),
-            onClick = {},
-            onDelete = {},
-            onMove = {}
-        )
     }
 }

@@ -76,6 +76,7 @@ fun YouTubeBlock(videoId: String, timestamps: List<VideoTimestamp>?) {
                                 // Jump to timestamp!
                                 val targetTime = ts.toSeconds()
                                 playerInstance?.seekTo(targetTime)
+                                playerInstance?.play() // Start playing when a timestamp is explicitly clicked
                                 startSeconds = targetTime // Save state in case they go fullscreen
                             }
                             .padding(vertical = 8.dp, horizontal = 4.dp),
@@ -137,7 +138,8 @@ fun YouTubePlayerNative(videoId: String, startSeconds: Float, onPlayerReady: (Yo
                 addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
                     override fun onReady(youTubePlayer: YouTubePlayer) {
                         onPlayerReady(youTubePlayer)
-                        youTubePlayer.loadVideo(videoId, startSeconds) // loadVideo autoplays. Use cueVideo to pause.
+                        // Use cueVideo instead of loadVideo to prevent autoplay on initial load
+                        youTubePlayer.cueVideo(videoId, startSeconds)
                     }
                 })
             }

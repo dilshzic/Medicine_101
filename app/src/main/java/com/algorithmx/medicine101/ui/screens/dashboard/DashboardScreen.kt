@@ -131,6 +131,7 @@ fun DashboardScreen(
                     NoteRow(
                         item = note,
                         onClick = { onNoteClick(note.id) },
+                        onRename = { /* Renaming from Dashboard not implemented yet */ },
                         onDelete = {}, 
                         onMove = {}
                     )

@@ -25,6 +25,7 @@ import com.algorithmx.medicine101.ui.screens.pdfviewer.PdfViewerScreen
 import com.algorithmx.medicine101.ui.screens.pdfviewer.TocPdfViewerScreen
 import com.algorithmx.medicine101.ui.screens.folders.ExplorerScreen
 import com.algorithmx.medicine101.ui.screens.folders.ExplorerViewModel
+import com.algorithmx.medicine101.ui.screens.profile.ProfileScreen
 import com.algorithmx.medicine101.ui.screens.search.SearchScreen
 
 @RequiresExtension(extension = Build.VERSION_CODES.S, version = 13)
@@ -57,7 +58,20 @@ fun AppNavigation() {
             DashboardScreen(
                 onNoteClick = { noteId -> navController.navigate("note_screen/$noteId") },
                 onSearchClick = { navController.navigate("search") },
-                onExplorerClick = { navController.navigate("explorer_root") }
+                onExplorerClick = { navController.navigate("explorer_root") },
+                onProfileClick = { navController.navigate("profile") }
+            )
+        }
+
+        composable("profile") {
+            ProfileScreen(
+                authViewModel = authViewModel,
+                onBack = { navController.popBackStack() },
+                onLogout = {
+                    navController.navigate("login") {
+                        popUpTo("dashboard") { inclusive = true }
+                    }
+                }
             )
         }
 

@@ -8,6 +8,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.DriveFileMove
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Folder
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.*
@@ -24,6 +25,7 @@ import com.algorithmx.medicine101.data.NoteEntity
 fun FolderRow(
     item: NoteEntity,
     onClick: () -> Unit,
+    onRename: () -> Unit,
     onDelete: () -> Unit,
     onMove: () -> Unit
 ) {
@@ -82,6 +84,14 @@ fun FolderRow(
                     onDismissRequest = { showMenu = false }
                 ) {
                     DropdownMenuItem(
+                        text = { Text("Rename") },
+                        onClick = {
+                            showMenu = false
+                            onRename()
+                        },
+                        leadingIcon = { Icon(Icons.Default.Edit, contentDescription = null) }
+                    )
+                    DropdownMenuItem(
                         text = { Text("Move") },
                         onClick = {
                             showMenu = false
@@ -106,24 +116,5 @@ fun FolderRow(
                 tint = MaterialTheme.colorScheme.outline
             )
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun FolderRowPreview() {
-    MaterialTheme {
-        FolderRow(
-            item = NoteEntity(
-                id = "1",
-                title = "Cardiology",
-                category = "Internal Medicine",
-                isFolder = true,
-                tags = ""
-            ),
-            onClick = {},
-            onDelete = {},
-            onMove = {}
-        )
     }
 }

@@ -1,8 +1,8 @@
 package com.algorithmx.medicine101.ui.auth
 
+import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -11,11 +11,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.algorithmx.medicine101.R
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
 
@@ -35,8 +33,19 @@ fun LoginScreen(
         try {
             val account = task.getResult(ApiException::class.java)
             account.idToken?.let { viewModel.signInWithGoogle(it) }
+        } catch (e: ApiException) {
+            Log.e("AuthError", "Google Sign In failed with status code: ${e.statusCode}")
+            val message = when (e.statusCode) {
+                7 -> "Network Error. Please check your internet connection."
+                10 -> "Developer Error (10): Ensure SHA-1 and Web Client ID are correct in Firebase."
+                12500 -> "Sign-in failed (12500): Check if a Support Email is set in Firebase Console."
+                12501 -> "Sign-in cancelled."
+                else -> "Sign-in failed: ${e.localizedMessage}"
+            }
+            viewModel.setError(message)
         } catch (e: Exception) {
-            // Handle error
+            Log.e("AuthError", "Unknown error: ${e.localizedMessage}")
+            viewModel.setError("An unknown error occurred: ${e.localizedMessage}")
         }
     }
 
@@ -71,14 +80,14 @@ fun LoginScreen(
                 CircularProgressIndicator()
             } else {
                 Button(
-                    onClick = { launcher.launch(viewModel.getGoogleSignInClient().signInIntent) },
+                    onClick = { 
+                        viewModel.clearError()
+                        launcher.launch(viewModel.getGoogleSignInClient().signInIntent) 
+                    },
                     modifier = Modifier.fillMaxWidth(),
                     colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
                     elevation = ButtonDefaults.buttonElevation(defaultElevation = 2.dp)
                 ) {
-                    // Note: You should have a google icon in your resources
-                    // Icon(painter = painterResource(id = R.drawable.ic_google), contentDescription = null)
-                    Spacer(modifier = Modifier.width(8.dp))
                     Text("Sign in with Google", color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
             }
@@ -87,7 +96,8 @@ fun LoginScreen(
                 Text(
                     text = it,
                     color = MaterialTheme.colorScheme.error,
-                    modifier = Modifier.padding(top = 16.dp)
+                    modifier = Modifier.padding(top = 16.dp),
+                    fontWeight = FontWeight.Medium
                 )
             }
         }

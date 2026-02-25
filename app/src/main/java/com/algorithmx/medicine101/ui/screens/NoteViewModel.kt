@@ -67,16 +67,43 @@ class NoteViewModel @Inject constructor(
         }
     }
 
-    fun generateAiContent() {
+    fun generateAiContent(instructions: String? = null) {
         if (_title.value.isBlank()) return
         
         viewModelScope.launch {
             _isAiLoading.value = true
             try {
-                val aiBlocks = geminiService.generateNoteContent(_title.value)
+                val fullPrompt = if (instructions.isNullOrBlank()) _title.value else "${_title.value} ($instructions)"
+                val aiBlocks = geminiService.generateNoteContent(fullPrompt)
                 if (aiBlocks.isNotEmpty()) {
                     val blocksWithTabs = aiBlocks.map { it.copy(tabName = _selectedTab.value) }
                     _blocks.update { current -> current + blocksWithTabs }
+                }
+            } finally {
+                _isAiLoading.value = false
+            }
+        }
+    }
+
+    fun refineBlockWithAi(index: Int) {
+        val block = _blocks.value.getOrNull(index) ?: return
+        if (_title.value.isBlank()) return
+        
+        viewModelScope.launch {
+            _isAiLoading.value = true
+            try {
+                val basePrompt = "Topic: ${_title.value}. "
+                val targetPrompt = "Regenerate only one block of type '${block.type}'."
+                val instructionPrompt = if (!block.aiInstructions.isNullOrBlank()) " Instructions: ${block.aiInstructions}" else ""
+                
+                val aiBlocks = geminiService.generateNoteContent(basePrompt + targetPrompt + instructionPrompt)
+                val newBlock = aiBlocks.find { it.type == block.type } ?: aiBlocks.firstOrNull()
+                
+                if (newBlock != null) {
+                    updateBlock(index, newBlock.copy(
+                        tabName = block.tabName, 
+                        aiInstructions = block.aiInstructions 
+                    ))
                 }
             } finally {
                 _isAiLoading.value = false
@@ -104,6 +131,24 @@ class NoteViewModel @Inject constructor(
         )
         _blocks.update { it + ghostBlock }
         selectTab(newTabName)
+    }
+
+    fun renameTab(oldName: String, newName: String) {
+        if (oldName == newName || newName.isBlank()) return
+        
+        _blocks.update { currentList ->
+            currentList.map { block ->
+                if (block.tabName == oldName) {
+                    block.copy(tabName = newName)
+                } else {
+                    block
+                }
+            }
+        }
+        
+        if (_selectedTab.value == oldName) {
+            _selectedTab.value = newName
+        }
     }
 
     fun updateBlock(index: Int, newBlock: ContentBlock) {

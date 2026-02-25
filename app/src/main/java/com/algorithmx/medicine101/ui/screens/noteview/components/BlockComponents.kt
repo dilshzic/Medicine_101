@@ -3,9 +3,12 @@ package com.algorithmx.medicine101.ui.screens.noteview.components
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.NoteAdd
 import androidx.compose.material.icons.filled.Error
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.KeyboardArrowDown
@@ -43,7 +46,6 @@ fun HeaderBlock(text: String, level: Int) {
 
     Column(modifier = Modifier.padding(top = 24.dp, bottom = 12.dp)) {
         Text(text = text, style = style)
-        // Add a subtle line under H1 headers only
         if (level == 1) {
             HorizontalDivider(
                 thickness = 2.dp,
@@ -57,22 +59,21 @@ fun HeaderBlock(text: String, level: Int) {
 // 2. CALLOUT BLOCK
 @Composable
 fun CalloutBlock(text: String, variant: String = "info") {
-    // The error "ambiguous component1" happens because Icons wasn't imported,
-    // so the compiler didn't know this was a Triple<Color, Color, ImageVector>
+    val isDark = isSystemInDarkTheme()
     val (containerColor, contentColor, icon) = when (variant.lowercase()) {
         "warning", "alert" -> Triple(
-            Color(0xFFFFF3E0), // Light Orange
-            Color(0xFFE65100), // Dark Orange
+            if (isDark) Color(0xFF3E2723) else Color(0xFFFFF3E0),
+            if (isDark) Color(0xFFFFB74D) else Color(0xFFE65100),
             Icons.Default.Warning
         )
         "error", "danger" -> Triple(
-            Color(0xFFFFEBEE), // Light Red
-            Color(0xFFB71C1C), // Dark Red
+            if (isDark) Color(0xFF311B92) else Color(0xFFFFEBEE),
+            if (isDark) Color(0xFFEF5350) else Color(0xFFB71C1C),
             Icons.Default.Error
         )
         else -> Triple(
-            MaterialTheme.colorScheme.primaryContainer, // Light Teal
-            MaterialTheme.colorScheme.primary,          // Dark Teal
+            MaterialTheme.colorScheme.primaryContainer,
+            MaterialTheme.colorScheme.primary,
             Icons.Default.Info
         )
     }
@@ -110,9 +111,8 @@ fun TableBlock(headers: List<String>, rows: List<List<String>>) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp)
-            .border(1.dp, Color.LightGray, RoundedCornerShape(4.dp))
+            .border(1.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(4.dp))
     ) {
-        // Render Header Row
         Row(
             modifier = Modifier
                 .background(MaterialTheme.colorScheme.surfaceVariant)
@@ -123,25 +123,36 @@ fun TableBlock(headers: List<String>, rows: List<List<String>>) {
                     text = header,
                     modifier = Modifier.weight(1f),
                     fontWeight = FontWeight.Bold,
-                    fontSize = 14.sp
+                    fontSize = 14.sp,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
         }
 
-        // Render Data Rows
         rows.forEachIndexed { index, row ->
+            val isAlternate = index % 2 != 0
+            val rowBackground = if (isAlternate) {
+                MaterialTheme.colorScheme.onSurface.copy(alpha = 0.05f)
+            } else {
+                Color.Transparent
+            }
+
             Row(
                 modifier = Modifier
+                    .background(rowBackground)
                     .padding(8.dp)
-                    .background(if (index % 2 == 0) Color.Transparent else Color(0xFFF5F5F5))
             ) {
                 row.forEach { cell ->
-                    Text(text = cell, modifier = Modifier.weight(1f), fontSize = 14.sp)
+                    Text(
+                        text = cell, 
+                        modifier = Modifier.weight(1f), 
+                        fontSize = 14.sp,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
                 }
             }
-            // Fixed: Divider -> HorizontalDivider
             if (index < rows.size - 1) {
-                HorizontalDivider(color = Color.LightGray, thickness = 0.5.dp)
+                HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant, thickness = 0.5.dp)
             }
         }
     }
@@ -154,17 +165,19 @@ fun BulletListBlock(items: List<ContentItem>, depth: Int = 0) {
         items.forEach { item ->
             Row(modifier = Modifier.padding(start = (depth * 16).dp, bottom = 4.dp)) {
                 Text(
-                    // Change bullet style based on depth
                     text = if (depth == 0) "•" else "◦",
                     modifier = Modifier.padding(end = 8.dp),
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.primary
                 )
                 Column {
                     if (!item.text.isNullOrEmpty()) {
-                        Text(text = item.text, style = MaterialTheme.typography.bodyLarge)
+                        Text(
+                            text = item.text, 
+                            style = MaterialTheme.typography.bodyLarge,
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
                     }
-
-                    // --- NEW: RECURSION FOR SUB-ITEMS ---
                     item.subItems?.let { subs ->
                         BulletListBlock(items = subs, depth = depth + 1)
                     }
@@ -184,22 +197,47 @@ fun ImageBlock(url: String, caption: String?) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         AsyncImage(
-            model = "file:///android_asset/$url",
+            model = url,
             contentDescription = caption ?: "Medical Illustration",
             modifier = Modifier
                 .fillMaxWidth()
-                .heightIn(max = 250.dp)
                 .clip(RoundedCornerShape(8.dp))
-                .border(1.dp, Color.LightGray, RoundedCornerShape(8.dp)),
-            contentScale = ContentScale.Crop
+                .border(1.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(8.dp)),
+            contentScale = ContentScale.Fit
         )
 
         if (!caption.isNullOrEmpty()) {
             Text(
                 text = caption,
                 style = MaterialTheme.typography.labelMedium,
-                color = Color.Gray,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(top = 4.dp)
+            )
+        }
+    }
+}
+
+// 6. NOTE LINK BLOCK
+@Composable
+fun NoteLinkBlock(noteId: String, noteTitle: String, onClick: (String) -> Unit) {
+    Card(
+        onClick = { onClick(noteId) },
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 8.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.5f))
+    ) {
+        Row(
+            modifier = Modifier.padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(Icons.AutoMirrored.Filled.NoteAdd, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+            Spacer(modifier = Modifier.width(16.dp))
+            Text(
+                text = "See also: $noteTitle",
+                style = MaterialTheme.typography.bodyLarge,
+                fontWeight = FontWeight.Medium,
+                color = MaterialTheme.colorScheme.onSecondaryContainer
             )
         }
     }
@@ -208,7 +246,6 @@ fun ImageBlock(url: String, caption: String?) {
 @Composable
 fun TabGroupBlock(
     tabs: List<TabItem>
-    // REMOVED: onRenderContent: @Composable (ContentBlock) -> Unit
 ) {
     var selectedTabIndex by remember { mutableIntStateOf(0) }
 
@@ -240,8 +277,6 @@ fun TabGroupBlock(
 
         Column(modifier = Modifier.padding(top = 16.dp)) {
             val currentBlocks = tabs[selectedTabIndex].content ?: emptyList()
-
-            // We render the blocks directly here using the imported renderer
             currentBlocks.forEach { block ->
                 RenderSingleBlock(block)
             }
@@ -250,7 +285,7 @@ fun TabGroupBlock(
 }
 
 
-// 6. ACCORDION BLOCK
+// 7. ACCORDION BLOCK
 @Composable
 fun AccordionBlock(items: List<ContentItem>) {
     Column(modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)) {
@@ -272,19 +307,19 @@ fun AccordionBlock(items: List<ContentItem>) {
                         Text(
                             text = item.title ?: "Section",
                             style = MaterialTheme.typography.titleMedium,
-                            fontWeight = FontWeight.Bold
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                         Icon(
                             imageVector = if (expanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
-                            contentDescription = if (expanded) "Collapse" else "Expand"
+                            contentDescription = if (expanded) "Collapse" else "Expand",
+                            tint = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
 
                     AnimatedVisibility(visible = expanded) {
                         Column(modifier = Modifier.fillMaxWidth().padding(start = 16.dp, end = 16.dp, bottom = 16.dp)) {
-                            // Render the inner blocks of the accordion
                             item.content?.forEach { innerBlock ->
-                                // Note: Requires RenderSingleBlock to be accessible here
                                 RenderSingleBlock(innerBlock)
                             }
                         }

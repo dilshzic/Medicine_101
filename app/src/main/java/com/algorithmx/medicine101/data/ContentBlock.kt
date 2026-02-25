@@ -1,8 +1,10 @@
 package com.algorithmx.medicine101.data
 
-// This single class handles Headers, Lists, Tables, and Warnings
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class ContentBlock(
-    val type: String,               // "header", "list", "table", "callout", "kv_list"
+    val type: String,               // "header", "list", "table", "callout", "kv_list", "note_link"
     val text: String? = null,       // Used for headers, warnings, or simple text
     val level: Int = 1,             // For headers (1=Big, 2=Small)
     val items: List<ContentItem>? = null, // For bullet lists
@@ -17,64 +19,76 @@ data class ContentBlock(
     val videoId: String? = null,
     val videoTimestamps: List<VideoTimestamp>? = null,
 
-    // FIX 2: Add this field
     val variant: String? = null,
+    
+    val aiInstructions: String? = null,
+
+    val linkedNoteId: String? = null,
+    val linkedNoteTitle: String? = null
 )
 
-// Helper class for nested bullet points
+@Serializable
 data class ListItem(
     val text: String,
-    val subItems: List<ListItem>? = null // Universal recursion: list inside a list
+    val subItems: List<ListItem>? = null 
 )
 
-// Helper for "Key-Value" definitions (e.g., Cachexia: Weight loss)
+@Serializable
 data class KeyValueItem(
     val key: String,
     val value: String
 )
+
+@Serializable
 data class TabItem(
     val title: String,
-    val content: List<ContentBlock> // Each tab has its own list of blocks!
+    val content: List<ContentBlock> 
 )
+
+@Serializable
 data class FlowchartData(
-    val direction: String = "vertical", // "vertical" or "horizontal"
+    val direction: String = "vertical", 
     val nodes: List<FlowchartNode>,
     val connections: List<FlowchartConnection>
 )
 
+@Serializable
 data class FlowchartNode(
     val id: String,
     val label: String,
-    val type: String = "process", // "start", "decision", "process", "end"
-    val level: Int,               // Vertical rank (0 = top, 1 = next row down...)
-    val order: Int                // Horizontal order (0 = left, 1 = right...)
+    val type: String = "process", 
+    val level: Int,               
+    val order: Int                
 )
 
+@Serializable
 data class FlowchartConnection(
     val from: String,
     val to: String,
-    val label: String? = null     // Text on the arrow (e.g., "Yes", "No")
+    val label: String? = null     
 )
 
+@Serializable
 data class DifferentialDiagnosis(
-    val finding: String,         // e.g. "Chest Pain"
-    val diagnoses: List<String>, // e.g. ["MI", "GERD", "Pneumonia"]
-    val likelihood: String? = null // Optional: "High", "Medium", "Red Flag"
+    val finding: String,         
+    val diagnoses: List<String>, 
+    val likelihood: String? = null 
 )
-// ... existing ContentBlock class ...
 
+@Serializable
 data class ContentItem(
     val id: String = java.util.UUID.randomUUID().toString(),
     val text: String? = null,
     val title: String? = null,
     val content: List<ContentBlock>? = null,
-    val subItems: List<ContentItem>? = null // <-- ADD THIS FOR NESTED BULLETS
+    val subItems: List<ContentItem>? = null
 )
+
+@Serializable
 data class VideoTimestamp(
     val label: String,
-    val timestamp: String // e.g., "01:30" or "1:05:20"
+    val timestamp: String
 ) {
-    // Helper to convert "MM:SS" into raw seconds for the YouTube API
     fun toSeconds(): Float {
         return try {
             val parts = timestamp.split(":")

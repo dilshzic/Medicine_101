@@ -1,5 +1,7 @@
 package com.algorithmx.medicine101.api
 
+import android.util.Log
+import com.algorithmx.medicine101.BuildConfig
 import com.algorithmx.medicine101.data.ContentBlock
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.content
@@ -13,52 +15,87 @@ import javax.inject.Singleton
 
 @Singleton
 class GeminiAiService @Inject constructor() {
-    // Note: To use this, get an API Key from https://aistudio.google.com/
-    private val apiKey = "YOUR_GEMINI_API_KEY" 
     
     private val model = GenerativeModel(
-        modelName = "gemini-1.5-flash",
-        apiKey = apiKey,
+        modelName = "gemini-flash-latest", // Using the standard model name
+        apiKey = BuildConfig.GEMINI_API_KEY, 
         generationConfig = generationConfig {
             responseMimeType = "application/json"
         },
         systemInstruction = content { 
-            text("You are an expert medical educator. You generate structured medical notes in JSON format. " +
-                 "Ensure all medical information is accurate, concise, and follows standard clinical guidelines.") 
+            text("You are an expert medical educator. You generate highly structured, accurate, and professional medical notes in JSON format. " +
+                 "Ensure all clinical information follows current standard guidelines (e.g., NICE, UpToDate). " +
+                 "Always return valid JSON following the requested schema precisely.") 
         }
     )
 
     private val gson = Gson()
 
-    suspend fun generateNoteContent(topic: String, section: String? = null): List<ContentBlock> = withContext(Dispatchers.IO) {
-        val sectionPrompt = if (section != null && section != "General") " specifically for the section '$section'" else ""
-        val prompt = """
-            Generate a structured medical note about "$topic"$sectionPrompt.
-            Return a JSON array of objects representing medical content blocks.
-            
-            Supported block types:
-            1. "header": { "type": "header", "text": "Title", "level": 1 (big) or 2 (small) }
-            2. "list": { "type": "list", "items": [ { "text": "Point 1" }, { "text": "Point 2" } ] }
-            3. "table": { "type": "table", "tableHeaders": ["Col 1", "Col 2"], "tableRows": [["Val 1", "Val 2"]] }
-            4. "callout": { "type": "callout", "text": "Crucial warning or pearl" }
-            5. "dd": { "type": "dd", "ddItems": [ { "finding": "Symptom", "diagnoses": ["D1", "D2"] } ] }
-            6. "accordion": { "type": "accordion", "text": "Summary Title", "items": [ { "title": "Detail Title", "text": "Detail description" } ] }
+    private val baseSystemPrompt = """
+        Return a JSON array of objects representing medical content blocks.
+        
+        Supported block types and their REQUIRED fields:
+        
+        1. "header": { "type": "header", "text": "Title", "level": 1 or 2 }
+        2. "list": { "type": "list", "items": [ { "text": "Point 1", "subItems": [ { "text": "Nested point" } ] } ] }
+        3. "table": { "type": "table", "tableHeaders": ["Col A", "Col B"], "tableRows": [ ["Cell 1", "Cell 2"] ] }
+        4. "callout": { "type": "callout", "text": "Important note", "variant": "info", "warning", or "error" }
+        5. "dd_table": { "type": "dd_table", "ddItems": [ { "finding": "Symptom", "diagnoses": ["D1", "D2"], "likelihood": "High"/"Medium"/"Red Flag" } ] }
+        6. "accordion": { "type": "accordion", "items": [ { "title": "Expandable Title", "content": [ { "type": "header", "text": "Internal Title", "level": 2 }, { "type": "list", "items": [...] } ] } ] }
 
-            Return ONLY the JSON array. Do not include markdown formatting.
+        CRITICAL: 
+        - Return ONLY the JSON array. No markdown blocks.
+        - Ensure all medical content is concise and evidence-based.
+        - Differential Diagnosis likelihood must be one of: "High", "Medium", "Red Flag".
+        - Accordion "content" is a nested array of ContentBlocks.
+    """.trimIndent()
+
+    suspend fun generateNoteContent(topic: String, section: String? = null): List<ContentBlock> = withContext(Dispatchers.IO) {
+        val sectionPrompt = if (section != null && section != "General") " focus specifically on the section '$section'" else ""
+        val prompt = """
+            $baseSystemPrompt
+            
+            Topic: "$topic"
+            Task: Generate a comprehensive medical note about this topic$sectionPrompt.
         """.trimIndent()
 
         try {
+            Log.d("GeminiAiService", "Generating comprehensive content for: $topic")
             val response = model.generateContent(prompt)
             val jsonString = response.text?.trim() ?: return@withContext emptyList<ContentBlock>()
             
-            // The model is configured for JSON response, but we still handle potential wrapping
             val cleanedJson = jsonString.removeSurrounding("```json", "```").trim()
-            
             val listType = object : TypeToken<List<ContentBlock>>() {}.type
             return@withContext gson.fromJson(cleanedJson, listType)
         } catch (e: Exception) {
-            e.printStackTrace()
+            Log.e("GeminiAiService", "Error generating content: ${e.message}", e)
             emptyList()
+        }
+    }
+
+    suspend fun refineBlock(topic: String, blockType: String, instructions: String?): ContentBlock? = withContext(Dispatchers.IO) {
+        val prompt = """
+            $baseSystemPrompt
+            
+            Topic: "$topic"
+            Task: Generate exactly ONE content block of type "$blockType".
+            Instructions: ${instructions ?: "Provide standard medical details."}
+            
+            Return a JSON array containing exactly ONE object.
+        """.trimIndent()
+
+        try {
+            Log.d("GeminiAiService", "Refining single block: $blockType for $topic")
+            val response = model.generateContent(prompt)
+            val jsonString = response.text?.trim() ?: return@withContext null
+            
+            val cleanedJson = jsonString.removeSurrounding("```json", "```").trim()
+            val listType = object : TypeToken<List<ContentBlock>>() {}.type
+            val blocks: List<ContentBlock> = gson.fromJson(cleanedJson, listType)
+            blocks.firstOrNull()
+        } catch (e: Exception) {
+            Log.e("GeminiAiService", "Error refining block: ${e.message}", e)
+            null
         }
     }
 }

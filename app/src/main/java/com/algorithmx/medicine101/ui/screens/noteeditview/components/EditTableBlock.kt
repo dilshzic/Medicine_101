@@ -1,4 +1,4 @@
-package com.algorithmx.medmate.screens.editor
+package com.algorithmx.medicine101.ui.screens.noteeditview.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -42,7 +42,6 @@ fun EditTableBlock(
         ) {
             Text("Table Editor", style = MaterialTheme.typography.labelSmall, color = Color.Gray)
 
-            // --- NEW: COLUMN CONTROLS ---
             Row {
                 TextButton(onClick = {
                     val newHeaders = headers + "New Col"
@@ -63,7 +62,6 @@ fun EditTableBlock(
             }
         }
 
-        // --- 1. HEADERS ---
         Row(modifier = Modifier.background(MaterialTheme.colorScheme.surfaceVariant)) {
             headers.forEachIndexed { index, title ->
                 TableCellEditor(
@@ -82,7 +80,6 @@ fun EditTableBlock(
 
         HorizontalDivider()
 
-        // --- 2. ROWS ---
         rows.forEachIndexed { rowIndex, row ->
             Row(verticalAlignment = Alignment.CenterVertically) {
                 row.forEachIndexed { colIndex, cellValue ->
@@ -112,7 +109,6 @@ fun EditTableBlock(
             HorizontalDivider()
         }
 
-        // --- 3. ADD ROW BUTTON ---
         Button(
             onClick = {
                 val blankRow = List(headers.size) { "" }

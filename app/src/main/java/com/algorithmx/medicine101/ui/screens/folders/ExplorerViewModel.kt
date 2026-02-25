@@ -90,6 +90,16 @@ class ExplorerViewModel @Inject constructor(
         }
     }
 
+    fun renameItem(id: String, newName: String) {
+        if (newName.isBlank()) return
+        viewModelScope.launch {
+            val item = repository.getNoteById(id)
+            if (item != null) {
+                repository.updateNote(item.copy(title = newName.trim(), updatedAt = System.currentTimeMillis()))
+            }
+        }
+    }
+
     fun importPdf(uri: Uri) {
         viewModelScope.launch {
             pdfImportManager.importPdf(uri, "Imported Textbook")

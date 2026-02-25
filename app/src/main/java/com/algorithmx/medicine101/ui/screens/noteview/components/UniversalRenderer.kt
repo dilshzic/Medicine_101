@@ -3,7 +3,7 @@ package com.algorithmx.medicine101.ui.screens.noteview.components
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed // <-- NEW IMPORT
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -12,27 +12,30 @@ import androidx.compose.ui.unit.dp
 import com.algorithmx.medicine101.data.ContentBlock
 
 @Composable
-fun UniversalRenderer(blocks: List<ContentBlock>) {
+fun UniversalRenderer(
+    blocks: List<ContentBlock>,
+    onNoteLinkClick: (String) -> Unit = {}
+) {
     LazyColumn(
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        // --- FIX: Use itemsIndexed to get the list index ---
         itemsIndexed(
             items = blocks,
             key = { index, block ->
-                // By prefixing the list index, every key is guaranteed to be 100% unique
-                // even if two blocks contain the exact same text/type.
                 "${index}_${block.type}_${block.text?.hashCode()}"
             }
         ) { _, block ->
-            RenderSingleBlock(block)
+            RenderSingleBlock(block, onNoteLinkClick)
         }
     }
 }
 
 @Composable
-fun RenderSingleBlock(block: ContentBlock) {
+fun RenderSingleBlock(
+    block: ContentBlock,
+    onNoteLinkClick: (String) -> Unit = {}
+) {
     when (block.type) {
         "header" -> HeaderBlock(
             text = block.text ?: "",
@@ -41,7 +44,6 @@ fun RenderSingleBlock(block: ContentBlock) {
 
         "callout" -> CalloutBlock(
             text = block.text ?: "",
-            // Pass the variant (e.g., "warning", "info")
             variant = block.variant ?: "info"
         )
 
@@ -68,8 +70,6 @@ fun RenderSingleBlock(block: ContentBlock) {
 
         "tab_group", "tabs" -> {
             block.tabs?.let {
-                // We ONLY pass the tabs list.
-                // TabGroupBlock in BlockComponents.kt now calls RenderSingleBlock internally.
                 TabGroupBlock(tabs = it)
             }
         }
@@ -85,10 +85,20 @@ fun RenderSingleBlock(block: ContentBlock) {
                 DifferentialDiagnosisBlock(items = it)
             }
         }
-// ... inside RenderSingleBlock ...
+
         "youtube" -> {
             if (!block.videoId.isNullOrEmpty()) {
                 YouTubeBlock(videoId = block.videoId, timestamps = block.videoTimestamps)
+            }
+        }
+
+        "note_link" -> {
+            if (block.linkedNoteId != null && block.linkedNoteTitle != null) {
+                NoteLinkBlock(
+                    noteId = block.linkedNoteId,
+                    noteTitle = block.linkedNoteTitle,
+                    onClick = onNoteLinkClick
+                )
             }
         }
 

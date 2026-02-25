@@ -43,6 +43,8 @@ fun ExplorerScreen(
 
     var itemToDelete by remember { mutableStateOf<NoteEntity?>(null) }
     var itemToMove by remember { mutableStateOf<NoteEntity?>(null) }
+    var itemToRename by remember { mutableStateOf<NoteEntity?>(null) }
+    var renameNameInput by remember { mutableStateOf("") }
 
     val pdfPickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.OpenDocument(),
@@ -91,6 +93,10 @@ fun ExplorerScreen(
                         FolderRow(
                             item = item,
                             onClick = { onFolderClick(item.id) },
+                            onRename = { 
+                                itemToRename = item
+                                renameNameInput = item.title
+                            },
                             onDelete = { itemToDelete = item },
                             onMove = {
                                 viewModel.loadAvailableFolders(item.id)
@@ -101,6 +107,10 @@ fun ExplorerScreen(
                         NoteRow(
                             item = item,
                             onClick = { onNoteClick(item.id) },
+                            onRename = {
+                                itemToRename = item
+                                renameNameInput = item.title
+                            },
                             onDelete = { itemToDelete = item },
                             onMove = {
                                 viewModel.loadAvailableFolders("")
@@ -111,6 +121,31 @@ fun ExplorerScreen(
                     HorizontalDivider(modifier = Modifier.padding(start = 56.dp))
                 }
             }
+        }
+
+        // Rename Dialog
+        if (itemToRename != null) {
+            AlertDialog(
+                onDismissRequest = { itemToRename = null },
+                title = { Text("Rename ${if (itemToRename?.isFolder == true) "Folder" else "Note"}") },
+                text = {
+                    OutlinedTextField(
+                        value = renameNameInput,
+                        onValueChange = { renameNameInput = it },
+                        label = { Text("Name") },
+                        singleLine = true
+                    )
+                },
+                confirmButton = {
+                    TextButton(onClick = {
+                        if (renameNameInput.isNotBlank()) {
+                            viewModel.renameItem(itemToRename!!.id, renameNameInput)
+                            itemToRename = null
+                        }
+                    }) { Text("Rename") }
+                },
+                dismissButton = { TextButton(onClick = { itemToRename = null }) { Text("Cancel") } }
+            )
         }
 
         // Create Dialog
