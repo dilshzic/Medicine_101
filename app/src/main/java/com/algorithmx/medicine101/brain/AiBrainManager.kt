@@ -58,7 +58,7 @@ class AiBrainManager @Inject constructor(
                 OpenAiCompatibleBrainImpl(
                     apiKey = apiKey,
                     modelName = config.modelName,
-                    baseUrl = "https://api.groq.com/openai/v1/chat/completions"
+                    baseUrl ="https://api.groq.com/openai/v1",
                 )
             }
             BrainProvider.DEEPSEEK -> {
