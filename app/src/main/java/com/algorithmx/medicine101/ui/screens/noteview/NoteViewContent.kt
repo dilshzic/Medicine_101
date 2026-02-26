@@ -1,22 +1,15 @@
 package com.algorithmx.medicine101.ui.screens.noteview
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.ScrollableTabRow
-import androidx.compose.material3.Tab
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.algorithmx.medicine101.ui.screens.NoteViewModel
 import com.algorithmx.medicine101.ui.screens.noteview.components.UniversalRenderer
@@ -25,52 +18,73 @@ import com.algorithmx.medicine101.ui.screens.noteview.components.UniversalRender
 @Composable
 fun NoteViewContent(
     viewModel: NoteViewModel,
+    onNoteLinkClick: (String) -> Unit,
     onBack: () -> Unit
 ) {
     val blocks by viewModel.blocks.collectAsState()
     val title by viewModel.title.collectAsState()
-
-    // 1. Collect the selected tab state from the ViewModel
     val selectedTab by viewModel.selectedTab.collectAsState()
 
-    // 2. Generate the list of available tabs, defaulting nulls to "General"
     val availableTabs = blocks.map { it.tabName ?: "General" }.distinct().ifEmpty { listOf("General") }
-
-    // 3. Filter blocks safely
     val currentTabBlocks = blocks.filter { (it.tabName ?: "General") == selectedTab }
 
+    val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
+
     Scaffold(
+        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
-            TopAppBar(
-                title = { Text(title, maxLines = 1) },
-                navigationIcon = { /* Back button */ },
+            MediumTopAppBar(
+                title = { 
+                    Text(
+                        text = title,
+                        style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Bold)
+                    ) 
+                },
+                navigationIcon = {
+                    IconButton(onClick = onBack) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                    }
+                },
                 actions = {
                     IconButton(onClick = { viewModel.toggleEditMode() }) {
                         Icon(Icons.Default.Edit, contentDescription = "Edit")
                     }
-                }
+                    IconButton(onClick = { /* More options */ }) {
+                        Icon(Icons.Default.MoreVert, contentDescription = "More")
+                    }
+                },
+                scrollBehavior = scrollBehavior
             )
         }
     ) { padding ->
         Column(modifier = Modifier.padding(padding)) {
-
-            // --- NEW: TOP TAB ROW FOR READ MODE ---
-            ScrollableTabRow(
+            SecondaryScrollableTabRow(
                 selectedTabIndex = availableTabs.indexOf(selectedTab).coerceAtLeast(0),
                 edgePadding = 16.dp,
-                modifier = Modifier.fillMaxWidth()
+                containerColor = MaterialTheme.colorScheme.surface,
+                divider = {} // Clean look
             ) {
                 availableTabs.forEach { tabName ->
                     Tab(
                         selected = tabName == selectedTab,
-                        onClick = { viewModel.selectTab(tabName) }, // Switch tabs
-                        text = { Text(tabName) }
+                        onClick = { viewModel.selectTab(tabName) },
+                        text = { 
+                            Text(
+                                text = tabName,
+                                style = if (tabName == selectedTab) 
+                                    MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Bold)
+                                else 
+                                    MaterialTheme.typography.titleSmall
+                            ) 
+                        }
                     )
                 }
             }
 
-            // --- UPDATED: Pass the filtered blocks, not the whole list ---
-            UniversalRenderer(blocks = currentTabBlocks)
+            UniversalRenderer(
+                blocks = currentTabBlocks,
+                onNoteLinkClick = onNoteLinkClick
+            )
         }
     }
 }

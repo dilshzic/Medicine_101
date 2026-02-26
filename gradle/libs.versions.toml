@@ -23,6 +23,8 @@ playServicesAuth = "21.5.1"
 coroutines = "1.10.1"
 mlkitDigitalInk = "19.0.0"
 kotlinxSerialization = "1.6.0"
+datastore = "1.1.3"
+okhttp = "4.12.0"
 
 [libraries]
 android-pdf-viewer = { module = "com.github.mhiew:android-pdf-viewer", version.ref = "androidPdfViewer" }
@@ -71,6 +73,12 @@ digital-ink-recognition = { group = "com.google.mlkit", name = "digital-ink-reco
 
 # Serialization
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
+
+# DataStore
+androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore" }
+
+# OkHttp
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

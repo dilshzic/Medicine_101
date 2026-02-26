@@ -27,6 +27,9 @@ class FlowchartViewModel @Inject constructor() : ViewModel() {
 
     private var recognitionJob: Job? = null
     private val DEBOUNCE_DELAY = 800L
+    
+    private var dragStartOffset: Offset? = null
+    private var originalNodePosition: Offset? = null
 
     fun setInitialData(data: FlowchartData?) {
         if (data == null) return
@@ -54,42 +57,82 @@ class FlowchartViewModel @Inject constructor() : ViewModel() {
             }
 
             is FlowchartEvent.SelectTool -> {
-                _state.update { it.copy(currentTool = event.tool) }
+                _state.update { it.copy(currentTool = event.tool, selectedNodeId = null) }
             }
 
             is FlowchartEvent.StartDrawing -> {
-                recognitionJob?.cancel()
-                if (_state.value.currentTool == Tool.PEN) {
-                    val worldPoint = screenToWorld(event.startPoint)
-                    _state.update { 
-                        val currentStrokes = it.activeStrokes + listOf(listOf(worldPoint))
-                        it.copy(activeStrokes = currentStrokes) 
+                val worldPoint = screenToWorld(event.startPoint)
+                when (_state.value.currentTool) {
+                    Tool.PEN -> {
+                        recognitionJob?.cancel()
+                        _state.update { 
+                            val currentStrokes = it.activeStrokes + listOf(listOf(worldPoint))
+                            it.copy(activeStrokes = currentStrokes) 
+                        }
                     }
+                    Tool.SELECT -> {
+                        val node = findNodeAt(worldPoint)
+                        if (node != null) {
+                            dragStartOffset = worldPoint
+                            originalNodePosition = Offset(node.centerX, node.centerY)
+                            _state.update { it.copy(selectedNodeId = node.id, isDraggingNode = true) }
+                        } else {
+                            _state.update { it.copy(selectedNodeId = null) }
+                        }
+                    }
+                    Tool.ERASER -> {
+                        val node = findNodeAt(worldPoint)
+                        if (node != null) {
+                            deleteNode(node.id)
+                        } else {
+                            // Try to find connection near point
+                            findConnectionAt(worldPoint)?.let { deleteConnection(it.id) }
+                        }
+                    }
+                    else -> {}
                 }
             }
 
             is FlowchartEvent.UpdateDrawing -> {
-                if (_state.value.currentTool == Tool.PEN) {
-                    val worldPoint = screenToWorld(event.newPoint)
-                    _state.update { state ->
-                        val lastStrokeIndex = state.activeStrokes.lastIndex
-                        if (lastStrokeIndex >= 0) {
-                            val updatedLastStroke = state.activeStrokes[lastStrokeIndex] + worldPoint
-                            val newStrokes = state.activeStrokes.toMutableList().apply {
-                                set(lastStrokeIndex, updatedLastStroke)
-                            }
-                            state.copy(activeStrokes = newStrokes)
-                        } else state
+                val worldPoint = screenToWorld(event.newPoint)
+                when (_state.value.currentTool) {
+                    Tool.PEN -> {
+                        _state.update { state ->
+                            val lastStrokeIndex = state.activeStrokes.lastIndex
+                            if (lastStrokeIndex >= 0) {
+                                val updatedLastStroke = state.activeStrokes[lastStrokeIndex] + worldPoint
+                                val newStrokes = state.activeStrokes.toMutableList().apply {
+                                    set(lastStrokeIndex, updatedLastStroke)
+                                }
+                                state.copy(activeStrokes = newStrokes)
+                            } else state
+                        }
                     }
+                    Tool.SELECT -> {
+                        if (_state.value.isDraggingNode && _state.value.selectedNodeId != null) {
+                            val delta = worldPoint - (dragStartOffset ?: worldPoint)
+                            val newPos = (originalNodePosition ?: Offset.Zero) + delta
+                            updateNodePosition(_state.value.selectedNodeId!!, newPos)
+                        }
+                    }
+                    else -> {}
                 }
             }
 
             is FlowchartEvent.StopDrawing -> {
-                if (_state.value.currentTool == Tool.PEN) {
-                    recognitionJob = viewModelScope.launch {
-                        delay(DEBOUNCE_DELAY)
-                        commitStrokes() 
+                when (_state.value.currentTool) {
+                    Tool.PEN -> {
+                        recognitionJob = viewModelScope.launch {
+                            delay(DEBOUNCE_DELAY)
+                            commitStrokes() 
+                        }
                     }
+                    Tool.SELECT -> {
+                        _state.update { it.copy(isDraggingNode = false) }
+                        dragStartOffset = null
+                        originalNodePosition = null
+                    }
+                    else -> {}
                 }
             }
 
@@ -116,6 +159,34 @@ class FlowchartViewModel @Inject constructor() : ViewModel() {
         return _state.value.nodes.find { node ->
             point.x in (node.centerX - node.width/2)..(node.centerX + node.width/2) &&
             point.y in (node.centerY - node.height/2)..(node.centerY + node.height/2)
+        }
+    }
+
+    private fun findConnectionAt(point: Offset): FlowConnection? {
+        // Simple distance-to-line segment check could be implemented here
+        // For now, let's just return null or check nodes
+        return null 
+    }
+
+    private fun deleteNode(id: String) {
+        _state.update { state ->
+            state.copy(
+                nodes = state.nodes.filter { it.id != id },
+                connections = state.connections.filter { it.fromNodeId != id && it.toNodeId != id }
+            )
+        }
+    }
+
+    private fun deleteConnection(id: String) {
+        _state.update { it.copy(connections = it.connections.filter { it.id != id }) }
+    }
+
+    private fun updateNodePosition(id: String, position: Offset) {
+        _state.update { state ->
+            val updatedNodes = state.nodes.map { 
+                if (it.id == id) it.copy(centerX = position.x, centerY = position.y) else it 
+            }
+            state.copy(nodes = updatedNodes)
         }
     }
 

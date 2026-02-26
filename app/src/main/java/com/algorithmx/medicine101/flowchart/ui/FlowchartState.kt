@@ -15,13 +15,15 @@ data class FlowchartState(
 
     // The "Interaction" Data
     val currentTool: Tool = Tool.PEN,
-    val activeStroke: List<Offset> = emptyList(), // The line currently being drawn
+    val activeStroke: List<Offset> = emptyList(), // Legacy field, kept for compatibility if needed
     val activeStrokes: List<List<Offset>> = emptyList(), 
-    val selectedNodeId: String? = null // For editing/deleting
+    val selectedNodeId: String? = null, // For moving/deleting
+    val isDraggingNode: Boolean = false
 )
 
 enum class Tool {
-    HAND, // For panning/zooming
-    PEN,  // For drawing shapes
-    ERASER // For deleting
+    HAND,   // For panning/zooming
+    PEN,    // For drawing shapes/text
+    SELECT, // For moving nodes
+    ERASER  // For deleting items
 }

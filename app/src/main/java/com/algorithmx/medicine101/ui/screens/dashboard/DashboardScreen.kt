@@ -1,20 +1,17 @@
 package com.algorithmx.medicine101.ui.screens.dashboard
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.*
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.CloudDone
-import androidx.compose.material.icons.filled.FolderOpen
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.PushPin
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.Sync
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.PushPin
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -22,13 +19,16 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.algorithmx.medicine101.data.NoteEntity
 import com.algorithmx.medicine101.ui.screens.folders.components.NoteRow
-import androidx.compose.animation.core.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -37,7 +37,8 @@ fun DashboardScreen(
     onNoteClick: (String) -> Unit,
     onSearchClick: () -> Unit,
     onExplorerClick: () -> Unit,
-    onProfileClick: () -> Unit = {}
+    onProfileClick: () -> Unit = {},
+    onBrainClick: () -> Unit = {}
 ) {
     val pinnedNotes by viewModel.pinnedNotes.collectAsState()
     val recentNotes by viewModel.recentNotes.collectAsState()
@@ -48,7 +49,7 @@ fun DashboardScreen(
         initialValue = 0f,
         targetValue = 360f,
         animationSpec = infiniteRepeatable(
-            animation = tween(1000, easing = LinearEasing),
+            animation = tween(1200, easing = LinearEasing),
             repeatMode = RepeatMode.Restart
         ),
         label = "Rotation"
@@ -56,60 +57,99 @@ fun DashboardScreen(
 
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { 
+            CenterAlignedTopAppBar(
+                title = {
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        Text("Dashboard")
+                        Text(
+                            "MedMate 101",
+                            style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)
+                        )
                         Spacer(modifier = Modifier.width(8.dp))
-                        AnimatedVisibility(
-                            visible = isSyncing,
-                            enter = fadeIn(),
-                            exit = fadeOut()
-                        ) {
+                        if (isSyncing) {
                             Icon(
                                 imageVector = Icons.Default.Sync,
                                 contentDescription = "Syncing",
-                                modifier = Modifier.size(16.dp).rotate(rotation),
-                                tint = MaterialTheme.colorScheme.outline
-                            )
-                        }
-                        if (!isSyncing) {
-                            Icon(
-                                imageVector = Icons.Default.CloudDone,
-                                contentDescription = "Synced",
-                                modifier = Modifier.size(16.dp),
-                                tint = MaterialTheme.colorScheme.outline
+                                modifier = Modifier.size(18.dp).rotate(rotation),
+                                tint = MaterialTheme.colorScheme.primary
                             )
                         }
                     }
                 },
                 actions = {
+                    IconButton(onClick = onBrainClick) {
+                        Icon(Icons.Default.Psychology, contentDescription = "AI Brain", tint = MaterialTheme.colorScheme.primary)
+                    }
                     IconButton(onClick = onSearchClick) {
                         Icon(Icons.Default.Search, contentDescription = "Search")
                     }
+                    IconButton(onClick = onProfileClick) {
+                        Surface(
+                            modifier = Modifier.size(32.dp),
+                            shape = CircleShape,
+                            color = MaterialTheme.colorScheme.primaryContainer
+                        ) {
+                            Icon(
+                                Icons.Default.Person,
+                                contentDescription = "Profile",
+                                modifier = Modifier.padding(4.dp),
+                                tint = MaterialTheme.colorScheme.onPrimaryContainer
+                            )
+                        }
+                    }
+                },
+                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.surface
+                )
+            )
+        },
+        bottomBar = {
+            BottomAppBar(
+                actions = {
                     IconButton(onClick = onExplorerClick) {
                         Icon(Icons.Default.FolderOpen, contentDescription = "Explorer")
                     }
-                    IconButton(onClick = onProfileClick) {
-                        Icon(Icons.Default.Person, contentDescription = "Profile")
+                    IconButton(onClick = onSearchClick) {
+                        Icon(Icons.Default.History, contentDescription = "History")
+                    }
+                },
+                floatingActionButton = {
+                    FloatingActionButton(
+                        onClick = onExplorerClick,
+                        containerColor = MaterialTheme.colorScheme.primaryContainer,
+                        contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                        elevation = FloatingActionButtonDefaults.elevation()
+                    ) {
+                        Icon(Icons.Default.Add, contentDescription = "Add Note")
                     }
                 }
             )
         }
     ) { padding ->
         LazyColumn(
-            modifier = Modifier.fillMaxSize(),
-            contentPadding = padding
+            modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    Brush.verticalGradient(
+                        colors = listOf(
+                            MaterialTheme.colorScheme.surface,
+                            MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.3f)
+                        )
+                    )
+                ),
+            contentPadding = PaddingValues(
+                top = padding.calculateTopPadding(),
+                bottom = padding.calculateBottomPadding() + 80.dp
+            )
         ) {
             if (pinnedNotes.isNotEmpty()) {
                 item {
-                    SectionHeader(title = "Pinned")
+                    SectionHeader(title = "Pinned Guides", icon = Icons.Default.PushPin)
                 }
                 item {
                     LazyRow(
                         contentPadding = PaddingValues(horizontal = 16.dp),
-                        horizontalArrangement = Arrangement.spacedBy(8.dp),
-                        modifier = Modifier.padding(vertical = 8.dp)
+                        horizontalArrangement = Arrangement.spacedBy(12.dp),
+                        modifier = Modifier.padding(vertical = 12.dp)
                     ) {
                         items(pinnedNotes) { note ->
                             PinnedNoteCard(
@@ -123,7 +163,7 @@ fun DashboardScreen(
             }
 
             item {
-                SectionHeader(title = "Recent Notes")
+                SectionHeader(title = "Recently Viewed", icon = Icons.Default.AccessTime)
             }
             
             if (recentNotes.isNotEmpty()) {
@@ -131,45 +171,44 @@ fun DashboardScreen(
                     NoteRow(
                         item = note,
                         onClick = { onNoteClick(note.id) },
-                        onRename = { /* Renaming from Dashboard not implemented yet */ },
+                        onRename = { /* Implement if needed */ },
                         onDelete = {}, 
                         onMove = {}
                     )
                 }
             } else {
                 item {
-                    Box(
-                        modifier = Modifier.fillMaxWidth().padding(32.dp),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text("No recent notes", color = MaterialTheme.colorScheme.outline)
-                    }
+                    EmptyStatePlaceholder(
+                        text = "Your clinical notes will appear here",
+                        icon = Icons.Default.NoteAlt
+                    )
                 }
-            }
-            
-            item {
-                Spacer(modifier = Modifier.height(16.dp))
-                Button(
-                    onClick = onExplorerClick,
-                    modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
-                ) {
-                    Icon(Icons.Default.FolderOpen, contentDescription = null)
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text("Browse All Folders")
-                }
-                Spacer(modifier = Modifier.height(32.dp))
             }
         }
     }
 }
 
 @Composable
-fun SectionHeader(title: String) {
-    Text(
-        text = title,
-        style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
-        modifier = Modifier.padding(start = 16.dp, top = 16.dp, end = 16.dp, bottom = 8.dp)
-    )
+fun SectionHeader(title: String, icon: androidx.compose.ui.graphics.vector.ImageVector) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 12.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Icon(
+            imageVector = icon,
+            contentDescription = null,
+            modifier = Modifier.size(20.dp),
+            tint = MaterialTheme.colorScheme.primary
+        )
+        Spacer(modifier = Modifier.width(8.dp))
+        Text(
+            text = title,
+            style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
+            color = MaterialTheme.colorScheme.onSurface
+        )
+    }
 }
 
 @Composable
@@ -178,29 +217,68 @@ fun PinnedNoteCard(
     onClick: () -> Unit,
     onTogglePin: () -> Unit
 ) {
-    Card(
+    ElevatedCard(
         onClick = onClick,
-        modifier = Modifier.size(width = 160.dp, height = 100.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer)
+        modifier = Modifier.size(width = 180.dp, height = 120.dp),
+        shape = MaterialTheme.shapes.large,
+        colors = CardDefaults.elevatedCardColors(
+            containerColor = MaterialTheme.colorScheme.surface
+        )
     ) {
-        Box(modifier = Modifier.fillMaxSize().padding(12.dp)) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            verticalArrangement = Arrangement.SpaceBetween
+        ) {
             Text(
                 text = note.title,
                 style = MaterialTheme.typography.titleMedium,
                 maxLines = 2,
-                modifier = Modifier.align(Alignment.TopStart)
+                overflow = TextOverflow.Ellipsis,
+                color = MaterialTheme.colorScheme.onSurface
             )
-            IconButton(
-                onClick = onTogglePin,
-                modifier = Modifier.align(Alignment.BottomEnd).size(24.dp)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.End
             ) {
-                Icon(
-                    imageVector = if (note.isPinned) Icons.Filled.PushPin else Icons.Outlined.PushPin,
-                    contentDescription = "Pin",
-                    tint = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.size(16.dp)
-                )
+                IconButton(
+                    onClick = onTogglePin,
+                    modifier = Modifier.size(24.dp)
+                ) {
+                    Icon(
+                        imageVector = if (note.isPinned) Icons.Filled.PushPin else Icons.Outlined.PushPin,
+                        contentDescription = "Unpin",
+                        tint = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.size(18.dp)
+                    )
+                }
             }
         }
+    }
+}
+
+@Composable
+fun EmptyStatePlaceholder(text: String, icon: androidx.compose.ui.graphics.vector.ImageVector) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(48.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Icon(
+            imageVector = icon,
+            contentDescription = null,
+            modifier = Modifier.size(64.dp),
+            tint = MaterialTheme.colorScheme.outlineVariant
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(
+            text = text,
+            style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.outline,
+            textAlign = androidx.compose.ui.text.style.TextAlign.Center
+        )
     }
 }

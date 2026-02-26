@@ -1,9 +1,10 @@
 package com.algorithmx.medicine101.ui.screens
 
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.algorithmx.medicine101.api.GeminiAiService
+import com.algorithmx.medicine101.brain.AiBrainManager
 import com.algorithmx.medicine101.data.ContentBlock
 import com.algorithmx.medicine101.data.ContentBlockEntity
 import com.algorithmx.medicine101.data.NoteRepository
@@ -21,13 +22,17 @@ import javax.inject.Inject
 @HiltViewModel
 class NoteViewModel @Inject constructor(
     private val repository: NoteRepository,
-    private val geminiService: GeminiAiService,
+    private val aiBrainManager: AiBrainManager,
     private val cloudRepository: CloudSyncRepository,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
+    private val TAG = "NoteViewModel"
     private val noteId: String = savedStateHandle["noteId"] ?: throw IllegalArgumentException("Note ID required")
-    private val json = Json { ignoreUnknownKeys = true }
+    private val json = Json { 
+        ignoreUnknownKeys = true 
+        coerceInputValues = true
+    }
 
     private val _blocks = MutableStateFlow<List<ContentBlock>>(emptyList())
     val blocks: StateFlow<List<ContentBlock>> = _blocks.asStateFlow()
@@ -44,40 +49,87 @@ class NoteViewModel @Inject constructor(
     private val _isAiLoading = MutableStateFlow(false)
     val isAiLoading: StateFlow<Boolean> = _isAiLoading.asStateFlow()
 
+    private val _error = MutableStateFlow<String?>(null)
+    val error: StateFlow<String?> = _error.asStateFlow()
+
+    private val baseSystemPrompt = """
+        Return a JSON array of objects representing medical content blocks.
+        
+        Supported block types and their REQUIRED fields:
+        1. "header": { "type": "header", "text": "Title", "level": 1 or 2 }
+        2. "list": { "type": "list", "items": [ { "text": "Point 1", "subItems": [ { "text": "Nested point" } ] } ] }
+        3. "table": { "type": "table", "tableHeaders": ["Col A", "Col B"], "tableRows": [ ["Cell 1", "Cell 2"] ] }
+        4. "callout": { "type": "callout", "text": "Important note", "variant": "info", "warning", or "error" }
+        5. "dd_table": { "type": "dd_table", "ddItems": [ { "finding": "Symptom", "diagnoses": ["D1", "D2"], "likelihood": "High"/"Medium"/"Red Flag" } ] }
+        6. "accordion": { "type": "accordion", "items": [ { "title": "Expandable Title", "content": [ { "type": "header", "text": "Internal Title", "level": 2 }, { "type": "list", "items": [...] } ] } ] }
+
+        CRITICAL: 
+        - Return ONLY the JSON array. No markdown blocks.
+        - Differential Diagnosis likelihood must be one of: "High", "Medium", "Red Flag".
+    """.trimIndent()
+
     init {
         loadNote()
     }
 
     private fun loadNote() {
         viewModelScope.launch {
-            val noteWithBlocks = repository.getNoteWithBlocks(noteId)
-            if (noteWithBlocks != null) {
-                _title.value = noteWithBlocks.note.title
-                val uiBlocks = noteWithBlocks.blocks
-                    .sortedBy { it.orderIndex }
-                    .map { entity ->
-                        val parsedBlock = json.decodeFromString<ContentBlock>(entity.content)
-                        parsedBlock.copy(tabName = entity.tabName ?: "General")
-                    }
-                _blocks.value = uiBlocks
-                val firstTab = uiBlocks.firstOrNull()?.tabName ?: "General"
-                _selectedTab.value = firstTab
+            try {
+                val noteWithBlocks = repository.getNoteWithBlocks(noteId)
+                if (noteWithBlocks != null) {
+                    _title.value = noteWithBlocks.note.title
+                    val uiBlocks = noteWithBlocks.blocks
+                        .sortedBy { it.orderIndex }
+                        .map { entity ->
+                            val parsedBlock = json.decodeFromString<ContentBlock>(entity.content)
+                            parsedBlock.copy(tabName = entity.tabName ?: "General")
+                        }
+                    _blocks.value = uiBlocks
+                    val firstTab = uiBlocks.firstOrNull()?.tabName ?: "General"
+                    _selectedTab.value = firstTab
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "Failed to load note: ${e.message}", e)
+                _error.value = "Failed to load note contents."
             }
         }
     }
 
     fun generateAiContent(instructions: String? = null) {
-        if (_title.value.isBlank()) return
+        if (_title.value.isBlank()) {
+            _error.value = "Please provide a note title before generating content."
+            return
+        }
         
         viewModelScope.launch {
             _isAiLoading.value = true
+            _error.value = null
             try {
-                val fullPrompt = if (instructions.isNullOrBlank()) _title.value else "${_title.value} ($instructions)"
-                val aiBlocks = geminiService.generateNoteContent(fullPrompt)
+                val sectionPrompt = if (_selectedTab.value != "General") " focus specifically on the section '${_selectedTab.value}'" else ""
+                val prompt = """
+                    $baseSystemPrompt
+                    Topic: "${_title.value}"
+                    Task: Generate a comprehensive medical note about this topic$sectionPrompt.
+                    Instructions: ${instructions ?: "Provide standard medical details."}
+                """.trimIndent()
+
+                val rawResponse = aiBrainManager.askBrain(prompt)
+                
+                if (rawResponse.startsWith("Error:")) {
+                    _error.value = rawResponse
+                    return@launch
+                }
+
+                val cleanedJson = rawResponse.removeSurrounding("```json", "```").trim()
+                
+                val aiBlocks = json.decodeFromString<List<ContentBlock>>(cleanedJson)
                 if (aiBlocks.isNotEmpty()) {
                     val blocksWithTabs = aiBlocks.map { it.copy(tabName = _selectedTab.value) }
                     _blocks.update { current -> current + blocksWithTabs }
                 }
+            } catch (e: Exception) {
+                Log.e(TAG, "AI Generation failed: ${e.message}", e)
+                _error.value = "AI failed to generate content. Please check your API key or connection."
             } finally {
                 _isAiLoading.value = false
             }
@@ -90,12 +142,27 @@ class NoteViewModel @Inject constructor(
         
         viewModelScope.launch {
             _isAiLoading.value = true
+            _error.value = null
             try {
-                val newBlock = geminiService.refineBlock(
-                    topic = _title.value,
-                    blockType = block.type,
-                    instructions = block.aiInstructions
-                )
+                val prompt = """
+                    $baseSystemPrompt
+                    Topic: "${_title.value}"
+                    Task: Generate exactly ONE content block of type "${block.type}".
+                    Instructions: ${block.aiInstructions ?: "Provide standard medical details."}
+                    Return a JSON array containing exactly ONE object.
+                """.trimIndent()
+
+                val rawResponse = aiBrainManager.askBrain(prompt)
+                
+                if (rawResponse.startsWith("Error:")) {
+                    _error.value = rawResponse
+                    return@launch
+                }
+
+                val cleanedJson = rawResponse.removeSurrounding("```json", "```").trim()
+                
+                val aiBlocks = json.decodeFromString<List<ContentBlock>>(cleanedJson)
+                val newBlock = aiBlocks.firstOrNull()
                 
                 if (newBlock != null) {
                     updateBlock(index, newBlock.copy(
@@ -103,10 +170,17 @@ class NoteViewModel @Inject constructor(
                         aiInstructions = block.aiInstructions 
                     ))
                 }
+            } catch (e: Exception) {
+                Log.e(TAG, "Block refinement failed: ${e.message}", e)
+                _error.value = "Failed to refine block. AI response might be malformed."
             } finally {
                 _isAiLoading.value = false
             }
         }
+    }
+
+    fun clearError() {
+        _error.value = null
     }
 
     fun toggleEditMode() {
@@ -190,33 +264,38 @@ class NoteViewModel @Inject constructor(
 
     fun saveNote() {
         viewModelScope.launch {
-            val noteWithBlocks = repository.getNoteWithBlocks(noteId)
-            if (noteWithBlocks != null) {
-                // 1. Update local note
-                val updatedNote = noteWithBlocks.note.copy(
-                    title = _title.value,
-                    updatedAt = System.currentTimeMillis()
-                )
-                repository.updateNote(updatedNote)
-
-                // 2. Prepare local block entities
-                val blockEntities = _blocks.value.mapIndexed { index, uiBlock ->
-                    ContentBlockEntity(
-                        noteId = noteId,
-                        type = uiBlock.type,
-                        content = json.encodeToString(uiBlock),
-                        orderIndex = index,
-                        tabName = uiBlock.tabName
+            try {
+                val noteWithBlocks = repository.getNoteWithBlocks(noteId)
+                if (noteWithBlocks != null) {
+                    // 1. Update local note
+                    val updatedNote = noteWithBlocks.note.copy(
+                        title = _title.value,
+                        updatedAt = System.currentTimeMillis()
                     )
-                }
-                
-                // 3. Sync local blocks
-                repository.syncBlocks(noteId, blockEntities)
-                
-                // 4. Backup to Cloud
-                cloudRepository.backupNoteToCloud(updatedNote, blockEntities)
+                    repository.updateNote(updatedNote)
 
-                _isEditing.value = false
+                    // 2. Prepare local block entities
+                    val blockEntities = _blocks.value.mapIndexed { index, uiBlock ->
+                        ContentBlockEntity(
+                            noteId = noteId,
+                            type = uiBlock.type,
+                            content = json.encodeToString(uiBlock),
+                            orderIndex = index,
+                            tabName = uiBlock.tabName
+                        )
+                    }
+                    
+                    // 3. Sync local blocks
+                    repository.syncBlocks(noteId, blockEntities)
+                    
+                    // 4. Backup to Cloud
+                    cloudRepository.backupNoteToCloud(updatedNote, blockEntities)
+
+                    _isEditing.value = false
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "Save failed: ${e.message}", e)
+                _error.value = "Failed to save changes. Please try again."
             }
         }
     }

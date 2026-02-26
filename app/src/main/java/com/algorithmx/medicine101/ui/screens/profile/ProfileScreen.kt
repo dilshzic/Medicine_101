@@ -1,5 +1,6 @@
 package com.algorithmx.medicine101.ui.screens.profile
 
+import androidx.compose.animation.*
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -25,12 +26,25 @@ import com.algorithmx.medicine101.ui.auth.AuthViewModel
 @Composable
 fun ProfileScreen(
     authViewModel: AuthViewModel = hiltViewModel(),
+    profileViewModel: ProfileViewModel = hiltViewModel(),
     onBack: () -> Unit,
     onLogout: () -> Unit
 ) {
     val user by authViewModel.user.collectAsState()
+    val isSyncing by profileViewModel.isSyncing.collectAsState()
+    val syncResult by profileViewModel.syncResult.collectAsState()
+
+    val snackbarHostState = remember { SnackbarHostState() }
+
+    LaunchedEffect(syncResult) {
+        syncResult?.let {
+            snackbarHostState.showSnackbar(it)
+            profileViewModel.clearSyncResult()
+        }
+    }
 
     Scaffold(
+        snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             TopAppBar(
                 title = { Text("Profile") },
@@ -98,8 +112,9 @@ fun ProfileScreen(
                 ProfileStatCard(
                     modifier = Modifier.weight(1f),
                     icon = Icons.Default.CloudSync,
-                    label = "Sync Status",
-                    value = "Healthy"
+                    label = "Cloud Sync",
+                    value = if (isSyncing) "Syncing..." else "Connected",
+                    onClick = { profileViewModel.syncNow() }
                 )
                 ProfileStatCard(
                     modifier = Modifier.weight(1f),
@@ -117,6 +132,12 @@ fun ProfileScreen(
                 colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f))
             ) {
                 Column {
+                    ProfileMenuItem(
+                        icon = Icons.Default.Sync, 
+                        label = "Sync Now",
+                        onClick = { profileViewModel.syncNow() }
+                    )
+                    HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp), thickness = 0.5.dp)
                     ProfileMenuItem(icon = Icons.Default.Settings, label = "Settings")
                     HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp), thickness = 0.5.dp)
                     ProfileMenuItem(icon = Icons.AutoMirrored.Filled.HelpOutline, label = "Help & Feedback")
@@ -149,10 +170,11 @@ fun ProfileStatCard(
     modifier: Modifier = Modifier,
     icon: ImageVector,
     label: String,
-    value: String
+    value: String,
+    onClick: () -> Unit = {}
 ) {
     Card(
-        modifier = modifier,
+        modifier = modifier.clickable { onClick() },
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.4f))
     ) {
         Column(

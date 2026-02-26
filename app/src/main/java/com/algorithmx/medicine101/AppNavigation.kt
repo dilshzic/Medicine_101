@@ -27,6 +27,7 @@ import com.algorithmx.medicine101.ui.screens.folders.ExplorerScreen
 import com.algorithmx.medicine101.ui.screens.folders.ExplorerViewModel
 import com.algorithmx.medicine101.ui.screens.profile.ProfileScreen
 import com.algorithmx.medicine101.ui.screens.search.SearchScreen
+import com.algorithmx.medicine101.ui.screens.brain.BrainManagerScreen
 
 @RequiresExtension(extension = Build.VERSION_CODES.S, version = 13)
 @Composable
@@ -59,7 +60,8 @@ fun AppNavigation() {
                 onNoteClick = { noteId -> navController.navigate("note_screen/$noteId") },
                 onSearchClick = { navController.navigate("search") },
                 onExplorerClick = { navController.navigate("explorer_root") },
-                onProfileClick = { navController.navigate("profile") }
+                onProfileClick = { navController.navigate("profile") },
+                onBrainClick = { navController.navigate("brain_manager") }
             )
         }
 
@@ -72,6 +74,12 @@ fun AppNavigation() {
                         popUpTo("dashboard") { inclusive = true }
                     }
                 }
+            )
+        }
+
+        composable("brain_manager") {
+            BrainManagerScreen(
+                onNavigateBack = { navController.popBackStack() }
             )
         }
 
@@ -140,7 +148,12 @@ fun AppNavigation() {
                             )
                         }
                     } else {
-                        NoteScreen(onBack = { navController.popBackStack() })
+                        NoteScreen(
+                            onBack = { navController.popBackStack() },
+                            onNavigateToNote = { linkedId ->
+                                navController.navigate("note_screen/$linkedId")
+                            }
+                        )
                     }
                 }
             }
@@ -150,7 +163,12 @@ fun AppNavigation() {
             route = "editor/{noteId}",
             arguments = listOf(navArgument("noteId") { type = NavType.StringType })
         ) {
-            NoteScreen(onBack = { navController.popBackStack() })
+            NoteScreen(
+                onBack = { navController.popBackStack() },
+                onNavigateToNote = { linkedId ->
+                    navController.navigate("note_screen/$linkedId")
+                }
+            )
         }
     }
 }

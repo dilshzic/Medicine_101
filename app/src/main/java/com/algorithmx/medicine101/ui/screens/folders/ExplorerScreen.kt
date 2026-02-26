@@ -55,16 +55,16 @@ fun ExplorerScreen(
 
     Scaffold(
         topBar = {
-            TopAppBar(
+            MediumTopAppBar(
                 title = { Text(title) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                colors = TopAppBarDefaults.mediumTopAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.surface,
+                    titleContentColor = MaterialTheme.colorScheme.onSurface
                 ),
                 actions = {
                     IconButton(onClick = { pdfPickerLauncher.launch(arrayOf("application/pdf")) }) {
@@ -77,14 +77,18 @@ fun ExplorerScreen(
             )
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = { showCreateDialog = true }) {
-                Icon(Icons.Default.Add, contentDescription = "Add")
+            LargeFloatingActionButton(
+                onClick = { showCreateDialog = true },
+                containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+                contentColor = MaterialTheme.colorScheme.onTertiaryContainer
+            ) {
+                Icon(Icons.Default.Add, contentDescription = "Add", modifier = Modifier.size(FloatingActionButtonDefaults.LargeIconSize))
             }
         }
     ) { padding ->
         if (items.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
-                Text("No items found", color = Color.Gray)
+                Text("No items found", color = MaterialTheme.colorScheme.outline)
             }
         } else {
             LazyColumn(contentPadding = padding, modifier = Modifier.fillMaxSize()) {
@@ -118,7 +122,7 @@ fun ExplorerScreen(
                             }
                         )
                     }
-                    HorizontalDivider(modifier = Modifier.padding(start = 56.dp))
+                    HorizontalDivider(modifier = Modifier.padding(start = 72.dp), color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f))
                 }
             }
         }
@@ -133,11 +137,12 @@ fun ExplorerScreen(
                         value = renameNameInput,
                         onValueChange = { renameNameInput = it },
                         label = { Text("Name") },
-                        singleLine = true
+                        singleLine = true,
+                        shape = MaterialTheme.shapes.medium
                     )
                 },
                 confirmButton = {
-                    TextButton(onClick = {
+                    Button(onClick = {
                         if (renameNameInput.isNotBlank()) {
                             viewModel.renameItem(itemToRename!!.id, renameNameInput)
                             itemToRename = null
@@ -155,21 +160,29 @@ fun ExplorerScreen(
                 title = { Text(if (isCreatingFolder) "Create New Folder" else "Create New Note") },
                 text = {
                     Column {
-                        Row(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp), horizontalArrangement = Arrangement.SpaceAround, verticalAlignment = Alignment.CenterVertically) {
-                            Row(verticalAlignment = Alignment.CenterVertically) {
-                                RadioButton(selected = !isCreatingFolder, onClick = { isCreatingFolder = false })
-                                Text("Note")
-                            }
-                            Row(verticalAlignment = Alignment.CenterVertically) {
-                                RadioButton(selected = isCreatingFolder, onClick = { isCreatingFolder = true })
-                                Text("Folder")
-                            }
+                        SingleChoiceSegmentedButtonRow(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)) {
+                            SegmentedButton(
+                                selected = !isCreatingFolder,
+                                onClick = { isCreatingFolder = false },
+                                shape = SegmentedButtonDefaults.itemShape(index = 0, count = 2)
+                            ) { Text("Note") }
+                            SegmentedButton(
+                                selected = isCreatingFolder,
+                                onClick = { isCreatingFolder = true },
+                                shape = SegmentedButtonDefaults.itemShape(index = 1, count = 2)
+                            ) { Text("Folder") }
                         }
-                        OutlinedTextField(value = newItemName, onValueChange = { newItemName = it }, label = { Text("Name") }, singleLine = true)
+                        OutlinedTextField(
+                            value = newItemName, 
+                            onValueChange = { newItemName = it }, 
+                            label = { Text("Name") }, 
+                            singleLine = true,
+                            shape = MaterialTheme.shapes.medium
+                        )
                     }
                 },
                 confirmButton = {
-                    TextButton(onClick = {
+                    Button(onClick = {
                         if (newItemName.isNotBlank()) {
                             if (isCreatingFolder) viewModel.createNewFolder(newItemName)
                             else viewModel.createNewNote(newItemName) { onNoteClick(it) }
@@ -188,12 +201,12 @@ fun ExplorerScreen(
                 title = { Text("Delete ${if (itemToDelete?.isFolder == true) "Folder" else "Note"}?") },
                 text = { Text("Are you sure you want to delete '${itemToDelete?.title}'? This action cannot be undone.") },
                 confirmButton = {
-                    TextButton(
+                    Button(
                         onClick = {
                             itemToDelete?.let { viewModel.deleteItem(it.id) }
                             itemToDelete = null
                         },
-                        colors = ButtonDefaults.textButtonColors(contentColor = MaterialTheme.colorScheme.error)
+                        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
                     ) { Text("Delete") }
                 },
                 dismissButton = { TextButton(onClick = { itemToDelete = null }) { Text("Cancel") } }
@@ -202,40 +215,35 @@ fun ExplorerScreen(
 
         // Move Dialog
         if (itemToMove != null) {
-            AlertDialog(
-                onDismissRequest = { itemToMove = null },
-                title = { Text("Move '${itemToMove?.title}'") },
-                text = {
-                    Column(modifier = Modifier.fillMaxWidth().heightIn(max = 300.dp)) {
-                        Text("Select destination folder:", style = MaterialTheme.typography.bodyMedium)
-                        Spacer(modifier = Modifier.height(8.dp))
-                        LazyColumn {
-                            item {
-                                ListItem(
-                                    headlineContent = { Text("Root (Home)") },
-                                    leadingContent = { Icon(Icons.Default.Folder, contentDescription = null) },
-                                    modifier = Modifier.clickable {
-                                        viewModel.moveItem(itemToMove!!.id, null)
-                                        itemToMove = null
-                                    }
-                                )
-                            }
-                            items(availableFolders) { folder ->
-                                ListItem(
-                                    headlineContent = { Text(folder.title) },
-                                    leadingContent = { Icon(Icons.Default.Folder, contentDescription = null) },
-                                    modifier = Modifier.clickable {
-                                        viewModel.moveItem(itemToMove!!.id, folder.id)
-                                        itemToMove = null
-                                    }
-                                )
-                            }
+            ModalBottomSheet(
+                onDismissRequest = { itemToMove = null }
+            ) {
+                Column(modifier = Modifier.fillMaxWidth().padding(16.dp).padding(bottom = 32.dp)) {
+                    Text("Move to Folder", style = MaterialTheme.typography.headlineSmall, modifier = Modifier.padding(bottom = 16.dp))
+                    LazyColumn {
+                        item {
+                            ListItem(
+                                headlineContent = { Text("Root (Home)") },
+                                leadingContent = { Icon(Icons.Default.Folder, contentDescription = null, tint = MaterialTheme.colorScheme.primary) },
+                                modifier = Modifier.clickable {
+                                    viewModel.moveItem(itemToMove!!.id, null)
+                                    itemToMove = null
+                                }
+                            )
+                        }
+                        items(availableFolders) { folder ->
+                            ListItem(
+                                headlineContent = { Text(folder.title) },
+                                leadingContent = { Icon(Icons.Default.Folder, contentDescription = null, tint = MaterialTheme.colorScheme.secondary) },
+                                modifier = Modifier.clickable {
+                                    viewModel.moveItem(itemToMove!!.id, folder.id)
+                                    itemToMove = null
+                                }
+                            )
                         }
                     }
-                },
-                confirmButton = {},
-                dismissButton = { TextButton(onClick = { itemToMove = null }) { Text("Cancel") } }
-            )
+                }
+            }
         }
     }
 }

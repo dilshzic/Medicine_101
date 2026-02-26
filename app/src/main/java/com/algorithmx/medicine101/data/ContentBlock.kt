@@ -54,6 +54,7 @@ data class FlowchartFile(
 
 @Serializable
 data class ContentBlock(
+    val id: String = UUID.randomUUID().toString(), // Stable ID for syncing
     val type: String,               // "header", "list", "table", "callout", "kv_list", "note_link", "flowchart"
     val text: String? = null,       // Used for headers, warnings, or simple text
     val level: Int = 1,             // For headers (1=Big, 2=Small)

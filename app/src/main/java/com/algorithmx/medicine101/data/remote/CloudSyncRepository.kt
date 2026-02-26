@@ -5,6 +5,7 @@ import com.algorithmx.medicine101.data.ContentBlockEntity
 import com.algorithmx.medicine101.data.NoteEntity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.toObjects
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
@@ -25,7 +26,7 @@ class CloudSyncRepository @Inject constructor(
             
             val cloudNote = CloudNote(
                 id = note.id,
-                userId = uid, // Ensure this field exists in CloudNote and matches Security Rules
+                userId = uid,
                 title = note.title,
                 category = note.category,
                 tags = note.tags,
@@ -58,12 +59,14 @@ class CloudSyncRepository @Inject constructor(
                 batch.set(blocksRef.document(blockDocId), cloudBlock)
             }
 
+            // By using await() here, we wait for the server acknowledgment.
+            // If offline persistence is enabled, this will still throw if the network is down.
+            // You could remove .await() for "fire and forget" local-first behavior.
             batch.commit().await()
             Log.d("CloudSync", "Backup successful for note: ${note.id}")
             Result.success(Unit)
         } catch (e: Exception) {
-            Log.e("CloudSync", "Backup failed: ${e.message}", e)
-            Result.failure(e)
+            handleFirestoreException(e, "Backup failed for note: ${note.id}")
         }
     }
 
@@ -89,6 +92,16 @@ class CloudSyncRepository @Inject constructor(
             }
             Result.success(results)
         } catch (e: Exception) {
+            handleFirestoreException(e, "Pull notes failed")
+        }
+    }
+
+    private fun <T> handleFirestoreException(e: Exception, message: String): Result<T> {
+        return if (e is FirebaseFirestoreException && e.code == FirebaseFirestoreException.Code.UNAVAILABLE) {
+            Log.w("CloudSync", "$message: Firestore is currently unavailable (offline).")
+            Result.failure(Exception("Network unavailable. Data will sync when back online.", e))
+        } else {
+            Log.e("CloudSync", "$message: ${e.message}", e)
             Result.failure(e)
         }
     }
