@@ -26,9 +26,8 @@ class SyncManager @Inject constructor(
         if (cloudResult.isFailure) return Result.failure(cloudResult.exceptionOrNull()!!)
 
         val cloudItems = cloudResult.getOrNull() ?: emptyList()
-        val localItems = mutableListOf<NoteEntity>() // To track what we need to push
         
-        Log.d(TAG, "Pulled ${cloudItems.size} items from cloud.")
+        Log.d(TAG, "Pulled ${cloudItems.size} notes from cloud.")
 
         // 2. Sort to avoid Foreign Key violations (Folders first)
         val sortedCloudItems = cloudItems.sortedByDescending { it.first.isFolder }
@@ -39,7 +38,8 @@ class SyncManager @Inject constructor(
             when {
                 // Scenario A: Local missing or Cloud is strictly newer
                 localNote == null || cloudNote.updatedAt > localNote.updatedAt -> {
-                    Log.d(TAG, "Updating Local: '${cloudNote.title}'")
+                    Log.d(TAG, "Syncing Cloud -> Local: '${cloudNote.title}' (${cloudBlocks.size} blocks)")
+                    
                     val noteEntity = NoteEntity(
                         id = cloudNote.id,
                         title = cloudNote.title,
@@ -54,27 +54,32 @@ class SyncManager @Inject constructor(
                         isPinned = cloudNote.isPinned,
                         createdAt = cloudNote.createdAt,
                         updatedAt = cloudNote.updatedAt,
-                        isDeleted = cloudNote.isDeleted
+                        isDeleted = cloudNote.isDeleted,
+                        pdfUri = cloudNote.pdfUri,
+                        pdfPage = cloudNote.pdfPage
                     )
                     localRepository.insertNote(noteEntity)
                     
                     val blockEntities = cloudBlocks.map { cb ->
+                        val numericId = cb.blockId.toLongOrNull() ?: cb.blockId.hashCode().toLong()
+                        
                         ContentBlockEntity(
-                            // Crucial: We must keep IDs stable between local and cloud
-                            blockId = cb.blockId.toLongOrNull() ?: 0L, 
+                            blockId = if (numericId == 0L) 0L else numericId,
                             noteId = cloudNote.id,
                             type = cb.type,
-                            content = cb.content,
+                            // CRITICAL: Ensure content is treated as a RAW string to prevent JSON corruption
+                            content = cb.content, 
                             orderIndex = cb.orderIndex,
                             tabName = cb.tabName
                         )
                     }
+                    
                     localRepository.syncBlocks(cloudNote.id, blockEntities)
                 }
                 
-                // Scenario B: Local is strictly newer -> Needs to be pushed later
+                // Scenario B: Local is strictly newer -> Push to cloud
                 localNote.updatedAt > cloudNote.updatedAt -> {
-                    Log.d(TAG, "Local is newer for '${localNote.title}', will push to cloud.")
+                    Log.d(TAG, "Syncing Local -> Cloud: '${localNote.title}'")
                     val noteWithBlocks = localRepository.getNoteWithBlocks(localNote.id)
                     if (noteWithBlocks != null) {
                         cloudRepository.backupNoteToCloud(noteWithBlocks.note, noteWithBlocks.blocks)
@@ -83,11 +88,6 @@ class SyncManager @Inject constructor(
             }
         }
         
-        // 3. Check for local notes that don't exist in cloud at all (New creations)
-        // This handles notes created offline.
-        // For brevity, we'll assume the updatedAt logic covers most cases, 
-        // but a full bi-directional sync should compare sets.
-
         return Result.success(Unit)
     }
 }

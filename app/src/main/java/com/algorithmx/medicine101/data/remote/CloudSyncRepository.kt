@@ -8,6 +8,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.toObjects
 import kotlinx.coroutines.tasks.await
+import java.net.UnknownHostException
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -48,7 +49,6 @@ class CloudSyncRepository @Inject constructor(
             val noteRef = notesCollection.document(note.id)
             batch.set(noteRef, cloudNote)
 
-            // Sync blocks
             val blocksRef = noteRef.collection("blocks")
             blocks.forEach { block ->
                 val blockDocId = block.blockId.toString() 
@@ -62,7 +62,7 @@ class CloudSyncRepository @Inject constructor(
                 batch.set(blocksRef.document(blockDocId), cloudBlock)
             }
 
-            batch.commit().await()
+            batch.commit() 
             Result.success(Unit)
         } catch (e: Exception) {
             handleFirestoreException(e, "Backup failed for note: ${note.id}")
@@ -73,26 +73,23 @@ class CloudSyncRepository @Inject constructor(
         val uid = auth.currentUser?.uid ?: return Result.failure(Exception("User not authenticated"))
         
         return try {
-            Log.d("CloudSync", "Pulling notes for UID: $uid")
+            Log.d("CloudSync", "Attempting cloud pull for UID: $uid")
+            
             val querySnapshot = notesCollection
                 .whereEqualTo("userId", uid)
                 .whereEqualTo("isDeleted", false)
                 .get()
                 .await()
 
-            Log.d("CloudSync", "Found ${querySnapshot.size()} notes in cloud.")
+            Log.d("CloudSync", "Successfully retrieved ${querySnapshot.size()} notes from cloud.")
             val results = mutableListOf<Pair<CloudNote, List<CloudContentBlock>>>()
 
             for (document in querySnapshot.documents) {
-                try {
-                    val cloudNote = document.toObject(CloudNote::class.java)
-                    if (cloudNote != null) {
-                        val blocksSnapshot = document.reference.collection("blocks").get().await()
-                        val cloudBlocks = blocksSnapshot.toObjects(CloudContentBlock::class.java)
-                        results.add(cloudNote to cloudBlocks)
-                    }
-                } catch (e: Exception) {
-                    Log.e("CloudSync", "Error parsing note document ${document.id}: ${e.message}")
+                val cloudNote = document.toObject(CloudNote::class.java)
+                if (cloudNote != null) {
+                    val blocksSnapshot = document.reference.collection("blocks").get().await()
+                    val cloudBlocks = blocksSnapshot.toObjects(CloudContentBlock::class.java)
+                    results.add(cloudNote to cloudBlocks)
                 }
             }
             Result.success(results)
@@ -102,9 +99,11 @@ class CloudSyncRepository @Inject constructor(
     }
 
     private fun <T> handleFirestoreException(e: Exception, message: String): Result<T> {
-        return if (e is FirebaseFirestoreException && e.code == FirebaseFirestoreException.Code.UNAVAILABLE) {
-            Log.w("CloudSync", "$message: Firestore unavailable.")
-            Result.failure(Exception("Network unavailable.", e))
+        val rootCause = generateSequence(e as Throwable) { it.cause }.last()
+        return if (rootCause is UnknownHostException || 
+            (e is FirebaseFirestoreException && e.code == FirebaseFirestoreException.Code.UNAVAILABLE)) {
+            Log.w("CloudSync", "$message: Device is offline. Sync will resume when online.")
+            Result.failure(Exception("Sync Pending: Waiting for network."))
         } else {
             Log.e("CloudSync", "$message: ${e.message}", e)
             Result.failure(e)
