@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.algorithmx.medicine101.brain.BrainCategory
+import com.algorithmx.medicine101.brain.models.BrainCategory
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

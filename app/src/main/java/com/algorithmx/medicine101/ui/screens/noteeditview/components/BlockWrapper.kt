@@ -1,7 +1,8 @@
 package com.algorithmx.medicine101.ui.screens.noteeditview.components
 
-import androidx.compose.foundation.border
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDownward
@@ -12,6 +13,8 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -22,35 +25,65 @@ fun BlockWrapper(
     onMoveDown: () -> Unit,
     content: @Composable () -> Unit
 ) {
-    Column(
+    Surface(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 8.dp)
-            .border(1.dp, MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f), RoundedCornerShape(8.dp))
-            .padding(8.dp)
+            .padding(vertical = 4.dp, horizontal = 8.dp),
+        shape = RoundedCornerShape(12.dp),
+        color = MaterialTheme.colorScheme.surface,
+        tonalElevation = 1.dp
     ) {
-        // The Preview Content
-        content()
+        Row(modifier = Modifier.fillMaxWidth()) {
+            // Side Accent (Medical Indicator)
+            Box(
+                modifier = Modifier
+                    .width(4.dp)
+                    .fillMaxHeight()
+                    .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.3f))
+                    .align(Alignment.CenterVertically)
+            )
 
-        // The Control Bar
-        Row(
-            modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
-            horizontalArrangement = Arrangement.End,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            IconButton(onClick = onEdit, modifier = Modifier.size(32.dp)) {
-                Icon(Icons.Default.Edit, "Edit", modifier = Modifier.size(20.dp), tint = MaterialTheme.colorScheme.primary)
-            }
-            IconButton(onClick = onMoveUp, modifier = Modifier.size(32.dp)) {
-                Icon(Icons.Default.ArrowUpward, "Up", modifier = Modifier.size(20.dp))
-            }
-            IconButton(onClick = onMoveDown, modifier = Modifier.size(32.dp)) {
-                Icon(Icons.Default.ArrowDownward, "Down", modifier = Modifier.size(20.dp))
-            }
-            Spacer(modifier = Modifier.width(8.dp))
-            IconButton(onClick = onDelete, modifier = Modifier.size(32.dp)) {
-                Icon(Icons.Default.Delete, "Delete", modifier = Modifier.size(20.dp), tint = MaterialTheme.colorScheme.error)
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(12.dp)
+            ) {
+                // The actual content (Header, List, Table, etc.)
+                content()
+
+                // Polished Control Bar
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 12.dp),
+                    horizontalArrangement = Arrangement.End,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    ControlIconButton(icon = Icons.Default.Edit, tint = MaterialTheme.colorScheme.primary, onClick = onEdit)
+                    ControlIconButton(icon = Icons.Default.ArrowUpward, onClick = onMoveUp)
+                    ControlIconButton(icon = Icons.Default.ArrowDownward, onClick = onMoveDown)
+                    Spacer(modifier = Modifier.width(8.dp))
+                    ControlIconButton(icon = Icons.Default.Delete, tint = MaterialTheme.colorScheme.error, onClick = onDelete)
+                }
             }
         }
+    }
+}
+
+@Composable
+private fun ControlIconButton(
+    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    tint: Color = MaterialTheme.colorScheme.outline,
+    onClick: () -> Unit
+) {
+    IconButton(
+        onClick = onClick,
+        modifier = Modifier
+            .size(36.dp)
+            .padding(4.dp)
+            .clip(CircleShape)
+            .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.4f))
+    ) {
+        Icon(icon, null, modifier = Modifier.size(16.dp), tint = tint)
     }
 }

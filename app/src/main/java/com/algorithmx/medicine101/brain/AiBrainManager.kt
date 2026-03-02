@@ -4,6 +4,9 @@ import android.util.Log
 import com.algorithmx.medicine101.BuildConfig
 import com.algorithmx.medicine101.brain.implementations.GeminiBrainImpl
 import com.algorithmx.medicine101.brain.implementations.OpenAiCompatibleBrainImpl
+import com.algorithmx.medicine101.brain.models.BrainProvider
+import com.algorithmx.medicine101.brain.models.StoredBrainConfig
+import com.algorithmx.medicine101.brain.registry.BrainRegistry
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -54,15 +57,15 @@ class AiBrainManager @Inject constructor(
                 GeminiBrainImpl(apiKey, config.modelName)
             }
             BrainProvider.GROQ -> {
-                // Correct Groq OpenAI-compatible endpoint
+                // Groq requires the full path to the completions endpoint
                 OpenAiCompatibleBrainImpl(
                     apiKey = apiKey,
                     modelName = config.modelName,
-                    baseUrl ="https://api.groq.com/openai/v1",
+                    baseUrl = "https://api.groq.com/openai/v1/chat/completions"
                 )
             }
             BrainProvider.DEEPSEEK -> {
-                // Official DeepSeek API endpoint (often without /v1/ for chat completions)
+                // Official DeepSeek API endpoint for chat completions
                 OpenAiCompatibleBrainImpl(
                     apiKey = apiKey,
                     modelName = config.modelName,

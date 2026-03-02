@@ -38,6 +38,9 @@ class NoteRepository @Inject constructor(
     // SEARCH
     fun searchNotes(query: String): Flow<List<NoteEntity>> = noteDao.searchNotes(query)
 
+    // BOOK READER
+    fun getBooks(): Flow<List<NoteEntity>> = noteDao.getBooks()
+
     // --- SEEDING HELPER ---
     suspend fun isDatabaseEmpty(): Boolean = noteDao.getNoteCount() == 0
 

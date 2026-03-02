@@ -22,7 +22,7 @@ class CloudSyncRepository @Inject constructor(
         val uid = auth.currentUser?.uid ?: return Result.failure(Exception("User not authenticated"))
 
         return try {
-            Log.d("CloudSync", "Starting backup for note: ${note.id} with UID: $uid")
+            Log.d("CloudSync", "Backing up: ${note.title} (ID: ${note.id})")
             
             val cloudNote = CloudNote(
                 id = note.id,
@@ -39,13 +39,16 @@ class CloudSyncRepository @Inject constructor(
                 isPinned = note.isPinned,
                 createdAt = note.createdAt,
                 updatedAt = note.updatedAt,
-                isDeleted = note.isDeleted
+                isDeleted = note.isDeleted,
+                pdfUri = note.pdfUri,
+                pdfPage = note.pdfPage
             )
 
             val batch = firestore.batch()
             val noteRef = notesCollection.document(note.id)
             batch.set(noteRef, cloudNote)
 
+            // Sync blocks
             val blocksRef = noteRef.collection("blocks")
             blocks.forEach { block ->
                 val blockDocId = block.blockId.toString() 
@@ -59,11 +62,7 @@ class CloudSyncRepository @Inject constructor(
                 batch.set(blocksRef.document(blockDocId), cloudBlock)
             }
 
-            // By using await() here, we wait for the server acknowledgment.
-            // If offline persistence is enabled, this will still throw if the network is down.
-            // You could remove .await() for "fire and forget" local-first behavior.
             batch.commit().await()
-            Log.d("CloudSync", "Backup successful for note: ${note.id}")
             Result.success(Unit)
         } catch (e: Exception) {
             handleFirestoreException(e, "Backup failed for note: ${note.id}")
@@ -74,20 +73,26 @@ class CloudSyncRepository @Inject constructor(
         val uid = auth.currentUser?.uid ?: return Result.failure(Exception("User not authenticated"))
         
         return try {
+            Log.d("CloudSync", "Pulling notes for UID: $uid")
             val querySnapshot = notesCollection
                 .whereEqualTo("userId", uid)
                 .whereEqualTo("isDeleted", false)
                 .get()
                 .await()
 
+            Log.d("CloudSync", "Found ${querySnapshot.size()} notes in cloud.")
             val results = mutableListOf<Pair<CloudNote, List<CloudContentBlock>>>()
 
             for (document in querySnapshot.documents) {
-                val cloudNote = document.toObject(CloudNote::class.java)
-                if (cloudNote != null) {
-                    val blocksSnapshot = document.reference.collection("blocks").get().await()
-                    val cloudBlocks = blocksSnapshot.toObjects(CloudContentBlock::class.java)
-                    results.add(cloudNote to cloudBlocks)
+                try {
+                    val cloudNote = document.toObject(CloudNote::class.java)
+                    if (cloudNote != null) {
+                        val blocksSnapshot = document.reference.collection("blocks").get().await()
+                        val cloudBlocks = blocksSnapshot.toObjects(CloudContentBlock::class.java)
+                        results.add(cloudNote to cloudBlocks)
+                    }
+                } catch (e: Exception) {
+                    Log.e("CloudSync", "Error parsing note document ${document.id}: ${e.message}")
                 }
             }
             Result.success(results)
@@ -98,8 +103,8 @@ class CloudSyncRepository @Inject constructor(
 
     private fun <T> handleFirestoreException(e: Exception, message: String): Result<T> {
         return if (e is FirebaseFirestoreException && e.code == FirebaseFirestoreException.Code.UNAVAILABLE) {
-            Log.w("CloudSync", "$message: Firestore is currently unavailable (offline).")
-            Result.failure(Exception("Network unavailable. Data will sync when back online.", e))
+            Log.w("CloudSync", "$message: Firestore unavailable.")
+            Result.failure(Exception("Network unavailable.", e))
         } else {
             Log.e("CloudSync", "$message: ${e.message}", e)
             Result.failure(e)

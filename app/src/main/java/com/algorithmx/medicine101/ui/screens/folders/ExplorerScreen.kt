@@ -97,6 +97,7 @@ fun ExplorerScreen(
                         FolderRow(
                             item = item,
                             onClick = { onFolderClick(item.id) },
+                            onPdfOpen = { onNoteClick(item.id) },
                             onRename = { 
                                 itemToRename = item
                                 renameNameInput = item.title

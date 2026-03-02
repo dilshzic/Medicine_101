@@ -2,10 +2,10 @@ package com.algorithmx.medicine101.ui.screens.brain
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.algorithmx.medicine101.brain.BrainCategory
 import com.algorithmx.medicine101.brain.BrainDataStoreManager
-import com.algorithmx.medicine101.brain.BrainProvider
-import com.algorithmx.medicine101.brain.BrainRegistry
+import com.algorithmx.medicine101.brain.models.BrainCategory
+import com.algorithmx.medicine101.brain.models.BrainProvider
+import com.algorithmx.medicine101.brain.registry.BrainRegistry
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -15,9 +15,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 data class BrainUiState(
-    val selectedCategory: BrainCategory = BrainCategory.TEXT_TO_TEXT,
+    val selectedCategory: BrainCategory = BrainCategory.REASONING,
     val selectedProvider: BrainProvider = BrainProvider.GEMINI,
-    val selectedModel: String = "gemini-1.5-flash",
+    val selectedModel: String = "gemini-3-flash",
     val availableModels: List<String> = emptyList(),
     val systemInstruction: String = "You are a helpful medical assistant.",
     val totalRequests: Int = 0,

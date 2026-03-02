@@ -70,7 +70,22 @@ interface NoteDao {
     @Query("UPDATE notes SET isPinned = :pinned, updatedAt = :timestamp WHERE id = :id")
     suspend fun updatePinStatus(id: String, pinned: Boolean, timestamp: Long = System.currentTimeMillis())
 
-    // SEARCH
-    @Query("SELECT * FROM notes WHERE (title LIKE '%' || :query || '%' OR tags LIKE '%' || :query || '%') AND isDeleted = 0")
+    // ADVANCED SEARCH
+    @Query("""
+        SELECT * FROM notes 
+        WHERE (title LIKE '%' || :query || '%' OR tags LIKE '%' || :query || '%') 
+        AND isDeleted = 0
+    """)
     fun searchNotes(query: String): Flow<List<NoteEntity>>
+
+    @Query("""
+        SELECT n.* FROM notes n
+        INNER JOIN content_blocks b ON n.id = b.noteId
+        WHERE b.content LIKE '%' || :query || '%' AND n.isDeleted = 0
+    """)
+    fun searchNoteContents(query: String): Flow<List<NoteEntity>>
+
+    // BOOK READER - Filter for Root Books only (parentId is null AND pdfUri is not null)
+    @Query("SELECT * FROM notes WHERE pdfUri IS NOT NULL AND parentId IS NULL AND isDeleted = 0 ORDER BY title ASC")
+    fun getBooks(): Flow<List<NoteEntity>>
 }

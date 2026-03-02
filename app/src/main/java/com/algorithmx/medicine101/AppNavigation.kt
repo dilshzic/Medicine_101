@@ -11,6 +11,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -21,13 +22,15 @@ import com.algorithmx.medicine101.ui.auth.AuthViewModel
 import com.algorithmx.medicine101.ui.auth.LoginScreen
 import com.algorithmx.medicine101.ui.screens.NoteScreen
 import com.algorithmx.medicine101.ui.screens.dashboard.DashboardScreen
-import com.algorithmx.medicine101.ui.screens.pdfviewer.PdfViewerScreen
-import com.algorithmx.medicine101.ui.screens.pdfviewer.TocPdfViewerScreen
 import com.algorithmx.medicine101.ui.screens.folders.ExplorerScreen
 import com.algorithmx.medicine101.ui.screens.folders.ExplorerViewModel
+import com.algorithmx.medicine101.ui.screens.pdfviewer.BookReaderScreen
+import com.algorithmx.medicine101.ui.screens.pdfviewer.PdfViewerScreen
+import com.algorithmx.medicine101.ui.screens.pdfviewer.TocPdfViewerScreen
 import com.algorithmx.medicine101.ui.screens.profile.ProfileScreen
 import com.algorithmx.medicine101.ui.screens.search.SearchScreen
 import com.algorithmx.medicine101.ui.screens.brain.BrainManagerScreen
+import kotlinx.coroutines.launch
 
 @RequiresExtension(extension = Build.VERSION_CODES.S, version = 13)
 @Composable
@@ -35,6 +38,7 @@ fun AppNavigation() {
     val navController = rememberNavController()
     val authViewModel: AuthViewModel = hiltViewModel()
     val user by authViewModel.user.collectAsState()
+    val scope = rememberCoroutineScope()
 
     NavHost(
         navController = navController,
@@ -61,7 +65,15 @@ fun AppNavigation() {
                 onSearchClick = { navController.navigate("search") },
                 onExplorerClick = { navController.navigate("explorer_root") },
                 onProfileClick = { navController.navigate("profile") },
-                onBrainClick = { navController.navigate("brain_manager") }
+                onBrainClick = { navController.navigate("brain_manager") },
+                onBookReaderClick = { navController.navigate("book_reader") }
+            )
+        }
+
+        composable("book_reader") {
+            BookReaderScreen(
+                onBookClick = { noteId -> navController.navigate("note_screen/$noteId") },
+                onBack = { navController.popBackStack() }
             )
         }
 
@@ -84,9 +96,15 @@ fun AppNavigation() {
         }
 
         composable("explorer_root") {
+            val explorerViewModel: ExplorerViewModel = hiltViewModel()
             ExplorerScreen(
-                onFolderClick = { navController.navigate("explorer/$it") },
-                onNoteClick = { noteId -> navController.navigate("note_screen/$noteId") },
+                viewModel = explorerViewModel,
+                onFolderClick = { folderId ->
+                    navController.navigate("explorer/$folderId")
+                },
+                onNoteClick = { noteId ->
+                    navController.navigate("note_screen/$noteId")
+                },
                 onSearchClick = { navController.navigate("search") },
                 onBack = { navController.popBackStack() }
             )
@@ -95,10 +113,17 @@ fun AppNavigation() {
         composable(
             route = "explorer/{folderId}",
             arguments = listOf(navArgument("folderId") { type = NavType.StringType })
-        ) {
+        ) { backStackEntry ->
+            val folderId = backStackEntry.arguments?.getString("folderId") ?: return@composable
+            val explorerViewModel: ExplorerViewModel = hiltViewModel()
             ExplorerScreen(
-                onFolderClick = { navController.navigate("explorer/$it") },
-                onNoteClick = { noteId -> navController.navigate("note_screen/$noteId") },
+                viewModel = explorerViewModel,
+                onFolderClick = { subFolderId ->
+                    navController.navigate("explorer/$subFolderId")
+                },
+                onNoteClick = { noteId ->
+                    navController.navigate("note_screen/$noteId")
+                },
                 onSearchClick = { navController.navigate("search") },
                 onBack = { navController.popBackStack() }
             )
@@ -133,7 +158,7 @@ fun AppNavigation() {
                 noteMetadata?.let { note ->
                     if (note.pdfUri != null) {
                         val page = note.pdfPage ?: 0
-
+                        // Use the appropriate viewer based on whether it's a TOC or full book
                         if (page > 0) {
                             TocPdfViewerScreen(
                                 pdfPath = note.pdfUri,

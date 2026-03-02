@@ -16,12 +16,14 @@ data class CloudNote(
     val isPinned: Boolean = false,
     val createdAt: Long = 0,
     val updatedAt: Long = 0,
-    val isDeleted: Boolean = false
+    val isDeleted: Boolean = false,
+    val pdfUri: String? = null,
+    val pdfPage: Int? = null
 )
 
 // Mirrors ContentBlockEntity
 data class CloudContentBlock(
-    val blockId: String = "", // Changed to String for Firestore document IDs
+    val blockId: String = "",
     val type: String = "",
     val content: String = "",
     val orderIndex: Int = 0,
