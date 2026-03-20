@@ -36,6 +36,7 @@ class DatabaseSeeder @Inject constructor(
         )
 
         // 3. Process the map
+        val gson = Gson()
         seedMap.forEach { (categoryName, files) ->
             // A. Create the Folder for this category
             val folderId = UUID.randomUUID().toString()
@@ -76,7 +77,6 @@ class DatabaseSeeder @Inject constructor(
                     repository.insertNote(note)
 
                     // 5. Map the FLATTENED blocks to the Database Entities
-                    val gson = Gson()
                     val blockEntities = processedBlocks.mapIndexed { index, block ->
                         ContentBlockEntity(
                             noteId = noteId,

@@ -16,7 +16,13 @@ import java.util.UUID
             onDelete = ForeignKey.CASCADE
         )
     ],
-    indices = [Index(value = ["parentId"])]
+    indices = [
+        Index(value = ["parentId"]),
+        Index(value = ["isDeleted"]),
+        Index(value = ["isPinned"]),
+        Index(value = ["isFolder"]),
+        Index(value = ["parentId", "isDeleted", "isFolder"])
+    ]
 )
 data class NoteEntity(
     @PrimaryKey val id: String = UUID.randomUUID().toString(),

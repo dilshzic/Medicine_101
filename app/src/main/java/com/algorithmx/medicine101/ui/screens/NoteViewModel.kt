@@ -29,9 +29,12 @@ class NoteViewModel @Inject constructor(
 
     private val TAG = "NoteViewModel"
     private val noteId: String = savedStateHandle["noteId"] ?: throw IllegalArgumentException("Note ID required")
-    private val json = Json { 
-        ignoreUnknownKeys = true 
-        coerceInputValues = true
+
+    companion object {
+        val json = Json {
+            ignoreUnknownKeys = true
+            coerceInputValues = true
+        }
     }
 
     private val _blocks = MutableStateFlow<List<ContentBlock>>(emptyList())
