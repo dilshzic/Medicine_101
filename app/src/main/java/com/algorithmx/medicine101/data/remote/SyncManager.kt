@@ -32,8 +32,12 @@ class SyncManager @Inject constructor(
         // 2. Sort to avoid Foreign Key violations (Folders first)
         val sortedCloudItems = cloudItems.sortedByDescending { it.first.isFolder }
 
+        // Batch-fetch all local notes in a single query to avoid N+1 database calls
+        val cloudIds = sortedCloudItems.map { it.first.id }
+        val localNotesMap = localRepository.getNotesByIds(cloudIds)
+
         for ((cloudNote, cloudBlocks) in sortedCloudItems) {
-            val localNote = localRepository.getNoteById(cloudNote.id)
+            val localNote = localNotesMap[cloudNote.id]
 
             when {
                 // Scenario A: Local missing or Cloud is strictly newer

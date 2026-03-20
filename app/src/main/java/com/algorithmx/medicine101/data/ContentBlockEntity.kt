@@ -15,7 +15,10 @@ import androidx.room.PrimaryKey
             onDelete = ForeignKey.CASCADE
         )
     ],
-    indices = [Index("noteId")]
+    indices = [
+        Index("noteId"),
+        Index(value = ["noteId", "orderIndex"])
+    ]
 )
 data class ContentBlockEntity(
     @PrimaryKey(autoGenerate = true) val blockId: Long = 0,

@@ -14,6 +14,9 @@ interface NoteDao {
     @Query("SELECT * FROM notes WHERE id = :id")
     suspend fun getNoteById(id: String): NoteEntity?
 
+    @Query("SELECT * FROM notes WHERE id IN (:ids)")
+    suspend fun getNotesByIds(ids: List<String>): List<NoteEntity>
+
     @Query("SELECT COUNT(*) FROM notes")
     suspend fun getNoteCount(): Int
     
@@ -75,13 +78,15 @@ interface NoteDao {
         SELECT * FROM notes 
         WHERE (title LIKE '%' || :query || '%' OR tags LIKE '%' || :query || '%') 
         AND isDeleted = 0
+        LIMIT 100
     """)
     fun searchNotes(query: String): Flow<List<NoteEntity>>
 
     @Query("""
-        SELECT n.* FROM notes n
+        SELECT DISTINCT n.* FROM notes n
         INNER JOIN content_blocks b ON n.id = b.noteId
         WHERE b.content LIKE '%' || :query || '%' AND n.isDeleted = 0
+        LIMIT 100
     """)
     fun searchNoteContents(query: String): Flow<List<NoteEntity>>
 

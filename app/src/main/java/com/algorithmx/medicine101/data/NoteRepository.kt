@@ -14,6 +14,9 @@ class NoteRepository @Inject constructor(
 
     suspend fun getNoteById(id: String): NoteEntity? = noteDao.getNoteById(id)
 
+    suspend fun getNotesByIds(ids: List<String>): Map<String, NoteEntity> =
+        noteDao.getNotesByIds(ids).associateBy { it.id }
+
     suspend fun insertNote(note: NoteEntity) = noteDao.insert(note)
 
     suspend fun updateNote(note: NoteEntity) = noteDao.update(note)
@@ -37,6 +40,8 @@ class NoteRepository @Inject constructor(
 
     // SEARCH
     fun searchNotes(query: String): Flow<List<NoteEntity>> = noteDao.searchNotes(query)
+
+    fun searchNoteContents(query: String): Flow<List<NoteEntity>> = noteDao.searchNoteContents(query)
 
     // BOOK READER
     fun getBooks(): Flow<List<NoteEntity>> = noteDao.getBooks()
